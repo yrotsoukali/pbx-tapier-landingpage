@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>PBX Integrator</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="hero__background" aria-hidden="true">
+        <div class="hero__grid"></div>
+        <div class="hero__glow hero__glow--orange"></div>
+        <div class="hero__glow hero__glow--blue"></div>
+        <div class="hero__line hero__line--one"></div>
+        <div class="hero__line hero__line--two"></div>
+      </div>
+      
+      <header class="header">
+        <div class="logo-block">
+          <a href="#" class="logo" aria-label="PBX Integrator">
+            <span class="logo__main">
+              <span class="logo__mark">PBX</span>
+              <strong>INTEGRATOR</strong>
+            </span>
+          </a>
+          <a
+            href="https://northcom.gr"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="logo__subline"
+          >
+            Powered by NorthCom Technologies
+          </a>
+        </div>
+
+        <nav class="navbar" id="mainNav" aria-label="Κύρια πλοήγηση">
+          <a href="#features" data-i18n="navFeatures">Λειτουργίες</a>
+          <a href="#ai" data-i18n="navAi">AI πρόσθετα</a>
+          <a href="#plans" data-i18n="navPlans">Πλάνα</a>
+          <a href="#demo" class="active">DEMO</a>
+        </nav>
+
+        <div class="language" id="languageSwitcher" aria-label="Επιλογή γλώσσας">
+          <button type="button" class="active" data-lang="el">ΕΛ</button>
+          <span class="language__separator" aria-hidden="true"></span>
+          <button type="button" data-lang="en">EN</button>
+        </div>
+      </header>
+
+      <div class="hero__media">
+        <div class="hero-image-wrap" id="heroImageWrap">
+          <img
+            src="images/final_hero_greek-rbg.png"
+            alt="PBX Integrator Hero"
+            id="heroImage"
+            class="hero-image"
+          />
+          <img
+            src="images/final_hero_greek-rbg.png"
+            alt=""
+            aria-hidden="true"
+            id="heroImageFade"
+            class="hero-image hero-image--fade"
+          />
+        </div>
+
+        <div class="feature-ticker" id="featureTicker" aria-label="Βασικές λειτουργίες προϊόντος">
+          <div class="feature-ticker__edge feature-ticker__edge--left" aria-hidden="true"></div>
+          <div class="feature-ticker__edge feature-ticker__edge--right" aria-hidden="true"></div>
+          <div class="feature-ticker__viewport">
+            <div class="feature-ticker__track" id="featureTickerTrack"></div>
+          </div>
+        </div>
+
+        <button type="button" class="scroll-indicator" id="scrollIndicator" aria-label="Κύλιση προς τα κάτω">
+          <img src="images/scroll.png" alt="" class="scroll-indicator__icon" />
+        </button>
+      </div>
+    </section>
+
+    <div class="comparison-flow">
+      <section class="section-preview" aria-label="Section preview">
+        <div class="section-preview__inner">
+          <span class="section-pill" data-i18n="beforeAfterPill">ΠΡΙΝ/ΜΕΤΑ</span>
+        </div>
+      </section>
+
+      <section class="comparison" id="features" aria-labelledby="comparisonTitle">
+        <div class="comparison__background" aria-hidden="true">
+          <div class="comparison__glow comparison__glow--left"></div>
+          <div class="comparison__glow comparison__glow--right"></div>
+        </div>
+
+        <div class="comparison__inner">
+          <header class="comparison__header">
+            <h2 class="comparison__title" id="comparisonTitle">
+              <span data-i18n="comparisonTitleStart">Κάθε κλήση χωρίς</span>
+              <span class="comparison__accent" data-i18n="comparisonTitleAccent">PBX INTEGRATOR</span>
+              <span data-i18n="comparisonTitleEnd">είναι χαμένος χρόνος.</span>
+            </h2>
+          </header>
+
+          <div class="comparison__labels" aria-hidden="true">
+            <div class="comparison__label comparison__label--negative" data-i18n="comparisonLabelBefore">× ΧΩΡΙΣ PBX INTEGRATOR</div>
+            <div class="comparison__label comparison__label--positive" data-i18n="comparisonLabelAfter">✓ ΜΕ PBX INTEGRATOR</div>
+          </div>
+
+          <div class="comparison__rows" id="comparisonRows"></div>
+
+          <div class="comparison__stats">
+            <div class="comparison__stat comparison__stat--muted">
+              <div class="comparison__stat-value" data-i18n="comparisonStatLeftValue">5 λεπτά</div>
+              <div class="comparison__stat-label" data-i18n="comparisonStatLeftLabel">χαμένα ανά κλήση</div>
+            </div>
+
+            <div class="comparison__stat comparison__stat--accent">
+              <div class="comparison__stat-value" data-i18n="comparisonStatRightValue">&lt;30 δευτ.</div>
+              <div class="comparison__stat-label" data-i18n="comparisonStatRightLabel">για πλήρη ενημέρωση</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="roi" id="plans" aria-labelledby="roiTitle">
+      <div class="roi__inner">
+        <header class="roi__header">
+          <span class="roi__pill" data-i18n="roiPill">ROI CALCULATOR</span>
+          <h2 class="roi__title" id="roiTitle">
+            <span data-i18n="roiTitleStart">Μετατρέψτε κάθε κλήση</span>
+            <span data-i18n="roiTitleMiddle">σε</span>
+            <span class="roi__accent" data-i18n="roiTitleAccent">μετρήσιμο κέρδος.</span>
+          </h2>
+          <p class="roi__subtitle" data-i18n="roiSubtitle">Υπολογίστε το πραγματικό όφελος από την έξυπνη διαχείριση κλήσεων.</p>
+        </header>
+
+        <div class="roi__panel">
+          <section class="roi__controls" aria-labelledby="roiControlsTitle">
+            <div class="roi__controls-top">
+              <div class="roi__meta">
+                <span data-i18n="roiWorkingDays">22 ημέρες/μήνα</span>
+              </div>
+            </div>
+
+            <h3 class="sr-only" id="roiControlsTitle">ROI Inputs</h3>
+
+            <div class="roi__control">
+              <div class="roi__control-head">
+                <label for="roiUsers" class="roi__label" data-i18n="roiUsersLabel">ΑΡΙΘΜΟΣ ΥΠΑΛΛΗΛΩΝ</label>
+                <span class="roi__value" id="roiUsersValue">6 άτομα</span>
+              </div>
+              <input id="roiUsers" class="roi__range" type="range" min="1" max="50" step="1" value="6" />
+            </div>
+
+            <div class="roi__control">
+              <div class="roi__control-head">
+                <label for="roiCalls" class="roi__label" data-i18n="roiCallsLabel">ΚΛΗΣΕΙΣ ΑΝΑ ΗΜΕΡΑ / ΑΤΟΜΟ</label>
+                <span class="roi__value" id="roiCallsValue">40 κλήσεις</span>
+              </div>
+              <input id="roiCalls" class="roi__range" type="range" min="10" max="210" step="1" value="40" />
+            </div>
+
+            <div class="roi__control">
+              <div class="roi__control-head">
+                <label for="roiLostTime" class="roi__label roi__label--with-icon">
+                  <span data-i18n="roiLostTimeLabel">ΧΑΜΕΝΟΣ ΧΡΟΝΟΣ ΑΝΑ ΚΛΗΣΗ</span>
+                  <span
+                    class="roi__info-icon"
+                    aria-label="Πληροφορίες"
+                    data-tooltip="Συμπληρώστε τον χρόνο που χάνετε ανά κλήση σε χειροκίνητες ενέργειες όπως:
+- αναζήτηση πελάτη
+- άνοιγμα νέας παραγγελίας
+- εύρεση υπολοίπου κ.λπ.
+και όχι τη διάρκεια της κλήσης."
+                    data-i18n-tooltip="roiLostTimeTooltip"
+                    tabindex="0"
+                  >
+                    i
+                  </span>
+                </label>
+                <span class="roi__value" id="roiLostTimeValue">1.5 λεπτά</span>
+              </div>
+              <input id="roiLostTime" class="roi__range" type="range" min="0" max="13" step="1" value="3" />
+            </div>
+
+            <div class="roi__control">
+              <div class="roi__control-head">
+                <label for="roiHourlyCost" class="roi__label" data-i18n="roiHourlyCostLabel">ΩΡΙΑΙΟ ΚΟΣΤΟΣ ΥΠΑΛΛΗΛΟΥ</label>
+                <span class="roi__value" id="roiHourlyCostValue">€ 8,50</span>
+              </div>
+              <input id="roiHourlyCost" class="roi__range" type="range" min="7.86" max="20" step="0.1" value="8.5" />
+            </div>
+
+            <ul class="roi__notes">
+              <li><span data-i18n="roiFooterThree">Οι περισσότερες επιχειρήσεις υποτιμούν αυτό το κόστος έως και 3×</span></li>
+            </ul>
+          </section>
+
+          <section class="roi__results" aria-label="ROI Results">
+            <article class="roi-card">
+              <span class="roi-card__label" data-i18n="roiCard1Label">ΧΑΜΕΝΕΣ ΩΡΕΣ / ΜΗΝΑ</span>
+              <strong class="roi-card__value" id="roiLostHours">528 h</strong>
+            </article>
+
+            <article class="roi-card">
+              <span class="roi-card__label" data-i18n="roiCard2Label">ΚΟΣΤΟΣ ΠΑΡΑΓΩΓΙΚΟΤΗΤΑΣ / ΜΗΝΑ</span>
+              <strong class="roi-card__value" id="roiMonthlyCost">€ 4.488</strong>
+            </article>
+
+            <article class="roi-card">
+              <span class="roi-card__label" data-i18n="roiCard3Label">ΩΡΕΣ ΠΟΥ ΕΞΟΙΚΟΝΟΜΕΙΤΕ / ΜΗΝΑ</span>
+              <strong class="roi-card__value roi-card__value--accent" id="roiSavedHours">449 h</strong>
+            </article>
+
+            <article class="roi-card">
+              <span class="roi-card__label" data-i18n="roiCard4Label">ΕΚΤΙΜΩΜΕΝΟ ΟΦΕΛΟΣ / ΜΗΝΑ</span>
+              <strong class="roi-card__value roi-card__value--accent" id="roiMonthlySavings">€ 3.815</strong>
+            </article>
+
+            <article class="roi-summary">
+              <div class="roi-summary__main">
+                <span class="roi-summary__label" data-i18n="roiCard5Label">ΣΥΝΟΛΙΚΟ ΟΦΕΛΟΣ / ΧΡΟΝΟ</span>
+                <strong class="roi-summary__value" id="roiAnnualSavings">€ 45.780</strong>
+              </div>
+              <div class="roi-summary__aside">
+                <p><span class="roi-summary__accent">85%</span> <span data-i18n="roiSummaryTextTwo">μείωση χρόνου με το PBX INTEGRATOR</span></p>
+              </div>
+            </article>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const scrollIndicator = document.getElementById("scrollIndicator");
+    const tickerTrack = document.getElementById("featureTickerTrack");
+    const featureTicker = document.getElementById("featureTicker");
+    const comparisonSection = document.querySelector(".comparison");
+    const comparisonRows = document.getElementById("comparisonRows");
+    const comparisonStats = document.querySelector(".comparison__stats");
+    const mainNav = document.getElementById("mainNav");
+    const heroImage = document.getElementById("heroImage");
+    const heroImageFade = document.getElementById("heroImageFade");
+    const languageSwitcher = document.getElementById("languageSwitcher");
+    const comparisonLeftValue = document.querySelector(".comparison__stat--muted .comparison__stat-value");
+    const comparisonRightValue = document.querySelector(".comparison__stat--accent .comparison__stat-value");
+    const roiUsersInput = document.getElementById("roiUsers");
+    const roiCallsInput = document.getElementById("roiCalls");
+    const roiLostTimeInput = document.getElementById("roiLostTime");
+    const roiHourlyCostInput = document.getElementById("roiHourlyCost");
+    const roiUsersValue = document.getElementById("roiUsersValue");
+    const roiCallsValue = document.getElementById("roiCallsValue");
+    const roiLostTimeValue = document.getElementById("roiLostTimeValue");
+    const roiHourlyCostValue = document.getElementById("roiHourlyCostValue");
+    const roiLostHours = document.getElementById("roiLostHours");
+    const roiMonthlyCost = document.getElementById("roiMonthlyCost");
+    const roiSavedHours = document.getElementById("roiSavedHours");
+    const roiMonthlySavings = document.getElementById("roiMonthlySavings");
+    const roiAnnualSavings = document.getElementById("roiAnnualSavings");
+    let activeLanguage = "el";
+    let comparisonRevealAnimated = false;
+    let comparisonStatsAnimated = false;
+    let comparisonStatsAnimationRun = 0;
+    let roiAnimated = false;
+    const ROI_WORKING_DAYS = 22;
+    const ROI_TIME_SAVING = 0.85;
+    const ROI_TIME_OPTIONS = [0.5, 0.75, 1, 1.5, 2, 2.5, 3, 4, 5, 6, 7, 8, 9, 10];
+    const ROI_DEFAULTS = {
+      users: 6,
+      calls: 40,
+      lostTimeIndex: 3,
+      hourlyCost: 8.5
+    };
+
+    const content = {
+      el: {
+        htmlLang: "el",
+        navLabel: "Κύρια πλοήγηση",
+        languageLabel: "Επιλογή γλώσσας",
+        navFeatures: "Λειτουργίες",
+        navAi: "AI πρόσθετα",
+        navPlans: "Πλάνα",
+        beforeAfterPill: "ΠΡΙΝ/ΜΕΤΑ",
+        comparisonTitleStart: "Κάθε κλήση χωρίς",
+        comparisonTitleAccent: "PBX INTEGRATOR",
+        comparisonTitleEnd: "είναι χαμένος χρόνος.",
+        comparisonLabelBefore: "× ΧΩΡΙΣ PBX INTEGRATOR",
+        comparisonLabelAfter: "✓ ΜΕ PBX INTEGRATOR",
+        comparisonStatLeftValue: "5 λεπτά",
+        comparisonStatLeftLabel: "χαμένα ανά κλήση",
+        comparisonStatLeftNumber: 5,
+        comparisonStatLeftPrefix: "",
+        comparisonStatLeftSuffix: " λεπτά",
+        comparisonStatRightValue: "<30 δευτ.",
+        comparisonStatRightLabel: "για πλήρη ενημέρωση",
+        comparisonStatRightNumber: 30,
+        comparisonStatRightPrefix: "<",
+        comparisonStatRightSuffix: " δευτ.",
+        roiPill: "ROI CALCULATOR",
+        roiTitleStart: "Μετατρέψτε κάθε κλήση",
+        roiTitleMiddle: "σε",
+        roiTitleAccent: "μετρήσιμο κέρδος.",
+        roiSubtitle: "Υπολογίστε το πραγματικό όφελος από την έξυπνη διαχείριση κλήσεων.",
+        roiWorkingDays: "22 ημέρες/μήνα",
+        roiUsersLabel: "ΑΡΙΘΜΟΣ ΥΠΑΛΛΗΛΩΝ",
+        roiCallsLabel: "ΚΛΗΣΕΙΣ ΑΝΑ ΗΜΕΡΑ / ΑΤΟΜΟ",
+        roiLostTimeLabel: "ΧΑΜΕΝΟΣ ΧΡΟΝΟΣ ΑΝΑ ΚΛΗΣΗ",
+        roiLostTimeTooltip: `Συμπληρώστε τον χρόνο που χάνετε ανά κλήση σε χειροκίνητες ενέργειες όπως:
+- αναζήτηση πελάτη
+- άνοιγμα νέας παραγγελίας
+- εύρεση υπολοίπου κ.λπ.
+και όχι τη διάρκεια της κλήσης.`,
+        roiHourlyCostLabel: "ΩΡΙΑΙΟ ΚΟΣΤΟΣ ΥΠΑΛΛΗΛΟΥ",
+        roiUsersUnit: "άτομα",
+        roiCallsUnit: "κλήσεις",
+        roiMinutesUnit: "λεπτά",
+        roiHoursUnit: " h",
+        roiCard1Label: "ΧΑΜΕΝΕΣ ΩΡΕΣ / ΜΗΝΑ",
+        roiCard2Label: "ΚΟΣΤΟΣ ΠΑΡΑΓΩΓΙΚΟΤΗΤΑΣ / ΜΗΝΑ",
+        roiCard3Label: "ΩΡΕΣ ΠΟΥ ΕΞΟΙΚΟΝΟΜΕΙΤΕ / ΜΗΝΑ",
+        roiCard4Label: "ΕΚΤΙΜΩΜΕΝΟ ΟΦΕΛΟΣ / ΜΗΝΑ",
+        roiCard5Label: "ΣΥΝΟΛΙΚΟ ΟΦΕΛΟΣ / ΧΡΟΝΟ",
+        roiSummaryTextOne: "Βασισμένο σε 22 εργάσιμες ημέρες / μήνα",
+        roiSummaryTextTwo: "μείωση χρόνου με το PBX INTEGRATOR",
+        roiFooterOne: "22 εργάσιμες ημέρες / μήνα",
+        roiFooterTwo: "Βασισμένο σε εκτιμώμενη μείωση χρόνου 85% με PBX Integrator",
+        roiFooterThree: "Οι περισσότερες επιχειρήσεις υποτιμούν αυτό το κόστος έως και 3×",
+        tickerLabel: "Βασικές λειτουργίες προϊόντος",
+        scrollLabel: "Κύλιση προς τα κάτω",
+        heroImage: "images/final_hero_greek-rbg.png",
+        comparisonItems: [
+          ["Χειροκίνητη αναζήτηση πελάτη", "Αυτόματη αναγνώριση καλούντος"],
+          ["Ψάχνεις υπόλοιπα και παραγγελίες", "Όλα τα στοιχεία πριν απαντήσεις"],
+          ["Χειρόγραφες σημειώσεις κλήσης", "AI σύνοψη κλήσης αυτόματα"],
+          ["Χειροκίνητη δημιουργία task", "Δημιουργία task με ένα κλικ"],
+          ["Δεν θυμάσαι τι ειπώθηκε", "Ηχητική καταγραφή στο CRM"]
+        ],
+        tickerItems: [
+          {
+            title: "Αυτόματη αναγνώριση",
+            icon: `
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.79.61 2.64a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.44-1.18a2 2 0 0 1 2.11-.45c.85.28 1.74.49 2.64.61A2 2 0 0 1 22 16.92z"/>
+            `
+          },
+          {
+            title: "Πλήρες ιστορικό πελάτη",
+            icon: `
+              <path d="M12 7v14"/>
+              <path d="M3 18h6a2 2 0 0 1 2 2V6a2 2 0 0 0-2-2H3z"/>
+              <path d="M21 18h-6a2 2 0 0 0-2 2V6a2 2 0 0 1 2-2h6z"/>
+            `
+          },
+          {
+            title: "AI σύνοψη κλήσης",
+            icon: `
+              <path d="M9.94 15.5A2 2 0 0 0 8.5 14.06L3 12l5.5-2.06A2 2 0 0 0 9.94 8.5L12 3l2.06 5.5a2 2 0 0 0 1.44 1.44L21 12l-5.5 2.06a2 2 0 0 0-1.44 1.44L12 21z"/>
+              <path d="M20 3v4"/>
+              <path d="M22 5h-4"/>
+              <path d="M4 17v2"/>
+              <path d="M5 18H3"/>
+            `
+          },
+          {
+            title: "Δημιουργία εργασίας",
+            icon: `
+              <path d="m4 4 7.2 17 2.4-7.2L21 11.4z"/>
+              <path d="m13.2 13.8 3.8 3.8"/>
+            `
+          },
+          {
+            title: "Ηχητική καταγραφή",
+            icon: `
+              <path d="M12 19v3"/>
+              <path d="M8 22h8"/>
+              <path d="M12 15a4 4 0 0 0 4-4V7a4 4 0 0 0-8 0v4a4 4 0 0 0 4 4Z"/>
+              <path d="M19 11a7 7 0 0 1-14 0"/>
+            `
+          },
+          {
+            title: "100% ενσωμάτωση με SoftOne",
+            icon: `
+              <path d="m6 10 6-4 6 4-6 4z"/>
+              <path d="m6 14 6 4 6-4"/>
+              <path d="m6 18 6 4 6-4"/>
+            `
+          }
+        ]
+      },
+      en: {
+        htmlLang: "en",
+        navLabel: "Main navigation",
+        languageLabel: "Language selection",
+        navFeatures: "Features",
+        navAi: "AI add-ons",
+        navPlans: "Plans",
+        beforeAfterPill: "BEFORE/AFTER",
+        comparisonTitleStart: "Every call without",
+        comparisonTitleAccent: "PBX INTEGRATOR",
+        comparisonTitleEnd: "is wasted time.",
+        comparisonLabelBefore: "× WITHOUT PBX INTEGRATOR",
+        comparisonLabelAfter: "✓ WITH PBX INTEGRATOR",
+        comparisonStatLeftValue: "5 mins",
+        comparisonStatLeftLabel: "lost per call",
+        comparisonStatLeftNumber: 5,
+        comparisonStatLeftPrefix: "",
+        comparisonStatLeftSuffix: " mins",
+        comparisonStatRightValue: "<30 sec",
+        comparisonStatRightLabel: "for full context",
+        comparisonStatRightNumber: 30,
+        comparisonStatRightPrefix: "<",
+        comparisonStatRightSuffix: " sec",
+        roiPill: "ROI CALCULATOR",
+        roiTitleStart: "Turn every call",
+        roiTitleMiddle: "into",
+        roiTitleAccent: "measurable profit.",
+        roiSubtitle: "Calculate the real business impact of smarter call handling.",
+        roiWorkingDays: "22 working days/month",
+        roiUsersLabel: "NUMBER OF USERS",
+        roiCallsLabel: "CALLS PER DAY / USER",
+        roiLostTimeLabel: "TIME LOST PER CALL",
+        roiLostTimeTooltip: `Estimate only the manual work time per call for tasks such as:
+- customer lookup
+- new order entry
+- balance checks, etc.
+and not the duration of the call itself.`,
+        roiHourlyCostLabel: "EMPLOYEE HOURLY COST",
+        roiUsersUnit: "users",
+        roiCallsUnit: "calls",
+        roiMinutesUnit: "min",
+        roiHoursUnit: " h",
+        roiCard1Label: "LOST HOURS / MONTH",
+        roiCard2Label: "PRODUCTIVITY COST / MONTH",
+        roiCard3Label: "HOURS SAVED / MONTH",
+        roiCard4Label: "ESTIMATED SAVINGS / MONTH",
+        roiCard5Label: "ESTIMATED SAVINGS / YEAR",
+        roiSummaryTextOne: "Based on 22 working days / month",
+        roiSummaryTextTwo: "time reduction with PBX INTEGRATOR",
+        roiFooterOne: "22 working days / month",
+        roiFooterTwo: "Based on an estimated 85% time reduction with PBX Integrator",
+        roiFooterThree: "Most businesses underestimate this cost by up to 3×",
+        tickerLabel: "Core product features",
+        scrollLabel: "Scroll down",
+        heroImage: "images/final_hero_english-rbg.png",
+        comparisonItems: [
+          ["Manual customer search", "Automatic caller recognition"],
+          ["You search balances and orders", "Full customer context before you answer"],
+          ["Handwritten call notes", "AI call summary automatically"],
+          ["Manual task creation", "Create a task with one click"],
+          ["You forget what was said", "Call recording inside the CRM"]
+        ],
+        tickerItems: [
+          {
+            title: "Automatic recognition",
+            icon: `
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.79.61 2.64a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.44-1.18a2 2 0 0 1 2.11-.45c.85.28 1.74.49 2.64.61A2 2 0 0 1 22 16.92z"/>
+            `
+          },
+          {
+            title: "Full customer history",
+            icon: `
+              <path d="M12 7v14"/>
+              <path d="M3 18h6a2 2 0 0 1 2 2V6a2 2 0 0 0-2-2H3z"/>
+              <path d="M21 18h-6a2 2 0 0 0-2 2V6a2 2 0 0 1 2-2h6z"/>
+            `
+          },
+          {
+            title: "AI call summary",
+            icon: `
+              <path d="M9.94 15.5A2 2 0 0 0 8.5 14.06L3 12l5.5-2.06A2 2 0 0 0 9.94 8.5L12 3l2.06 5.5a2 2 0 0 0 1.44 1.44L21 12l-5.5 2.06a2 2 0 0 0-1.44 1.44L12 21z"/>
+              <path d="M20 3v4"/>
+              <path d="M22 5h-4"/>
+              <path d="M4 17v2"/>
+              <path d="M5 18H3"/>
+            `
+          },
+          {
+            title: "Task creation",
+            icon: `
+              <path d="m4 4 7.2 17 2.4-7.2L21 11.4z"/>
+              <path d="m13.2 13.8 3.8 3.8"/>
+            `
+          },
+          {
+            title: "Audio recording",
+            icon: `
+              <path d="M12 19v3"/>
+              <path d="M8 22h8"/>
+              <path d="M12 15a4 4 0 0 0 4-4V7a4 4 0 0 0-8 0v4a4 4 0 0 0 4 4Z"/>
+              <path d="M19 11a7 7 0 0 1-14 0"/>
+            `
+          },
+          {
+            title: "100% SoftOne integration",
+            icon: `
+              <path d="m6 10 6-4 6 4-6 4z"/>
+              <path d="m6 14 6 4 6-4"/>
+              <path d="m6 18 6 4 6-4"/>
+            `
+          }
+        ]
+      }
+    };
+
+    function createIcon(markup) {
+      const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svg.setAttribute("viewBox", "0 0 24 24");
+      svg.setAttribute("fill", "none");
+      svg.setAttribute("stroke", "currentColor");
+      svg.setAttribute("stroke-linecap", "round");
+      svg.setAttribute("stroke-linejoin", "round");
+      svg.setAttribute("stroke-width", "1.7");
+      svg.setAttribute("aria-hidden", "true");
+      svg.setAttribute("class", "feature-ticker__icon");
+      svg.innerHTML = markup.trim();
+      return svg;
+    }
+
+    function createTickerGroup(items) {
+      const group = document.createElement("div");
+      group.className = "feature-ticker__group";
+
+      items.forEach((item, index) => {
+        const entry = document.createElement("div");
+        entry.className = "feature-ticker__item";
+
+        entry.appendChild(createIcon(item.icon));
+
+        const label = document.createElement("span");
+        label.className = "feature-ticker__label";
+        label.textContent = item.title;
+        entry.appendChild(label);
+
+        group.appendChild(entry);
+
+        if (index < items.length - 1) {
+          const separator = document.createElement("span");
+          separator.className = "feature-ticker__separator";
+          separator.setAttribute("aria-hidden", "true");
+          group.appendChild(separator);
+        }
+      });
+
+      return group;
+    }
+
+    function createComparisonRow(before, after) {
+      const row = document.createElement("div");
+      row.className = "comparison__row";
+
+      const beforeItem = document.createElement("div");
+      beforeItem.className = "comparison__point comparison__point--before";
+      beforeItem.innerHTML = `
+        <span class="comparison__point-icon">×</span>
+        <span class="comparison__point-text">${before}</span>
+      `;
+
+      const arrow = document.createElement("div");
+      arrow.className = "comparison__arrow";
+      arrow.setAttribute("aria-hidden", "true");
+      arrow.textContent = "→";
+
+      const afterItem = document.createElement("div");
+      afterItem.className = "comparison__point comparison__point--after";
+      afterItem.innerHTML = `
+        <span class="comparison__point-icon">✓</span>
+        <span class="comparison__point-text">${after}</span>
+      `;
+
+      row.append(beforeItem, arrow, afterItem);
+      return row;
+    }
+
+    function renderComparison(items) {
+      comparisonRows.innerHTML = "";
+      items.forEach(([before, after]) => {
+        comparisonRows.appendChild(createComparisonRow(before, after));
+      });
+    }
+
+    function formatStatValue(number, prefix, suffix) {
+      return `${prefix}${number}${suffix}`;
+    }
+
+    function formatCurrencyValue(value, lang, minimumFractionDigits = 0, maximumFractionDigits = 0) {
+      return new Intl.NumberFormat(lang === "en" ? "en-US" : "el-GR", {
+        style: "currency",
+        currency: "EUR",
+        minimumFractionDigits,
+        maximumFractionDigits
+      }).format(value);
+    }
+
+    function formatHoursValue(value, lang) {
+      const rounded = Math.round(value);
+      return `${new Intl.NumberFormat(lang === "en" ? "en-US" : "el-GR").format(rounded)} h`;
+    }
+
+    function formatRoiTimeValue(minutes, lang) {
+      if (minutes < 1) {
+        return `${Math.round(minutes * 60)} ${lang === "en" ? "sec" : "δευτ."}`;
+      }
+      const rounded = Number.isInteger(minutes) ? minutes.toFixed(0) : minutes.toFixed(1);
+      const localized = lang === "en" ? rounded : rounded.replace(".", ",");
+      return `${localized} ${lang === "en" ? "min" : "λεπτά"}`;
+    }
+
+    function setRangeFill(input) {
+      const min = Number(input.min);
+      const max = Number(input.max);
+      const value = Number(input.value);
+      const percent = ((value - min) / (max - min)) * 100;
+      input.style.setProperty("--fill", `${percent}%`);
+    }
+
+    function updateRoiCalculator() {
+      const selected = content[activeLanguage] || content.el;
+      const lang = activeLanguage;
+      const users = Number(roiUsersInput.value);
+      const callsPerUserPerDay = Number(roiCallsInput.value);
+      const averageTimeLostPerCall = ROI_TIME_OPTIONS[Number(roiLostTimeInput.value)];
+      const hourlyCost = Number(roiHourlyCostInput.value);
+
+      const totalCallsPerDay = users * callsPerUserPerDay;
+      const totalCallsPerMonth = totalCallsPerDay * ROI_WORKING_DAYS;
+      const lostMinutesPerMonth = totalCallsPerMonth * averageTimeLostPerCall;
+      const lostHoursPerMonth = lostMinutesPerMonth / 60;
+      const monthlyProductivityCost = lostHoursPerMonth * hourlyCost;
+      const savedHoursPerMonth = lostHoursPerMonth * ROI_TIME_SAVING;
+      const monthlySavings = monthlyProductivityCost * ROI_TIME_SAVING;
+      const annualSavings = monthlySavings * 12;
+
+      roiUsersValue.textContent = `${users} ${selected.roiUsersUnit}`;
+      roiCallsValue.textContent = `${callsPerUserPerDay} ${selected.roiCallsUnit}`;
+      roiLostTimeValue.textContent = formatRoiTimeValue(averageTimeLostPerCall, lang);
+      roiHourlyCostValue.textContent = formatCurrencyValue(hourlyCost, lang, 2, 2);
+
+      roiLostHours.textContent = formatHoursValue(lostHoursPerMonth, lang);
+      roiMonthlyCost.textContent = formatCurrencyValue(monthlyProductivityCost, lang);
+      roiSavedHours.textContent = formatHoursValue(savedHoursPerMonth, lang);
+      roiMonthlySavings.textContent = formatCurrencyValue(monthlySavings, lang);
+      roiAnnualSavings.textContent = formatCurrencyValue(annualSavings, lang);
+
+      [roiUsersInput, roiCallsInput, roiLostTimeInput, roiHourlyCostInput].forEach(setRangeFill);
+    }
+
+    function setRoiInputs(values) {
+      roiUsersInput.value = values.users;
+      roiCallsInput.value = values.calls;
+      roiLostTimeInput.value = values.lostTimeIndex;
+      roiHourlyCostInput.value = values.hourlyCost;
+      updateRoiCalculator();
+    }
+
+    function animateRoiInputs() {
+      const start = performance.now();
+      const duration = 1400;
+
+      function frame(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+
+        roiUsersInput.value = Math.round(1 + (ROI_DEFAULTS.users - 1) * eased);
+        roiCallsInput.value = Math.round(10 + (ROI_DEFAULTS.calls - 10) * eased);
+        roiLostTimeInput.value = Math.round(ROI_DEFAULTS.lostTimeIndex * eased);
+        roiHourlyCostInput.value = (7.86 + (ROI_DEFAULTS.hourlyCost - 7.86) * eased).toFixed(2);
+        updateRoiCalculator();
+
+        if (progress < 1) {
+          requestAnimationFrame(frame);
+          return;
+        }
+
+        setRoiInputs(ROI_DEFAULTS);
+      }
+
+      requestAnimationFrame(frame);
+    }
+
+    function formatDecimalStatValue(number, prefix, suffix) {
+      const rounded = Math.round(number * 4) / 4;
+      const display = Number.isInteger(rounded) ? rounded.toFixed(0) : rounded.toFixed(1);
+      return `${prefix}${display}${suffix}`;
+    }
+
+    function setComparisonStatValues(selected) {
+      comparisonLeftValue.textContent = formatStatValue(
+        selected.comparisonStatLeftNumber,
+        selected.comparisonStatLeftPrefix,
+        selected.comparisonStatLeftSuffix
+      );
+      comparisonRightValue.textContent = formatStatValue(
+        selected.comparisonStatRightNumber,
+        selected.comparisonStatRightPrefix,
+        selected.comparisonStatRightSuffix
+      );
+    }
+
+    function animateValue(element, from, to, duration, formatter, runId) {
+      const start = performance.now();
+
+      function frame(now) {
+        if (runId !== comparisonStatsAnimationRun) return;
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const value = from + (to - from) * eased;
+        element.textContent = formatter(value);
+
+        if (progress < 1) {
+          requestAnimationFrame(frame);
+        }
+      }
+
+      requestAnimationFrame(frame);
+    }
+
+    function animateComparisonStats() {
+      const selected = content[activeLanguage] || content.el;
+      comparisonStatsAnimationRun += 1;
+      const runId = comparisonStatsAnimationRun;
+      animateValue(
+        comparisonLeftValue,
+        0,
+        selected.comparisonStatLeftNumber,
+        2400,
+        (value) => formatDecimalStatValue(value, selected.comparisonStatLeftPrefix, selected.comparisonStatLeftSuffix),
+        runId
+      );
+      animateValue(
+        comparisonRightValue,
+        0,
+        selected.comparisonStatRightNumber,
+        650,
+        (value) => formatStatValue(Math.round(value), selected.comparisonStatRightPrefix, selected.comparisonStatRightSuffix),
+        runId
+      );
+    }
+
+    function renderTicker(items) {
+      tickerTrack.innerHTML = "";
+      tickerTrack.appendChild(createTickerGroup(items));
+      const groupSeparator = document.createElement("span");
+      groupSeparator.className = "feature-ticker__separator";
+      groupSeparator.setAttribute("aria-hidden", "true");
+      tickerTrack.appendChild(groupSeparator);
+      tickerTrack.appendChild(createTickerGroup(items));
+    }
+
+    function setLanguage(lang) {
+      const selected = content[lang] || content.el;
+      activeLanguage = lang;
+
+      document.documentElement.lang = selected.htmlLang;
+      document.body.dataset.language = lang;
+      mainNav.setAttribute("aria-label", selected.navLabel);
+      languageSwitcher.setAttribute("aria-label", selected.languageLabel);
+      featureTicker.setAttribute("aria-label", selected.tickerLabel);
+      scrollIndicator.setAttribute("aria-label", selected.scrollLabel);
+      heroImage.setAttribute("src", selected.heroImage);
+      heroImageFade.setAttribute("src", selected.heroImage);
+
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const key = element.dataset.i18n;
+        if (selected[key]) {
+          element.textContent = selected[key];
+        }
+      });
+
+      document.querySelectorAll("[data-i18n-tooltip]").forEach((element) => {
+        const key = element.dataset.i18nTooltip;
+        if (selected[key]) {
+          element.dataset.tooltip = selected[key];
+        }
+      });
+
+      languageSwitcher.querySelectorAll("[data-lang]").forEach((button) => {
+        button.classList.toggle("active", button.dataset.lang === lang);
+      });
+
+      renderTicker(selected.tickerItems);
+      renderComparison(selected.comparisonItems);
+      setComparisonStatValues(selected);
+      updateRoiCalculator();
+
+      window.localStorage.setItem("pbx-language", lang);
+    }
+
+    languageSwitcher.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-lang]");
+      if (!button) return;
+      setLanguage(button.dataset.lang);
+    });
+
+    const initialLanguage = window.localStorage.getItem("pbx-language") || "el";
+    setRoiInputs({
+      users: 1,
+      calls: 10,
+      lostTimeIndex: 0,
+      hourlyCost: 7.86
+    });
+    setLanguage(initialLanguage);
+
+    [roiUsersInput, roiCallsInput, roiLostTimeInput, roiHourlyCostInput].forEach((input) => {
+      input.addEventListener("input", updateRoiCalculator);
+      setRangeFill(input);
+    });
+
+    const comparisonObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (comparisonRevealAnimated) return;
+            comparisonRevealAnimated = true;
+            comparisonSection.classList.add("is-visible");
+            return;
+          }
+
+          comparisonRevealAnimated = false;
+          comparisonSection.classList.remove("is-visible");
+        });
+      },
+      {
+        threshold: 0.28
+      }
+    );
+
+    if (comparisonSection) {
+      comparisonObserver.observe(comparisonSection);
+    }
+
+    const comparisonStatsObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (comparisonStatsAnimated) return;
+            comparisonStatsAnimated = true;
+            animateComparisonStats();
+            return;
+          }
+
+          comparisonStatsAnimated = false;
+          comparisonStatsAnimationRun += 1;
+          setComparisonStatValues(content[activeLanguage] || content.el);
+        });
+      },
+      {
+        threshold: 0.55
+      }
+    );
+
+    if (comparisonStats) {
+      comparisonStatsObserver.observe(comparisonStats);
+    }
+
+    const roiObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting || roiAnimated) return;
+          roiAnimated = true;
+          animateRoiInputs();
+          roiObserver.disconnect();
+        });
+      },
+      {
+        threshold: 0.28
+      }
+    );
+
+    const roiSection = document.querySelector(".roi");
+    if (roiSection) {
+      roiObserver.observe(roiSection);
+    }
+
+    scrollIndicator?.addEventListener("click", () => {
+      window.scrollTo({
+        top: window.innerHeight * 0.92,
+        behavior: "smooth"
+      });
+    });
+  </script>
+</body>
+</html>
