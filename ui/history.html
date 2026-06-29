@@ -16,16 +16,18 @@
       margin: 0;
       background: transparent;
       font-family: "Segoe UI", Tahoma, Arial, sans-serif;
-      overflow: hidden;
+      overflow: visible;
     }
 
     body {
       display: grid;
       place-items: start;
       padding: 3px 0 0 3px;
+      background: transparent;
     }
 
     .history-menu {
+      position: relative;
       width: 204px;
       min-height: 262px;
       margin: 0;
@@ -38,6 +40,7 @@
       font-size: 12px;
       font-weight: 400;
       line-height: 1;
+      overflow: visible;
     }
 
     .history-menu__item {
@@ -47,13 +50,13 @@
       display: flex;
       align-items: center;
       white-space: nowrap;
+      cursor: default;
     }
 
     .history-menu__item--strong {
       font-weight: 700;
     }
 
-    .history-menu__item:hover,
     .history-menu__item:focus-visible,
     .history-menu__item.is-demo-hover {
       color: #000;
@@ -73,6 +76,7 @@
       border-bottom: 4px solid transparent;
       border-left: 4px solid #111;
       transform: translateY(-50%);
+      z-index: 4;
     }
 
     .history-menu__separator {
@@ -81,30 +85,183 @@
       background: #dddddd;
       border-top: 1px solid #ececec;
     }
+
+    .history-menu__item--has-submenu.is-demo-open > .history-submenu,
+    .history-menu__item--has-submenu:focus-within > .history-submenu {
+      display: block;
+    }
+
+    .history-submenu {
+      display: none;
+      position: absolute;
+      top: -5px;
+      left: 100%;
+      margin-left: -1px;
+      width: max-content;
+      min-width: 430px;
+      margin-top: 0;
+      padding: 4px 0 5px;
+      list-style: none;
+      color: #050505;
+      background: #f7f7f7;
+      border: 1px solid #c8c8c8;
+      box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.16);
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1;
+      overflow: visible;
+      z-index: 9999;
+    }
+
+    /* Κάθετη γραμμή ΜΟΝΟ στο submenu, όχι στο βασικό menu. */
+    .history-submenu::before {
+      content: "";
+      position: absolute;
+      left: 31px;
+      top: 3px;
+      bottom: 3px;
+      width: 1px;
+      background: #d6d6d6;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .history-submenu .history-menu__item {
+      width: 100%;
+      height: 23px;
+      padding: 0 18px 0 42px;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .history-submenu .history-menu__item:focus-visible {
+      color: #000;
+      background: #e5f3ff;
+      outline: 1px solid #99d1ff;
+      outline-offset: -1px;
+    }
   </style>
 </head>
 <body>
   <ul class="history-menu" role="menu" aria-label="&#924;&#949;&#957;&#959;&#973; &#953;&#963;&#964;&#959;&#961;&#953;&#954;&#959;&#973;">
-    <li class="history-menu__item history-menu__item--has-submenu" role="menuitem">&#65;&#110;&#121;&#68;&#101;&#115;&#107;&#67;&#97;&#108;&#108;</li>
-    <li class="history-menu__item history-menu__item--has-submenu" role="menuitem">&#931;&#967;&#949;&#964;&#953;&#954;&#941;&#962; &#949;&#961;&#947;&#945;&#963;&#943;&#949;&#962;</li>
-    <li class="history-menu__item" role="menuitem">&#902;&#957;&#959;&#953;&#958;&#949; &#949;&#960;&#945;&#966;&#942;</li>
-    <li class="history-menu__item history-menu__item--strong" role="menuitem">&#917;&#960;&#949;&#958;. &#922;&#955;&#942;&#963;&#951;&#962;</li>
+    <li class="history-menu__item" role="menuitem" data-i18n="remoteSupport">AnyDeskCall</li>
+
+    <li
+      class="history-menu__item history-menu__item--has-submenu"
+      role="menuitem"
+      aria-haspopup="menu"
+      aria-expanded="false"
+      data-menu-key="tasks"
+      data-submenu-trigger="tasks"
+    >
+      <span data-i18n="relatedTasks">Σχετικές εργασίες</span>
+
+      <ul class="history-submenu" role="menu" aria-label="&#931;&#967;&#949;&#964;&#953;&#954;&#941;&#962; &#949;&#961;&#947;&#945;&#963;&#943;&#949;&#962;" data-i18n-aria-label="relatedTasks">
+        <li class="history-menu__item" data-menu-key="task-order" role="menuitem" data-i18n="taskOrder">ΠΑΡ0002568 -> 28/6/2026 ΠΑΡΑΓΓΕΛΙΑ</li>
+        <li class="history-menu__item" data-menu-key="task-offer" role="menuitem" data-i18n="taskOffer">ΠΡΦ0001040 -> 29/6/2026 ΠΡΟΣΦΟΡΑ</li>
+        <li class="history-menu__item" data-menu-key="task-demo" role="menuitem" data-i18n="taskDemo">ΕΡΓ0001875 (Τσουκάλης) -> 29/6/2026 ΝΑ ΒΑΛΟΥΜΕ ΔΩΡΕΑΝ DEMO 30 ΗΜ.</li>
+      </ul>
+    </li>
+
+    <li class="history-menu__item" role="menuitem" data-i18n="openContact">Άνοιξε επαφή</li>
+    <li class="history-menu__item history-menu__item--strong" role="menuitem" data-i18n="callNotes">Επεξ. Κλήσης</li>
     <li class="history-menu__separator" role="separator"></li>
-    <li class="history-menu__item" data-menu-key="work-in" role="menuitem">&#917;&#961;&#947;&#945;&#963;&#943;&#945; &#949;&#957;&#964;&#972;&#962;</li>
-    <li class="history-menu__item" data-menu-key="work-out" role="menuitem">&#917;&#961;&#947;&#945;&#963;&#943;&#945; &#949;&#954;&#964;&#972;&#962;</li>
+    <li class="history-menu__item" data-menu-key="work-in" role="menuitem" data-i18n="onsiteWork">Εργασία εντός</li>
+    <li class="history-menu__item" data-menu-key="work-out" role="menuitem" data-i18n="offsiteWork">Εργασία εκτός</li>
     <li class="history-menu__separator" role="separator"></li>
-    <li class="history-menu__item" role="menuitem">&#925;&#941;&#945; &#949;&#960;&#945;&#966;&#942;</li>
-    <li class="history-menu__item" data-menu-key="balance" role="menuitem">&#927;&#953;&#954;&#959;&#957;&#959;&#956;&#953;&#954;&#942; &#922;&#945;&#961;&#964;&#941;&#955;&#945;</li>
-    <li class="history-menu__item" role="menuitem">&#928;&#969;&#955;&#942;&#963;&#949;&#953;&#962; &#954;&#945;&#964;&#945; &#949;&#943;&#948;&#959;&#962;</li>
-    <li class="history-menu__item" role="menuitem">&#923;&#943;&#963;&#964;&#945; &#928;&#969;&#955;&#942;&#963;&#949;&#969;&#957;</li>
+    <li class="history-menu__item" role="menuitem" data-i18n="newContact">Νέα επαφή</li>
+    <li class="history-menu__item" data-menu-key="balance" role="menuitem" data-i18n="financialOverview">Οικονομική Καρτέλα</li>
+    <li class="history-menu__item" role="menuitem" data-i18n="salesByItem">Πωλήσεις κατα είδος</li>
+    <li class="history-menu__item" role="menuitem" data-i18n="salesList">Λίστα Πωλήσεων</li>
     <li class="history-menu__separator" role="separator"></li>
-    <li class="history-menu__item" data-menu-key="order" role="menuitem">&#925;&#941;&#945; &#928;&#945;&#961;&#945;&#947;&#947;&#949;&#955;&#943;&#945;</li>
+    <li class="history-menu__item" data-menu-key="order" role="menuitem" data-i18n="newOrder">Νέα Παραγγελία</li>
   </ul>
   <script>
+    const translations = {
+      el: {
+        title: "History Menu",
+        menuLabel: "Μενού ιστορικού",
+        remoteSupport: "AnyDeskCall",
+        relatedTasks: "Σχετικές εργασίες",
+        taskOrder: "ΠΑΡ0002568 -> 28/6/2026 ΠΑΡΑΓΓΕΛΙΑ",
+        taskOffer: "ΠΡΦ0001040 -> 29/6/2026 ΠΡΟΣΦΟΡΑ",
+        taskDemo: "ΕΡΓ0001875 (Τσουκάλης) -> 29/6/2026 ΝΑ ΒΑΛΟΥΜΕ ΔΩΡΕΑΝ DEMO 30 ΗΜ.",
+        openContact: "Άνοιξε επαφή",
+        callNotes: "Επεξ. Κλήσης",
+        onsiteWork: "Εργασία εντός",
+        offsiteWork: "Εργασία εκτός",
+        newContact: "Νέα επαφή",
+        financialOverview: "Οικονομική Καρτέλα",
+        salesByItem: "Πωλήσεις κατα είδος",
+        salesList: "Λίστα Πωλήσεων",
+        newOrder: "Νέα Παραγγελία"
+      },
+      en: {
+        title: "History Menu",
+        menuLabel: "History menu",
+        remoteSupport: "AnyDesk Call",
+        relatedTasks: "Related tasks",
+        taskOrder: "ORD0002568 -> 28/6/2026 ORDER",
+        taskOffer: "QTN0001040 -> 29/6/2026 QUOTATION",
+        taskDemo: "TSK0001875 (Tsoukalis) -> 29/6/2026 SET UP FREE 30-DAY DEMO",
+        openContact: "Open contact",
+        callNotes: "Call notes",
+        onsiteWork: "On-site work",
+        offsiteWork: "Off-site work",
+        newContact: "New contact",
+        financialOverview: "Financial overview",
+        salesByItem: "Sales by item",
+        salesList: "Sales list",
+        newOrder: "New order"
+      }
+    };
+
+    function getLanguage() {
+      const params = new URLSearchParams(window.location.search);
+      const requested = params.get("lang");
+      if (requested === "en" || requested === "el") return requested;
+
+      try {
+        const stored = window.localStorage.getItem("pbx-language");
+        if (stored === "en" || stored === "el") return stored;
+      } catch {}
+
+      return document.documentElement.lang === "en" ? "en" : "el";
+    }
+
+    function applyLanguage(lang) {
+      const selected = translations[lang] || translations.el;
+
+      document.documentElement.lang = lang;
+      document.title = selected.title;
+
+      document.querySelector("[role='menu']")?.setAttribute("aria-label", selected.menuLabel);
+
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const key = element.dataset.i18n;
+        if (selected[key]) element.textContent = selected[key];
+      });
+
+      document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
+        const key = element.dataset.i18nAriaLabel;
+        if (selected[key]) element.setAttribute("aria-label", selected[key]);
+      });
+    }
+
+    applyLanguage(getLanguage());
+
     const hoverItems = document.querySelectorAll("[data-menu-key]");
+    const submenuTrigger = document.querySelector("[data-submenu-trigger='tasks']");
 
     window.addEventListener("message", (event) => {
       if (event.data?.type !== "history-hover") return;
+
+      const submenuOpen = Boolean(event.data.submenuOpen);
+      submenuTrigger?.classList.toggle("is-demo-open", submenuOpen);
+      submenuTrigger?.setAttribute("aria-expanded", submenuOpen ? "true" : "false");
 
       hoverItems.forEach((item) => {
         item.classList.toggle("is-demo-hover", item.dataset.menuKey === event.data.item);

@@ -205,6 +205,11 @@
         0 0 5px rgba(255, 255, 255, 0.045);
     }
 
+    .call-popup__people-icon--accent {
+      color: #ff8a3d;
+      filter: drop-shadow(0 0 6px rgba(255, 138, 61, 0.18));
+    }
+
     .call-popup__footer {
       height: 31px;
       padding: 0 15px;
@@ -273,7 +278,7 @@
   </style>
 </head>
 <body>
-  <section class="call-popup" aria-label="&#928;&#945;&#961;&#940;&#952;&#965;&#961;&#959; &#954;&#955;&#942;&#963;&#951;&#962;">
+  <section class="call-popup" aria-label="&#928;&#945;&#961;&#940;&#952;&#965;&#961;&#959; &#954;&#955;&#942;&#963;&#951;&#962;" data-i18n-aria-label="popupLabel">
     <header class="call-popup__titlebar">
       <div class="call-popup__identity">
         <span class="call-popup__number">2310527939</span>
@@ -300,7 +305,7 @@
             <circle cx="12.65" cy="4.85" r="2.75"></circle>
           </svg>
           <span class="call-popup__company">NORTHCOM TECHNOLOGIES IKE</span>
-          <button class="call-popup__contacts call-popup__contacts--neutral" type="button">&#917;&#960;&#945;&#966;&#941;&#962;</button>
+          <button class="call-popup__contacts call-popup__contacts--neutral" type="button" data-i18n="contacts">Επαφές</button>
         </div>
       </div>
     </main>
@@ -322,21 +327,56 @@
     const callStatus = document.getElementById("callStatus");
     const callDuration = document.getElementById("callDuration");
     const callTimer = document.getElementById("callTimer");
+    const contactsIcon = document.querySelector(".call-popup__people-icon");
     const params = new URLSearchParams(window.location.search);
+    const translations = {
+      el: {
+        popupLabel: "Παράθυρο κλήσης",
+        contacts: "Επαφές",
+        offering: "Προσφορά",
+        connected: "Συνδέθηκε"
+      },
+      en: {
+        popupLabel: "Call popup",
+        contacts: "Contacts",
+        offering: "Offering",
+        connected: "Connected"
+      }
+    };
     const rawCase = (
       params.get("case") ||
       params.get("popupCase") ||
       params.get("variant") ||
       ""
     ).toLowerCase();
+    const requestedLang = params.get("lang");
+    const language = requestedLang === "en" || requestedLang === "el"
+      ? requestedLang
+      : "el";
+    const copy = translations[language];
     const selectedCase = rawCase === "2" || rawCase === "case-2" || rawCase === "case2" || rawCase === "balance"
       ? "2"
       : "1";
+    const contactsTone = params.get("contacts");
     let connectedAt = null;
     let timerInterval = null;
 
     popup.dataset.case = selectedCase;
     popup.classList.toggle("call-popup--has-balance", selectedCase === "2");
+    contactsIcon?.classList.toggle("call-popup__people-icon--accent", contactsTone === "orange");
+    document.documentElement.lang = language;
+
+    document.querySelectorAll("[data-i18n]").forEach((element) => {
+      const key = element.dataset.i18n;
+      if (copy[key]) element.textContent = copy[key];
+    });
+
+    document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
+      const key = element.dataset.i18nAriaLabel;
+      if (copy[key]) element.setAttribute("aria-label", copy[key]);
+    });
+
+    callStatus.textContent = copy.offering;
 
     function formatDuration(totalSeconds) {
       const hours = Math.floor(totalSeconds / 3600);
@@ -354,7 +394,7 @@
     }
 
     setTimeout(() => {
-      callStatus.textContent = "Connected";
+      callStatus.textContent = copy.connected;
       callDuration.hidden = false;
       connectedAt = Date.now();
       updateTimer();

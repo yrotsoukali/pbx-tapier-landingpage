@@ -285,7 +285,7 @@
   </style>
 </head>
 <body>
-  <section class="call-popup" data-type="vip" aria-label="&#928;&#945;&#961;&#940;&#952;&#965;&#961;&#959; &#954;&#955;&#942;&#963;&#951;&#962;">
+  <section class="call-popup" data-type="vip" aria-label="&#928;&#945;&#961;&#940;&#952;&#965;&#961;&#959; &#954;&#955;&#942;&#963;&#951;&#962;" data-i18n-aria-label="popupLabel">
     <header class="call-popup__titlebar">
       <div class="call-popup__identity">
         <span class="call-popup__number">2310527939</span>
@@ -309,7 +309,7 @@
             <circle cx="9.5" cy="4.65" r="3.45"></circle>
           </svg>
           <span class="call-popup__company">NORTHCOM TECHNOLOGIES</span>
-          <button class="call-popup__badge call-popup__contacts--urgent" id="primaryPill" type="button">&#928;&#949;&#955;&#940;&#964;&#949;&#962;</button>
+          <button class="call-popup__badge call-popup__contacts--urgent" id="primaryPill" type="button" data-i18n="customers">Πελάτες</button>
         </div>
 
         <div class="call-popup__contact-entry">
@@ -319,8 +319,8 @@
             <path d="M13.25 8.6c2.12 0 3.85 1.73 3.85 3.85v1.85h-5.35v-2.15c0-1.32-.48-2.53-1.28-3.47.77-.08 1.69-.08 2.78-.08Z"></path>
             <circle cx="12.65" cy="4.85" r="2.75"></circle>
           </svg>
-          <span class="call-popup__company">&#932;&#931;&#927;&#933;&#922;&#913;&#923;&#919;&#931; (NORTHCOM TECHNOLOGIES)</span>
-          <button class="call-popup__contacts call-popup__contacts--natural" id="secondaryPill" type="button">&#917;&#960;&#945;&#966;&#941;&#962;</button>
+          <span class="call-popup__company">TSOUKALIS (NORTHCOM TECHNOLOGIES)</span>
+          <button class="call-popup__contacts call-popup__contacts--natural" id="secondaryPill" type="button" data-i18n="contacts">Επαφές</button>
         </div>
 
       </div>
@@ -346,6 +346,22 @@
     const callDuration = document.getElementById("callDuration");
     const callTimer = document.getElementById("callTimer");
     const params = new URLSearchParams(window.location.search);
+    const translations = {
+      el: {
+        popupLabel: "Παράθυρο κλήσης",
+        customers: "Πελάτες",
+        contacts: "Επαφές",
+        offering: "Προσφορά",
+        ringback: "Επανακλήση"
+      },
+      en: {
+        popupLabel: "Call popup",
+        customers: "Cust.",
+        contacts: "Contacts",
+        offering: "Offering",
+        ringback: "Ringback"
+      }
+    };
     const rawType = (
       params.get("type") ||
       params.get("customer") ||
@@ -353,6 +369,11 @@
       (params.has("no-vip") ? "no-vip" : "") ||
       (params.has("vip") ? "vip" : "")
     ).toLowerCase();
+    const requestedLang = params.get("lang");
+    const language = requestedLang === "en" || requestedLang === "el"
+      ? requestedLang
+      : "el";
+    const copy = translations[language];
     const selectedType = rawType === "no-vip" ? "no-vip" : "vip";
     const rawCase = (
       params.get("case") ||
@@ -367,10 +388,21 @@
 
     popup.dataset.type = selectedType;
     popup.dataset.case = selectedCase;
+    document.documentElement.lang = language;
     primaryPill.classList.toggle("call-popup__contacts--urgent", selectedCase === "1");
     primaryPill.classList.toggle("call-popup__contacts--success", selectedCase === "2");
     secondaryPill.classList.add("call-popup__contacts--natural");
-    callStatus.textContent = selectedType === "no-vip" ? "Ringback" : "Offering";
+    document.querySelectorAll("[data-i18n]").forEach((element) => {
+      const key = element.dataset.i18n;
+      if (copy[key]) element.textContent = copy[key];
+    });
+
+    document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
+      const key = element.dataset.i18nAriaLabel;
+      if (copy[key]) element.setAttribute("aria-label", copy[key]);
+    });
+
+    callStatus.textContent = selectedType === "no-vip" ? copy.ringback : copy.offering;
 
     function formatDuration(totalSeconds) {
       const hours = Math.floor(totalSeconds / 3600);
