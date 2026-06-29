@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PBX Popup</title>
+  <style>
+    :root {
+      --chrome: #334762;
+      --panel: #101926;
+      --panel-deep: #0c1522;
+      --panel-inner: #0b1421;
+      --line: #233851;
+      --title: #f3f7fe;
+      --text: #edf3fb;
+      --muted: #aebccf;
+      --icon: #a7b7cb;
+      --mint: #d7f7df;
+      --mint-text: #17371f;
+      --active: #42f1ba;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+      background: transparent;
+      font-family: "Segoe UI", "Segoe UI Variable", Tahoma, Arial, sans-serif;
+      text-rendering: auto;
+      overflow: hidden;
+    }
+
+    body {
+      display: grid;
+      place-items: start;
+    }
+
+    .call-popup {
+      width: 367px;
+      height: 207px;
+      overflow: hidden;
+      color: var(--text);
+      background: var(--panel);
+      border: 1px solid #284260;
+      border-radius: 7px;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.04),
+        0 0 0 1px rgba(5, 13, 24, 0.58);
+      animation: popup-slide-up 680ms cubic-bezier(0.18, 0.82, 0.22, 1) both;
+    }
+
+    .call-popup__titlebar {
+      height: 43px;
+      padding: 7px 10px 0 12px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      column-gap: 10px;
+      align-items: start;
+      background: var(--chrome);
+    }
+
+    .call-popup--has-balance .call-popup__titlebar {
+      grid-template-columns: minmax(0, 1fr) auto auto;
+    }
+
+    .call-popup__identity {
+      min-width: 0;
+    }
+
+    .call-popup__number,
+    .call-popup__company-top,
+    .call-popup__company,
+    .call-popup__status,
+    .call-popup__duration,
+    .call-popup__contacts {
+      font-variant-ligatures: none;
+    }
+
+    .call-popup__number {
+      display: block;
+      color: var(--title);
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 17px;
+      letter-spacing: 0.05px;
+    }
+
+    .call-popup__company-top {
+      display: block;
+      margin-top: 1px;
+      color: #f0f5fc;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 15px;
+      letter-spacing: 0.2px;
+    }
+
+    .call-popup__balance {
+      display: none;
+      padding-top: 4px;
+      color: #f2bd3b;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 15px;
+      white-space: nowrap;
+    }
+
+    .call-popup--has-balance .call-popup__balance {
+      display: inline;
+    }
+
+    .call-popup__window-actions {
+      display: inline-flex;
+      align-items: center;
+      gap: 13px;
+      padding-top: 5px;
+      color: #b7c6d9;
+    }
+
+    .call-popup__window-icon {
+      width: 13px;
+      height: 13px;
+      display: block;
+      overflow: visible;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.25;
+      stroke-linecap: round;
+      shape-rendering: geometricPrecision;
+    }
+
+    .call-popup__body {
+      height: 131px;
+      padding: 7px 7px 5px;
+      background: var(--panel);
+      border-bottom: 1px solid #22334a;
+    }
+
+    .call-popup__contact-row {
+      height: 119px;
+      padding: 0 19px 0 11px;
+      display: grid;
+      grid-template-columns: 19px minmax(0, 1fr) 66px;
+      align-items: start;
+      column-gap: 9px;
+      background: var(--panel-inner);
+      border-radius: 5px;
+    }
+
+    .call-popup__people-icon {
+      width: 19px;
+      height: 18px;
+      margin-top: 3px;
+      display: block;
+      color: var(--icon);
+      fill: currentColor;
+      shape-rendering: geometricPrecision;
+    }
+
+    .call-popup__company {
+      padding-top: 2px;
+      color: #f1f5fb;
+      font-size: 14px;
+      font-weight: 350;
+      line-height: 18px;
+      letter-spacing: 0.06px;
+      white-space: nowrap;
+    }
+
+    .call-popup__contacts {
+      width: 66px;
+      height: 20px;
+      margin: 0;
+      padding: 0 12px;
+      border: 0;
+      border-radius: 999px;
+      color: var(--mint-text);
+      background: var(--mint);
+      font: 400 12px/20px "Segoe UI", Tahoma, Arial, sans-serif;
+      letter-spacing: 0.04px;
+      text-align: center;
+      box-shadow: inset 0 -1px 0 rgba(16, 58, 28, 0.08);
+    }
+
+    .call-popup__footer {
+      height: 31px;
+      padding: 0 15px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      background: var(--panel);
+    }
+
+    .call-popup__status {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 15px;
+      letter-spacing: 0.04px;
+    }
+
+    .call-popup__duration {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--active);
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 15px;
+      letter-spacing: 0.08px;
+      opacity: 1;
+      transition: opacity 180ms ease;
+    }
+
+    .call-popup__duration[hidden] {
+      display: inline-flex;
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    .call-popup__clock-icon {
+      width: 14px;
+      height: 14px;
+      display: block;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      shape-rendering: geometricPrecision;
+    }
+
+    @keyframes popup-slide-up {
+      from {
+        opacity: 0;
+        transform: translateY(100vh);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .call-popup {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="call-popup" aria-label="&#928;&#945;&#961;&#940;&#952;&#965;&#961;&#959; &#954;&#955;&#942;&#963;&#951;&#962;">
+    <header class="call-popup__titlebar">
+      <div class="call-popup__identity">
+        <span class="call-popup__number">69********</span>
+        <span class="call-popup__company-top">NORTHCOM TECHNOLOGIES IKE</span>
+      </div>
+      <span class="call-popup__balance">170,36&#8364;</span>
+      <div class="call-popup__window-actions" aria-hidden="true">
+        <svg class="call-popup__window-icon" viewBox="0 0 13 13">
+          <path d="M2.5 6.5H10.5"></path>
+        </svg>
+        <svg class="call-popup__window-icon" viewBox="0 0 13 13">
+          <path d="M2.7 2.7L10.3 10.3M10.3 2.7L2.7 10.3"></path>
+        </svg>
+      </div>
+    </header>
+
+    <main class="call-popup__body">
+      <div class="call-popup__contact-row">
+        <svg class="call-popup__people-icon" viewBox="0 0 19 18" aria-hidden="true">
+          <path d="M6.1 8.1c2.23 0 4.05 1.82 4.05 4.05v2.15H1.7v-2.15C1.7 9.92 3.87 8.1 6.1 8.1Z"></path>
+          <circle cx="6.1" cy="4.45" r="3.05"></circle>
+          <path d="M13.25 8.6c2.12 0 3.85 1.73 3.85 3.85v1.85h-5.35v-2.15c0-1.32-.48-2.53-1.28-3.47.77-.08 1.69-.08 2.78-.08Z"></path>
+          <circle cx="12.65" cy="4.85" r="2.75"></circle>
+        </svg>
+        <span class="call-popup__company">NORTHCOM TECHNOLOGIES IKE</span>
+        <button class="call-popup__contacts" type="button">&#917;&#960;&#945;&#966;&#941;&#962;</button>
+      </div>
+    </main>
+
+    <footer class="call-popup__footer">
+      <span class="call-popup__status" id="callStatus">Offering</span>
+      <span class="call-popup__duration" id="callDuration" hidden>
+        <svg class="call-popup__clock-icon" viewBox="0 0 16 16" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.2"></circle>
+          <path d="M8 4.45V8l2.35 2.35"></path>
+        </svg>
+        <span id="callTimer">00:00:00</span>
+      </span>
+    </footer>
+  </section>
+
+  <script>
+    const callStatus = document.getElementById("callStatus");
+    const callDuration = document.getElementById("callDuration");
+    const callTimer = document.getElementById("callTimer");
+    let connectedAt = null;
+    let timerInterval = null;
+
+    function formatDuration(totalSeconds) {
+      const hours = Math.floor(totalSeconds / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+
+      return [hours, minutes, seconds]
+        .map((value) => String(value).padStart(2, "0"))
+        .join(":");
+    }
+
+    function updateTimer() {
+      const elapsedSeconds = Math.floor((Date.now() - connectedAt) / 1000);
+      callTimer.textContent = formatDuration(elapsedSeconds);
+    }
+
+    setTimeout(() => {
+      callStatus.textContent = "Connected";
+      callDuration.hidden = false;
+      connectedAt = Date.now();
+      updateTimer();
+      timerInterval = setInterval(updateTimer, 1000);
+    }, 1500);
+  </script>
+</body>
+</html>
