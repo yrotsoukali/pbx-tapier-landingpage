@@ -144,18 +144,28 @@
     .call-popup__contact-row {
       height: 119px;
       padding: 0 12px 0 11px;
-      display: grid;
-      grid-template-columns: 19px max-content minmax(72px, 1fr);
-      align-items: start;
-      column-gap: 10px;
       background: var(--panel-inner);
       border-radius: 5px;
+    }
+
+    .call-popup__contact-line {
+      height: 30px;
+      display: grid;
+      grid-template-columns: 19px max-content minmax(72px, 1fr);
+      align-items: center;
+      column-gap: 10px;
+      background: transparent;
+      border-radius: 7px;
+      transition: background-color 160ms ease;
+    }
+
+    .call-popup__contact-line:hover {
+      background: #1b2738;
     }
 
     .call-popup__people-icon {
       width: 19px;
       height: 18px;
-      margin-top: 2px;
       display: block;
       color: var(--icon);
       fill: currentColor;
@@ -163,7 +173,6 @@
     }
 
     .call-popup__company {
-      padding-top: 2px;
       min-width: max-content;
       color: #f1f5fb;
       font-size: 14px;
@@ -283,14 +292,16 @@
 
     <main class="call-popup__body">
       <div class="call-popup__contact-row">
-        <svg class="call-popup__people-icon" viewBox="0 0 19 18" aria-hidden="true">
-          <path d="M6.1 8.1c2.23 0 4.05 1.82 4.05 4.05v2.15H1.7v-2.15C1.7 9.92 3.87 8.1 6.1 8.1Z"></path>
-          <circle cx="6.1" cy="4.45" r="3.05"></circle>
-          <path d="M13.25 8.6c2.12 0 3.85 1.73 3.85 3.85v1.85h-5.35v-2.15c0-1.32-.48-2.53-1.28-3.47.77-.08 1.69-.08 2.78-.08Z"></path>
-          <circle cx="12.65" cy="4.85" r="2.75"></circle>
-        </svg>
-        <span class="call-popup__company">NORTHCOM TECHNOLOGIES IKE</span>
-        <button class="call-popup__contacts call-popup__contacts--neutral" type="button">&#917;&#960;&#945;&#966;&#941;&#962;</button>
+        <div class="call-popup__contact-line">
+          <svg class="call-popup__people-icon" viewBox="0 0 19 18" aria-hidden="true">
+            <path d="M6.1 8.1c2.23 0 4.05 1.82 4.05 4.05v2.15H1.7v-2.15C1.7 9.92 3.87 8.1 6.1 8.1Z"></path>
+            <circle cx="6.1" cy="4.45" r="3.05"></circle>
+            <path d="M13.25 8.6c2.12 0 3.85 1.73 3.85 3.85v1.85h-5.35v-2.15c0-1.32-.48-2.53-1.28-3.47.77-.08 1.69-.08 2.78-.08Z"></path>
+            <circle cx="12.65" cy="4.85" r="2.75"></circle>
+          </svg>
+          <span class="call-popup__company">NORTHCOM TECHNOLOGIES IKE</span>
+          <button class="call-popup__contacts call-popup__contacts--neutral" type="button">&#917;&#960;&#945;&#966;&#941;&#962;</button>
+        </div>
       </div>
     </main>
 
