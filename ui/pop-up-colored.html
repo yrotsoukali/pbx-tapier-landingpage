@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PBX Popup</title>
+  <title>PBX Popup Colored</title>
   <style>
     :root {
       --chrome: #334762;
       --panel: #101926;
-      --panel-deep: #0c1522;
       --panel-inner: #0b1421;
-      --line: #233851;
+      --line: #22334a;
       --title: #f3f7fe;
       --text: #edf3fb;
       --muted: #aebccf;
@@ -18,6 +17,8 @@
       --mint: #d7f7df;
       --mint-text: #17371f;
       --active: #42f1ba;
+      --badge-bg: #21ff21;
+      --badge-text: #031603;
     }
 
     * {
@@ -54,6 +55,11 @@
       animation: popup-slide-up 680ms cubic-bezier(0.18, 0.82, 0.22, 1) both;
     }
 
+    .call-popup[data-type="no-vip"] {
+      --badge-bg: #ff1717;
+      --badge-text: #120101;
+    }
+
     .call-popup__titlebar {
       height: 43px;
       padding: 7px 10px 0 12px;
@@ -62,10 +68,6 @@
       column-gap: 10px;
       align-items: start;
       background: var(--chrome);
-    }
-
-    .call-popup--has-balance .call-popup__titlebar {
-      grid-template-columns: minmax(0, 1fr) auto auto;
     }
 
     .call-popup__identity {
@@ -77,6 +79,7 @@
     .call-popup__company,
     .call-popup__status,
     .call-popup__duration,
+    .call-popup__badge,
     .call-popup__contacts {
       font-variant-ligatures: none;
     }
@@ -98,20 +101,6 @@
       font-weight: 600;
       line-height: 15px;
       letter-spacing: 0.2px;
-    }
-
-    .call-popup__balance {
-      display: none;
-      padding-top: 4px;
-      color: #f2bd3b;
-      font-size: 12px;
-      font-weight: 700;
-      line-height: 15px;
-      white-space: nowrap;
-    }
-
-    .call-popup--has-balance .call-popup__balance {
-      display: inline;
     }
 
     .call-popup__window-actions {
@@ -138,41 +127,56 @@
       height: 131px;
       padding: 7px 7px 5px;
       background: var(--panel);
-      border-bottom: 1px solid #22334a;
+      border-bottom: 1px solid var(--line);
     }
 
-    .call-popup__contact-row {
+    .call-popup__contact-list {
       height: 119px;
       padding: 0 12px 0 11px;
-      display: grid;
-      grid-template-columns: 19px max-content minmax(72px, 1fr);
-      align-items: start;
-      column-gap: 10px;
       background: var(--panel-inner);
       border-radius: 5px;
     }
 
+    .call-popup__contact-entry {
+      height: 31px;
+      display: grid;
+      grid-template-columns: 19px minmax(0, 1fr) 72px;
+      align-items: start;
+      column-gap: 10px;
+    }
+
+    .call-popup__person-icon,
     .call-popup__people-icon {
       width: 19px;
       height: 18px;
-      margin-top: 2px;
       display: block;
       color: var(--icon);
       fill: currentColor;
       shape-rendering: geometricPrecision;
     }
 
+    .call-popup__person-icon {
+      margin-top: 1px;
+    }
+
+    .call-popup__people-icon {
+      margin-top: 2px;
+    }
+
     .call-popup__company {
       padding-top: 2px;
-      min-width: max-content;
+      min-width: 0;
+      overflow: hidden;
       color: #f1f5fb;
       font-size: 14px;
       font-weight: 350;
       line-height: 18px;
       letter-spacing: 0.06px;
+      text-overflow: ellipsis;
       white-space: nowrap;
     }
 
+    .call-popup__badge,
     .call-popup__contacts {
       justify-self: end;
       width: 72px;
@@ -188,7 +192,24 @@
       white-space: nowrap;
     }
 
-    .call-popup__contacts--neutral {
+    .call-popup__contacts--urgent,
+    .call-popup__contacts--danger {
+      color: #ff3737;
+      background: rgba(255, 55, 55, 0.12);
+      box-shadow:
+        inset 0 0 16px rgba(255, 55, 55, 0.08),
+        0 0 9px rgba(255, 55, 55, 0.16);
+    }
+
+    .call-popup__contacts--success {
+      color: #43d98a;
+      background: rgba(67, 217, 138, 0.13);
+      box-shadow:
+        inset 0 0 16px rgba(67, 217, 138, 0.08),
+        0 0 9px rgba(67, 217, 138, 0.16);
+    }
+
+    .call-popup__contacts--natural {
       color: #d8d8d8;
       background: rgba(216, 216, 216, 0.055);
       box-shadow:
@@ -264,13 +285,12 @@
   </style>
 </head>
 <body>
-  <section class="call-popup" aria-label="&#928;&#945;&#961;&#940;&#952;&#965;&#961;&#959; &#954;&#955;&#942;&#963;&#951;&#962;">
+  <section class="call-popup" data-type="vip" aria-label="&#928;&#945;&#961;&#940;&#952;&#965;&#961;&#959; &#954;&#955;&#942;&#963;&#951;&#962;">
     <header class="call-popup__titlebar">
       <div class="call-popup__identity">
         <span class="call-popup__number">2310527939</span>
         <span class="call-popup__company-top">NORTHCOM TECHNOLOGIES IKE</span>
       </div>
-      <span class="call-popup__balance">170,36&#8364;</span>
       <div class="call-popup__window-actions" aria-hidden="true">
         <svg class="call-popup__window-icon" viewBox="0 0 13 13">
           <path d="M2.5 6.5H10.5"></path>
@@ -282,15 +302,27 @@
     </header>
 
     <main class="call-popup__body">
-      <div class="call-popup__contact-row">
-        <svg class="call-popup__people-icon" viewBox="0 0 19 18" aria-hidden="true">
-          <path d="M6.1 8.1c2.23 0 4.05 1.82 4.05 4.05v2.15H1.7v-2.15C1.7 9.92 3.87 8.1 6.1 8.1Z"></path>
-          <circle cx="6.1" cy="4.45" r="3.05"></circle>
-          <path d="M13.25 8.6c2.12 0 3.85 1.73 3.85 3.85v1.85h-5.35v-2.15c0-1.32-.48-2.53-1.28-3.47.77-.08 1.69-.08 2.78-.08Z"></path>
-          <circle cx="12.65" cy="4.85" r="2.75"></circle>
-        </svg>
-        <span class="call-popup__company">NORTHCOM TECHNOLOGIES IKE</span>
-        <button class="call-popup__contacts call-popup__contacts--neutral" type="button">&#917;&#960;&#945;&#966;&#941;&#962;</button>
+      <div class="call-popup__contact-list">
+        <div class="call-popup__contact-entry">
+          <svg class="call-popup__person-icon" viewBox="0 0 19 18" aria-hidden="true">
+            <path d="M9.5 9c2.6 0 4.72 2.1 4.72 4.7v1.1H4.78v-1.1C4.78 11.1 6.9 9 9.5 9Z"></path>
+            <circle cx="9.5" cy="4.65" r="3.45"></circle>
+          </svg>
+          <span class="call-popup__company">NORTHCOM TECHNOLOGIES</span>
+          <button class="call-popup__badge call-popup__contacts--urgent" id="primaryPill" type="button">&#928;&#949;&#955;&#940;&#964;&#949;&#962;</button>
+        </div>
+
+        <div class="call-popup__contact-entry">
+          <svg class="call-popup__people-icon" viewBox="0 0 19 18" aria-hidden="true">
+            <path d="M6.1 8.1c2.23 0 4.05 1.82 4.05 4.05v2.15H1.7v-2.15C1.7 9.92 3.87 8.1 6.1 8.1Z"></path>
+            <circle cx="6.1" cy="4.45" r="3.05"></circle>
+            <path d="M13.25 8.6c2.12 0 3.85 1.73 3.85 3.85v1.85h-5.35v-2.15c0-1.32-.48-2.53-1.28-3.47.77-.08 1.69-.08 2.78-.08Z"></path>
+            <circle cx="12.65" cy="4.85" r="2.75"></circle>
+          </svg>
+          <span class="call-popup__company">&#932;&#931;&#927;&#933;&#922;&#913;&#923;&#919;&#931; (NORTHCOM TECHNOLOGIES)</span>
+          <button class="call-popup__contacts call-popup__contacts--natural" id="secondaryPill" type="button">&#917;&#960;&#945;&#966;&#941;&#962;</button>
+        </div>
+
       </div>
     </main>
 
@@ -308,24 +340,37 @@
 
   <script>
     const popup = document.querySelector(".call-popup");
+    const primaryPill = document.getElementById("primaryPill");
+    const secondaryPill = document.getElementById("secondaryPill");
     const callStatus = document.getElementById("callStatus");
     const callDuration = document.getElementById("callDuration");
     const callTimer = document.getElementById("callTimer");
     const params = new URLSearchParams(window.location.search);
+    const rawType = (
+      params.get("type") ||
+      params.get("customer") ||
+      params.get("status") ||
+      (params.has("no-vip") ? "no-vip" : "") ||
+      (params.has("vip") ? "vip" : "")
+    ).toLowerCase();
+    const selectedType = rawType === "no-vip" ? "no-vip" : "vip";
     const rawCase = (
       params.get("case") ||
       params.get("popupCase") ||
       params.get("variant") ||
       ""
     ).toLowerCase();
-    const selectedCase = rawCase === "2" || rawCase === "case-2" || rawCase === "case2" || rawCase === "balance"
+    const selectedCase = rawCase === "2" || rawCase === "case-2" || rawCase === "case2" || rawCase === "success"
       ? "2"
       : "1";
-    let connectedAt = null;
-    let timerInterval = null;
+    const initialSeconds = Number.parseInt(params.get("seconds") || "", 10);
 
+    popup.dataset.type = selectedType;
     popup.dataset.case = selectedCase;
-    popup.classList.toggle("call-popup--has-balance", selectedCase === "2");
+    primaryPill.classList.toggle("call-popup__contacts--urgent", selectedCase === "1");
+    primaryPill.classList.toggle("call-popup__contacts--success", selectedCase === "2");
+    secondaryPill.classList.add("call-popup__contacts--natural");
+    callStatus.textContent = selectedType === "no-vip" ? "Ringback" : "Offering";
 
     function formatDuration(totalSeconds) {
       const hours = Math.floor(totalSeconds / 3600);
@@ -337,15 +382,17 @@
         .join(":");
     }
 
+    let startedAt = null;
+    let timerInterval = null;
+
     function updateTimer() {
-      const elapsedSeconds = Math.floor((Date.now() - connectedAt) / 1000);
+      const elapsedSeconds = Math.floor((Date.now() - startedAt) / 1000);
       callTimer.textContent = formatDuration(elapsedSeconds);
     }
 
     setTimeout(() => {
-      callStatus.textContent = "Connected";
       callDuration.hidden = false;
-      connectedAt = Date.now();
+      startedAt = Date.now() - (Number.isNaN(initialSeconds) ? 0 : initialSeconds * 1000);
       updateTimer();
       timerInterval = setInterval(updateTimer, 1000);
     }, 500);

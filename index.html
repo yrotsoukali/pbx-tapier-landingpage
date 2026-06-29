@@ -264,7 +264,52 @@
               <p class="call-recognition__text" data-i18n="callFeatureOneText">Το όνομα της επιχείρησης εμφανίζεται αυτόματα - χωρίς αναζήτηση, χωρίς χαμένα δευτερόλεπτα.</p>
             </div>
 
-            <div class="call-recognition__visual" aria-hidden="true"></div>
+            <div class="call-recognition__visual" aria-hidden="true">
+            <div class="popup-demo" data-popup="1" data-popup-src="ui/pop-up.html?case=1">
+              <iframe class="popup-demo__frame" title="PBX popup demo" src="ui/pop-up.html?case=1"></iframe>
+              <section class="call-popup" aria-label="Παράθυρο κλήσης">
+                <header class="call-popup__titlebar">
+                  <div class="call-popup__identity">
+                    <span class="call-popup__number">2310527939</span>
+                    <span class="call-popup__company-top">NORTHCOM TECHNOLOGIES IKE</span>
+                  </div>
+                  <div class="call-popup__window-actions" aria-hidden="true">
+                    <svg class="call-popup__window-icon" viewBox="0 0 13 13"><path d="M2.5 6.5H10.5"></path></svg>
+                    <svg class="call-popup__window-icon" viewBox="0 0 13 13"><path d="M2.7 2.7L10.3 10.3M10.3 2.7L2.7 10.3"></path></svg>
+                  </div>
+                </header>
+                <main class="call-popup__body">
+                  <div class="call-popup__contact-row">
+                    <svg class="call-popup__people-icon" viewBox="0 0 19 18" aria-hidden="true">
+                      <path d="M6.1 8.1c2.23 0 4.05 1.82 4.05 4.05v2.15H1.7v-2.15C1.7 9.92 3.87 8.1 6.1 8.1Z"></path>
+                      <circle cx="6.1" cy="4.45" r="3.05"></circle>
+                      <path d="M13.25 8.6c2.12 0 3.85 1.73 3.85 3.85v1.85h-5.35v-2.15c0-1.32-.48-2.53-1.28-3.47.77-.08 1.69-.08 2.78-.08Z"></path>
+                      <circle cx="12.65" cy="4.85" r="2.75"></circle>
+                    </svg>
+                    <span class="call-popup__company">NORTHCOM TECHNOLOGIES IKE</span>
+                    <button class="call-popup__contacts" type="button">Επαφές</button>
+                  </div>
+                </main>
+                <footer class="call-popup__footer">
+                  <span class="call-popup__status">Offering</span>
+                  <span class="call-popup__duration" hidden>
+                    <svg class="call-popup__clock-icon" viewBox="0 0 16 16" aria-hidden="true">
+                      <circle cx="8" cy="8" r="6.2"></circle>
+                      <path d="M8 4.45V8l2.35 2.35"></path>
+                    </svg>
+                    <span class="call-popup__timer">00:00:00</span>
+                  </span>
+                </footer>
+              </section>
+              <button class="popup-demo__replay" type="button" hidden>
+                <svg class="popup-demo__replay-icon" viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M13 6.2A5.2 5.2 0 1 0 14 9"></path>
+                  <path d="M13.1 2.5v3.7H9.4"></path>
+                </svg>
+                Replay
+              </button>
+            </div>
+          </div>
           </article>
 
           <article class="call-recognition__feature call-recognition__feature--reverse">
@@ -274,7 +319,53 @@
               <p class="call-recognition__text" data-i18n="callFeatureTwoText">Το υπόλοιπο του πελάτη εμφανίζεται real-time από το SoftOne, δίπλα στο όνομά του.</p>
             </div>
 
-            <div class="call-recognition__visual" aria-hidden="true"></div>
+            <div class="call-recognition__visual" aria-hidden="true">
+              <div class="popup-demo" data-popup="2" data-popup-src="ui/pop-up.html?case=2">
+                <iframe class="popup-demo__frame" title="PBX popup demo with balance" src="ui/pop-up.html?case=2"></iframe>
+                <section class="call-popup call-popup--has-balance" aria-label="Παράθυρο κλήσης">
+                  <header class="call-popup__titlebar">
+                    <div class="call-popup__identity">
+                      <span class="call-popup__number">2310527939</span>
+                      <span class="call-popup__company-top">NORTHCOM TECHNOLOGIES IKE</span>
+                    </div>
+                    <span class="call-popup__balance">170,36€</span>
+                    <div class="call-popup__window-actions" aria-hidden="true">
+                      <svg class="call-popup__window-icon" viewBox="0 0 13 13"><path d="M2.5 6.5H10.5"></path></svg>
+                      <svg class="call-popup__window-icon" viewBox="0 0 13 13"><path d="M2.7 2.7L10.3 10.3M10.3 2.7L2.7 10.3"></path></svg>
+                    </div>
+                  </header>
+                  <main class="call-popup__body">
+                    <div class="call-popup__contact-row">
+                      <svg class="call-popup__people-icon" viewBox="0 0 19 18" aria-hidden="true">
+                        <path d="M6.1 8.1c2.23 0 4.05 1.82 4.05 4.05v2.15H1.7v-2.15C1.7 9.92 3.87 8.1 6.1 8.1Z"></path>
+                        <circle cx="6.1" cy="4.45" r="3.05"></circle>
+                        <path d="M13.25 8.6c2.12 0 3.85 1.73 3.85 3.85v1.85h-5.35v-2.15c0-1.32-.48-2.53-1.28-3.47.77-.08 1.69-.08 2.78-.08Z"></path>
+                        <circle cx="12.65" cy="4.85" r="2.75"></circle>
+                      </svg>
+                      <span class="call-popup__company">NORTHCOM TECHNOLOGIES IKE</span>
+                      <button class="call-popup__contacts" type="button">Επαφές</button>
+                    </div>
+                  </main>
+                  <footer class="call-popup__footer">
+                    <span class="call-popup__status">Offering</span>
+                    <span class="call-popup__duration" hidden>
+                      <svg class="call-popup__clock-icon" viewBox="0 0 16 16" aria-hidden="true">
+                        <circle cx="8" cy="8" r="6.2"></circle>
+                        <path d="M8 4.45V8l2.35 2.35"></path>
+                      </svg>
+                      <span class="call-popup__timer">00:00:00</span>
+                    </span>
+                  </footer>
+                </section>
+                <button class="popup-demo__replay" type="button" hidden>
+                  <svg class="popup-demo__replay-icon" viewBox="0 0 16 16" aria-hidden="true">
+                    <path d="M13 6.2A5.2 5.2 0 1 0 14 9"></path>
+                    <path d="M13.1 2.5v3.7H9.4"></path>
+                  </svg>
+                  Replay
+                </button>
+              </div>
+            </div>
           </article>
 
           <article class="call-recognition__feature">
@@ -284,7 +375,22 @@
               <p class="call-recognition__text" data-i18n="callFeatureThreeText">Κόκκινος; Εκκρεμές υπόλοιπο. Πράσινος; VIP. Εσύ ορίζεις τους κανόνες και τον χρωματισμό - το σύστημα τους εφαρμόζει.</p>
             </div>
 
-            <div class="call-recognition__visual" aria-hidden="true"></div>
+            <div class="call-recognition__visual" aria-hidden="true">
+              <div class="popup-demo" data-popup="3" data-popup-src="ui/pop-up-colored.html?case=1" data-popup-next-src="ui/pop-up-colored.html?case=2">
+                <iframe class="popup-demo__frame" title="PBX colored popup demo" src="ui/pop-up-colored.html?case=1"></iframe>
+                <div class="popup-demo__case-patch popup-demo__case-patch--urgent" aria-hidden="true">
+                  <span class="popup-demo__case-patch-title">ΠΡΟΣΟΧΗ</span>
+                  <span class="popup-demo__case-patch-note">attention</span>
+                </div>
+                <button class="popup-demo__replay" type="button" hidden>
+                  <svg class="popup-demo__replay-icon" viewBox="0 0 16 16" aria-hidden="true">
+                    <path d="M13 6.2A5.2 5.2 0 1 0 14 9"></path>
+                    <path d="M13.1 2.5v3.7H9.4"></path>
+                  </svg>
+                  Replay
+                </button>
+              </div>
+            </div>
           </article>
 
           <article class="call-recognition__feature call-recognition__feature--reverse">
@@ -304,8 +410,30 @@
               <p class="call-recognition__text" data-i18n="callFeatureFiveText">Νέα παραγγελία, οικονομική καρτέλα, καταχώρηση εργασίας μόνο με ένα κλικ.</p>
             </div>
 
-            <div class="call-recognition__visual" aria-hidden="true"></div>
+            <div class="call-recognition__visual" aria-hidden="true">
+              <div class="popup-demo popup-demo--history" data-popup="5" data-popup-src="ui/pop-up.html?case=1" data-history-demo="true">
+                <div class="popup-demo__history-stage">
+                  <iframe class="popup-demo__frame" title="PBX popup actions demo" src="ui/pop-up.html?case=1"></iframe>
+                  <span class="popup-demo__cursor" aria-hidden="true"></span>
+                  <iframe class="popup-demo__history-frame" title="PBX history menu" src="ui/history.html"></iframe>
+                </div>
+                <button class="popup-demo__replay" type="button" hidden>
+                  <svg class="popup-demo__replay-icon" viewBox="0 0 16 16" aria-hidden="true">
+                    <path d="M13 6.2A5.2 5.2 0 1 0 14 9"></path>
+                    <path d="M13.1 2.5v3.7H9.4"></path>
+                  </svg>
+                  Replay
+                </button>
+              </div>
+            </div>
           </article>
+        </div>
+
+        <div class="call-recognition__more">
+          <a href="features.html" target="_blank" rel="noopener noreferrer">
+            Μάθετε περισσότερα
+            <span aria-hidden="true">→</span>
+          </a>
         </div>
       </div>
     </section>
@@ -892,6 +1020,15 @@ and not the duration of the call itself.`,
       });
     }
 
+    function applyCallFeatureTextHighlight() {
+      const featureText = document.querySelector('[data-i18n="callFeatureThreeText"]');
+      if (!featureText) return;
+
+      featureText.innerHTML = activeLanguage === "en"
+        ? 'Red? Pending balance. Green? VIP. <span class="call-recognition__text-highlight">You define the rules and colors</span> - the system applies them.'
+        : 'Κόκκινος; Εκκρεμές υπόλοιπο. Πράσινος; VIP. <span class="call-recognition__text-highlight">Εσύ ορίζεις τους κανόνες και τον χρωματισμό</span> - το σύστημα τους εφαρμόζει.';
+    }
+
     function setLanguage(lang) {
       const selected = content[lang] || content.el;
       activeLanguage = lang;
@@ -911,6 +1048,8 @@ and not the duration of the call itself.`,
           element.textContent = selected[key];
         }
       });
+
+      applyCallFeatureTextHighlight();
 
       document.querySelectorAll("[data-i18n-tooltip]").forEach((element) => {
         const key = element.dataset.i18nTooltip;
@@ -1031,6 +1170,229 @@ and not the duration of the call itself.`,
         behavior: "smooth"
       });
     });
+
+    function initPopupDemo(wrapper) {
+      const frame = wrapper.querySelector(".popup-demo__frame");
+      const replayBtn = wrapper.querySelector(".popup-demo__replay");
+      const casePatch = wrapper.querySelector(".popup-demo__case-patch");
+      const casePatchTitle = wrapper.querySelector(".popup-demo__case-patch-title");
+      const casePatchNote = wrapper.querySelector(".popup-demo__case-patch-note");
+      const historyFrame = wrapper.querySelector(".popup-demo__history-frame");
+      const popupSrc = wrapper.dataset.popupSrc;
+      const popupNextSrc = wrapper.dataset.popupNextSrc;
+      const isHistoryDemo = wrapper.dataset.historyDemo === "true";
+      let frameTimeouts = [];
+
+      if (frame && popupSrc) {
+        function clearFrameTimeouts() {
+          frameTimeouts.forEach(clearTimeout);
+          frameTimeouts = [];
+        }
+
+        function loadFrame(src) {
+          const separator = src.includes("?") ? "&" : "?";
+          frame.src = `${src}${separator}run=${Date.now()}`;
+        }
+
+        function setPatchCase(caseId) {
+          if (!casePatch) return;
+          const isCaseTwo = caseId === "2";
+          casePatch.classList.toggle("popup-demo__case-patch--urgent", !isCaseTwo);
+          casePatch.classList.toggle("popup-demo__case-patch--success", isCaseTwo);
+          if (casePatchTitle) casePatchTitle.textContent = isCaseTwo ? "ΠΡΟΤΕΡΑΙΟΤΗΤΑ" : "ΠΡΟΣΟΧΗ";
+          if (casePatchNote) casePatchNote.textContent = isCaseTwo ? "VIP" : "attention";
+        }
+
+        function playFrame() {
+          clearFrameTimeouts();
+          if (replayBtn) replayBtn.hidden = true;
+          wrapper.classList.remove(
+            "is-cursor-visible",
+            "is-cursor-target",
+            "is-right-clicking",
+            "is-menu-open",
+            "is-history-hover-order",
+            "is-history-hover-balance",
+            "is-history-hover-work-in",
+            "is-history-hover-work-out"
+          );
+
+          function setHistoryHover(item, highlightDelay = 0) {
+            wrapper.classList.remove(
+              "is-history-hover-order",
+              "is-history-hover-balance",
+              "is-history-hover-work-in",
+              "is-history-hover-work-out"
+            );
+
+            if (item) wrapper.classList.add(`is-history-hover-${item}`);
+
+            if (item && highlightDelay > 0) {
+              historyFrame?.contentWindow?.postMessage({
+                type: "history-hover",
+                item: ""
+              }, "*");
+            }
+
+            frameTimeouts.push(setTimeout(() => {
+              historyFrame?.contentWindow?.postMessage({
+                type: "history-hover",
+                item
+              }, "*");
+            }, highlightDelay));
+          }
+
+          setHistoryHover("");
+
+          if (isHistoryDemo) {
+            loadFrame(popupSrc);
+
+            frameTimeouts.push(setTimeout(() => {
+              wrapper.classList.add("is-cursor-visible");
+            }, 900));
+
+            frameTimeouts.push(setTimeout(() => {
+              wrapper.classList.add("is-cursor-target");
+            }, 1080));
+
+            frameTimeouts.push(setTimeout(() => {
+              wrapper.classList.add("is-right-clicking");
+            }, 2000));
+
+            frameTimeouts.push(setTimeout(() => {
+              wrapper.classList.remove("is-right-clicking");
+              wrapper.classList.add("is-menu-open");
+            }, 2200));
+
+            frameTimeouts.push(setTimeout(() => {
+              setHistoryHover("order", 320);
+            }, 2750));
+
+            frameTimeouts.push(setTimeout(() => {
+              setHistoryHover("balance", 320);
+            }, 3750));
+
+            frameTimeouts.push(setTimeout(() => {
+              setHistoryHover("work-in", 320);
+            }, 4750));
+
+            frameTimeouts.push(setTimeout(() => {
+              setHistoryHover("work-out", 320);
+            }, 5750));
+
+            frameTimeouts.push(setTimeout(() => {
+              if (replayBtn) replayBtn.hidden = false;
+            }, 6950));
+
+            return;
+          }
+
+          function showCase(caseId) {
+            const src = caseId === "2" ? popupNextSrc : popupSrc;
+            setPatchCase(caseId);
+            loadFrame(src);
+          }
+
+          showCase("1");
+
+          if (popupNextSrc) {
+            function scheduleNextCase(nextCaseId) {
+              frameTimeouts.push(setTimeout(() => {
+                showCase(nextCaseId);
+                scheduleNextCase(nextCaseId === "1" ? "2" : "1");
+              }, 3500));
+            }
+
+            scheduleNextCase("2");
+            return;
+          }
+
+          frameTimeouts.push(setTimeout(() => {
+            if (replayBtn) replayBtn.hidden = false;
+          }, 5000));
+        }
+
+        replayBtn?.addEventListener("click", playFrame);
+        return playFrame;
+      }
+
+      const popup = wrapper.querySelector(".call-popup");
+      const statusEl = wrapper.querySelector(".call-popup__status");
+      const durationEl = wrapper.querySelector(".call-popup__duration");
+      const timerEl = wrapper.querySelector(".call-popup__timer");
+      let timerInterval = null;
+      let connectedAt = null;
+      let timeouts = [];
+
+      function formatDuration(totalSeconds) {
+        const h = Math.floor(totalSeconds / 3600);
+        const m = Math.floor((totalSeconds % 3600) / 60);
+        const s = totalSeconds % 60;
+        return [h, m, s].map((v) => String(v).padStart(2, "0")).join(":");
+      }
+
+      function updateTimer() {
+        timerEl.textContent = formatDuration(Math.floor((Date.now() - connectedAt) / 1000));
+      }
+
+      function clearAll() {
+        timeouts.forEach(clearTimeout);
+        timeouts = [];
+        clearInterval(timerInterval);
+        timerInterval = null;
+      }
+
+      function reset() {
+        clearAll();
+        popup.classList.remove("is-animating");
+        statusEl.textContent = "Offering";
+        durationEl.hidden = true;
+        timerEl.textContent = "00:00:00";
+        replayBtn.hidden = true;
+      }
+
+      function play() {
+        reset();
+        void popup.offsetWidth;
+        popup.classList.add("is-animating");
+
+        timeouts.push(setTimeout(() => {
+          statusEl.textContent = "Connected";
+          durationEl.hidden = false;
+          connectedAt = Date.now();
+          updateTimer();
+          timerInterval = setInterval(updateTimer, 1000);
+        }, 500));
+
+        timeouts.push(setTimeout(() => {
+          clearAll();
+          replayBtn.hidden = false;
+        }, 5000));
+      }
+
+      replayBtn.addEventListener("click", play);
+      return play;
+    }
+
+    const popupDemos = document.querySelectorAll(".popup-demo");
+    const popupPlayers = [];
+    popupDemos.forEach((wrapper) => {
+      popupPlayers.push(initPopupDemo(wrapper));
+    });
+
+    const popupObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const wrapper = entry.target;
+          const idx = Array.from(popupDemos).indexOf(wrapper);
+          if (idx !== -1) popupPlayers[idx]();
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    popupDemos.forEach((wrapper) => popupObserver.observe(wrapper));
   </script>
 </body>
 </html>
