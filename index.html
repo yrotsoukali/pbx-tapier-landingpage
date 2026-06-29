@@ -242,6 +242,73 @@
         </div>
       </div>
     </section>
+
+    <section class="call-recognition" id="ai" aria-labelledby="callRecognitionTitle">
+      <div class="call-recognition__background" aria-hidden="true"></div>
+
+      <div class="call-recognition__inner">
+        <header class="call-recognition__header">
+          <span class="section-pill" data-i18n="callRecognitionPill">ΛΕΙΤΟΥΡΓΕΙΕΣ</span>
+          <h2 class="call-recognition__title" id="callRecognitionTitle">
+            <span data-i18n="callRecognitionTitleStart">5 λόγοι που η επόμενη κλήση σου</span>
+            <span data-i18n="callRecognitionTitleMiddle">θα είναι</span>
+            <span class="call-recognition__accent" data-i18n="callRecognitionTitleAccent">διαφορετική.</span>
+          </h2>
+        </header>
+
+        <div class="call-recognition__features">
+          <article class="call-recognition__feature">
+            <div class="call-recognition__copy">
+              <span class="call-recognition__tag" data-i18n="callFeatureOneTag">ΑΝΑΓΝΩΡΙΣΗ ΚΛΗΣΗΣ</span>
+              <h3 class="call-recognition__heading" data-i18n="callFeatureOneHeading">Ξέρεις ποιος καλεί. Πριν σηκώσεις το τηλέφωνο.</h3>
+              <p class="call-recognition__text" data-i18n="callFeatureOneText">Το όνομα της επιχείρησης εμφανίζεται αυτόματα - χωρίς αναζήτηση, χωρίς χαμένα δευτερόλεπτα.</p>
+            </div>
+
+            <div class="call-recognition__visual" aria-hidden="true"></div>
+          </article>
+
+          <article class="call-recognition__feature call-recognition__feature--reverse">
+            <div class="call-recognition__copy">
+              <span class="call-recognition__tag" data-i18n="callFeatureTwoTag">ΥΠΟΛΟΙΠΟ ΠΕΛΑΤΗ</span>
+              <h3 class="call-recognition__heading" data-i18n="callFeatureTwoHeading">Χρωστάει; Το ξέρεις πριν πεις «εμπρός».</h3>
+              <p class="call-recognition__text" data-i18n="callFeatureTwoText">Το υπόλοιπο του πελάτη εμφανίζεται real-time από το SoftOne, δίπλα στο όνομά του.</p>
+            </div>
+
+            <div class="call-recognition__visual" aria-hidden="true"></div>
+          </article>
+
+          <article class="call-recognition__feature">
+            <div class="call-recognition__copy">
+              <span class="call-recognition__tag" data-i18n="callFeatureThreeTag">ΧΡΩΜΑΤΙΣΜΟΣ ΕΠΑΦΗΣ</span>
+              <h3 class="call-recognition__heading" data-i18n="callFeatureThreeHeading">Ένα χρώμα λέει αυτό που δεν λέγεται.</h3>
+              <p class="call-recognition__text" data-i18n="callFeatureThreeText">Κόκκινος; Εκκρεμές υπόλοιπο. Πράσινος; VIP. Εσύ ορίζεις τους κανόνες και τον χρωματισμό - το σύστημα τους εφαρμόζει.</p>
+            </div>
+
+            <div class="call-recognition__visual" aria-hidden="true"></div>
+          </article>
+
+          <article class="call-recognition__feature call-recognition__feature--reverse">
+            <div class="call-recognition__copy">
+              <span class="call-recognition__tag" data-i18n="callFeatureFourTag">ΙΣΤΟΡΙΚΟ & ΕΚΚΡΕΜΕΙΣ ΕΡΓΑΣΙΕΣ</span>
+              <h3 class="call-recognition__heading" data-i18n="callFeatureFourHeading">Τι εκκρεμεί, με μία ματιά.</h3>
+              <p class="call-recognition__text" data-i18n="callFeatureFourText">Εκκρεμείς παραγγελίες και ανοιχτές εργασίες - εμφανίζονται την ώρα της κλήσης. Δεν χρειάζεται να ρωτήσεις.</p>
+            </div>
+
+            <div class="call-recognition__visual" aria-hidden="true"></div>
+          </article>
+
+          <article class="call-recognition__feature">
+            <div class="call-recognition__copy">
+              <span class="call-recognition__tag" data-i18n="callFeatureFiveTag">ΜΕΝΟΥ ΕΝΕΡΓΕΙΩΝ</span>
+              <h3 class="call-recognition__heading" data-i18n="callFeatureFiveHeading">Ένα κλικ αντικαθιστά πέντε οθόνες.</h3>
+              <p class="call-recognition__text" data-i18n="callFeatureFiveText">Νέα παραγγελία, οικονομική καρτέλα, καταχώρηση εργασίας μόνο με ένα κλικ.</p>
+            </div>
+
+            <div class="call-recognition__visual" aria-hidden="true"></div>
+          </article>
+        </div>
+      </div>
+    </section>
   </main>
 
   <script>
@@ -271,6 +338,8 @@
     const roiMonthlySavings = document.getElementById("roiMonthlySavings");
     const roiAnnualSavings = document.getElementById("roiAnnualSavings");
     let activeLanguage = "el";
+    let tickerRenderRun = 0;
+    let tickerResizeTimer = 0;
     let comparisonRevealAnimated = false;
     let comparisonStatsAnimated = false;
     let comparisonStatsAnimationRun = 0;
@@ -338,6 +407,25 @@
         roiFooterOne: "22 εργάσιμες ημέρες / μήνα",
         roiFooterTwo: "Βασισμένο σε εκτιμώμενη μείωση χρόνου 85% με PBX Integrator",
         roiFooterThree: "Οι περισσότερες επιχειρήσεις υποτιμούν αυτό το κόστος έως και 3×",
+        callRecognitionPill: "ΛΕΙΤΟΥΡΓΕΙΕΣ",
+        callRecognitionTitleStart: "5 λόγοι που η επόμενη κλήση σου",
+        callRecognitionTitleMiddle: "θα είναι",
+        callRecognitionTitleAccent: "διαφορετική.",
+        callFeatureOneTag: "ΑΝΑΓΝΩΡΙΣΗ ΚΛΗΣΗΣ",
+        callFeatureOneHeading: "Ξέρεις ποιος καλεί. Πριν σηκώσεις το τηλέφωνο.",
+        callFeatureOneText: "Το όνομα της επιχείρησης εμφανίζεται αυτόματα - χωρίς αναζήτηση, χωρίς χαμένα δευτερόλεπτα.",
+        callFeatureTwoTag: "ΥΠΟΛΟΙΠΟ ΠΕΛΑΤΗ",
+        callFeatureTwoHeading: "Χρωστάει; Το ξέρεις πριν πεις «εμπρός».",
+        callFeatureTwoText: "Το υπόλοιπο του πελάτη εμφανίζεται real-time από το SoftOne, δίπλα στο όνομά του.",
+        callFeatureThreeTag: "ΧΡΩΜΑΤΙΣΜΟΣ ΕΠΑΦΗΣ",
+        callFeatureThreeHeading: "Ένα χρώμα λέει αυτό που δεν λέγεται.",
+        callFeatureThreeText: "Κόκκινος; Εκκρεμές υπόλοιπο. Πράσινος; VIP. Εσύ ορίζεις τους κανόνες και τον χρωματισμό - το σύστημα τους εφαρμόζει.",
+        callFeatureFourTag: "ΙΣΤΟΡΙΚΟ & ΕΚΚΡΕΜΕΙΣ ΕΡΓΑΣΙΕΣ",
+        callFeatureFourHeading: "Τι εκκρεμεί, με μία ματιά.",
+        callFeatureFourText: "Εκκρεμείς παραγγελίες και ανοιχτές εργασίες - εμφανίζονται την ώρα της κλήσης. Δεν χρειάζεται να ρωτήσεις.",
+        callFeatureFiveTag: "ΜΕΝΟΥ ΕΝΕΡΓΕΙΩΝ",
+        callFeatureFiveHeading: "Ένα κλικ αντικαθιστά πέντε οθόνες.",
+        callFeatureFiveText: "Νέα παραγγελία, οικονομική καρτέλα, καταχώρηση εργασίας μόνο με ένα κλικ.",
         tickerLabel: "Βασικές λειτουργίες προϊόντος",
         scrollLabel: "Κύλιση προς τα κάτω",
         heroImage: "images/final_hero_greek-rbg.png",
@@ -451,6 +539,25 @@ and not the duration of the call itself.`,
         roiFooterOne: "22 working days / month",
         roiFooterTwo: "Based on an estimated 85% time reduction with PBX Integrator",
         roiFooterThree: "Most businesses underestimate this cost by up to 3×",
+        callRecognitionPill: "FEATURES",
+        callRecognitionTitleStart: "5 reasons your next call",
+        callRecognitionTitleMiddle: "will feel",
+        callRecognitionTitleAccent: "different.",
+        callFeatureOneTag: "CALL RECOGNITION",
+        callFeatureOneHeading: "Know who's calling. Before you pick up.",
+        callFeatureOneText: "The business name appears automatically - no searching, no lost seconds.",
+        callFeatureTwoTag: "CUSTOMER BALANCE",
+        callFeatureTwoHeading: "Do they owe you? You know before saying hello.",
+        callFeatureTwoText: "The customer's balance appears in real time from SoftOne, right next to their name.",
+        callFeatureThreeTag: "CONTACT COLOR CODING",
+        callFeatureThreeHeading: "One color says what does not need to be said.",
+        callFeatureThreeText: "Red? Pending balance. Green? VIP. You define the rules and colors - the system applies them.",
+        callFeatureFourTag: "HISTORY & OPEN TASKS",
+        callFeatureFourHeading: "See what is pending at a glance.",
+        callFeatureFourText: "Pending orders and open tasks appear during the call. You do not need to ask.",
+        callFeatureFiveTag: "ACTION MENU",
+        callFeatureFiveHeading: "One click replaces five screens.",
+        callFeatureFiveText: "New order, financial card, or task entry with just one click.",
         tickerLabel: "Core product features",
         scrollLabel: "Scroll down",
         heroImage: "images/final_hero_english-rbg.png",
@@ -748,14 +855,41 @@ and not the duration of the call itself.`,
       );
     }
 
-    function renderTicker(items) {
-      tickerTrack.innerHTML = "";
-      tickerTrack.appendChild(createTickerGroup(items));
+    function createTickerSegment(items) {
+      const segment = document.createElement("div");
+      segment.className = "feature-ticker__segment";
+      segment.appendChild(createTickerGroup(items));
       const groupSeparator = document.createElement("span");
       groupSeparator.className = "feature-ticker__separator";
       groupSeparator.setAttribute("aria-hidden", "true");
-      tickerTrack.appendChild(groupSeparator);
-      tickerTrack.appendChild(createTickerGroup(items));
+      segment.appendChild(groupSeparator);
+      return segment;
+    }
+
+    function renderTicker(items) {
+      tickerRenderRun += 1;
+      const runId = tickerRenderRun;
+      tickerTrack.innerHTML = "";
+      tickerTrack.style.setProperty("--ticker-distance", "50%");
+
+      const firstSegment = createTickerSegment(items);
+      tickerTrack.appendChild(firstSegment);
+
+      requestAnimationFrame(() => {
+        if (runId !== tickerRenderRun) return;
+
+        const segmentWidth = firstSegment.offsetWidth;
+        const viewportWidth = tickerTrack.parentElement?.offsetWidth || 0;
+
+        if (!segmentWidth) return;
+
+        const requiredTrackWidth = viewportWidth + segmentWidth * 2;
+        while (tickerTrack.scrollWidth < requiredTrackWidth) {
+          tickerTrack.appendChild(createTickerSegment(items));
+        }
+
+        tickerTrack.style.setProperty("--ticker-distance", `${segmentWidth}px`);
+      });
     }
 
     function setLanguage(lang) {
@@ -796,6 +930,14 @@ and not the duration of the call itself.`,
 
       window.localStorage.setItem("pbx-language", lang);
     }
+
+    window.addEventListener("resize", () => {
+      window.clearTimeout(tickerResizeTimer);
+      tickerResizeTimer = window.setTimeout(() => {
+        const selected = content[activeLanguage] || content.el;
+        renderTicker(selected.tickerItems);
+      }, 120);
+    });
 
     languageSwitcher.addEventListener("click", (event) => {
       const button = event.target.closest("[data-lang]");
