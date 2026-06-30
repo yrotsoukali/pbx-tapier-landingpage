@@ -538,7 +538,17 @@
             <div class="ai-scene__copy">
               <span class="ai-scene__eyebrow" data-i18n="aiSceneTwoLabel">ΑΙ ΠΕΡΙΛΗΨΗ</span>
               <h3 class="ai-scene__title" data-i18n="aiSceneTwoTitle">Αλλά ποιος έχει χρόνο να ακούσει ξανά μια 10λεπτη κλήση;</h3>
-              <p class="ai-scene__text" data-i18n="aiSceneTwoText">Με ένα μόνο κλικ, το AI διαβάζει την ηχογράφηση και δημιουργεί σύνοψη με όλα τα σημαντικά σημεία.</p>
+              <p class="ai-scene__text ai-scene__text--with-tooltip">
+                <span data-i18n="aiSceneTwoText">Με ένα μόνο κλικ, το AI διαβάζει την ηχογράφηση και δημιουργεί σύνοψη με όλα τα σημαντικά σημεία.</span>
+                <button
+                  class="ai-scene__info-icon"
+                  type="button"
+                  aria-label="Πληροφορίες για τη σύνοψη AI"
+                  data-tooltip="Παραμετροποιήσιμη σύνοψη, προσαρμοσμένη στις ανάγκες της επιχείρησής σας."
+                  data-i18n-aria-label="aiSceneTwoTooltipLabel"
+                  data-i18n-tooltip="aiSceneTwoTooltip"
+                >?</button>
+              </p>
             </div>
 
             <div class="ai-scene__visual ai-scene__visual--summary">
@@ -569,7 +579,13 @@
                 </div>
 
                 <button class="ai-scene__action ai-scene__action--secondary ai-scene__action--inside-card" type="button" data-ai-scene-two-trigger>
-                  <span class="ai-scene__action-icon ai-scene__action-icon--spark">✦</span>
+                  <span class="ai-scene__action-icon ai-scene__action-icon--sparkles" aria-hidden="true">
+                    <svg viewBox="0 0 20 20">
+                      <path d="M10 2.8 11.8 8.2 17.2 10 11.8 11.8 10 17.2 8.2 11.8 2.8 10 8.2 8.2 10 2.8Z"></path>
+                      <path d="M15.3 2.8 15.9 4.5 17.6 5.1 15.9 5.7 15.3 7.4 14.7 5.7 13 5.1 14.7 4.5 15.3 2.8Z"></path>
+                      <path d="M4.8 13.4 5.3 14.8 6.7 15.3 5.3 15.8 4.8 17.2 4.3 15.8 2.9 15.3 4.3 14.8 4.8 13.4Z"></path>
+                    </svg>
+                  </span>
                   <span data-i18n="aiSceneTwoAction">Δημιουργία σύνοψης</span>
                 </button>
 
@@ -582,6 +598,300 @@
                 </div>
               </div>
             </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-demo" id="demo" aria-labelledby="productDemoTitle">
+      <div class="product-demo__background" aria-hidden="true"></div>
+      <div class="product-demo__inner">
+        <header class="product-demo__header">
+          <span class="section-pill" data-i18n="productDemoPill">ΕΠΙΔΕΙΞΗ ΠΡΟΪΟΝΤΟΣ</span>
+          <h2 class="product-demo__title" id="productDemoTitle">
+            <span data-i18n="productDemoTitleStart">Μια</span>
+            <span class="product-demo__accent" data-i18n="productDemoTitleAccentOne">πραγματική κλήση</span><span data-i18n="productDemoTitleMiddle">, από την</span>
+            <span data-i18n="productDemoTitleEnd">αρχή ως το τέλος.</span>
+          </h2>
+        </header>
+
+        <div class="product-demo__video">
+          <iframe
+            src="https://www.youtube.com/embed/VIDEO_ID"
+            title="Product demo video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+
+        <div class="product-demo__cards" aria-label="Product demo highlights">
+          <article class="product-demo__card">
+            <div class="product-demo__card-head">
+              <span class="product-demo__card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 6v6l4 2"></path>
+                  <path d="M21 12a9 9 0 1 1-3.3-7"></path>
+                  <path d="M21 4v5h-5"></path>
+                </svg>
+              </span>
+              <h3 data-i18n="productDemoCardOneTitle">Ταχύτερη εξυπηρέτηση</h3>
+            </div>
+            <p data-i18n="productDemoCardOneText">Από 3-5 λεπτά αναζήτησης σε &lt;30 δευτερόλεπτα πλήρης ενημέρωση.</p>
+          </article>
+          <article class="product-demo__card">
+            <div class="product-demo__card-head">
+              <span class="product-demo__card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M4 7c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3Z"></path>
+                  <path d="M4 7v5c0 1.7 3.6 3 8 3s8-1.3 8-3V7"></path>
+                  <path d="M4 12v5c0 1.7 3.6 3 8 3s8-1.3 8-3v-5"></path>
+                </svg>
+              </span>
+              <h3 data-i18n="productDemoCardTwoTitle">Καλύτερη οργάνωση</h3>
+            </div>
+            <p data-i18n="productDemoCardTwoText">Κάθε κλήση καταγράφεται αυτόματα. Ολόκληρο το ιστορικό στο CRM.</p>
+          </article>
+          <article class="product-demo__card">
+            <div class="product-demo__card-head">
+              <span class="product-demo__card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 3 19 6v5c0 4.4-2.9 8.4-7 10-4.1-1.6-7-5.6-7-10V6l7-3Z"></path>
+                  <path d="m9 12 2 2 4-5"></path>
+                </svg>
+              </span>
+              <h3 data-i18n="productDemoCardThreeTitle">Λιγότερα λάθη</h3>
+            </div>
+            <p data-i18n="productDemoCardThreeText">Δεν χρειάζεται αναζήτηση χειροκίνητα. Δεν ξεχνιέται η καταγραφή.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="social-proof" aria-labelledby="socialProofTitle">
+      <div class="social-proof__background" aria-hidden="true"></div>
+      <div class="social-proof__inner">
+        <header class="social-proof__header">
+          <span class="section-pill" data-i18n="socialProofPill">ΑΞΙΟΛΟΓΗΣΕΙΣ ΠΕΛΑΤΩΝ</span>
+          <h2 class="social-proof__title" id="socialProofTitle">
+            <span class="social-proof__accent" data-i18n="socialProofTitleAccent">Επιχειρήσεις</span>
+            <span data-i18n="socialProofTitleRest">έχουν ήδη αναβαθμίσει τον τρόπο που διαχειρίζονται τις τηλεφωνικές τους επικοινωνίες.</span>
+          </h2>
+        </header>
+
+        <div class="social-proof__logos" aria-label="Client logos">
+          <div class="social-proof__logos-edge social-proof__logos-edge--left" aria-hidden="true"></div>
+          <div class="social-proof__logos-edge social-proof__logos-edge--right" aria-hidden="true"></div>
+          <div class="social-proof__logos-track" aria-hidden="true">
+            <div class="social-proof__logos-group">
+              <span class="social-proof__logo">CLIENT LOGO</span>
+              <span class="social-proof__logo">CLIENT LOGO</span>
+              <span class="social-proof__logo">CLIENT LOGO</span>
+              <span class="social-proof__logo">CLIENT LOGO</span>
+              <span class="social-proof__logo">CLIENT LOGO</span>
+              <span class="social-proof__logo">CLIENT LOGO</span>
+            </div>
+            <div class="social-proof__logos-group">
+              <span class="social-proof__logo">CLIENT LOGO</span>
+              <span class="social-proof__logo">CLIENT LOGO</span>
+              <span class="social-proof__logo">CLIENT LOGO</span>
+              <span class="social-proof__logo">CLIENT LOGO</span>
+              <span class="social-proof__logo">CLIENT LOGO</span>
+              <span class="social-proof__logo">CLIENT LOGO</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="social-proof__reviews">
+          <div class="social-proof__review-stage" aria-live="polite">
+            <article class="social-proof__review is-active" data-social-review>
+              <div class="social-proof__stars" aria-hidden="true">★★★★★</div>
+              <p data-i18n="socialProofReviewOne">Η ομάδα μας βλέπει άμεσα ποιος καλεί και έχει όλο το ιστορικό μπροστά της. Η καθημερινή εξυπηρέτηση έγινε αισθητά πιο γρήγορη.</p>
+              <span data-i18n="socialProofReviewSource">Αξιολογήσεις πελατών</span>
+            </article>
+            <article class="social-proof__review" data-social-review>
+              <div class="social-proof__stars" aria-hidden="true">★★★★★</div>
+              <p data-i18n="socialProofReviewTwo">Μειώθηκαν τα λάθη στην καταγραφή και δεν χάνουμε πλέον πληροφορίες μετά από κάθε τηλεφωνική επικοινωνία.</p>
+              <span data-i18n="socialProofReviewSource">Αξιολογήσεις πελατών</span>
+            </article>
+            <article class="social-proof__review" data-social-review>
+              <div class="social-proof__stars" aria-hidden="true">★★★★★</div>
+              <p data-i18n="socialProofReviewThree">Η σύνδεση με το CRM έκανε τη διαχείριση κλήσεων πολύ πιο οργανωμένη. Όλα εμφανίζονται τη στιγμή που τα χρειάζεται η ομάδα.</p>
+              <span data-i18n="socialProofReviewSource">Αξιολογήσεις πελατών</span>
+            </article>
+          </div>
+
+          <div class="social-proof__pagination" aria-label="Review pagination">
+            <button class="social-proof__pagination-dot is-active" type="button" aria-label="Review 1" data-social-review-page="0"></button>
+            <button class="social-proof__pagination-dot" type="button" aria-label="Review 2" data-social-review-page="1"></button>
+            <button class="social-proof__pagination-dot" type="button" aria-label="Review 3" data-social-review-page="2"></button>
+          </div>
+
+          <a class="social-proof__reviews-link" href="https://share.google/lfFRoQZ6vodzoYDHC" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 17 17 7"></path>
+              <path d="M9 7h8v8"></path>
+            </svg>
+            <span data-i18n="socialProofReviewsLink">Δείτε τα Google Reviews</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="plans" id="plans" aria-labelledby="plansTitle">
+      <div class="plans__background" aria-hidden="true"></div>
+      <div class="plans__inner">
+        <header class="plans__header">
+          <span class="section-pill" data-i18n="plansPill">ΠΛΑΝΑ</span>
+          <h2 class="plans__title" id="plansTitle">
+            <span data-i18n="plansTitleStart">Επενδύστε στην</span>
+            <span class="plans__accent" data-i18n="plansTitleAccent">ταχύτητα</span>
+            <span data-i18n="plansTitleEnd">της επιχείρησής σας.</span>
+          </h2>
+          <p class="plans__subtitle" data-i18n="plansSubtitle">Από δωρεάν δοκιμή έως πλήρη αυτοματισμό με AI.</p>
+        </header>
+
+        <div class="plans__grid">
+          <article class="plans-card">
+            <div class="plans-card__top">
+              <h3 data-i18n="plansTrialTitle">Trial</h3>
+              <p class="plans-card__price">
+                <strong data-i18n="plansTrialPrice">0€</strong>
+                <span data-i18n="plansTrialPeriod">/ 30 ημέρες δωρεάν</span>
+              </p>
+            </div>
+
+            <ul class="plans-card__features">
+              <li>
+                <span class="plans-card__feature-icon plans-card__feature-icon--check" aria-hidden="true">✓</span>
+                <span data-i18n="plansTrialFeatureOne">Όλες οι λειτουργίες για 30 ημέρες</span>
+              </li>
+              <li>
+                <span class="plans-card__feature-icon plans-card__feature-icon--check" aria-hidden="true">✓</span>
+                <span data-i18n="plansTrialFeatureTwo">Χωρίς κάρτα</span>
+              </li>
+              <li>
+                <span class="plans-card__feature-icon plans-card__feature-icon--check" aria-hidden="true">✓</span>
+                <span data-i18n="plansTrialFeatureFour">Χωρίς δέσμευση ή κρυφές χρεώσεις</span>
+              </li>
+              <li class="plans-card__feature-muted">
+                <span class="plans-card__feature-icon plans-card__feature-icon--x" aria-hidden="true">×</span>
+                <span data-i18n="plansTrialFeatureFive">Δεν περιλαμβάνεται το AI Add-on</span>
+              </li>
+            </ul>
+
+            <a class="plans-card__button plans-card__button--ghost" href="#demo">
+              <span data-i18n="plansTrialButton">Ξεκινήστε δωρεάν</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12h14"></path>
+                <path d="m13 6 6 6-6 6"></path>
+              </svg>
+            </a>
+          </article>
+
+          <article class="plans-card plans-card--featured">
+            <span class="plans-card__badge" data-i18n="plansProfessionalBadge">Δημοφιλές</span>
+            <div class="plans-card__top">
+              <h3 data-i18n="plansProfessionalTitle">Professional</h3>
+              <p class="plans-card__price">
+                <strong data-i18n="plansProfessionalPrice">200€</strong>
+                <span data-i18n="plansProfessionalPeriod">/ ετήσια</span>
+              </p>
+              <p class="plans-card__subprice" data-i18n="plansProfessionalSubprice">+ 20€ / χρήστη</p>
+            </div>
+
+            <ul class="plans-card__features">
+              <li>
+                <span class="plans-card__feature-icon plans-card__feature-icon--check" aria-hidden="true">✓</span>
+                <span data-i18n="plansProfessionalFeatureOne">Αναγνώριση καλούντος</span>
+              </li>
+              <li>
+                <span class="plans-card__feature-icon plans-card__feature-icon--check" aria-hidden="true">✓</span>
+                <span data-i18n="plansProfessionalFeatureTwo">Καταγραφή κλήσεων στο CRM</span>
+              </li>
+              <li>
+                <span class="plans-card__feature-icon plans-card__feature-icon--check" aria-hidden="true">✓</span>
+                <span data-i18n="plansProfessionalFeatureThree">Ηχητική καταγραφή κλήσεων</span>
+              </li>
+              <li>
+                <span class="plans-card__feature-icon plans-card__feature-icon--check" aria-hidden="true">✓</span>
+                <span data-i18n="plansProfessionalFeatureFour">Υπόλοιπα & παρατηρήσεις πελάτη</span>
+              </li>
+              <li>
+                <span class="plans-card__feature-icon plans-card__feature-icon--check" aria-hidden="true">✓</span>
+                <span data-i18n="plansProfessionalFeatureFive">Χρωματικοί δείκτες</span>
+              </li>
+              <li>
+                <span class="plans-card__feature-icon plans-card__feature-icon--check" aria-hidden="true">✓</span>
+                <span data-i18n="plansProfessionalFeatureSix">Γρήγορες ενέργειες</span>
+              </li>
+              <li>
+                <span class="plans-card__feature-icon plans-card__feature-icon--check" aria-hidden="true">✓</span>
+                <span data-i18n="plansProfessionalFeatureSeven">Παραμετροποιήσιμοι αυτοματισμοί</span>
+              </li>
+              <li>
+                <span class="plans-card__feature-icon plans-card__feature-icon--check" aria-hidden="true">✓</span>
+                <span data-i18n="plansProfessionalFeatureEight">Fast Call (Copy & Click)</span>
+              </li>
+              <li>
+                <span class="plans-card__feature-icon plans-card__feature-icon--check" aria-hidden="true">✓</span>
+                <span data-i18n="plansProfessionalFeatureNine">Δωρεάν αναβαθμίσεις</span>
+              </li>
+            </ul>
+
+            <a class="plans-card__button plans-card__button--primary" href="#demo">
+              <span data-i18n="plansProfessionalButton">Ξεκινήστε</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12h14"></path>
+                <path d="m13 6 6 6-6 6"></path>
+              </svg>
+            </a>
+          </article>
+
+          <article class="plans-card">
+            <div class="plans-card__top">
+              <h3 data-i18n="plansAiTitle">AI Add-on</h3>
+              <p class="plans-card__eyebrow" data-i18n="plansAiEyebrow">Συμβατό με οποιοδήποτε καταγραφικό*</p>
+              <p class="plans-card__price">
+                <strong data-i18n="plansAiPrice">0,15€</strong>
+                <span data-i18n="plansAiPeriod">/ λεπτό κλήσης</span>
+              </p>
+            </div>
+
+            <ul class="plans-card__features plans-card__features--icons">
+              <li>
+                <span class="plans-card__mini-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M9 4h6"></path><path d="M12 4v3"></path><rect x="5" y="7" width="14" height="11" rx="3"></rect><path d="M9 12h.01"></path><path d="M15 12h.01"></path><path d="M10 16h4"></path></svg>
+                </span>
+                <span data-i18n="plansAiFeatureOne">AI σύνοψη κλήσης</span>
+              </li>
+              <li>
+                <span class="plans-card__mini-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M12 3.5v2.1"></path><path d="M12 18.4v2.1"></path><path d="m5.7 5.7 1.5 1.5"></path><path d="m16.8 16.8 1.5 1.5"></path><path d="M3.5 12h2.1"></path><path d="M18.4 12h2.1"></path><path d="m5.7 18.3 1.5-1.5"></path><path d="m16.8 7.2 1.5-1.5"></path><circle cx="12" cy="12" r="3.4"></circle></svg>
+                </span>
+                <span data-i18n="plansAiFeatureTwo">Custom AI Prompts</span>
+              </li>
+              <li>
+                <span class="plans-card__mini-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M4 7h16v10H4z"></path><path d="M7 12h4"></path><path d="M15 12h2"></path></svg>
+                </span>
+                <span data-i18n="plansAiFeatureThree">Πληρωμή ανά λεπτό χρήσης</span>
+              </li>
+              <li>
+                <span class="plans-card__mini-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M9 7v4"></path><path d="M15 7v4"></path><path d="M7 11h10"></path><path d="M12 21v-3"></path><path d="M8 18h8"></path><path d="M8 11v2a4 4 0 0 0 8 0v-2"></path></svg>
+                </span>
+                <span data-i18n="plansAiFeatureFour">Συμβατό με οποιοδήποτε καταγραφικό</span>
+              </li>
+            </ul>
+
+            <p class="plans-card__note" data-i18n="plansAiNote">* Λειτουργεί και αυτόνομα — δεν απαιτείται το Professional plan.</p>
+            <a class="plans-card__button plans-card__button--ghost" href="#demo">
+              <span data-i18n="plansAiButton">Προσθέστε</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12h14"></path>
+                <path d="m13 6 6 6-6 6"></path>
+              </svg>
+            </a>
           </article>
         </div>
       </div>
@@ -625,6 +935,8 @@
     const aiRevealItems = document.querySelectorAll(".ai-scene__copy, .ai-scene__visual");
     const aiSummaryCard = document.querySelector("[data-ai-summary-card]");
     const aiSummaryBody = document.querySelector("[data-ai-summary-body]");
+    const socialReviews = Array.from(document.querySelectorAll("[data-social-review]"));
+    const socialReviewPages = Array.from(document.querySelectorAll("[data-social-review-page]"));
     let activeLanguage = "el";
     let tickerRenderRun = 0;
     let tickerResizeTimer = 0;
@@ -634,13 +946,17 @@
     let roiAnimated = false;
     let aiSceneOneUserPaused = false;
     let aiSceneOnePlaying = false;
-    let aiSceneOneAnimationFrame = 0;
+    let aiSceneOneTimer = 0;
+    let aiSceneOneStartTimer = 0;
     let aiSceneOneStartedAt = 0;
     let aiSceneOneElapsed = 0;
     let aiSummaryTypingTimeout = 0;
-    let aiSummaryLoopTimeout = 0;
+    let aiSummaryStartTimer = 0;
     let aiSummaryTypingIndex = 0;
+    let aiSummaryTextNode = null;
     let aiSummaryAnimated = false;
+    let socialReviewIndex = 0;
+    let socialReviewTimer = 0;
     const ROI_WORKING_DAYS = 22;
     const ROI_TIME_SAVING = 0.85;
     const ROI_TIME_OPTIONS = [0.5, 0.75, 1, 1.5, 2, 2.5, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -725,10 +1041,70 @@
         aiSceneTwoLabel: "ΑΙ ΠΕΡΙΛΗΨΗ",
         aiSceneTwoTitle: "Αλλά ποιος έχει χρόνο να ακούσει ξανά μια 10λεπτη κλήση;",
         aiSceneTwoText: "Με ένα μόνο κλικ, το AI διαβάζει την ηχογράφηση και δημιουργεί σύνοψη με όλα τα σημαντικά σημεία.",
+        aiSceneTwoTooltip: "Παραμετροποιήσιμη σύνοψη, προσαρμοσμένη στις ανάγκες της επιχείρησής σας.",
+        aiSceneTwoTooltipLabel: "Πληροφορίες για τη σύνοψη AI",
         aiSceneTwoAction: "Δημιουργία σύνοψης",
         aiSummaryBadge: "AI SUMMARY",
         aiSummaryStatus: "Ανάλυση σε εξέλιξη",
         aiSummaryTyped: "Ο πελάτης ζήτησε άμεση ενημέρωση για τη διαθεσιμότητα και την τιμή ειδικής παραγγελίας.\n\nΕπιβεβαιώθηκε αποστολή προσφοράς εντός της ημέρας και follow-up επικοινωνία από το τμήμα πωλήσεων στις 16:30.",
+        productDemoPill: "ΕΠΙΔΕΙΞΗ ΠΡΟΪΟΝΤΟΣ",
+        productDemoTitle: "Μια πραγματική κλήση, από την αρχή ως το τέλος.",
+        productDemoTitleStart: "Μια",
+        productDemoTitleAccentOne: "πραγματική κλήση",
+        productDemoTitleMiddle: ", από την",
+        productDemoTitleEnd: "αρχή ως το τέλος.",
+        productDemoCardOneTitle: "Ταχύτερη εξυπηρέτηση",
+        productDemoCardOneText: "Από 3-5 λεπτά αναζήτησης σε <30 δευτερόλεπτα πλήρης ενημέρωση.",
+        productDemoCardTwoTitle: "Καλύτερη οργάνωση",
+        productDemoCardTwoText: "Κάθε κλήση καταγράφεται αυτόματα. Ολόκληρο το ιστορικό στο CRM.",
+        productDemoCardThreeTitle: "Λιγότερα λάθη",
+        productDemoCardThreeText: "Δεν χρειάζεται αναζήτηση χειροκίνητα. Δεν ξεχνιέται η καταγραφή.",
+        socialProofPill: "ΑΞΙΟΛΟΓΗΣΕΙΣ ΠΕΛΑΤΩΝ",
+        socialProofTitleAccent: "Επιχειρήσεις",
+        socialProofTitleRest: "έχουν ήδη αναβαθμίσει τον τρόπο που διαχειρίζονται τις τηλεφωνικές τους επικοινωνίες.",
+        socialProofReviewsLink: "Δείτε τα Google Reviews",
+        socialProofReviewOne: "Η ομάδα μας βλέπει άμεσα ποιος καλεί και έχει όλο το ιστορικό μπροστά της. Η καθημερινή εξυπηρέτηση έγινε αισθητά πιο γρήγορη.",
+        socialProofReviewTwo: "Μειώθηκαν τα λάθη στην καταγραφή και δεν χάνουμε πλέον πληροφορίες μετά από κάθε τηλεφωνική επικοινωνία.",
+        socialProofReviewThree: "Η σύνδεση με το CRM έκανε τη διαχείριση κλήσεων πολύ πιο οργανωμένη. Όλα εμφανίζονται τη στιγμή που τα χρειάζεται η ομάδα.",
+        socialProofReviewSource: "Αξιολογήσεις πελατών",
+        plansPill: "ΠΛΑΝΑ",
+        plansTitleStart: "Επενδύστε στην",
+        plansTitleAccent: "ταχύτητα",
+        plansTitleEnd: "της επιχείρησής σας.",
+        plansSubtitle: "Από δωρεάν δοκιμή έως πλήρη αυτοματισμό με AI.",
+        plansTrialTitle: "Trial",
+        plansTrialPrice: "0€",
+        plansTrialPeriod: "/ 30 ημέρες δωρεάν",
+        plansTrialFeatureOne: "Όλες οι λειτουργίες για 30 ημέρες",
+        plansTrialFeatureTwo: "Χωρίς κάρτα",
+        plansTrialFeatureFour: "Χωρίς δέσμευση ή κρυφές χρεώσεις",
+        plansTrialFeatureFive: "Δεν περιλαμβάνεται το AI Add-on",
+        plansTrialButton: "Ξεκινήστε δωρεάν",
+        plansProfessionalBadge: "Δημοφιλές",
+        plansProfessionalTitle: "Professional",
+        plansProfessionalPrice: "200€",
+        plansProfessionalPeriod: "/ ετήσια",
+        plansProfessionalSubprice: "+ 20€ / χρήστη",
+        plansProfessionalFeatureOne: "Αναγνώριση καλούντος",
+        plansProfessionalFeatureTwo: "Καταγραφή κλήσεων στο CRM",
+        plansProfessionalFeatureThree: "Ηχητική καταγραφή κλήσεων",
+        plansProfessionalFeatureFour: "Υπόλοιπα & παρατηρήσεις πελάτη",
+        plansProfessionalFeatureFive: "Χρωματικοί δείκτες",
+        plansProfessionalFeatureSix: "Γρήγορες ενέργειες",
+        plansProfessionalFeatureSeven: "Παραμετροποιήσιμοι αυτοματισμοί",
+        plansProfessionalFeatureEight: "Fast Call (Copy & Click)",
+        plansProfessionalFeatureNine: "Δωρεάν αναβαθμίσεις",
+        plansProfessionalButton: "Ξεκινήστε",
+        plansAiTitle: "AI Add-on",
+        plansAiEyebrow: "Συμβατό με οποιοδήποτε καταγραφικό*",
+        plansAiPrice: "0,15€",
+        plansAiPeriod: "/ λεπτό κλήσης",
+        plansAiFeatureOne: "AI σύνοψη κλήσης",
+        plansAiFeatureTwo: "Custom AI Prompts",
+        plansAiFeatureThree: "Πληρωμή ανά λεπτό χρήσης",
+        plansAiFeatureFour: "Συμβατό με οποιοδήποτε καταγραφικό",
+        plansAiNote: "* Λειτουργεί και αυτόνομα - δεν απαιτείται το Professional plan.",
+        plansAiButton: "Προσθέστε",
         callFeatureOneTag: "ΑΝΑΓΝΩΡΙΣΗ ΚΛΗΣΗΣ",
         callFeatureOneHeading: "Ξέρεις ποιος καλεί. Πριν σηκώσεις το τηλέφωνο.",
         callFeatureOneText: "Το όνομα της επιχείρησης εμφανίζεται αυτόματα - χωρίς αναζήτηση, χωρίς χαμένα δευτερόλεπτα.",
@@ -886,10 +1262,70 @@ and not the duration of the call itself.`,
         aiSceneTwoLabel: "AI SUMMARY",
         aiSceneTwoTitle: "But who has time to listen to a 10-minute call again?",
         aiSceneTwoText: "With one click, AI reads the recording and creates a summary with every important point.",
+        aiSceneTwoTooltip: "Customizable summary, tailored to your business needs.",
+        aiSceneTwoTooltipLabel: "AI summary information",
         aiSceneTwoAction: "Generate summary",
         aiSummaryBadge: "AI SUMMARY",
         aiSummaryStatus: "Analysis in progress",
         aiSummaryTyped: "The customer asked for immediate confirmation on stock availability and pricing for a special order.\n\nA quote will be sent today, followed by a sales team check-in at 4:30 PM.",
+        productDemoPill: "PRODUCT DEMO",
+        productDemoTitle: "A real call, from start to finish.",
+        productDemoTitleStart: "A",
+        productDemoTitleAccentOne: "real call",
+        productDemoTitleMiddle: ", from",
+        productDemoTitleEnd: "start to finish.",
+        productDemoCardOneTitle: "Faster service",
+        productDemoCardOneText: "From 3-5 minutes of searching to a complete update in <30 seconds.",
+        productDemoCardTwoTitle: "Better organization",
+        productDemoCardTwoText: "Every call is recorded automatically. The full history is stored in the CRM.",
+        productDemoCardThreeTitle: "Fewer mistakes",
+        productDemoCardThreeText: "No manual searching needed. The recording is never forgotten.",
+        socialProofPill: "SOCIAL PROOF",
+        socialProofTitleAccent: "Businesses",
+        socialProofTitleRest: "have already upgraded the way they manage their phone communications.",
+        socialProofReviewsLink: "View Google Reviews",
+        socialProofReviewOne: "Our team instantly sees who is calling and has the full history in front of them. Daily service became noticeably faster.",
+        socialProofReviewTwo: "Errors in call logging were reduced and we no longer lose information after each phone conversation.",
+        socialProofReviewThree: "The CRM connection made call management much more organized. Everything appears when the team needs it.",
+        socialProofReviewSource: "Google Review",
+        plansPill: "PLANS",
+        plansTitleStart: "Invest in the",
+        plansTitleAccent: "speed",
+        plansTitleEnd: "of your business.",
+        plansSubtitle: "From a free trial to full automation with AI.",
+        plansTrialTitle: "Trial",
+        plansTrialPrice: "0€",
+        plansTrialPeriod: "/ 30 days free",
+        plansTrialFeatureOne: "All features for 30 days",
+        plansTrialFeatureTwo: "No card required",
+        plansTrialFeatureFour: "No commitment or hidden fees",
+        plansTrialFeatureFive: "AI Add-on is not included",
+        plansTrialButton: "Start free",
+        plansProfessionalBadge: "Popular",
+        plansProfessionalTitle: "Professional",
+        plansProfessionalPrice: "200€",
+        plansProfessionalPeriod: "/ yearly",
+        plansProfessionalSubprice: "+ 20€ / user",
+        plansProfessionalFeatureOne: "Caller recognition",
+        plansProfessionalFeatureTwo: "Call logging in the CRM",
+        plansProfessionalFeatureThree: "Audio call recording",
+        plansProfessionalFeatureFour: "Customer balances & notes",
+        plansProfessionalFeatureFive: "Color indicators",
+        plansProfessionalFeatureSix: "Quick actions",
+        plansProfessionalFeatureSeven: "Custom automations",
+        plansProfessionalFeatureEight: "Fast Call (Copy & Click)",
+        plansProfessionalFeatureNine: "Free upgrades",
+        plansProfessionalButton: "Get started",
+        plansAiTitle: "AI Add-on",
+        plansAiEyebrow: "Compatible with any recorder*",
+        plansAiPrice: "0.15€",
+        plansAiPeriod: "/ call minute",
+        plansAiFeatureOne: "AI call summary",
+        plansAiFeatureTwo: "Custom AI Prompts",
+        plansAiFeatureThree: "Pay per minute of use",
+        plansAiFeatureFour: "Compatible with any recorder",
+        plansAiNote: "* Also works standalone - the Professional plan is not required.",
+        plansAiButton: "Add it",
         callFeatureOneTag: "CALL RECOGNITION",
         callFeatureOneHeading: "Know who's calling. Before you pick up.",
         callFeatureOneText: "The business name appears automatically - no searching, no lost seconds.",
@@ -1248,6 +1684,26 @@ and not the duration of the call itself.`,
       });
     }
 
+    function showSocialReview(index) {
+      if (!socialReviews.length) return;
+      socialReviewIndex = (index + socialReviews.length) % socialReviews.length;
+      socialReviews.forEach((review, reviewIndex) => {
+        review.classList.toggle("is-active", reviewIndex === socialReviewIndex);
+      });
+      socialReviewPages.forEach((page, pageIndex) => {
+        page.classList.toggle("is-active", pageIndex === socialReviewIndex);
+      });
+    }
+
+    function startSocialReviews(startIndex = 0) {
+      if (socialReviews.length < 2) return;
+      window.clearInterval(socialReviewTimer);
+      showSocialReview(startIndex);
+      socialReviewTimer = window.setInterval(() => {
+        showSocialReview(socialReviewIndex + 1);
+      }, 5200);
+    }
+
     function applyCallFeatureTextHighlight() {
       const featureText = document.querySelector('[data-i18n="callFeatureThreeText"]');
       if (!featureText) return;
@@ -1314,39 +1770,56 @@ and not the duration of the call itself.`,
       }
     }
 
-    function stepAiSceneOne(now) {
+    function stepAiSceneOne() {
       if (!aiSceneOnePlaying) return;
-      aiSceneOneElapsed = (now - aiSceneOneStartedAt) % AI_SCENE_ONE_DURATION;
+      aiSceneOneElapsed = (performance.now() - aiSceneOneStartedAt) % AI_SCENE_ONE_DURATION;
       updateAiSceneOneVisual();
-      aiSceneOneAnimationFrame = requestAnimationFrame(stepAiSceneOne);
     }
 
     function playAiSceneOne() {
       if (!aiSceneOne || aiSceneOnePlaying) return;
+      window.clearTimeout(aiSceneOneStartTimer);
       aiSceneOnePlaying = true;
       aiSceneOne.classList.add("is-playing");
       aiSceneOneStartedAt = performance.now() - aiSceneOneElapsed;
       updateAiSceneOneLabels();
-      aiSceneOneAnimationFrame = requestAnimationFrame(stepAiSceneOne);
+      stepAiSceneOne();
+      window.clearInterval(aiSceneOneTimer);
+      aiSceneOneTimer = window.setInterval(stepAiSceneOne, 1000);
     }
 
     function pauseAiSceneOne(markUserPaused = true) {
       if (!aiSceneOne) return;
+      window.clearTimeout(aiSceneOneStartTimer);
       aiSceneOnePlaying = false;
       if (markUserPaused) aiSceneOneUserPaused = true;
       aiSceneOne.classList.remove("is-playing");
-      cancelAnimationFrame(aiSceneOneAnimationFrame);
+      window.clearInterval(aiSceneOneTimer);
       updateAiSceneOneLabels();
       updateAiSceneOneVisual();
     }
 
+    function queueAiSceneOnePlayback(delay = 820) {
+      if (!aiSceneOne || aiSceneOnePlaying || aiSceneOneUserPaused) return;
+      window.clearTimeout(aiSceneOneStartTimer);
+      aiSceneOneStartTimer = window.setTimeout(() => {
+        if (isElementVisible(aiSceneOne, 0.36) && !aiSceneOneUserPaused) {
+          playAiSceneOne();
+        }
+      }, delay);
+    }
+
     function resetAiSummaryTyping() {
       window.clearTimeout(aiSummaryTypingTimeout);
-      window.clearTimeout(aiSummaryLoopTimeout);
+      window.clearTimeout(aiSummaryStartTimer);
       aiSummaryTypingIndex = 0;
+      aiSummaryTextNode = null;
       aiSummaryAnimated = false;
       if (aiSceneTwo) aiSceneTwo.classList.remove("is-summary-active");
-      if (aiSummaryBody) aiSummaryBody.textContent = "";
+      if (aiSummaryBody) {
+        aiSummaryBody.textContent = "";
+        aiSummaryBody.removeAttribute("data-typing");
+      }
     }
 
     function isElementVisible(element, threshold = 0.45) {
@@ -1357,48 +1830,84 @@ and not the duration of the call itself.`,
       return visibleHeight > rect.height * threshold;
     }
 
+    function prepareAiSummaryBody(text) {
+      if (!aiSummaryBody) return;
+      aiSummaryBody.textContent = "";
+
+      const reserveText = document.createElement("span");
+      const typedText = document.createElement("span");
+
+      reserveText.className = "ai-summary-card__reserve";
+      reserveText.textContent = text;
+      typedText.className = "ai-summary-card__typed";
+
+      aiSummaryTextNode = document.createTextNode("");
+      typedText.appendChild(aiSummaryTextNode);
+      aiSummaryBody.append(reserveText, typedText);
+      aiSummaryBody.removeAttribute("data-typing");
+    }
+
     function typeAiSummary() {
       const selected = content[activeLanguage] || content.el;
       const text = selected.aiSummaryTyped || "";
       if (!aiSummaryBody) return;
-      aiSummaryBody.textContent = text.slice(0, aiSummaryTypingIndex);
+      if (!aiSummaryTextNode) {
+        prepareAiSummaryBody(text);
+      }
+
       if (aiSummaryTypingIndex >= text.length) {
-        aiSummaryLoopTimeout = window.setTimeout(() => {
-          aiSummaryTypingIndex = 0;
-          if (aiSummaryBody) aiSummaryBody.textContent = "";
-          typeAiSummary();
-        }, 1800);
+        aiSummaryBody.removeAttribute("data-typing");
         return;
       }
+
+      aiSummaryBody.setAttribute("data-typing", "true");
+      const nextCharacter = text.charAt(aiSummaryTypingIndex);
+      aiSummaryTextNode.appendData(nextCharacter);
       aiSummaryTypingIndex += 1;
-      aiSummaryTypingTimeout = window.setTimeout(typeAiSummary, text[aiSummaryTypingIndex] === "\n" ? 140 : 24);
+      aiSummaryTypingTimeout = window.setTimeout(typeAiSummary, nextCharacter === "\n" ? 120 : 22);
     }
 
     function startAiSummarySequence(forceRestart = false) {
       if (!aiSceneTwo) return;
       if (aiSummaryAnimated && !forceRestart) return;
+      window.clearTimeout(aiSummaryStartTimer);
       window.clearTimeout(aiSummaryTypingTimeout);
-      window.clearTimeout(aiSummaryLoopTimeout);
       if (forceRestart) {
+        const selected = content[activeLanguage] || content.el;
         aiSummaryAnimated = false;
         aiSceneTwo.classList.remove("is-summary-active");
         aiSceneTwo.classList.add("is-summary-reset");
-        if (aiSummaryBody) aiSummaryBody.textContent = "";
+        aiSummaryTypingIndex = 0;
+        aiSummaryTextNode = null;
+        prepareAiSummaryBody(selected.aiSummaryTyped || "");
         window.setTimeout(() => {
           aiSceneTwo.classList.remove("is-summary-reset");
           aiSummaryAnimated = true;
           aiSceneTwo.classList.add("is-summary-active");
           aiSummaryTypingIndex = 0;
-          if (aiSummaryBody) aiSummaryBody.textContent = "";
-          aiSummaryTypingTimeout = window.setTimeout(typeAiSummary, 760);
+          aiSummaryTextNode = null;
+          prepareAiSummaryBody(selected.aiSummaryTyped || "");
+          aiSummaryTypingTimeout = window.setTimeout(typeAiSummary, 420);
         }, 140);
         return;
       }
+      const selected = content[activeLanguage] || content.el;
       aiSummaryAnimated = true;
       aiSceneTwo.classList.add("is-summary-active");
       aiSummaryTypingIndex = 0;
-      if (aiSummaryBody) aiSummaryBody.textContent = "";
-      aiSummaryTypingTimeout = window.setTimeout(typeAiSummary, 680);
+      aiSummaryTextNode = null;
+      prepareAiSummaryBody(selected.aiSummaryTyped || "");
+      aiSummaryTypingTimeout = window.setTimeout(typeAiSummary, 360);
+    }
+
+    function queueAiSummarySequence(delay = 900) {
+      if (!aiSceneTwo || aiSummaryAnimated) return;
+      window.clearTimeout(aiSummaryStartTimer);
+      aiSummaryStartTimer = window.setTimeout(() => {
+        if (isElementVisible(aiSceneTwo, 0.36)) {
+          startAiSummarySequence();
+        }
+      }, delay);
     }
 
     function setLanguage(lang) {
@@ -1430,11 +1939,19 @@ and not the duration of the call itself.`,
         }
       });
 
+      document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
+        const key = element.dataset.i18nAriaLabel;
+        if (selected[key]) {
+          element.setAttribute("aria-label", selected[key]);
+        }
+      });
+
       languageSwitcher.querySelectorAll("[data-lang]").forEach((button) => {
         button.classList.toggle("active", button.dataset.lang === lang);
       });
 
       renderTicker(selected.tickerItems);
+      startSocialReviews();
       renderComparison(selected.comparisonItems);
       setComparisonStatValues(selected);
       updateRoiCalculator();
@@ -1442,13 +1959,14 @@ and not the duration of the call itself.`,
       updateAiSceneOneLabels();
       updateAiSceneOneVisual();
       resetAiSummaryTyping();
+      prepareAiSummaryBody(selected.aiSummaryTyped || "");
 
       if (isElementVisible(aiSceneOne) && !aiSceneOneUserPaused) {
-        playAiSceneOne();
+        queueAiSceneOnePlayback();
       }
 
       if (isElementVisible(aiSceneTwo)) {
-        startAiSummarySequence();
+        queueAiSummarySequence();
       }
 
       window.localStorage.setItem("pbx-language", lang);
@@ -1497,6 +2015,14 @@ and not the duration of the call itself.`,
 
     aiSceneTwoTrigger?.addEventListener("click", () => {
       startAiSummarySequence(true);
+    });
+
+    socialReviewPages.forEach((page) => {
+      page.addEventListener("click", () => {
+        const nextIndex = Number(page.dataset.socialReviewPage);
+        window.clearInterval(socialReviewTimer);
+        startSocialReviews(nextIndex);
+      });
     });
 
     const comparisonObserver = new IntersectionObserver(
@@ -1575,13 +2101,18 @@ and not the duration of the call itself.`,
             }
 
             if (!aiSceneOneUserPaused) {
-              playAiSceneOne();
+              queueAiSceneOnePlayback();
             }
             return;
           }
 
           if (entry.target === aiSceneTwo && entry.isIntersecting) {
-            startAiSummarySequence();
+            queueAiSummarySequence();
+            return;
+          }
+
+          if (entry.target === aiSceneTwo && !entry.isIntersecting) {
+            window.clearTimeout(aiSummaryStartTimer);
           }
         });
       },
