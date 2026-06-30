@@ -46,7 +46,7 @@
         </div>
 
         <nav class="navbar" id="mainNav" aria-label="Κύρια πλοήγηση">
-          <a href="#features" data-i18n="navFeatures">Λειτουργίες</a>
+          <a href="#functions" data-i18n="navFeatures">Λειτουργίες</a>
           <a href="#ai" data-i18n="navAi">AI πρόσθετα</a>
           <a href="#plans" data-i18n="navPlans">Πλάνα</a>
           <a href="#demo" class="active">DEMO</a>
@@ -243,7 +243,7 @@
       </div>
     </section>
 
-    <section class="call-recognition" id="ai" aria-labelledby="callRecognitionTitle">
+    <section class="call-recognition" id="functions" aria-labelledby="callRecognitionTitle">
       <div class="call-recognition__background" aria-hidden="true"></div>
 
       <div class="call-recognition__inner">
@@ -452,6 +452,140 @@
         </div>
       </div>
     </section>
+
+    <section class="ai-addons" id="ai" aria-labelledby="aiAddonsTitle">
+      <div class="ai-addons__background" aria-hidden="true">
+        <div class="ai-addons__glow ai-addons__glow--blue"></div>
+        <div class="ai-addons__beam ai-addons__beam--one"></div>
+      </div>
+
+      <div class="ai-addons__inner">
+        <header class="ai-addons__header">
+          <span class="section-pill" data-i18n="aiAddonsPill">AI ΠΡΟΣΘΕΤΑ</span>
+          <h2 class="ai-addons__title" id="aiAddonsTitle">
+            <span data-i18n="aiAddonsTitleStart">Η</span>
+            <span class="ai-addons__accent" data-i18n="aiAddonsTitleAccent">πιο έξυπνη</span>
+            <span data-i18n="aiAddonsTitleEnd">κλήση που έχετε κάνει ποτέ.</span>
+          </h2>
+          <p class="ai-addons__subtitle" data-i18n="aiAddonsSubtitle">Δεν είναι άλλο ένα AI. Είναι ο δεύτερος εγκέφαλος της ομάδας σας.</p>
+        </header>
+
+        <div class="ai-addons__scenes">
+          <article class="ai-scene ai-scene--playback" data-ai-scene="one">
+            <div class="ai-scene__copy">
+              <span class="ai-scene__eyebrow" data-i18n="aiSceneOneLabel">ΗΧΗΤΙΚΗ ΚΑΤΑΓΡΑΦΗ</span>
+              <h3 class="ai-scene__title" data-i18n="aiSceneOneTitle">Η κλήση καταγράφεται αυτόματα.</h3>
+              <p class="ai-scene__text" data-i18n="aiSceneOneText">Το CRM αποθηκεύει ολόκληρη τη συνομιλία, ώστε να μπορείτε να την ακούσετε οποιαδήποτε στιγμή.</p>
+            </div>
+
+            <div class="ai-scene__visual ai-scene__visual--playback">
+              <div class="ai-wave-card ai-wave-card--player" data-ai-wave-player>
+                <div class="ai-wave-card__message-row">
+                  <button class="ai-wave-card__message-control" type="button" data-ai-scene-one-toggle>
+                    <svg class="ai-scene__icon ai-scene__icon--play" viewBox="0 0 16 16">
+                      <path d="M5 3.5 12.2 8 5 12.5Z"></path>
+                    </svg>
+                    <svg class="ai-scene__icon ai-scene__icon--pause" viewBox="0 0 16 16">
+                      <path d="M5.2 3.5h2.1v9H5.2z"></path>
+                      <path d="M8.7 3.5h2.1v9H8.7z"></path>
+                    </svg>
+                  </button>
+                  <div class="ai-wave-card__message-body">
+                    <div class="ai-wave-card__topline">
+                      <span class="ai-wave-card__status" data-ai-scene-one-status data-i18n="aiSceneOneStatus">Καταγραφή κλήσης</span>
+                      <span class="ai-wave-card__time" data-ai-scene-one-time>00:00 / 10:00</span>
+                    </div>
+                    <div class="ai-waveform ai-waveform--message" data-ai-scene-one-waveform aria-hidden="true">
+                      <span class="ai-waveform__bar"></span>
+                      <span class="ai-waveform__bar"></span>
+                      <span class="ai-waveform__bar"></span>
+                      <span class="ai-waveform__bar"></span>
+                      <span class="ai-waveform__bar"></span>
+                      <span class="ai-waveform__bar"></span>
+                      <span class="ai-waveform__bar"></span>
+                      <span class="ai-waveform__bar"></span>
+                      <span class="ai-waveform__bar"></span>
+                      <span class="ai-waveform__bar"></span>
+                      <span class="ai-waveform__bar"></span>
+                      <span class="ai-waveform__bar"></span>
+                      <span class="ai-waveform__bar"></span>
+                      <span class="ai-waveform__bar"></span>
+                      <span class="ai-waveform__bar"></span>
+                      <span class="ai-waveform__bar"></span>
+                      <span class="ai-waveform__bar"></span>
+                      <span class="ai-waveform__bar"></span>
+                      <span class="ai-waveform__bar"></span>
+                      <span class="ai-waveform__bar"></span>
+                      <span class="ai-waveform__bar"></span>
+                      <span class="ai-waveform__bar"></span>
+                      <span class="ai-waveform__bar"></span>
+                      <span class="ai-waveform__bar"></span>
+                      <span class="ai-waveform__bar"></span>
+                      <span class="ai-waveform__bar"></span>
+                      <span class="ai-waveform__bar"></span>
+                      <span class="ai-waveform__bar"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="ai-wave-card__footer">
+                  <div class="ai-wave-card__progress"><span data-ai-scene-one-progress></span></div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="ai-scene ai-scene--summary" data-ai-scene="two">
+            <div class="ai-scene__copy">
+              <span class="ai-scene__eyebrow" data-i18n="aiSceneTwoLabel">ΑΙ ΠΕΡΙΛΗΨΗ</span>
+              <h3 class="ai-scene__title" data-i18n="aiSceneTwoTitle">Αλλά ποιος έχει χρόνο να ακούσει ξανά μια 10λεπτη κλήση;</h3>
+              <p class="ai-scene__text" data-i18n="aiSceneTwoText">Με ένα μόνο κλικ, το AI διαβάζει την ηχογράφηση και δημιουργεί σύνοψη με όλα τα σημαντικά σημεία.</p>
+            </div>
+
+            <div class="ai-scene__visual ai-scene__visual--summary">
+              <div class="ai-summary-card" data-ai-summary-card>
+                <div class="ai-summary-card__wave-shell" aria-hidden="true">
+                  <div class="ai-waveform ai-waveform--compact" data-ai-scene-two-waveform>
+                    <span class="ai-waveform__bar"></span>
+                    <span class="ai-waveform__bar"></span>
+                    <span class="ai-waveform__bar"></span>
+                    <span class="ai-waveform__bar"></span>
+                    <span class="ai-waveform__bar"></span>
+                    <span class="ai-waveform__bar"></span>
+                    <span class="ai-waveform__bar"></span>
+                    <span class="ai-waveform__bar"></span>
+                    <span class="ai-waveform__bar"></span>
+                    <span class="ai-waveform__bar"></span>
+                    <span class="ai-waveform__bar"></span>
+                    <span class="ai-waveform__bar"></span>
+                    <span class="ai-waveform__bar"></span>
+                    <span class="ai-waveform__bar"></span>
+                    <span class="ai-waveform__bar"></span>
+                    <span class="ai-waveform__bar"></span>
+                    <span class="ai-waveform__bar"></span>
+                    <span class="ai-waveform__bar"></span>
+                    <span class="ai-waveform__bar"></span>
+                    <span class="ai-waveform__bar"></span>
+                  </div>
+                </div>
+
+                <button class="ai-scene__action ai-scene__action--secondary ai-scene__action--inside-card" type="button" data-ai-scene-two-trigger>
+                  <span class="ai-scene__action-icon ai-scene__action-icon--spark">✦</span>
+                  <span data-i18n="aiSceneTwoAction">Δημιουργία σύνοψης</span>
+                </button>
+
+                <div class="ai-summary-card__content">
+                  <div class="ai-summary-card__meta">
+                    <span class="ai-summary-card__meta-badge" data-i18n="aiSummaryBadge">AI SUMMARY</span>
+                    <span class="ai-summary-card__meta-status" data-i18n="aiSummaryStatus">Ανάλυση σε εξέλιξη</span>
+                  </div>
+                  <div class="ai-summary-card__body" data-ai-summary-body></div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
   </main>
 
   <script>
@@ -480,6 +614,17 @@
     const roiSavedHours = document.getElementById("roiSavedHours");
     const roiMonthlySavings = document.getElementById("roiMonthlySavings");
     const roiAnnualSavings = document.getElementById("roiAnnualSavings");
+    const aiSceneOne = document.querySelector('[data-ai-scene="one"]');
+    const aiSceneOneToggle = document.querySelector("[data-ai-scene-one-toggle]");
+    const aiSceneOneStatus = document.querySelector("[data-ai-scene-one-status]");
+    const aiSceneOneButtonLabel = document.querySelector("[data-ai-scene-one-button-label]");
+    const aiSceneOneTime = document.querySelector("[data-ai-scene-one-time]");
+    const aiSceneOneProgress = document.querySelector("[data-ai-scene-one-progress]");
+    const aiSceneTwo = document.querySelector('[data-ai-scene="two"]');
+    const aiSceneTwoTrigger = document.querySelector("[data-ai-scene-two-trigger]");
+    const aiRevealItems = document.querySelectorAll(".ai-scene__copy, .ai-scene__visual");
+    const aiSummaryCard = document.querySelector("[data-ai-summary-card]");
+    const aiSummaryBody = document.querySelector("[data-ai-summary-body]");
     let activeLanguage = "el";
     let tickerRenderRun = 0;
     let tickerResizeTimer = 0;
@@ -487,6 +632,15 @@
     let comparisonStatsAnimated = false;
     let comparisonStatsAnimationRun = 0;
     let roiAnimated = false;
+    let aiSceneOneUserPaused = false;
+    let aiSceneOnePlaying = false;
+    let aiSceneOneAnimationFrame = 0;
+    let aiSceneOneStartedAt = 0;
+    let aiSceneOneElapsed = 0;
+    let aiSummaryTypingTimeout = 0;
+    let aiSummaryLoopTimeout = 0;
+    let aiSummaryTypingIndex = 0;
+    let aiSummaryAnimated = false;
     const ROI_WORKING_DAYS = 22;
     const ROI_TIME_SAVING = 0.85;
     const ROI_TIME_OPTIONS = [0.5, 0.75, 1, 1.5, 2, 2.5, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -496,6 +650,7 @@
       lostTimeIndex: 3,
       hourlyCost: 8.5
     };
+    const AI_SCENE_ONE_DURATION = 600000;
 
     const content = {
       el: {
@@ -554,6 +709,26 @@
         callRecognitionTitleStart: "5 λόγοι που η επόμενη κλήση σου",
         callRecognitionTitleMiddle: "θα είναι",
         callRecognitionTitleAccent: "διαφορετική.",
+        aiAddonsPill: "AI ΠΡΟΣΘΕΤΑ",
+        aiAddonsTitleStart: "Η",
+        aiAddonsTitleAccent: "πιο έξυπνη",
+        aiAddonsTitleEnd: "κλήση που έχετε κάνει ποτέ.",
+        aiAddonsSubtitle: "Δεν είναι άλλο ένα AI. Είναι ο δεύτερος εγκέφαλος της ομάδας σας.",
+        aiSceneOneLabel: "ΗΧΗΤΙΚΗ ΚΑΤΑΓΡΑΦΗ",
+        aiSceneOneTitle: "Η κλήση καταγράφεται αυτόματα.",
+        aiSceneOneText: "Το CRM αποθηκεύει ολόκληρη τη συνομιλία, ώστε να μπορείτε να την ακούσετε οποιαδήποτε στιγμή.",
+        aiSceneOneAction: "Αναπαραγωγή κλήσης",
+        aiSceneOnePause: "Παύση αναπαραγωγής",
+        aiSceneOneStatus: "Καταγραφή κλήσης",
+        aiSceneOneStatusPlaying: "Αναπαραγωγή σε εξέλιξη",
+        aiSceneOneStatusPaused: "Η κλήση σε παύση",
+        aiSceneTwoLabel: "ΑΙ ΠΕΡΙΛΗΨΗ",
+        aiSceneTwoTitle: "Αλλά ποιος έχει χρόνο να ακούσει ξανά μια 10λεπτη κλήση;",
+        aiSceneTwoText: "Με ένα μόνο κλικ, το AI διαβάζει την ηχογράφηση και δημιουργεί σύνοψη με όλα τα σημαντικά σημεία.",
+        aiSceneTwoAction: "Δημιουργία σύνοψης",
+        aiSummaryBadge: "AI SUMMARY",
+        aiSummaryStatus: "Ανάλυση σε εξέλιξη",
+        aiSummaryTyped: "Ο πελάτης ζήτησε άμεση ενημέρωση για τη διαθεσιμότητα και την τιμή ειδικής παραγγελίας.\n\nΕπιβεβαιώθηκε αποστολή προσφοράς εντός της ημέρας και follow-up επικοινωνία από το τμήμα πωλήσεων στις 16:30.",
         callFeatureOneTag: "ΑΝΑΓΝΩΡΙΣΗ ΚΛΗΣΗΣ",
         callFeatureOneHeading: "Ξέρεις ποιος καλεί. Πριν σηκώσεις το τηλέφωνο.",
         callFeatureOneText: "Το όνομα της επιχείρησης εμφανίζεται αυτόματα - χωρίς αναζήτηση, χωρίς χαμένα δευτερόλεπτα.",
@@ -695,6 +870,26 @@ and not the duration of the call itself.`,
         callRecognitionTitleStart: "5 reasons your next call",
         callRecognitionTitleMiddle: "will feel",
         callRecognitionTitleAccent: "different.",
+        aiAddonsPill: "AI ADD-ONS",
+        aiAddonsTitleStart: "The",
+        aiAddonsTitleAccent: "smartest",
+        aiAddonsTitleEnd: "call you've ever made.",
+        aiAddonsSubtitle: "This is not another AI. It's your team's second brain.",
+        aiSceneOneLabel: "CALL RECORDING",
+        aiSceneOneTitle: "The call is recorded automatically.",
+        aiSceneOneText: "The CRM stores the entire conversation so your team can replay it at any time.",
+        aiSceneOneAction: "Play call recording",
+        aiSceneOnePause: "Pause playback",
+        aiSceneOneStatus: "Call recording",
+        aiSceneOneStatusPlaying: "Playback in progress",
+        aiSceneOneStatusPaused: "Playback paused",
+        aiSceneTwoLabel: "AI SUMMARY",
+        aiSceneTwoTitle: "But who has time to listen to a 10-minute call again?",
+        aiSceneTwoText: "With one click, AI reads the recording and creates a summary with every important point.",
+        aiSceneTwoAction: "Generate summary",
+        aiSummaryBadge: "AI SUMMARY",
+        aiSummaryStatus: "Analysis in progress",
+        aiSummaryTyped: "The customer asked for immediate confirmation on stock availability and pricing for a special order.\n\nA quote will be sent today, followed by a sales team check-in at 4:30 PM.",
         callFeatureOneTag: "CALL RECOGNITION",
         callFeatureOneHeading: "Know who's calling. Before you pick up.",
         callFeatureOneText: "The business name appears automatically - no searching, no lost seconds.",
@@ -1085,6 +1280,127 @@ and not the duration of the call itself.`,
       });
     }
 
+    function formatAiSceneTime(ms, lang) {
+      const safe = Math.max(0, Math.min(ms, AI_SCENE_ONE_DURATION));
+      const totalSeconds = Math.floor(safe / 1000);
+      const minutes = Math.floor(totalSeconds / 60);
+      const seconds = totalSeconds % 60;
+      const current = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+      const total = lang === "en" ? "10:00" : "10:00";
+      return `${current} / ${total}`;
+    }
+
+    function updateAiSceneOneVisual() {
+      if (!aiSceneOneTime || !aiSceneOneProgress) return;
+      aiSceneOneTime.textContent = formatAiSceneTime(aiSceneOneElapsed, activeLanguage);
+      const progress = Math.max(0, Math.min(aiSceneOneElapsed / AI_SCENE_ONE_DURATION, 1));
+      aiSceneOneProgress.style.width = `${progress * 100}%`;
+    }
+
+    function updateAiSceneOneLabels() {
+      const selected = content[activeLanguage] || content.el;
+      if (aiSceneOneButtonLabel) {
+        aiSceneOneButtonLabel.textContent = aiSceneOnePlaying ? selected.aiSceneOnePause : selected.aiSceneOneAction;
+      }
+      if (aiSceneOneToggle) {
+        aiSceneOneToggle.setAttribute("aria-label", aiSceneOnePlaying ? selected.aiSceneOnePause : selected.aiSceneOneAction);
+      }
+      if (aiSceneOneStatus) {
+        aiSceneOneStatus.textContent = aiSceneOnePlaying
+          ? selected.aiSceneOneStatusPlaying
+          : aiSceneOneUserPaused
+            ? selected.aiSceneOneStatusPaused
+            : selected.aiSceneOneStatus;
+      }
+    }
+
+    function stepAiSceneOne(now) {
+      if (!aiSceneOnePlaying) return;
+      aiSceneOneElapsed = (now - aiSceneOneStartedAt) % AI_SCENE_ONE_DURATION;
+      updateAiSceneOneVisual();
+      aiSceneOneAnimationFrame = requestAnimationFrame(stepAiSceneOne);
+    }
+
+    function playAiSceneOne() {
+      if (!aiSceneOne || aiSceneOnePlaying) return;
+      aiSceneOnePlaying = true;
+      aiSceneOne.classList.add("is-playing");
+      aiSceneOneStartedAt = performance.now() - aiSceneOneElapsed;
+      updateAiSceneOneLabels();
+      aiSceneOneAnimationFrame = requestAnimationFrame(stepAiSceneOne);
+    }
+
+    function pauseAiSceneOne(markUserPaused = true) {
+      if (!aiSceneOne) return;
+      aiSceneOnePlaying = false;
+      if (markUserPaused) aiSceneOneUserPaused = true;
+      aiSceneOne.classList.remove("is-playing");
+      cancelAnimationFrame(aiSceneOneAnimationFrame);
+      updateAiSceneOneLabels();
+      updateAiSceneOneVisual();
+    }
+
+    function resetAiSummaryTyping() {
+      window.clearTimeout(aiSummaryTypingTimeout);
+      window.clearTimeout(aiSummaryLoopTimeout);
+      aiSummaryTypingIndex = 0;
+      aiSummaryAnimated = false;
+      if (aiSceneTwo) aiSceneTwo.classList.remove("is-summary-active");
+      if (aiSummaryBody) aiSummaryBody.textContent = "";
+    }
+
+    function isElementVisible(element, threshold = 0.45) {
+      if (!element) return false;
+      const rect = element.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+      const visibleHeight = Math.min(rect.bottom, viewportHeight) - Math.max(rect.top, 0);
+      return visibleHeight > rect.height * threshold;
+    }
+
+    function typeAiSummary() {
+      const selected = content[activeLanguage] || content.el;
+      const text = selected.aiSummaryTyped || "";
+      if (!aiSummaryBody) return;
+      aiSummaryBody.textContent = text.slice(0, aiSummaryTypingIndex);
+      if (aiSummaryTypingIndex >= text.length) {
+        aiSummaryLoopTimeout = window.setTimeout(() => {
+          aiSummaryTypingIndex = 0;
+          if (aiSummaryBody) aiSummaryBody.textContent = "";
+          typeAiSummary();
+        }, 1800);
+        return;
+      }
+      aiSummaryTypingIndex += 1;
+      aiSummaryTypingTimeout = window.setTimeout(typeAiSummary, text[aiSummaryTypingIndex] === "\n" ? 140 : 24);
+    }
+
+    function startAiSummarySequence(forceRestart = false) {
+      if (!aiSceneTwo) return;
+      if (aiSummaryAnimated && !forceRestart) return;
+      window.clearTimeout(aiSummaryTypingTimeout);
+      window.clearTimeout(aiSummaryLoopTimeout);
+      if (forceRestart) {
+        aiSummaryAnimated = false;
+        aiSceneTwo.classList.remove("is-summary-active");
+        aiSceneTwo.classList.add("is-summary-reset");
+        if (aiSummaryBody) aiSummaryBody.textContent = "";
+        window.setTimeout(() => {
+          aiSceneTwo.classList.remove("is-summary-reset");
+          aiSummaryAnimated = true;
+          aiSceneTwo.classList.add("is-summary-active");
+          aiSummaryTypingIndex = 0;
+          if (aiSummaryBody) aiSummaryBody.textContent = "";
+          aiSummaryTypingTimeout = window.setTimeout(typeAiSummary, 760);
+        }, 140);
+        return;
+      }
+      aiSummaryAnimated = true;
+      aiSceneTwo.classList.add("is-summary-active");
+      aiSummaryTypingIndex = 0;
+      if (aiSummaryBody) aiSummaryBody.textContent = "";
+      aiSummaryTypingTimeout = window.setTimeout(typeAiSummary, 680);
+    }
+
     function setLanguage(lang) {
       const selected = content[lang] || content.el;
       activeLanguage = lang;
@@ -1123,6 +1439,17 @@ and not the duration of the call itself.`,
       setComparisonStatValues(selected);
       updateRoiCalculator();
       syncPopupDemoLanguage(lang);
+      updateAiSceneOneLabels();
+      updateAiSceneOneVisual();
+      resetAiSummaryTyping();
+
+      if (isElementVisible(aiSceneOne) && !aiSceneOneUserPaused) {
+        playAiSceneOne();
+      }
+
+      if (isElementVisible(aiSceneTwo)) {
+        startAiSummarySequence();
+      }
 
       window.localStorage.setItem("pbx-language", lang);
     }
@@ -1153,6 +1480,23 @@ and not the duration of the call itself.`,
     [roiUsersInput, roiCallsInput, roiLostTimeInput, roiHourlyCostInput].forEach((input) => {
       input.addEventListener("input", updateRoiCalculator);
       setRangeFill(input);
+    });
+
+    updateAiSceneOneVisual();
+    updateAiSceneOneLabels();
+
+    aiSceneOneToggle?.addEventListener("click", () => {
+      if (aiSceneOnePlaying) {
+        pauseAiSceneOne(true);
+        return;
+      }
+
+      aiSceneOneUserPaused = false;
+      playAiSceneOne();
+    });
+
+    aiSceneTwoTrigger?.addEventListener("click", () => {
+      startAiSummarySequence(true);
     });
 
     const comparisonObserver = new IntersectionObserver(
@@ -1220,6 +1564,52 @@ and not the duration of the call itself.`,
     if (roiSection) {
       roiObserver.observe(roiSection);
     }
+
+    const aiSceneObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.target === aiSceneOne) {
+            if (!entry.isIntersecting) {
+              pauseAiSceneOne(false);
+              return;
+            }
+
+            if (!aiSceneOneUserPaused) {
+              playAiSceneOne();
+            }
+            return;
+          }
+
+          if (entry.target === aiSceneTwo && entry.isIntersecting) {
+            startAiSummarySequence();
+          }
+        });
+      },
+      {
+        threshold: 0.42
+      }
+    );
+
+    if (aiSceneOne) aiSceneObserver.observe(aiSceneOne);
+    if (aiSceneTwo) aiSceneObserver.observe(aiSceneTwo);
+
+    const aiRevealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          aiRevealObserver.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.22,
+        rootMargin: "0px 0px -6% 0px"
+      }
+    );
+
+    aiRevealItems.forEach((item) => {
+      aiRevealObserver.observe(item);
+    });
 
     scrollIndicator?.addEventListener("click", () => {
       window.scrollTo({
