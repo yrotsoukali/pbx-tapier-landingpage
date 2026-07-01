@@ -567,11 +567,15 @@ body[data-language="en"] .feature-ticker {
   filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.28));
 }
 
+.comparison-flow {
+  margin-top: 36px;
+}
+
 .section-preview {
   position: relative;
   z-index: 2;
   margin-top: -18px;
-  padding: 0 32px 14px;
+  padding: 0 32px;
 }
 
 .section-preview__inner {
@@ -587,7 +591,6 @@ body[data-language="en"] .feature-ticker {
   justify-content: center;
   min-height: 38px;
   padding: 0 28px;
-  transform: translateY(-10px);
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.24);
   background: rgba(255, 255, 255, 0.02);
@@ -603,7 +606,7 @@ body[data-language="en"] .feature-ticker {
 .comparison {
   position: relative;
   margin-top: 0;
-  padding: 0 32px 56px;
+  padding: 20px 32px 84px;
   isolation: isolate;
 }
 
@@ -943,7 +946,7 @@ body[data-language="en"] .feature-ticker {
 
 .roi {
   position: relative;
-  padding: 36px 32px 84px;
+  padding: 88px 32px 124px;
   isolation: isolate;
 }
 
@@ -1408,7 +1411,7 @@ body[data-language="en"] .feature-ticker {
   flex-wrap: wrap;
   justify-content: center;
   gap: 0 0.24em;
-  margin-top: 24px;
+  margin-top: 20px;
   color: rgba(255, 255, 255, 0.96);
   font-size: clamp(2.15rem, 3.5vw, 3.45rem);
   font-weight: 800;
@@ -1618,8 +1621,12 @@ body[data-language="en"] .feature-ticker {
     width: 30px;
   }
 
+  .comparison-flow {
+    margin-top: 28px;
+  }
+
   .comparison {
-    padding: 18px 20px 64px;
+    padding: 20px 20px 78px;
   }
 
   .comparison__background {
@@ -1669,7 +1676,7 @@ body[data-language="en"] .feature-ticker {
   }
 
   .roi {
-    padding: 28px 20px 72px;
+    padding: 64px 20px 104px;
   }
 
   .roi::before {
@@ -1849,10 +1856,9 @@ body[data-language="en"] .feature-ticker {
   }
 
   .plans__grid {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     max-width: 620px;
     margin: 0 auto;
-    padding: 18px;
   }
 
   .plans-card {
@@ -1911,7 +1917,11 @@ body[data-language="en"] .feature-ticker {
   }
 
   .section-preview {
-    padding: 0 20px 34px;
+    padding: 0 20px;
+  }
+
+  .comparison-flow {
+    margin-top: 22px;
   }
 
   .comparison__background {
@@ -2286,8 +2296,7 @@ body[data-language="en"] .feature-ticker {
   }
 
   .plans__grid {
-    padding: 12px;
-    border-radius: 22px;
+    gap: 14px;
   }
 
   .plans-card {
@@ -2760,7 +2769,7 @@ body[data-language="en"] .feature-ticker {
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.18em 0.26em;
-  margin-top: 24px;
+  margin-top: 20px;
   color: rgba(255, 255, 255, 0.96);
   font-size: clamp(2.1rem, 3.4vw, 3.32rem);
   font-weight: 800;
@@ -2831,7 +2840,7 @@ body[data-language="en"] .feature-ticker {
 }
 
 .ai-scene__text {
-  margin-top: 20px;
+  margin-top: 24px;
   max-width: 540px;
   color: rgba(255, 255, 255, 0.66);
   font-size: clamp(1rem, 1.2vw, 1.1rem);
@@ -3431,7 +3440,7 @@ button.ai-scene__action:hover {
   flex-wrap: wrap;
   justify-content: center;
   gap: 0 0.24em;
-  margin-top: 24px;
+  margin-top: 20px;
   color: rgba(255, 255, 255, 0.96);
   font-size: clamp(2.15rem, 3.5vw, 3.45rem);
   font-weight: 800;
@@ -3567,8 +3576,8 @@ button.ai-scene__action:hover {
     radial-gradient(ellipse at 82% 70%, rgba(255, 166, 96, 0.09), transparent 46%),
     linear-gradient(180deg, rgba(5, 6, 8, 0) 0%, rgba(8, 7, 8, 0.48) 18%, rgba(7, 7, 9, 0.98) 46%, rgba(5, 6, 8, 1) 100%);
   background-size: 42px 42px, 42px 42px, 168px 168px, 168px 168px, auto, auto, auto;
-  mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.42) 16%, #000 38%, #000 88%, transparent 100%);
-  -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.42) 16%, #000 38%, #000 88%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.42) 16%, #000 38%, #000 76%, rgba(0, 0, 0, 0.58) 91%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.42) 16%, #000 38%, #000 76%, rgba(0, 0, 0, 0.58) 91%, transparent 100%);
 }
 
 .social-proof__background::before,
@@ -3608,6 +3617,8 @@ button.ai-scene__action:hover {
 }
 
 .social-proof__inner {
+  position: relative;
+  z-index: 1;
   width: min(1120px, 100%);
   margin: 0 auto;
 }
@@ -3623,7 +3634,7 @@ button.ai-scene__action:hover {
   flex-wrap: wrap;
   justify-content: center;
   gap: 0 0.24em;
-  margin-top: 24px;
+  margin-top: 20px;
   color: rgba(255, 255, 255, 0.96);
   font-size: clamp(2.15rem, 3.5vw, 3.45rem);
   font-weight: 800;
@@ -3897,6 +3908,8 @@ button.ai-scene__action:hover {
 }
 
 .plans__inner {
+  position: relative;
+  z-index: 1;
   width: min(1120px, 100%);
   margin: 0 auto;
 }
@@ -3912,7 +3925,7 @@ button.ai-scene__action:hover {
   flex-wrap: wrap;
   justify-content: center;
   gap: 0 0.24em;
-  margin-top: 24px;
+  margin-top: 20px;
   color: rgba(255, 255, 255, 0.96);
   font-size: clamp(2.15rem, 3.5vw, 3.45rem);
   font-weight: 800;
@@ -3935,23 +3948,14 @@ button.ai-scene__action:hover {
 }
 
 .plans__grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: flex;
   gap: 18px;
   align-items: stretch;
-  padding: 22px;
-  border-radius: 26px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018)),
-    #1f2026;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    0 28px 72px rgba(0, 0, 0, 0.38);
 }
 
 .plans-card {
   position: relative;
+  flex: 1 1 0;
   min-height: 548px;
   display: flex;
   flex-direction: column;
@@ -4036,10 +4040,32 @@ button.ai-scene__action:hover {
 }
 
 .plans-card__price strong {
+  position: relative;
+  display: inline-block;
+  padding-top: 0.42rem;
   color: #ffffff;
   font-size: 1.65rem;
   font-weight: 800;
   letter-spacing: -0.025em;
+  line-height: 0.92;
+}
+
+.plans-card__price-value {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.plans-card__price-prefix {
+  position: absolute;
+  top: -0.04rem;
+  left: 0.06rem;
+  color: #ffffff;
+  font-size: 0.55rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  transform: rotate(-10deg);
+  transform-origin: left bottom;
 }
 
 .plans-card__subprice,
@@ -4050,6 +4076,13 @@ button.ai-scene__action:hover {
   font-weight: 700;
   letter-spacing: 0;
   line-height: 1.45;
+}
+
+.plans-card__eyebrow {
+  color: #d7d9df;
+  font-weight: 800;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: subpixel-antialiased;
 }
 
 .plans-card__features {
@@ -4198,31 +4231,22 @@ button.ai-scene__action:hover {
   stroke-linejoin: round;
 }
 
-.plans-card__button--ghost {
+.plans-card__button--ghost,
+.plans-card__button--primary {
   border: 1px solid #ff5a27;
   color: #ff6a2f;
   background: rgba(255, 86, 28, 0.055);
-}
-
-.plans-card__button--primary {
-  border: 1px solid #ff5a27;
-  color: #ffffff;
-  background: linear-gradient(90deg, #ff4d1f, #ff6a2f);
-  box-shadow: 0 14px 30px rgba(255, 78, 31, 0.22);
 }
 
 .plans-card__button:hover {
   transform: translateY(-2px);
 }
 
-.plans-card__button--ghost:hover {
+.plans-card__button--ghost:hover,
+.plans-card__button--primary:hover {
   color: #ffffff;
   background: rgba(255, 86, 28, 0.14);
   border-color: rgba(255, 106, 47, 0.94);
-}
-
-.plans-card__button--primary:hover {
-  background: linear-gradient(90deg, #ff5a27, #ff7b36);
 }
 
 /* ── call-popup styles (from pop-up.html) ── */
