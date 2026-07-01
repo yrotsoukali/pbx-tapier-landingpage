@@ -779,7 +779,7 @@
               </li>
             </ul>
 
-            <a class="plans-card__button plans-card__button--ghost" href="#demo">
+            <a class="plans-card__button plans-card__button--ghost" href="#contact">
               <span data-i18n="plansTrialButton">Ξεκινήστε δωρεάν</span>
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M5 12h14"></path>
@@ -799,7 +799,6 @@
                 </strong>
                 <span data-i18n="plansProfessionalPeriod">/ ετήσια</span>
               </p>
-              <p class="plans-card__subprice" data-i18n="plansProfessionalSubprice">+ 20€ / χρήστη</p>
             </div>
 
             <ul class="plans-card__features">
@@ -841,7 +840,7 @@
               </li>
             </ul>
 
-            <a class="plans-card__button plans-card__button--primary" href="#demo">
+            <a class="plans-card__button plans-card__button--primary" href="#contact">
               <span data-i18n="plansProfessionalButton">Ξεκινήστε</span>
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M5 12h14"></path>
@@ -888,7 +887,7 @@
             </ul>
 
             <p class="plans-card__note" data-i18n="plansAiNote">* Λειτουργεί και αυτόνομα — δεν απαιτείται το Professional plan.</p>
-            <a class="plans-card__button plans-card__button--ghost" href="#demo">
+            <a class="plans-card__button plans-card__button--ghost" href="#contact">
               <span data-i18n="plansAiButton">Προσθέστε</span>
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M5 12h14"></path>
@@ -896,6 +895,202 @@
               </svg>
             </a>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact" aria-labelledby="contactTitle">
+      <div class="contact-section__background" aria-hidden="true"></div>
+      <div class="contact-section__inner">
+        <header class="contact-section__header">
+          <span class="section-pill" data-i18n="contactPill">ΕΠΙΚΟΙΝΩΝΙΑ</span>
+          <h2 class="contact-section__title" id="contactTitle" data-i18n="contactTitle">Ξεκινήστε σήμερα.</h2>
+          <p class="contact-section__subtitle" data-i18n="contactSubtitle">Θα επικοινωνήσουμε εντός 1 εργάσιμης ημέρας.</p>
+
+          <nav class="contact-progress" aria-label="Contact form progress">
+            <button class="contact-progress__step is-active" type="button" data-contact-step="1" aria-current="step">
+              <span class="contact-progress__number">1</span>
+              <span class="contact-progress__label" data-i18n="contactProgressIntent">Πρόθεση</span>
+            </button>
+            <span class="contact-progress__line" aria-hidden="true"></span>
+            <button class="contact-progress__step" type="button" data-contact-step="2" disabled>
+              <span class="contact-progress__number">2</span>
+              <span class="contact-progress__label" data-i18n="contactProgressDetails">Στοιχεία</span>
+            </button>
+            <span class="contact-progress__line" aria-hidden="true"></span>
+            <button class="contact-progress__step" type="button" data-contact-step="3" disabled>
+              <span class="contact-progress__number">3</span>
+              <span class="contact-progress__label" data-i18n="contactProgressConfirm">Επιβεβαίωση</span>
+            </button>
+          </nav>
+        </header>
+
+        <div class="contact-card" data-contact-card>
+          <div class="contact-panel is-active" data-contact-panel="1">
+            <div class="contact-panel__head">
+              <h3 data-i18n="contactStepOneTitle">Πώς θέλετε να ξεκινήσουμε;</h3>
+              <p data-i18n="contactStepOneSubtitle">Επιλέξτε τον λόγο επικοινωνίας σας.</p>
+            </div>
+
+            <div class="contact-options" role="radiogroup" aria-label="Λόγος επικοινωνίας">
+              <button class="contact-option" type="button" role="radio" aria-checked="false" data-contact-intent="demo">
+                <span class="contact-option__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect x="3" y="5" width="18" height="16" rx="4"></rect><path d="M3 10h18"></path><path d="M8 14h.01"></path><path d="M12 14h.01"></path><path d="M16 14h.01"></path></svg>
+                </span>
+                <span>
+                  <strong data-i18n="contactIntentDemoTitle">Demo</strong>
+                  <small data-i18n="contactIntentDemoText">Δωρεάν online παρουσίαση και συζήτηση για τις ανάγκες της επιχείρησής σας.</small>
+                </span>
+              </button>
+
+              <button class="contact-option" type="button" role="radio" aria-checked="false" data-contact-intent="plans">
+                <span class="contact-option__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M4.5 16.5c-1 1-1.5 2.5-1.5 4.5 2 0 3.5-.5 4.5-1.5"></path><path d="M9 15 4 10l4-2 6 6-2 4z"></path><path d="M14 4c2.2-.7 4.2-.7 6 0 .7 1.8.7 3.8 0 6l-8 8-6-6z"></path><path d="M15 9h.01"></path></svg>
+                </span>
+                <span>
+                  <strong data-i18n="contactIntentPlansTitle">Πακέτα</strong>
+                  <small data-i18n="contactIntentPlansText">Συγκρίνετε τα διαθέσιμα πακέτα και ζητήστε προσφορά.</small>
+                </span>
+              </button>
+
+              <button class="contact-option" type="button" role="radio" aria-checked="false" data-contact-intent="partner">
+                <span class="contact-option__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="m11 17 2 2a3 3 0 0 0 4.2 0l3.3-3.3a3 3 0 0 0 0-4.2L17 8"></path><path d="m13 7-2-2a3 3 0 0 0-4.2 0L3.5 8.3a3 3 0 0 0 0 4.2L7 16"></path><path d="m8 12 4-4 4 4-4 4z"></path></svg>
+                </span>
+                <span>
+                  <strong data-i18n="contactIntentPartnerTitle">Partner</strong>
+                  <small data-i18n="contactIntentPartnerText">Γίνετε συνεργάτης ή μεταπωλητής του PBX Integrator.</small>
+                </span>
+              </button>
+            </div>
+
+            <button class="contact-button contact-button--primary" type="button" data-contact-next disabled>
+              <span data-i18n="contactContinue">Συνέχεια</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+            </button>
+          </div>
+
+          <div class="contact-panel" data-contact-panel="2" hidden>
+            <form class="contact-flow" data-contact-form="demo" hidden>
+              <button class="contact-back" type="button" data-contact-back aria-label="Πίσω" data-i18n-aria-label="contactBack">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5"></path><path d="m11 6-6 6 6 6"></path></svg>
+              </button>
+              <span class="contact-badge">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect x="3" y="5" width="18" height="16" rx="4"></rect><path d="M3 10h18"></path><path d="M8 14h.01"></path><path d="M12 14h.01"></path><path d="M16 14h.01"></path></svg>
+                Demo
+              </span>
+              <div class="contact-panel__head">
+                <h3 data-i18n="contactDemoTitle">Κλείστε το demo σας</h3>
+                <p data-i18n="contactDemoSubtitle">Θα επικοινωνήσουμε μαζί σας για να προγραμματίσουμε μια online παρουσίαση.</p>
+              </div>
+              <div class="contact-fields" data-contact-fields></div>
+              <div class="contact-actions">
+                <button class="contact-button contact-button--primary" type="submit" data-i18n="contactSubmit">Αποστολή</button>
+              </div>
+            </form>
+
+            <div class="contact-flow" data-contact-package-chooser hidden>
+              <button class="contact-back" type="button" data-contact-back aria-label="Πίσω" data-i18n-aria-label="contactBack">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5"></path><path d="m11 6-6 6 6 6"></path></svg>
+              </button>
+              <div class="contact-panel__head">
+                <h3 data-i18n="contactPackageQuestionTitle">Ποιο πακέτο σας ενδιαφέρει;</h3>
+                <p data-i18n="contactPackageQuestionSubtitle">Επιλέξτε για να συνεχίσετε.</p>
+              </div>
+              <div class="contact-package-options" role="radiogroup" aria-label="Επιλογή πακέτου">
+                <button class="contact-package" type="button" role="radio" aria-checked="false" data-contact-package="trial">
+                  <span>
+                    <strong>Trial</strong>
+                    <small data-i18n="contactPackageTrialText">Δωρεάν δοκιμή χωρίς κάρτα.</small>
+                  </span>
+                  <em data-i18n="contactPackageTrialPrice">0€ / 30 ημέρες</em>
+                </button>
+                <button class="contact-package" type="button" role="radio" aria-checked="false" data-contact-package="professional">
+                  <span>
+                    <strong>Professional</strong>
+                    <small data-i18n="contactPackageProfessionalText">Πλήρης λειτουργικότητα και δωρεάν αναβαθμίσεις.</small>
+                  </span>
+                  <em data-i18n="contactPackageProfessionalPrice">200€ / έτος</em>
+                </button>
+                <button class="contact-package" type="button" role="radio" aria-checked="false" data-contact-package="ai">
+                  <span>
+                    <strong>Professional + AI Add-on</strong>
+                    <small data-i18n="contactPackageAiText">AI σύνοψη κλήσεων · Custom AI Prompts · Αυτοματισμοί</small>
+                  </span>
+                  <em><span data-i18n="contactPackageAiPrice">200€ / έτος</span><br><span data-i18n="contactPackageAiSubprice">+0,15€ / λεπτό AI χρήσης</span></em>
+                </button>
+                <button class="contact-package" type="button" role="radio" aria-checked="false" data-contact-package="aiOnly">
+                  <span>
+                    <strong data-i18n="contactPackageAiOnlyTitle">Μόνο AI Add-on</strong>
+                    <small data-i18n="contactPackageAiOnlyText">AI λειτουργίες χωρίς Professional πακέτο.</small>
+                  </span>
+                  <em data-i18n="contactPackageAiOnlyPrice">0,15€ / λεπτό AI χρήσης</em>
+                </button>
+              </div>
+              <button class="contact-button contact-button--primary" type="button" data-contact-package-next disabled>
+                <span data-i18n="contactContinue">Συνέχεια</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+              </button>
+            </div>
+
+            <form class="contact-flow" data-contact-form="plans" hidden>
+              <button class="contact-back" type="button" data-contact-back aria-label="Πίσω" data-i18n-aria-label="contactBack">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5"></path><path d="m11 6-6 6 6 6"></path></svg>
+              </button>
+              <span class="contact-badge">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 16.5c-1 1-1.5 2.5-1.5 4.5 2 0 3.5-.5 4.5-1.5"></path><path d="M9 15 4 10l4-2 6 6-2 4z"></path><path d="M14 4c2.2-.7 4.2-.7 6 0 .7 1.8.7 3.8 0 6l-8 8-6-6z"></path><path d="M15 9h.01"></path></svg>
+                Πακέτο
+              </span>
+              <div class="contact-selected-package">
+                <div>
+                  <strong data-contact-selected-package-title>Trial</strong>
+                  <small data-contact-selected-package-price>0€ / 30 ημέρες</small>
+                </div>
+                <button type="button" data-contact-change-package data-i18n="contactChange">Αλλαγή</button>
+              </div>
+              <div class="contact-fields" data-contact-fields></div>
+              <div class="contact-field contact-field--full" data-contact-users-field hidden>
+                <label for="contactUsers" data-i18n="contactUsersLabel">Πόσοι χρήστες θα χρησιμοποιούν την εφαρμογή;</label>
+                <input id="contactUsers" name="users" type="number" min="1" max="999" step="1" inputmode="numeric" placeholder="1" aria-describedby="contactUsersHelp contactUsersError" />
+                <span class="contact-field__status" aria-hidden="true"></span>
+                <small class="contact-field__help" id="contactUsersHelp" data-i18n="contactUsersHelp">Απαιτείται για Professional και AI πακέτα. Ελάχιστη τιμή: 1 χρήστης.</small>
+                <small class="sr-only" id="contactUsersError" data-contact-error></small>
+              </div>
+              <div class="contact-actions">
+                <button class="contact-button contact-button--primary" type="submit" data-i18n="contactSubmit">Αποστολή</button>
+              </div>
+            </form>
+
+            <form class="contact-flow" data-contact-form="partner" hidden>
+              <button class="contact-back" type="button" data-contact-back aria-label="Πίσω" data-i18n-aria-label="contactBack">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5"></path><path d="m11 6-6 6 6 6"></path></svg>
+              </button>
+              <span class="contact-badge">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m11 17 2 2a3 3 0 0 0 4.2 0l3.3-3.3a3 3 0 0 0 0-4.2L17 8"></path><path d="m13 7-2-2a3 3 0 0 0-4.2 0L3.5 8.3a3 3 0 0 0 0 4.2L7 16"></path><path d="m8 12 4-4 4 4-4 4z"></path></svg>
+                Partner
+              </span>
+              <div class="contact-panel__head">
+                <h3 data-i18n="contactPartnerTitle">Αίτημα συνεργασίας</h3>
+                <p data-i18n="contactPartnerSubtitle">Για συνεργάτες και μεταπωλητές λύσεων SoftOne.</p>
+              </div>
+              <div class="contact-fields" data-contact-fields></div>
+              <div class="contact-actions">
+                <button class="contact-button contact-button--primary" type="submit" data-i18n="contactSubmit">Αποστολή</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="contact-panel contact-success" data-contact-panel="3" hidden>
+            <span class="contact-success__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"></path></svg>
+            </span>
+            <h3 data-i18n="contactSuccessTitle">Το αίτημά σας καταχωρήθηκε.</h3>
+            <p data-i18n="contactSuccessText">Η ομάδα μας θα επικοινωνήσει μαζί σας εντός μίας εργάσιμης ημέρας για να συζητήσουμε τα επόμενα βήματα.</p>
+            <a class="contact-success__link" href="#features">
+              <span data-i18n="contactSuccessLink">Ανακαλύψτε περισσότερες λύσεις για SoftOne</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -960,6 +1155,11 @@
     let aiSummaryAnimated = false;
     let socialReviewIndex = 0;
     let socialReviewTimer = 0;
+    let contactCurrentStep = 1;
+    let contactMaxStep = 1;
+    let contactSelectedIntent = "";
+    let contactSelectedPackage = "";
+    let contactSubmitted = false;
     const ROI_WORKING_DAYS = 22;
     const ROI_TIME_SAVING = 0.85;
     const ROI_TIME_OPTIONS = [0.5, 0.75, 1, 1.5, 2, 2.5, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -970,6 +1170,52 @@
       hourlyCost: 8.5
     };
     const AI_SCENE_ONE_DURATION = 600000;
+    const CONTACT_PACKAGES = {
+      trial: {
+        title: {
+          el: "Trial",
+          en: "Trial"
+        },
+        price: {
+          el: "0€ / 30 ημέρες",
+          en: "0€ / 30 days"
+        },
+        requiresUsers: false
+      },
+      professional: {
+        title: {
+          el: "Professional",
+          en: "Professional"
+        },
+        price: {
+          el: "200€ / έτος",
+          en: "200€ / year"
+        },
+        requiresUsers: true
+      },
+      ai: {
+        title: {
+          el: "Professional + AI Add-on",
+          en: "Professional + AI Add-on"
+        },
+        price: {
+          el: "200€ / έτος + 0,15€ / λεπτό AI χρήσης",
+          en: "200€ / year + 0.15€ / AI minute"
+        },
+        requiresUsers: true
+      },
+      aiOnly: {
+        title: {
+          el: "Μόνο AI Add-on",
+          en: "AI Add-on only"
+        },
+        price: {
+          el: "0,15€ / λεπτό AI χρήσης",
+          en: "0.15€ / AI minute"
+        },
+        requiresUsers: false
+      }
+    };
 
     const content = {
       el: {
@@ -1088,7 +1334,6 @@
         plansProfessionalPricePrefix: "ΑΠΟ",
         plansProfessionalPrice: "200€",
         plansProfessionalPeriod: "/ ετήσια",
-        plansProfessionalSubprice: "+ 20€ / χρήστη",
         plansProfessionalFeatureOne: "Αναγνώριση καλούντος",
         plansProfessionalFeatureTwo: "Καταγραφή κλήσεων στο CRM",
         plansProfessionalFeatureThree: "Ηχητική καταγραφή κλήσεων",
@@ -1109,6 +1354,53 @@
         plansAiFeatureFour: "Συμβατό με οποιοδήποτε καταγραφικό",
         plansAiNote: "* Λειτουργεί και αυτόνομα - δεν απαιτείται το Professional plan.",
         plansAiButton: "Προσθέστε",
+        contactPill: "ΕΠΙΚΟΙΝΩΝΙΑ",
+        contactTitle: "Ξεκινήστε σήμερα.",
+        contactSubtitle: "Θα επικοινωνήσουμε εντός 1 εργάσιμης ημέρας.",
+        contactProgressIntent: "Πρόθεση",
+        contactProgressDetails: "Στοιχεία",
+        contactProgressConfirm: "Επιβεβαίωση",
+        contactStepOneTitle: "Πώς θέλετε να ξεκινήσουμε;",
+        contactStepOneSubtitle: "Επιλέξτε τον λόγο επικοινωνίας σας.",
+        contactIntentDemoTitle: "Demo",
+        contactIntentDemoText: "Δωρεάν online παρουσίαση και συζήτηση για τις ανάγκες της επιχείρησής σας.",
+        contactIntentPlansTitle: "Πακέτα",
+        contactIntentPlansText: "Συγκρίνετε τα διαθέσιμα πακέτα και ζητήστε προσφορά.",
+        contactIntentPartnerTitle: "Partner",
+        contactIntentPartnerText: "Γίνετε συνεργάτης ή μεταπωλητής του PBX Integrator.",
+        contactContinue: "Συνέχεια",
+        contactDemoTitle: "Κλείστε το demo σας",
+        contactDemoSubtitle: "Θα επικοινωνήσουμε μαζί σας για να προγραμματίσουμε μια online παρουσίαση.",
+        contactSubmit: "Αποστολή",
+        contactBack: "Πίσω",
+        contactPackageQuestionTitle: "Ποιο πακέτο σας ενδιαφέρει;",
+        contactPackageQuestionSubtitle: "Επιλέξτε για να συνεχίσετε.",
+        contactPackageTrialText: "Δωρεάν δοκιμή χωρίς κάρτα.",
+        contactPackageTrialPrice: "0€ / 30 ημέρες",
+        contactPackageProfessionalText: "Πλήρης λειτουργικότητα και δωρεάν αναβαθμίσεις.",
+        contactPackageProfessionalPrice: "200€ / έτος",
+        contactPackageAiText: "AI σύνοψη κλήσεων · Custom AI Prompts · Αυτοματισμοί",
+        contactPackageAiPrice: "200€ / έτος",
+        contactPackageAiSubprice: "+0,15€ / λεπτό AI χρήσης",
+        contactPackageAiOnlyTitle: "Μόνο AI Add-on",
+        contactPackageAiOnlyText: "AI λειτουργίες χωρίς Professional πακέτο.",
+        contactPackageAiOnlyPrice: "0,15€ / λεπτό AI χρήσης",
+        contactChange: "Αλλαγή",
+        contactUsersLabel: "Πόσοι χρήστες θα χρησιμοποιούν την εφαρμογή;",
+        contactPartnerTitle: "Αίτημα συνεργασίας",
+        contactPartnerSubtitle: "Για συνεργάτες και μεταπωλητές λύσεων SoftOne.",
+        contactSuccessTitle: "Το αίτημά σας καταχωρήθηκε.",
+        contactSuccessText: "Η ομάδα μας θα επικοινωνήσει μαζί σας εντός μίας εργάσιμης ημέρας για να συζητήσουμε τα επόμενα βήματα.",
+        contactSuccessLink: "Ανακαλύψτε περισσότερες λύσεις για SoftOne",
+        contactFullName: "Ονοματεπώνυμο *",
+        contactVat: "ΑΦΜ *",
+        contactEmail: "Email *",
+        contactPhone: "Τηλέφωνο *",
+        contactFullNameHelp: "Συμπληρώστε ονοματεπώνυμο.",
+        contactVatHelp: "Ακριβώς 9 ψηφία.",
+        contactEmailHelp: "Χρησιμοποιήστε επαγγελματικό email.",
+        contactPhoneHelp: "Τουλάχιστον 8 χαρακτήρες.",
+        contactUsersHelp: "Απαιτείται για Professional και AI πακέτα. Ελάχιστη τιμή: 1 χρήστης.",
         callFeatureOneTag: "ΑΝΑΓΝΩΡΙΣΗ ΚΛΗΣΗΣ",
         callFeatureOneHeading: "Ξέρεις ποιος καλεί. Πριν σηκώσεις το τηλέφωνο.",
         callFeatureOneText: "Το όνομα της επιχείρησης εμφανίζεται αυτόματα - χωρίς αναζήτηση, χωρίς χαμένα δευτερόλεπτα.",
@@ -1310,7 +1602,6 @@ and not the duration of the call itself.`,
         plansProfessionalPricePrefix: "FROM",
         plansProfessionalPrice: "200€",
         plansProfessionalPeriod: "/ yearly",
-        plansProfessionalSubprice: "+ 20€ / user",
         plansProfessionalFeatureOne: "Caller recognition",
         plansProfessionalFeatureTwo: "Call logging in the CRM",
         plansProfessionalFeatureThree: "Audio call recording",
@@ -1331,6 +1622,53 @@ and not the duration of the call itself.`,
         plansAiFeatureFour: "Compatible with any recorder",
         plansAiNote: "* Also works standalone - the Professional plan is not required.",
         plansAiButton: "Add it",
+        contactPill: "CONTACT",
+        contactTitle: "Start today.",
+        contactSubtitle: "We will contact you within 1 business day.",
+        contactProgressIntent: "Intent",
+        contactProgressDetails: "Details",
+        contactProgressConfirm: "Confirmation",
+        contactStepOneTitle: "How would you like to begin?",
+        contactStepOneSubtitle: "Choose the reason for contacting us.",
+        contactIntentDemoTitle: "Demo",
+        contactIntentDemoText: "A free online walkthrough and discussion about your business needs.",
+        contactIntentPlansTitle: "Plans",
+        contactIntentPlansText: "Compare the available plans and request an offer.",
+        contactIntentPartnerTitle: "Partner",
+        contactIntentPartnerText: "Become a PBX Integrator partner or reseller.",
+        contactContinue: "Continue",
+        contactDemoTitle: "Book your demo",
+        contactDemoSubtitle: "We will contact you to schedule an online presentation.",
+        contactSubmit: "Submit",
+        contactBack: "Back",
+        contactPackageQuestionTitle: "Which plan are you interested in?",
+        contactPackageQuestionSubtitle: "Choose one to continue.",
+        contactPackageTrialText: "Free trial without a card.",
+        contactPackageTrialPrice: "0€ / 30 days",
+        contactPackageProfessionalText: "Full functionality and free upgrades.",
+        contactPackageProfessionalPrice: "200€ / year",
+        contactPackageAiText: "AI call summaries · Custom AI Prompts · Automations",
+        contactPackageAiPrice: "200€ / year",
+        contactPackageAiSubprice: "+0.15€ / AI minute",
+        contactPackageAiOnlyTitle: "AI Add-on only",
+        contactPackageAiOnlyText: "AI features without the Professional plan.",
+        contactPackageAiOnlyPrice: "0.15€ / AI minute",
+        contactChange: "Change",
+        contactUsersLabel: "How many users will use the application?",
+        contactPartnerTitle: "Partnership request",
+        contactPartnerSubtitle: "For SoftOne solution partners and resellers.",
+        contactSuccessTitle: "Your request has been submitted.",
+        contactSuccessText: "Our team will contact you within one business day to discuss the next steps.",
+        contactSuccessLink: "Discover more SoftOne solutions",
+        contactFullName: "Full name *",
+        contactVat: "VAT number *",
+        contactEmail: "Email *",
+        contactPhone: "Phone *",
+        contactFullNameHelp: "Enter full name.",
+        contactVatHelp: "Exactly 9 digits.",
+        contactEmailHelp: "Use a business email.",
+        contactPhoneHelp: "At least 8 characters.",
+        contactUsersHelp: "Required for Professional and AI plans. Minimum value: 1 user.",
         callFeatureOneTag: "CALL RECOGNITION",
         callFeatureOneHeading: "Know who's calling. Before you pick up.",
         callFeatureOneText: "The business name appears automatically - no searching, no lost seconds.",
@@ -1915,6 +2253,293 @@ and not the duration of the call itself.`,
       }, delay);
     }
 
+    function createContactFields(container, prefix) {
+      if (!container || container.dataset.ready === "true") return;
+
+      const fields = [
+        { name: "name", type: "text", key: "contactFullName", helpKey: "contactFullNameHelp", autocomplete: "name" },
+        { name: "vat", type: "text", key: "contactVat", helpKey: "contactVatHelp", autocomplete: "off", inputmode: "numeric", pattern: "\\d{9}", minlength: "9", maxlength: "9" },
+        { name: "email", type: "email", key: "contactEmail", helpKey: "contactEmailHelp", autocomplete: "email" },
+        { name: "phone", type: "tel", key: "contactPhone", helpKey: "contactPhoneHelp", autocomplete: "tel", inputmode: "tel", pattern: "[0-9+()\\s-]{8,}" }
+      ];
+
+      fields.forEach((field) => {
+        const id = `${prefix}${field.name}`;
+        const helpId = `${id}Help`;
+        const errorId = `${id}Error`;
+        const wrapper = document.createElement("div");
+        wrapper.className = "contact-field";
+
+        const label = document.createElement("label");
+        label.setAttribute("for", id);
+        label.dataset.i18n = field.key;
+        label.textContent = (content.el && content.el[field.key]) || field.name;
+
+        const input = document.createElement("input");
+        input.id = id;
+        input.name = field.name;
+        input.type = field.type;
+        input.required = true;
+        if (field.autocomplete) input.autocomplete = field.autocomplete;
+        if (field.inputmode) input.inputMode = field.inputmode;
+        if (field.pattern) input.pattern = field.pattern;
+        if (field.minlength) input.minLength = Number(field.minlength);
+        if (field.maxlength) input.maxLength = Number(field.maxlength);
+        input.setAttribute("aria-describedby", `${helpId} ${errorId}`);
+
+        const status = document.createElement("span");
+        status.className = "contact-field__status";
+        status.setAttribute("aria-hidden", "true");
+
+        const help = document.createElement("small");
+        help.className = "contact-field__help";
+        help.id = helpId;
+        help.dataset.i18n = field.helpKey;
+        help.textContent = (content.el && content.el[field.helpKey]) || "";
+
+        const error = document.createElement("small");
+        error.className = "sr-only";
+        error.id = errorId;
+        error.dataset.contactError = "";
+
+        wrapper.append(label, input, status, help, error);
+        container.appendChild(wrapper);
+      });
+
+      container.dataset.ready = "true";
+    }
+
+    function setContactStep(step) {
+      contactCurrentStep = step;
+      contactMaxStep = Math.max(contactMaxStep, step);
+      const card = document.querySelector("[data-contact-card]");
+      if (card) {
+        card.classList.add("is-switching");
+        window.setTimeout(() => card.classList.remove("is-switching"), 180);
+      }
+
+      document.querySelectorAll("[data-contact-panel]").forEach((panel) => {
+        const isActive = Number(panel.dataset.contactPanel) === step;
+        panel.hidden = !isActive;
+        panel.classList.toggle("is-active", isActive);
+      });
+
+      const progress = document.querySelector(".contact-progress");
+      if (progress) progress.dataset.contactCurrent = String(step);
+
+      document.querySelectorAll("[data-contact-step]").forEach((button) => {
+        const buttonStep = Number(button.dataset.contactStep);
+        const isSubmittedStep = contactSubmitted && buttonStep === 3;
+        button.classList.toggle("is-active", buttonStep === step);
+        button.classList.toggle("is-complete", buttonStep < step || isSubmittedStep);
+        button.disabled = buttonStep > contactMaxStep;
+        if (buttonStep === step) {
+          button.setAttribute("aria-current", "step");
+        } else {
+          button.removeAttribute("aria-current");
+        }
+      });
+    }
+
+    function showContactFlow() {
+      document.querySelectorAll("[data-contact-form], [data-contact-package-chooser]").forEach((flow) => {
+        flow.hidden = true;
+      });
+
+      if (contactSelectedIntent === "plans") {
+        const target = contactSelectedPackage ? document.querySelector('[data-contact-form="plans"]') : document.querySelector("[data-contact-package-chooser]");
+        if (target) target.hidden = false;
+        updateSelectedContactPackage();
+        return;
+      }
+
+      const form = document.querySelector(`[data-contact-form="${contactSelectedIntent}"]`);
+      if (form) form.hidden = false;
+    }
+
+    function updateContactIntent(intent) {
+      contactSelectedIntent = intent;
+      if (intent !== "plans") {
+        contactSelectedPackage = "";
+      }
+
+      document.querySelectorAll("[data-contact-intent]").forEach((button) => {
+        const isSelected = button.dataset.contactIntent === intent;
+        button.classList.toggle("is-selected", isSelected);
+        button.setAttribute("aria-checked", String(isSelected));
+      });
+
+      const nextButton = document.querySelector("[data-contact-next]");
+      if (nextButton) nextButton.disabled = !intent;
+    }
+
+    function updateSelectedContactPackage() {
+      if (!contactSelectedPackage) return;
+      const selectedPackage = CONTACT_PACKAGES[contactSelectedPackage];
+      if (!selectedPackage) return;
+
+      const lang = activeLanguage === "en" ? "en" : "el";
+      const title = document.querySelector("[data-contact-selected-package-title]");
+      const price = document.querySelector("[data-contact-selected-package-price]");
+      const usersField = document.querySelector("[data-contact-users-field]");
+      const usersSelect = document.getElementById("contactUsers");
+
+      if (title) title.textContent = selectedPackage.title[lang];
+      if (price) price.textContent = selectedPackage.price[lang];
+      if (usersField) usersField.hidden = !selectedPackage.requiresUsers;
+      if (usersSelect) {
+        usersSelect.required = selectedPackage.requiresUsers;
+        if (!selectedPackage.requiresUsers) usersSelect.value = "";
+        usersSelect.setAttribute("aria-invalid", "false");
+      }
+    }
+
+    function updateContactPackage(packageKey) {
+      contactSelectedPackage = packageKey;
+      document.querySelectorAll("[data-contact-package]").forEach((button) => {
+        const isSelected = button.dataset.contactPackage === packageKey;
+        button.classList.toggle("is-selected", isSelected);
+        button.setAttribute("aria-checked", String(isSelected));
+      });
+      const packageNext = document.querySelector("[data-contact-package-next]");
+      if (packageNext) packageNext.disabled = !packageKey;
+    }
+
+    function clearContactPackageSelection() {
+      contactSelectedPackage = "";
+      document.querySelectorAll("[data-contact-package]").forEach((button) => {
+        button.classList.remove("is-selected");
+        button.setAttribute("aria-checked", "false");
+      });
+      const packageNext = document.querySelector("[data-contact-package-next]");
+      if (packageNext) packageNext.disabled = true;
+    }
+
+    function resetContactForms() {
+      document.querySelectorAll("[data-contact-form]").forEach((form) => {
+        form.reset();
+        form.querySelectorAll("[aria-invalid]").forEach((field) => {
+          field.setAttribute("aria-invalid", "false");
+        });
+        form.querySelectorAll("[data-contact-error]").forEach((error) => {
+          error.textContent = "";
+        });
+      });
+      syncContactLanguage();
+    }
+
+    function validateContactForm(form) {
+      let firstInvalid = null;
+      form.querySelectorAll("input").forEach((input) => {
+        const error = form.querySelector(`#${input.id}Error`);
+        const isValid = input.checkValidity();
+        input.setAttribute("aria-invalid", String(!isValid));
+        if (error) {
+          error.textContent = isValid ? "" : `${input.labels?.[0]?.textContent || input.name}: συμπληρώστε το πεδίο σύμφωνα με τις απαιτήσεις.`;
+        }
+        if (!isValid && !firstInvalid) firstInvalid = input;
+      });
+      if (firstInvalid) {
+        firstInvalid.focus({ preventScroll: true });
+        return false;
+      }
+      return true;
+    }
+
+    function submitContactForm(form) {
+      if (!validateContactForm(form)) return;
+
+      contactMaxStep = 3;
+      contactSubmitted = true;
+      setContactStep(3);
+      resetContactForms();
+    }
+
+    function syncContactLanguage() {
+      updateSelectedContactPackage();
+      const phoneInputs = document.querySelectorAll('input[name="phone"]');
+      phoneInputs.forEach((input) => {
+        if (activeLanguage === "el") {
+          if (!input.value || input.value === "+30") input.value = "+30 ";
+          return;
+        }
+
+        if (input.value.trim() === "+30") input.value = "";
+      });
+    }
+
+    function initContactSection() {
+      document.querySelectorAll("[data-contact-fields]").forEach((container, index) => {
+        createContactFields(container, `contact${index}`);
+      });
+
+      document.querySelectorAll("[data-contact-intent]").forEach((button) => {
+        button.addEventListener("click", () => updateContactIntent(button.dataset.contactIntent));
+      });
+
+      document.querySelector("[data-contact-next]")?.addEventListener("click", () => {
+        if (!contactSelectedIntent) return;
+        contactMaxStep = Math.max(contactMaxStep, 2);
+        setContactStep(2);
+        showContactFlow();
+      });
+
+      document.querySelectorAll("[data-contact-back]").forEach((button) => {
+        button.addEventListener("click", () => {
+          if (contactSelectedIntent === "plans" && contactSelectedPackage && !button.closest("[data-contact-package-chooser]")) {
+            clearContactPackageSelection();
+            showContactFlow();
+            return;
+          }
+          setContactStep(1);
+        });
+      });
+
+      document.querySelectorAll("[data-contact-package]").forEach((button) => {
+        button.addEventListener("click", () => updateContactPackage(button.dataset.contactPackage));
+      });
+
+      document.querySelector("[data-contact-package-next]")?.addEventListener("click", () => {
+        if (!contactSelectedPackage) return;
+        showContactFlow();
+      });
+
+      document.querySelector("[data-contact-change-package]")?.addEventListener("click", () => {
+        clearContactPackageSelection();
+        showContactFlow();
+      });
+
+      document.querySelectorAll("[data-contact-form]").forEach((form) => {
+        form.noValidate = true;
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+          submitContactForm(form);
+        });
+
+        form.querySelectorAll("input").forEach((input) => {
+          input.addEventListener("input", () => {
+            if (!input.getAttribute("aria-invalid")) return;
+            const isValid = input.checkValidity();
+            input.setAttribute("aria-invalid", String(!isValid));
+            const error = form.querySelector(`#${input.id}Error`);
+            if (error && isValid) error.textContent = "";
+          });
+        });
+      });
+
+      document.querySelectorAll("[data-contact-step]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const step = Number(button.dataset.contactStep);
+          if (step <= contactMaxStep) {
+            setContactStep(step);
+            if (step === 2) showContactFlow();
+          }
+        });
+      });
+
+      setContactStep(1);
+    }
+
     function setLanguage(lang) {
       const selected = content[lang] || content.el;
       activeLanguage = lang;
@@ -1961,6 +2586,7 @@ and not the duration of the call itself.`,
       setComparisonStatValues(selected);
       updateRoiCalculator();
       syncPopupDemoLanguage(lang);
+      syncContactLanguage();
       updateAiSceneOneLabels();
       updateAiSceneOneVisual();
       resetAiSummaryTyping();
@@ -1998,6 +2624,7 @@ and not the duration of the call itself.`,
       lostTimeIndex: 0,
       hourlyCost: 7.86
     });
+    initContactSection();
     setLanguage(initialLanguage);
 
     [roiUsersInput, roiCallsInput, roiLostTimeInput, roiHourlyCostInput].forEach((input) => {
