@@ -1007,32 +1007,52 @@
               </div>
               <div class="contact-package-options" role="radiogroup" aria-label="Επιλογή πακέτου">
                 <button class="contact-package" type="button" role="radio" aria-checked="false" data-contact-package="trial">
+                  <svg class="contact-package__shape" viewBox="0 0 600 74" preserveAspectRatio="none" aria-hidden="true">
+                    <path d="M16,0 L392,0 C412,0 424,8 428,18 C433,24 442,26 454,26 L584,26 A16,16 0 0 1 600,42 L600,58 A16,16 0 0 1 584,74 L16,74 A16,16 0 0 1 0,58 L0,16 A16,16 0 0 1 16,0 Z" />
+                  </svg>
                   <span>
-                    <strong>Trial</strong>
+                    <span class="contact-package__title-row">
+                      <strong>Trial</strong>
+                      <span class="contact-package__pill" data-i18n="contactPackageTrialPrice">0€ / 30 ημέρες</span>
+                    </span>
                     <small data-i18n="contactPackageTrialText">Δωρεάν δοκιμή χωρίς κάρτα.</small>
                   </span>
-                  <em data-i18n="contactPackageTrialPrice">0€ / 30 ημέρες</em>
                 </button>
                 <button class="contact-package" type="button" role="radio" aria-checked="false" data-contact-package="professional">
+                  <svg class="contact-package__shape" viewBox="0 0 600 74" preserveAspectRatio="none" aria-hidden="true">
+                    <path d="M16,0 L422,0 C442,0 454,8 458,18 C463,24 472,26 484,26 L584,26 A16,16 0 0 1 600,42 L600,58 A16,16 0 0 1 584,74 L16,74 A16,16 0 0 1 0,58 L0,16 A16,16 0 0 1 16,0 Z" />
+                  </svg>
                   <span>
-                    <strong>Professional</strong>
+                    <span class="contact-package__title-row">
+                      <strong>Professional</strong>
+                      <span class="contact-package__pill" data-i18n="contactPackageProfessionalPrice">200€ / έτος</span>
+                    </span>
                     <small data-i18n="contactPackageProfessionalText">Πλήρης λειτουργικότητα και δωρεάν αναβαθμίσεις.</small>
                   </span>
-                  <em data-i18n="contactPackageProfessionalPrice">200€ / έτος</em>
                 </button>
                 <button class="contact-package" type="button" role="radio" aria-checked="false" data-contact-package="ai">
+                  <svg class="contact-package__shape" viewBox="0 0 600 96" preserveAspectRatio="none" aria-hidden="true">
+                    <path d="M16,0 L322,0 C342,0 354,8 358,18 C363,24 372,26 384,26 L584,26 A16,16 0 0 1 600,42 L600,80 A16,16 0 0 1 584,96 L16,96 A16,16 0 0 1 0,80 L0,16 A16,16 0 0 1 16,0 Z" />
+                  </svg>
                   <span>
-                    <strong>Professional + AI Add-on</strong>
+                    <span class="contact-package__title-row">
+                      <strong>Professional + AI Add-on</strong>
+                      <span class="contact-package__pill" data-i18n="contactPackageAiCombinedPrice">200€ / έτος + 0,15€ / λεπτό κλήσης</span>
+                    </span>
                     <small data-i18n="contactPackageAiText">AI σύνοψη κλήσεων · Custom AI Prompts · Αυτοματισμοί</small>
                   </span>
-                  <em><span data-i18n="contactPackageAiPrice">200€ / έτος</span><br><span data-i18n="contactPackageAiSubprice">+0,15€ / λεπτό AI χρήσης</span></em>
                 </button>
                 <button class="contact-package" type="button" role="radio" aria-checked="false" data-contact-package="aiOnly">
+                  <svg class="contact-package__shape" viewBox="0 0 600 74" preserveAspectRatio="none" aria-hidden="true">
+                    <path d="M16,0 L372,0 C392,0 404,8 408,18 C413,24 422,26 434,26 L584,26 A16,16 0 0 1 600,42 L600,58 A16,16 0 0 1 584,74 L16,74 A16,16 0 0 1 0,58 L0,16 A16,16 0 0 1 16,0 Z" />
+                  </svg>
                   <span>
-                    <strong data-i18n="contactPackageAiOnlyTitle">Μόνο AI Add-on</strong>
+                    <span class="contact-package__title-row">
+                      <strong data-i18n="contactPackageAiOnlyTitle">Μόνο AI Add-on</strong>
+                      <span class="contact-package__pill" data-i18n="contactPackageAiOnlyPrice">0,15€ / λεπτό κλήσης</span>
+                    </span>
                     <small data-i18n="contactPackageAiOnlyText">AI λειτουργίες χωρίς Professional πακέτο.</small>
                   </span>
-                  <em data-i18n="contactPackageAiOnlyPrice">0,15€ / λεπτό AI χρήσης</em>
                 </button>
               </div>
               <button class="contact-button contact-button--primary" type="button" data-contact-package-next disabled>
@@ -1215,7 +1235,7 @@
           en: "Professional + AI Add-on"
         },
         price: {
-          el: "200€ / έτος + 0,15€ / λεπτό AI χρήσης",
+          el: "200€ / έτος + 0,15€ / λεπτό κλήσης",
           en: "200€ / year + 0.15€ / AI minute"
         },
         requiresUsers: true
@@ -1226,7 +1246,7 @@
           en: "AI Add-on only"
         },
         price: {
-          el: "0,15€ / λεπτό AI χρήσης",
+          el: "0,15€ / λεπτό κλήσης",
           en: "0.15€ / AI minute"
         },
         requiresUsers: false
@@ -1396,11 +1416,12 @@
         contactPackageProfessionalText: "Πλήρης λειτουργικότητα και δωρεάν αναβαθμίσεις.",
         contactPackageProfessionalPrice: "200€ / έτος",
         contactPackageAiText: "AI σύνοψη κλήσεων · Custom AI Prompts · Αυτοματισμοί",
+        contactPackageAiCombinedPrice: "200€ / έτος + 0,15€ / λεπτό κλήσης",
         contactPackageAiPrice: "200€ / έτος",
-        contactPackageAiSubprice: "+0,15€ / λεπτό AI χρήσης",
+        contactPackageAiSubprice: "+0,15€ / λεπτό κλήσης",
         contactPackageAiOnlyTitle: "Μόνο AI Add-on",
         contactPackageAiOnlyText: "AI λειτουργίες χωρίς Professional πακέτο.",
-        contactPackageAiOnlyPrice: "0,15€ / λεπτό AI χρήσης",
+        contactPackageAiOnlyPrice: "0,15€ / λεπτό κλήσης",
         contactChange: "Αλλαγή",
         contactUsersLabel: "Πόσοι χρήστες θα χρησιμοποιούν την εφαρμογή;",
         contactPartnerTitle: "Αίτημα συνεργασίας",
@@ -1664,6 +1685,7 @@ and not the duration of the call itself.`,
         contactPackageProfessionalText: "Full functionality and free upgrades.",
         contactPackageProfessionalPrice: "200€ / year",
         contactPackageAiText: "AI call summaries · Custom AI Prompts · Automations",
+        contactPackageAiCombinedPrice: "200€ / year + 0.15€ / AI minute",
         contactPackageAiPrice: "200€ / year",
         contactPackageAiSubprice: "+0.15€ / AI minute",
         contactPackageAiOnlyTitle: "AI Add-on only",
