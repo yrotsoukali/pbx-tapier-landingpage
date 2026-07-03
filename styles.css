@@ -4055,6 +4055,14 @@ button.ai-scene__action:hover {
   margin-left: 10px;
 }
 
+.plans-card__inline-subprice {
+  color: #a7aab4;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
 .plans-card__price-prefix {
   position: absolute;
   top: -0.04rem;
@@ -4658,14 +4666,14 @@ button.ai-scene__action:hover {
   margin: 2px 0 0;
   padding: 0 12px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 132, 74, 0.22);
+  border: 1px solid rgba(255, 106, 47, 0.45);
   background:
-    linear-gradient(180deg, rgba(255, 122, 54, 0.17), rgba(255, 122, 54, 0.08)),
+    linear-gradient(180deg, rgba(255, 106, 47, 0.2), rgba(255, 106, 47, 0.1)),
     rgba(255, 255, 255, 0.03);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.1),
     0 10px 24px rgba(0, 0, 0, 0.16);
-  color: #ff9a61;
+  color: #ff6a2f;
   font-size: 0.66rem;
   font-weight: 760;
   letter-spacing: 0.08em;
@@ -4891,8 +4899,8 @@ button.ai-scene__action:hover {
 .contact-package {
   display: flex;
   align-items: center;
-  min-height: 70px;
-  padding: 14px 44px 14px 15px;
+  min-height: 78px;
+  padding: 12px 44px 28px 15px;
 }
 
 .contact-package__shape {
@@ -4904,8 +4912,6 @@ button.ai-scene__action:hover {
   flex-direction: column;
   justify-content: center;
   min-height: 100%;
-  position: relative;
-  z-index: 1;
 }
 
 .contact-package__title-row {
@@ -4918,22 +4924,16 @@ button.ai-scene__action:hover {
 }
 
 .contact-package__pill {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 18px;
-  padding: 0 7px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 138, 77, 0.18);
-  background: rgba(255, 138, 77, 0.08);
-  color: #ffb085;
-  font-size: 0.54rem;
-  font-weight: 720;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  line-height: 1;
-  white-space: nowrap;
-  flex-shrink: 0;
+  position: absolute;
+  bottom: 9px;
+  right: 14px;
+  max-width: calc(100% - 28px);
+  color: #ff8a4d;
+  font-size: 0.72rem;
+  font-weight: 760;
+  letter-spacing: 0;
+  line-height: 1.18;
+  text-align: right;
 }
 
 .contact-field input[type="number"] {
@@ -5115,8 +5115,8 @@ button.ai-scene__action:hover {
   }
 
   .contact-package {
-    min-height: 70px;
-    padding: 14px 44px 14px 14px;
+    min-height: 80px;
+    padding: 12px 44px 30px 14px;
   }
 
   .contact-package__title-row {
@@ -5124,9 +5124,10 @@ button.ai-scene__action:hover {
   }
 
   .contact-package__pill {
-    min-height: 17px;
-    padding: 0 6px;
-    font-size: 0.5rem;
+    bottom: 9px;
+    right: 14px;
+    max-width: calc(100% - 28px);
+    font-size: 0.68rem;
   }
 
   .contact-selected-package {

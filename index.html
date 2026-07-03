@@ -798,6 +798,7 @@
                   <span class="plans-card__price-value" data-i18n="plansProfessionalPrice">200€</span>
                 </strong>
                 <span data-i18n="plansProfessionalPeriod">/ ετήσια</span>
+                <span class="plans-card__inline-subprice" data-i18n="plansProfessionalSubprice">+20€ / χρήστη</span>
               </p>
             </div>
 
@@ -883,6 +884,12 @@
                   <svg viewBox="0 0 24 24"><path d="M9 7v4"></path><path d="M15 7v4"></path><path d="M7 11h10"></path><path d="M12 21v-3"></path><path d="M8 18h8"></path><path d="M8 11v2a4 4 0 0 0 8 0v-2"></path></svg>
                 </span>
                 <span data-i18n="plansAiFeatureFour">Συμβατό με οποιοδήποτε καταγραφικό</span>
+              </li>
+              <li>
+                <span class="plans-card__mini-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2"></rect><path d="M8 13v3"></path><path d="M12 11v5"></path><path d="M16 9v7"></path><path d="M8 9h.01"></path><path d="M12 8h.01"></path><path d="M16 7h.01"></path></svg>
+                </span>
+                <span data-i18n="plansAiFeatureFive">Έλεγχος και διαχείριση token μέσα από το Dashboard</span>
               </li>
             </ul>
 
@@ -1004,6 +1011,10 @@
                     <p data-i18n="contactPackageQuestionSubtitle">Επιλέξτε για να συνεχίσετε.</p>
                   </div>
                 </div>
+                <span class="contact-badge">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 16.5c-1 1-1.5 2.5-1.5 4.5 2 0 3.5-.5 4.5-1.5"></path><path d="M9 15 4 10l4-2 6 6-2 4z"></path><path d="M14 4c2.2-.7 4.2-.7 6 0 .7 1.8.7 3.8 0 6l-8 8-6-6z"></path><path d="M15 9h.01"></path></svg>
+                  Plans
+                </span>
               </div>
               <div class="contact-package-options" role="radiogroup" aria-label="Επιλογή πακέτου">
                 <button class="contact-package" type="button" role="radio" aria-checked="false" data-contact-package="trial">
@@ -1070,7 +1081,7 @@
                 </div>
                 <span class="contact-badge">
                   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 16.5c-1 1-1.5 2.5-1.5 4.5 2 0 3.5-.5 4.5-1.5"></path><path d="M9 15 4 10l4-2 6 6-2 4z"></path><path d="M14 4c2.2-.7 4.2-.7 6 0 .7 1.8.7 3.8 0 6l-8 8-6-6z"></path><path d="M15 9h.01"></path></svg>
-                  Πακέτο
+                  Plans
                 </span>
               </div>
               <div class="contact-selected-package">
@@ -1370,6 +1381,7 @@
         plansProfessionalPricePrefix: "ΑΠΟ",
         plansProfessionalPrice: "200€",
         plansProfessionalPeriod: "/ ετήσια",
+        plansProfessionalSubprice: "+20€ / χρήστη",
         plansProfessionalFeatureOne: "Αναγνώριση καλούντος",
         plansProfessionalFeatureTwo: "Καταγραφή κλήσεων στο CRM",
         plansProfessionalFeatureThree: "Ηχητική καταγραφή κλήσεων",
@@ -1388,6 +1400,7 @@
         plansAiFeatureTwo: "Custom AI Prompts",
         plansAiFeatureThree: "Πληρωμή ανά λεπτό χρήσης",
         plansAiFeatureFour: "Συμβατό με οποιοδήποτε καταγραφικό",
+        plansAiFeatureFive: "Έλεγχος και διαχείριση token μέσα από το Dashboard",
         plansAiNote: "* Λειτουργεί και αυτόνομα - δεν απαιτείται το Professional plan.",
         plansAiButton: "Προσθέστε",
         contactPill: "ΕΠΙΚΟΙΝΩΝΙΑ",
@@ -1639,6 +1652,7 @@ and not the duration of the call itself.`,
         plansProfessionalPricePrefix: "FROM",
         plansProfessionalPrice: "200€",
         plansProfessionalPeriod: "/ yearly",
+        plansProfessionalSubprice: "+20€ / user",
         plansProfessionalFeatureOne: "Caller recognition",
         plansProfessionalFeatureTwo: "Call logging in the CRM",
         plansProfessionalFeatureThree: "Audio call recording",
@@ -1657,6 +1671,7 @@ and not the duration of the call itself.`,
         plansAiFeatureTwo: "Custom AI Prompts",
         plansAiFeatureThree: "Pay per minute of use",
         plansAiFeatureFour: "Compatible with any recorder",
+        plansAiFeatureFive: "Token control and management from the Dashboard",
         plansAiNote: "* Also works standalone - the Professional plan is not required.",
         plansAiButton: "Add it",
         contactPill: "CONTACT",
