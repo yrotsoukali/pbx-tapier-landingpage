@@ -4539,7 +4539,12 @@ button.ai-scene__action:hover {
 /* Mobile overrides for sections below (moved here so they win the cascade over later-defined base rules) */
 @media (max-width: 900px) {
   .hero {
-    padding-bottom: 96px;
+    min-height: 0;
+    padding-bottom: 40px;
+  }
+
+  .hero__media {
+    margin-top: 20px;
   }
 
   .header {
@@ -4666,6 +4671,7 @@ button.ai-scene__action:hover {
 
   .comparison__header {
     margin-bottom: 28px;
+    transform: none;
   }
 
   .comparison__eyebrow {
@@ -4706,6 +4712,63 @@ button.ai-scene__action:hover {
   .comparison__stats {
     gap: 26px;
     padding-top: 28px;
+  }
+
+  /* Present the "before" and "after" lists as two separate stacked
+     tables instead of interleaving pair-by-pair. */
+  .comparison__inner {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .comparison__labels,
+  .comparison__rows,
+  .comparison__row {
+    display: contents;
+  }
+
+  .comparison__label--negative {
+    order: 1;
+  }
+
+  .comparison__point--before {
+    order: 2;
+  }
+
+  .comparison__stats {
+    display: contents;
+  }
+
+  .comparison__stat--muted {
+    order: 3;
+    margin-top: 6px;
+  }
+
+  .comparison__label--positive {
+    order: 4;
+    margin-top: 22px;
+  }
+
+  .comparison__point--after {
+    order: 5;
+  }
+
+  .comparison__stat--accent {
+    order: 6;
+    margin-top: 6px;
+  }
+
+  .comparison__arrow {
+    display: none;
+  }
+
+  .comparison__point {
+    padding: 14px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.045);
+  }
+
+  .comparison__point--after:last-of-type {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.045);
   }
 
   .comparison__stat--muted,
@@ -4912,7 +4975,7 @@ button.ai-scene__action:hover {
 
 @media (max-width: 560px) {
   .hero {
-    padding-bottom: 82px;
+    padding-bottom: 22px;
   }
 
   .feature-ticker {
