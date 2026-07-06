@@ -57,7 +57,21 @@
           <span class="language__separator" aria-hidden="true"></span>
           <button type="button" data-lang="en">EN</button>
         </div>
+
+        <button
+          type="button"
+          class="nav-toggle"
+          id="navToggle"
+          aria-label="Άνοιγμα μενού"
+          aria-expanded="false"
+          aria-controls="mainNav"
+        >
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+        </button>
       </header>
+      <div class="nav-scrim" id="navScrim" aria-hidden="true"></div>
 
       <div class="hero__media">
         <div class="hero-image-wrap" id="heroImageWrap">
@@ -1158,6 +1172,8 @@
     const comparisonRows = document.getElementById("comparisonRows");
     const comparisonStats = document.querySelector(".comparison__stats");
     const mainNav = document.getElementById("mainNav");
+    const navToggle = document.getElementById("navToggle");
+    const navScrim = document.getElementById("navScrim");
     const heroImage = document.getElementById("heroImage");
     const heroImageFade = document.getElementById("heroImageFade");
     const languageSwitcher = document.getElementById("languageSwitcher");
@@ -1276,8 +1292,35 @@
       if (!target) return;
 
       event.preventDefault();
+      closeMobileNav();
       scrollToPageTarget(target, link.hash === "#" ? "" : link.hash);
       setActiveNavLink(target.id);
+    }
+
+    function openMobileNav() {
+      document.body.classList.add("nav-open");
+      navToggle?.setAttribute("aria-expanded", "true");
+      navToggle?.setAttribute("aria-label", "Κλείσιμο μενού");
+    }
+
+    function closeMobileNav() {
+      document.body.classList.remove("nav-open");
+      navToggle?.setAttribute("aria-expanded", "false");
+      navToggle?.setAttribute("aria-label", "Άνοιγμα μενού");
+    }
+
+    function initMobileNav() {
+      if (!navToggle) return;
+      navToggle.addEventListener("click", () => {
+        document.body.classList.contains("nav-open") ? closeMobileNav() : openMobileNav();
+      });
+      navScrim?.addEventListener("click", closeMobileNav);
+      window.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeMobileNav();
+      });
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 900) closeMobileNav();
+      });
     }
 
     function initPageNavigation() {
@@ -2820,6 +2863,7 @@ and not the duration of the call itself.`,
     initContactSection();
     setLanguage(initialLanguage);
     initPageNavigation();
+    initMobileNav();
 
     [roiUsersInput, roiCallsInput, roiLostTimeInput, roiHourlyCostInput].forEach((input) => {
       input.addEventListener("input", updateRoiCalculator);
