@@ -1345,6 +1345,7 @@ body[data-language="en"] .feature-ticker {
 .call-recognition {
   position: relative;
   padding: 36px 32px 88px;
+  z-index: 2;
   isolation: isolate;
   overflow: hidden;
 }
@@ -1392,6 +1393,8 @@ body[data-language="en"] .feature-ticker {
 }
 
 .call-recognition__inner {
+  position: relative;
+  z-index: 1;
   width: min(1360px, 100%);
   margin: 0 auto;
 }
@@ -2213,8 +2216,8 @@ body[data-language="en"] .feature-ticker {
   }
 
   .product-demo {
-    margin-top: -82px;
-    padding: 140px 20px 76px;
+    margin-top: -110px;
+    padding: 152px 20px 76px;
   }
 
   .product-demo__title {
@@ -2247,8 +2250,8 @@ body[data-language="en"] .feature-ticker {
   }
 
   .social-proof {
-    margin-top: -72px;
-    padding: 118px 20px 76px;
+    margin-top: -96px;
+    padding: 130px 20px 76px;
   }
 
   .social-proof__title {
@@ -2281,8 +2284,8 @@ body[data-language="en"] .feature-ticker {
   }
 
   .plans {
-    margin-top: -92px;
-    padding: 138px 20px 78px;
+    margin-top: -116px;
+    padding: 150px 20px 78px;
   }
 
   .plans__title {
@@ -2601,12 +2604,15 @@ body[data-language="en"] .feature-ticker {
     }
 
     .call-recognition__more {
+      position: relative;
+      z-index: 4;
       margin-top: clamp(48px, 6vw, 78px);
       text-align: center;
     }
 
     .call-recognition__more a {
       position: relative;
+      z-index: 5;
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -2617,6 +2623,8 @@ body[data-language="en"] .feature-ticker {
       letter-spacing: 0.015em;
       text-decoration: none;
       padding-bottom: 6px;
+      pointer-events: auto;
+      cursor: pointer;
       transition: color 180ms ease;
     }
 
@@ -2658,10 +2666,34 @@ body[data-language="en"] .feature-ticker {
   transform: translate(3px, -1px);
 }
 
+.ai-demo-flow {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+}
+
+.ai-demo-flow::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 -120px;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 22%, rgba(82, 168, 255, 0.09), transparent 24%),
+    radial-gradient(circle at 82% 18%, rgba(88, 180, 255, 0.1), transparent 22%),
+    radial-gradient(circle at 56% 46%, rgba(119, 222, 255, 0.065), transparent 26%),
+    radial-gradient(circle at 26% 78%, rgba(255, 108, 40, 0.05), transparent 28%),
+    radial-gradient(circle at 78% 84%, rgba(255, 138, 61, 0.045), transparent 30%),
+    radial-gradient(circle at 52% 92%, rgba(255, 86, 28, 0.055), transparent 34%),
+    linear-gradient(180deg, rgba(7, 8, 11, 0) 0%, rgba(7, 8, 11, 0.24) 16%, rgba(8, 10, 16, 0.78) 30%, rgba(7, 10, 14, 0.92) 52%, rgba(6, 9, 13, 0.96) 70%, rgba(9, 9, 12, 0.92) 84%, rgba(10, 8, 9, 0.88) 92%, rgba(5, 6, 8, 1) 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.42) 10%, #000 24%, #000 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.42) 10%, #000 24%, #000 92%, transparent 100%);
+}
+
 .ai-addons {
   position: relative;
   margin-top: -132px;
-  padding: 164px 32px 112px;
+  padding: 164px 32px 132px;
   isolation: isolate;
   content-visibility: auto;
   contain-intrinsic-size: 1180px;
@@ -2669,17 +2701,16 @@ body[data-language="en"] .feature-ticker {
 
 .ai-addons__background {
   position: absolute;
-  inset: 0 0 -80px;
+  inset: 0;
   z-index: -1;
   overflow: hidden;
   pointer-events: none;
   background:
     radial-gradient(circle at 22% 38%, rgba(82, 168, 255, 0.09), transparent 24%),
     radial-gradient(circle at 82% 26%, rgba(88, 180, 255, 0.1), transparent 22%),
-    radial-gradient(circle at 56% 70%, rgba(119, 222, 255, 0.07), transparent 26%),
-    linear-gradient(180deg, rgba(7, 8, 11, 0) 0%, rgba(7, 8, 11, 0.24) 18%, rgba(8, 10, 16, 0.78) 34%, rgba(7, 10, 14, 0.92) 58%, rgba(5, 7, 10, 0.98) 100%);
-  mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.42) 16%, #000 38%, #000 82%, transparent 100%);
-  -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.42) 16%, #000 38%, #000 82%, transparent 100%);
+    radial-gradient(circle at 56% 70%, rgba(119, 222, 255, 0.07), transparent 26%);
+  mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.42) 16%, #000 38%, #000 88%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.42) 16%, #000 38%, #000 88%, transparent 100%);
 }
 
 .ai-addons__background::before,
@@ -3404,27 +3435,29 @@ button.ai-scene__action:hover {
 
 .product-demo {
   position: relative;
-  margin-top: -118px;
-  padding: 210px 32px 118px;
+  margin-top: -132px;
+  padding: 236px 32px 118px;
   isolation: isolate;
   overflow: hidden;
 }
 
 .product-demo__background {
   position: absolute;
-  inset: 0 0 -80px;
+  inset: 220px 0 -80px;
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(circle at 18% 22%, rgba(255, 108, 40, 0.16), transparent 28%),
-    radial-gradient(circle at 82% 30%, rgba(255, 138, 61, 0.12), transparent 30%),
-    radial-gradient(circle at 52% 88%, rgba(255, 86, 28, 0.1), transparent 36%),
-    linear-gradient(180deg, rgba(5, 7, 10, 0) 0%, rgba(7, 8, 11, 0.28) 16%, rgba(8, 8, 10, 0.92) 36%, rgba(10, 8, 9, 0.98) 68%, rgba(5, 6, 8, 1) 100%);
-  mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.44) 16%, #000 38%, #000 86%, transparent 100%);
-  -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.44) 16%, #000 38%, #000 86%, transparent 100%);
+    radial-gradient(circle at 24% 74%, rgba(255, 108, 40, 0.08), transparent 28%),
+    radial-gradient(circle at 78% 80%, rgba(255, 138, 61, 0.07), transparent 30%),
+    radial-gradient(circle at 52% 90%, rgba(255, 86, 28, 0.085), transparent 36%),
+    linear-gradient(180deg, rgba(10, 8, 9, 0) 0%, rgba(10, 8, 9, 0.2) 18%, rgba(10, 8, 9, 0.52) 40%, rgba(10, 8, 9, 0.9) 66%, rgba(5, 6, 8, 0.98) 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.18) 14%, rgba(0, 0, 0, 0.62) 42%, #000 72%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.18) 14%, rgba(0, 0, 0, 0.62) 42%, #000 72%, transparent 100%);
 }
 
 .product-demo__inner {
+  position: relative;
+  z-index: 1;
   width: min(1120px, 100%);
   margin: 0 auto;
 }
@@ -3556,28 +3589,53 @@ button.ai-scene__action:hover {
 
 .social-proof {
   position: relative;
-  margin-top: -96px;
-  padding: 178px 32px 124px;
+  margin-top: -132px;
+  padding: 196px 32px 124px;
+  z-index: 2;
   isolation: isolate;
   overflow: hidden;
 }
 
+.customer-flow {
+  position: relative;
+  isolation: isolate;
+}
+
+.customer-flow::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 -120px;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 16%, rgba(18, 24, 34, 0.18), transparent 26%),
+    radial-gradient(circle at 82% 14%, rgba(15, 20, 28, 0.16), transparent 26%),
+    radial-gradient(circle at 52% 30%, rgba(10, 12, 16, 0.22), transparent 28%),
+    radial-gradient(circle at 20% 62%, rgba(255, 112, 42, 0.032), transparent 26%),
+    radial-gradient(circle at 76% 70%, rgba(255, 132, 56, 0.036), transparent 28%),
+    radial-gradient(circle at 24% 84%, rgba(255, 104, 36, 0.032), transparent 28%),
+    radial-gradient(circle at 50% 88%, rgba(255, 94, 30, 0.042), transparent 32%),
+    radial-gradient(circle at 72% 94%, rgba(255, 124, 48, 0.034), transparent 28%),
+    linear-gradient(180deg, rgba(5, 7, 10, 0) 0%, rgba(6, 7, 10, 0.36) 14%, rgba(6, 7, 9, 0.88) 30%, rgba(7, 7, 8, 0.96) 48%, rgba(9, 8, 9, 0.97) 68%, rgba(14, 9, 8, 0.985) 84%, rgba(7, 7, 8, 1) 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.42) 10%, #000 22%, #000 94%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.42) 10%, #000 22%, #000 94%, transparent 100%);
+}
+
 .social-proof__background {
   position: absolute;
-  inset: 0 0 -80px;
+  inset: -180px 0 -120px;
   z-index: -1;
   pointer-events: none;
   background:
-    linear-gradient(90deg, rgba(255, 136, 66, 0.075) 1px, transparent 1px),
-    linear-gradient(0deg, rgba(255, 136, 66, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(0deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-    radial-gradient(ellipse at 18% 24%, rgba(255, 114, 42, 0.12), transparent 42%),
-    radial-gradient(ellipse at 82% 70%, rgba(255, 166, 96, 0.09), transparent 46%),
-    linear-gradient(180deg, rgba(5, 6, 8, 0) 0%, rgba(8, 7, 8, 0.48) 18%, rgba(7, 7, 9, 0.98) 46%, rgba(5, 6, 8, 1) 100%);
-  background-size: 42px 42px, 42px 42px, 168px 168px, 168px 168px, auto, auto, auto;
-  mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.42) 16%, #000 38%, #000 76%, rgba(0, 0, 0, 0.58) 91%, transparent 100%);
-  -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.42) 16%, #000 38%, #000 76%, rgba(0, 0, 0, 0.58) 91%, transparent 100%);
+    linear-gradient(90deg, rgba(255, 136, 66, 0.06) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(255, 136, 66, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.014) 1px, transparent 1px),
+    radial-gradient(ellipse at 18% 18%, rgba(255, 114, 42, 0.06), transparent 44%),
+    radial-gradient(ellipse at 82% 64%, rgba(255, 166, 96, 0.045), transparent 48%);
+  background-size: 42px 42px, 42px 42px, 168px 168px, 168px 168px, auto, auto;
+  mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.18) 16%, #000 34%, #000 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.18) 16%, #000 34%, #000 80%, transparent 100%);
 }
 
 .social-proof__background::before,
@@ -3589,16 +3647,7 @@ button.ai-scene__action:hover {
 
 .social-proof__background::before {
   inset: 0;
-  width: auto;
-  height: auto;
-  background:
-    radial-gradient(circle at 20px 20px, rgba(255, 126, 58, 0.16) 0 2px, transparent 2.4px),
-    radial-gradient(circle at 62px 62px, rgba(255, 255, 255, 0.055) 0 1px, transparent 1.4px);
-  background-size: 84px 84px;
-  opacity: 0.55;
-  transform: none;
-  mask-image: linear-gradient(90deg, transparent 0%, #000 14%, #000 86%, transparent 100%);
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 14%, #000 86%, transparent 100%);
+  display: none;
 }
 
 .social-proof__background::after {
@@ -3718,6 +3767,8 @@ button.ai-scene__action:hover {
 }
 
 .social-proof__reviews {
+  position: relative;
+  z-index: 2;
   margin: 24px auto 0;
   max-width: 840px;
 }
@@ -3779,6 +3830,8 @@ button.ai-scene__action:hover {
 }
 
 .social-proof__pagination {
+  position: relative;
+  z-index: 3;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3845,18 +3898,23 @@ button.ai-scene__action:hover {
 }
 
 .social-proof__reviews-link {
+  position: relative;
+  z-index: 4;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 7px;
   width: max-content;
   margin: 14px 0 0 auto;
-  color: rgba(255, 123, 54, 0.82);
+  color: rgba(255, 123, 54, 0.96);
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   text-decoration: none;
+  opacity: 1;
+  pointer-events: auto;
+  cursor: pointer;
   transition:
     color 160ms ease,
     transform 160ms ease;
@@ -3879,32 +3937,35 @@ button.ai-scene__action:hover {
 
 .plans {
   position: relative;
-  margin-top: -124px;
-  padding: 208px 32px 132px;
+  margin-top: -156px;
+  padding: 228px 32px 132px;
+  z-index: 1;
   isolation: isolate;
   overflow: hidden;
 }
 
 .plans__background {
   position: absolute;
-  inset: 0 0 -80px;
+  inset: -160px 0 -240px;
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(circle at 18% 20%, rgba(255, 108, 40, 0.08), transparent 32%),
-    radial-gradient(circle at 72% 18%, rgba(255, 158, 86, 0.05), transparent 30%),
-    radial-gradient(circle at 50% 86%, rgba(255, 83, 26, 0.08), transparent 38%),
-    linear-gradient(180deg, rgba(5, 6, 8, 0) 0%, rgba(6, 6, 8, 0.18) 12%, rgba(7, 7, 9, 0.82) 30%, rgba(6, 6, 8, 1) 100%);
-  mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.36) 14%, #000 34%, #000 100%);
-  -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.36) 14%, #000 34%, #000 100%);
+    radial-gradient(circle at 18% 16%, rgba(255, 108, 40, 0.065), transparent 34%),
+    radial-gradient(circle at 72% 14%, rgba(255, 158, 86, 0.045), transparent 32%),
+    radial-gradient(circle at 50% 86%, rgba(255, 83, 26, 0.058), transparent 40%),
+    radial-gradient(circle at 28% 98%, rgba(255, 108, 40, 0.028), transparent 26%);
+  mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.18) 12%, #000 32%, #000 96%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.18) 12%, #000 32%, #000 96%, transparent 100%);
 }
 
 .plans__background::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(255, 108, 40, 0.035), transparent 34%);
-  opacity: 0.7;
+  background:
+    radial-gradient(circle at 50% 14%, rgba(255, 122, 52, 0.05), transparent 30%),
+    linear-gradient(180deg, rgba(255, 108, 40, 0.024), transparent 32%);
+  opacity: 0.82;
 }
 
 .plans__inner {
@@ -4259,26 +4320,46 @@ button.ai-scene__action:hover {
 
 .contact-section {
   position: relative;
-  margin-top: -56px;
-  padding: 118px 32px 132px;
+  display: grid;
+  justify-items: center;
+  margin-top: -156px;
+  min-height: 1030px;
+  padding: 164px 32px 104px;
   isolation: isolate;
   overflow: hidden;
 }
 
 .contact-section__background {
   position: absolute;
-  inset: 0;
+  inset: 180px 0 0;
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(circle at 18% 8%, rgba(255, 108, 40, 0.08), transparent 28%),
-    radial-gradient(circle at 82% 18%, rgba(76, 92, 112, 0.12), transparent 32%),
-    linear-gradient(180deg, rgba(6, 6, 8, 0) 0%, rgba(6, 6, 8, 0.9) 30%, #050607 100%);
+    radial-gradient(circle at 64% 82%, rgba(255, 128, 58, 0.016), transparent 28%);
+  mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.06) 10%, #000 24%, #000 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.06) 10%, #000 24%, #000 100%);
+}
+
+.contact-section__background::before,
+.contact-section__background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.contact-section__background::before {
+  display: none;
+}
+
+.contact-section__background::after {
+  display: none;
 }
 
 .contact-section__inner {
-  width: min(640px, 100%);
   margin: 0 auto;
+  transform: translateY(56px);
+  width: min(640px, 100%);
 }
 
 .contact-section__header {
@@ -4667,9 +4748,7 @@ button.ai-scene__action:hover {
   padding: 0 12px;
   border-radius: 999px;
   border: 1px solid rgba(255, 106, 47, 0.45);
-  background:
-    linear-gradient(180deg, rgba(255, 106, 47, 0.2), rgba(255, 106, 47, 0.1)),
-    rgba(255, 255, 255, 0.03);
+  background: rgba(255, 106, 47, 0.12);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.1),
     0 10px 24px rgba(0, 0, 0, 0.16);
@@ -4701,9 +4780,7 @@ button.ai-scene__action:hover {
   margin: 0;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 999px;
-  background:
-    radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.12), transparent 42%),
-    linear-gradient(180deg, rgba(46, 47, 56, 0.98), rgba(31, 32, 38, 0.96));
+  background: #2e2f36;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
     0 14px 30px rgba(0, 0, 0, 0.24);
@@ -4730,9 +4807,7 @@ button.ai-scene__action:hover {
 .contact-back:hover {
   color: #ffb085;
   border-color: rgba(255, 138, 77, 0.32);
-  background:
-    radial-gradient(circle at 30% 25%, rgba(255, 176, 133, 0.16), transparent 44%),
-    linear-gradient(180deg, rgba(56, 44, 37, 0.98), rgba(39, 31, 28, 0.98));
+  background: #3a2d28;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
     0 18px 32px rgba(0, 0, 0, 0.28);
@@ -4822,9 +4897,7 @@ button.ai-scene__action:hover {
 
 .contact-field input[aria-invalid="true"] {
   border-color: rgba(255, 106, 47, 0.78);
-  background:
-    linear-gradient(90deg, rgba(255, 106, 47, 0.08), transparent 34%),
-    #18191f;
+  background: #18191f;
 }
 
 .contact-field__help {
@@ -5049,8 +5122,13 @@ button.ai-scene__action:hover {
 
 @media (max-width: 900px) {
   .contact-section {
-    margin-top: -44px;
-    padding: 82px 20px 88px;
+    margin-top: -96px;
+    min-height: 930px;
+    padding: 110px 20px 84px;
+  }
+
+  .contact-section__inner {
+    transform: translateY(40px);
   }
 
   .contact-card {
@@ -5060,7 +5138,12 @@ button.ai-scene__action:hover {
 
 @media (max-width: 560px) {
   .contact-section {
-    padding: 68px 16px 74px;
+    min-height: 860px;
+    padding: 92px 16px 72px;
+  }
+
+  .contact-section__inner {
+    transform: translateY(28px);
   }
 
   .contact-progress {
