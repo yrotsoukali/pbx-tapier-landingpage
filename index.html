@@ -49,7 +49,7 @@
           <a href="#functions" data-i18n="navFeatures">Λειτουργίες</a>
           <a href="#ai" data-i18n="navAi">AI πρόσθετα</a>
           <a href="#plans" data-i18n="navPlans">Πλάνα</a>
-          <a href="#demo" class="active">DEMO</a>
+          <a href="#contact" class="active navbar__demo">DEMO</a>
         </nav>
 
         <div class="language" id="languageSwitcher" aria-label="Επιλογή γλώσσας">
@@ -134,7 +134,7 @@
       </section>
     </div>
 
-    <section class="roi" id="plans" aria-labelledby="roiTitle">
+    <section class="roi" id="roi" aria-labelledby="roiTitle">
       <div class="roi__inner">
         <header class="roi__header">
           <span class="roi__pill" data-i18n="roiPill">ROI CALCULATOR</span>
@@ -322,6 +322,9 @@
             <div class="call-recognition__visual" aria-hidden="true">
               <div class="popup-demo" data-popup="2" data-popup-src="ui/pop-up.html?case=2">
                 <iframe class="popup-demo__frame" title="PBX popup demo with balance" src="ui/pop-up.html?case=2"></iframe>
+                <div class="popup-demo__balance-callout" aria-hidden="true">
+                  <span class="popup-demo__balance-label">Υπόλοιπο</span>
+                </div>
                 <section class="call-popup call-popup--has-balance" aria-label="Παράθυρο κλήσης">
                   <header class="call-popup__titlebar">
                     <div class="call-popup__identity">
@@ -706,17 +709,17 @@
 
         <div class="social-proof__reviews">
           <div class="social-proof__review-stage" aria-live="polite">
-            <article class="social-proof__review is-active" data-social-review>
+            <article class="social-proof__review is-active" data-social-review aria-hidden="false">
               <div class="social-proof__stars" aria-hidden="true">★★★★★</div>
               <p data-i18n="socialProofReviewOne">Η ομάδα μας βλέπει άμεσα ποιος καλεί και έχει όλο το ιστορικό μπροστά της. Η καθημερινή εξυπηρέτηση έγινε αισθητά πιο γρήγορη.</p>
               <span data-i18n="socialProofReviewSource">Αξιολογήσεις πελατών</span>
             </article>
-            <article class="social-proof__review" data-social-review>
+            <article class="social-proof__review" data-social-review aria-hidden="true">
               <div class="social-proof__stars" aria-hidden="true">★★★★★</div>
               <p data-i18n="socialProofReviewTwo">Μειώθηκαν τα λάθη στην καταγραφή και δεν χάνουμε πλέον πληροφορίες μετά από κάθε τηλεφωνική επικοινωνία.</p>
               <span data-i18n="socialProofReviewSource">Αξιολογήσεις πελατών</span>
             </article>
-            <article class="social-proof__review" data-social-review>
+            <article class="social-proof__review" data-social-review aria-hidden="true">
               <div class="social-proof__stars" aria-hidden="true">★★★★★</div>
               <p data-i18n="socialProofReviewThree">Η σύνδεση με το CRM έκανε τη διαχείριση κλήσεων πολύ πιο οργανωμένη. Όλα εμφανίζονται τη στιγμή που τα χρειάζεται η ομάδα.</p>
               <span data-i18n="socialProofReviewSource">Αξιολογήσεις πελατών</span>
@@ -724,7 +727,7 @@
           </div>
 
           <div class="social-proof__pagination" aria-label="Review pagination">
-            <button class="social-proof__pagination-dot is-active" type="button" aria-label="Review 1" data-social-review-page="0"></button>
+            <button class="social-proof__pagination-dot is-active" type="button" aria-label="Review 1" data-social-review-page="0" aria-current="true"></button>
             <button class="social-proof__pagination-dot" type="button" aria-label="Review 2" data-social-review-page="1"></button>
             <button class="social-proof__pagination-dot" type="button" aria-label="Review 3" data-social-review-page="2"></button>
           </div>
@@ -1210,6 +1213,116 @@
     let contactMaxStep = 1;
     let contactSelectedIntent = "";
     let contactSelectedPackage = "";
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const navLinks = Array.from(mainNav?.querySelectorAll('a[href^="#"]') || []);
+    const navTargets = navLinks
+      .map((link) => document.querySelector(link.hash))
+      .filter(Boolean);
+
+    function getScrollBehavior() {
+      return prefersReducedMotion.matches ? "auto" : "smooth";
+    }
+
+    function getTargetScrollTop(target) {
+      if (!target) return 0;
+      const targetTop = target.getBoundingClientRect().top + window.pageYOffset;
+      const viewportOffset = Math.max(14, Math.min(32, window.innerHeight * 0.035));
+      return Math.max(0, targetTop - viewportOffset);
+    }
+
+    function setActiveNavLink(targetId = "") {
+      navLinks.forEach((link) => {
+        link.classList.toggle("active", link.classList.contains("navbar__demo"));
+      });
+    }
+
+    function focusScrollTarget(target) {
+      if (!target || target === document.body) return;
+      const hadTabIndex = target.hasAttribute("tabindex");
+      if (!hadTabIndex) target.setAttribute("tabindex", "-1");
+      target.focus({ preventScroll: true });
+      if (!hadTabIndex) {
+        target.addEventListener("blur", () => target.removeAttribute("tabindex"), { once: true });
+      }
+    }
+
+    function scrollToPageTarget(target, hash = "") {
+      window.scrollTo({
+        top: getTargetScrollTop(target),
+        behavior: getScrollBehavior()
+      });
+
+      if (hash) {
+        window.history.pushState(null, "", hash);
+      }
+
+      window.setTimeout(() => focusScrollTarget(target), prefersReducedMotion.matches ? 0 : 420);
+    }
+
+    function getHashTarget(hash) {
+      if (!hash || hash === "#") return document.body;
+      try {
+        return document.querySelector(hash);
+      } catch (error) {
+        return null;
+      }
+    }
+
+    function handleAnchorClick(event) {
+      const link = event.target.closest('a[href^="#"]');
+      if (!link) return;
+
+      const target = getHashTarget(link.hash);
+      if (!target) return;
+
+      event.preventDefault();
+      scrollToPageTarget(target, link.hash === "#" ? "" : link.hash);
+      setActiveNavLink(target.id);
+    }
+
+    function initPageNavigation() {
+      document.addEventListener("click", handleAnchorClick);
+
+      const navObserver = new IntersectionObserver(
+        (entries) => {
+          const visibleEntry = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+          if (visibleEntry) {
+            setActiveNavLink(visibleEntry.target.id);
+          } else if (window.scrollY < window.innerHeight * 0.38) {
+            setActiveNavLink("");
+          }
+        },
+        {
+          threshold: [0.24, 0.42, 0.6],
+          rootMargin: "-12% 0px -55% 0px"
+        }
+      );
+
+      navTargets.forEach((target) => navObserver.observe(target));
+
+      window.addEventListener("popstate", () => {
+        const target = getHashTarget(window.location.hash);
+        if (target) {
+          scrollToPageTarget(target);
+          setActiveNavLink(target.id);
+        }
+      });
+
+      if (window.location.hash) {
+        window.setTimeout(() => {
+          const target = getHashTarget(window.location.hash);
+          if (target) {
+            scrollToPageTarget(target);
+            setActiveNavLink(target.id);
+          }
+        }, 80);
+      } else {
+        setActiveNavLink("");
+      }
+    }
     let contactSubmitted = false;
     const ROI_WORKING_DAYS = 22;
     const ROI_TIME_SAVING = 0.85;
@@ -1478,8 +1591,8 @@
         patchUrgentNote: "ΥΠΟΛ.",
         patchSuccessTitle: "ΠΡΟΤΕΡΑΙΟΤΗΤΑ",
         patchSuccessNote: "VIP",
-        popupOffering: "Προσφορά",
-        popupConnected: "Συνδέθηκε",
+        popupOffering: "Offering",
+        popupConnected: "Connected",
         popupRingback: "Επανακλήση",
         heroImage: "images/final_hero_greek-rbg.png",
         comparisonItems: [
@@ -1681,7 +1794,7 @@ and not the duration of the call itself.`,
         contactPill: "CONTACT",
         contactTitle: "Start today.",
         contactSubtitle: "We will contact you within 1 business day.",
-        contactProgressIntent: "Intent",
+        contactProgressIntent: "Selection",
         contactProgressDetails: "Details",
         contactProgressConfirm: "Confirmation",
         contactStepOneTitle: "How would you like to begin?",
@@ -2088,20 +2201,33 @@ and not the duration of the call itself.`,
       if (!socialReviews.length) return;
       socialReviewIndex = (index + socialReviews.length) % socialReviews.length;
       socialReviews.forEach((review, reviewIndex) => {
-        review.classList.toggle("is-active", reviewIndex === socialReviewIndex);
+        const isActive = reviewIndex === socialReviewIndex;
+        review.classList.toggle("is-active", isActive);
+        review.setAttribute("aria-hidden", isActive ? "false" : "true");
       });
       socialReviewPages.forEach((page, pageIndex) => {
-        page.classList.toggle("is-active", pageIndex === socialReviewIndex);
+        const isActive = pageIndex === socialReviewIndex;
+        page.classList.toggle("is-active", isActive);
+        if (isActive) {
+          page.setAttribute("aria-current", "true");
+        } else {
+          page.removeAttribute("aria-current");
+        }
       });
     }
 
-    function startSocialReviews(startIndex = 0) {
-      if (socialReviews.length < 2) return;
+    function queueSocialReviews() {
       window.clearInterval(socialReviewTimer);
-      showSocialReview(startIndex);
+      if (socialReviews.length < 2) return;
       socialReviewTimer = window.setInterval(() => {
         showSocialReview(socialReviewIndex + 1);
       }, 5200);
+    }
+
+    function startSocialReviews(startIndex = 0) {
+      window.clearInterval(socialReviewTimer);
+      showSocialReview(startIndex);
+      queueSocialReviews();
     }
 
     function applyCallFeatureTextHighlight() {
@@ -2693,6 +2819,7 @@ and not the duration of the call itself.`,
     });
     initContactSection();
     setLanguage(initialLanguage);
+    initPageNavigation();
 
     [roiUsersInput, roiCallsInput, roiLostTimeInput, roiHourlyCostInput].forEach((input) => {
       input.addEventListener("input", updateRoiCalculator);
@@ -2719,8 +2846,9 @@ and not the duration of the call itself.`,
     socialReviewPages.forEach((page) => {
       page.addEventListener("click", () => {
         const nextIndex = Number(page.dataset.socialReviewPage);
-        window.clearInterval(socialReviewTimer);
-        startSocialReviews(nextIndex);
+        if (!Number.isInteger(nextIndex)) return;
+        showSocialReview(nextIndex);
+        queueSocialReviews();
       });
     });
 
@@ -2842,10 +2970,10 @@ and not the duration of the call itself.`,
     });
 
     scrollIndicator?.addEventListener("click", () => {
-      window.scrollTo({
-        top: window.innerHeight * 0.92,
-        behavior: "smooth"
-      });
+      const target = document.getElementById("features") || document.querySelector(".comparison");
+      if (!target) return;
+      scrollToPageTarget(target, "#features");
+      setActiveNavLink("features");
     });
 
     function initPopupDemo(wrapper) {
@@ -3015,7 +3143,7 @@ and not the duration of the call itself.`,
               frameTimeouts.push(setTimeout(() => {
                 showCase(nextCaseId);
                 scheduleNextCase(nextCaseId === "1" ? "2" : "1");
-              }, 3500));
+              }, 2500));
             }
 
             scheduleNextCase("2");

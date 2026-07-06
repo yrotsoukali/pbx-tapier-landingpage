@@ -319,7 +319,7 @@
             <path d="M13.25 8.6c2.12 0 3.85 1.73 3.85 3.85v1.85h-5.35v-2.15c0-1.32-.48-2.53-1.28-3.47.77-.08 1.69-.08 2.78-.08Z"></path>
             <circle cx="12.65" cy="4.85" r="2.75"></circle>
           </svg>
-          <span class="call-popup__company">TSOUKALIS (NORTHCOM TECHNOLOGIES)</span>
+          <span class="call-popup__company">ΤΣΟΥΚΑΛΗΣ (NORTHCOM TECHNOLOGIES)</span>
           <button class="call-popup__contacts call-popup__contacts--natural" id="secondaryPill" type="button" data-i18n="contacts">Επαφές</button>
         </div>
 
@@ -351,7 +351,8 @@
         popupLabel: "Παράθυρο κλήσης",
         customers: "Πελάτες",
         contacts: "Επαφές",
-        offering: "Προσφορά",
+        offering: "Offering",
+        connected: "Connected",
         ringback: "Επανακλήση"
       },
       en: {
@@ -359,6 +360,7 @@
         customers: "Cust.",
         contacts: "Contacts",
         offering: "Offering",
+        connected: "Connected",
         ringback: "Ringback"
       }
     };
@@ -423,6 +425,9 @@
     }
 
     setTimeout(() => {
+      if (selectedType !== "no-vip") {
+        callStatus.textContent = copy.connected;
+      }
       callDuration.hidden = false;
       startedAt = Date.now() - (Number.isNaN(initialSeconds) ? 0 : initialSeconds * 1000);
       updateTimer();
