@@ -18,6 +18,7 @@
 
 <body>
   <main class="page">
+    <div class="hero-pin">
     <section class="hero">
       <div class="hero__background" aria-hidden="true">
         <div class="hero__grid"></div>
@@ -73,23 +74,62 @@
       </header>
       <div class="nav-scrim" id="navScrim" aria-hidden="true"></div>
 
-      <div class="hero__media">
-        <div class="hero-image-wrap" id="heroImageWrap">
-          <img
-            src="images/final_hero_greek-rbg.png"
-            alt="PBX Integrator Hero"
-            id="heroImage"
-            class="hero-image"
-          />
-          <img
-            src="images/final_hero_greek-rbg.png"
-            alt=""
-            aria-hidden="true"
-            id="heroImageFade"
-            class="hero-image hero-image--fade"
-          />
+      <div class="hero__content">
+        <div class="hero__copy">
+          <div class="hero__badge hero-reveal" style="--hero-delay: 100ms;">
+            <span class="hero__badge-dot" aria-hidden="true"></span>
+            <span>Ζωντανή λήψη κλήσεων</span>
+          </div>
+
+          <h1 class="hero__title hero-reveal" style="--hero-delay: 200ms;">
+            Ξέρετε ποιος<br />
+            <span class="hero__cycle-line">
+              <span class="hero__cycle-word" data-hero-cycle-word>καλεί</span><span class="hero__cycle-dash"> —</span>
+            </span><br />
+            <span class="hero__title-muted">πριν σηκώσετε το τηλέφωνο.</span>
+          </h1>
+
+          <p class="hero__subtitle hero-reveal" style="--hero-delay: 320ms;">
+            Το PBX Integrator είναι η γέφυρα μεταξύ του Soft1 και του τηλεφωνικού σας κέντρου, για πιο γρήγορες, πιο έξυπνες και πιο αποτελεσματικές κλήσεις — σε πραγματικό χρόνο.
+          </p>
+
+          <div class="hero__actions hero-reveal" aria-label="Hero actions" style="--hero-delay: 440ms;">
+            <a class="hero__text-link" href="#roi">Δείτε τι σας κοστίζει →</a>
+          </div>
         </div>
 
+        <div class="hero__visual" aria-label="Soft1 interface preview">
+          <div class="hero-image-wrap" id="heroImageWrap">
+            <img
+              src="images/softone.png"
+              alt="Soft1 interface"
+              id="heroImage"
+              class="hero-image"
+            />
+            <img
+              src="images/softone.png"
+              alt=""
+              aria-hidden="true"
+              id="heroImageFade"
+              class="hero-image hero-image--fade"
+            />
+
+            <iframe
+              class="hero-call-popup"
+              id="heroCallPopup"
+              title="Παράθυρο αναγνώρισης κλήσης"
+              width="367"
+              height="207"
+              scrolling="no"
+              tabindex="-1"
+              aria-hidden="true"
+              data-src="ui/pop-up.html"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__media">
         <div class="feature-ticker" id="featureTicker" aria-label="Βασικές λειτουργίες προϊόντος">
           <div class="feature-ticker__edge feature-ticker__edge--left" aria-hidden="true"></div>
           <div class="feature-ticker__edge feature-ticker__edge--right" aria-hidden="true"></div>
@@ -103,6 +143,7 @@
         </button>
       </div>
     </section>
+    </div>
 
     <div class="comparison-flow">
       <section class="section-preview" aria-label="Section preview">
@@ -1174,6 +1215,8 @@
     const mainNav = document.getElementById("mainNav");
     const navToggle = document.getElementById("navToggle");
     const navScrim = document.getElementById("navScrim");
+    const heroPin = document.querySelector(".hero-pin");
+    const heroSection = document.querySelector(".hero");
     const heroImage = document.getElementById("heroImage");
     const heroImageFade = document.getElementById("heroImageFade");
     const languageSwitcher = document.getElementById("languageSwitcher");
@@ -1205,6 +1248,8 @@
     const aiSummaryBody = document.querySelector("[data-ai-summary-body]");
     const socialReviews = Array.from(document.querySelectorAll("[data-social-review]"));
     const socialReviewPages = Array.from(document.querySelectorAll("[data-social-review-page]"));
+    const heroRevealItems = Array.from(document.querySelectorAll(".hero-reveal"));
+    const heroCycleWord = document.querySelector("[data-hero-cycle-word]");
     let activeLanguage = "el";
     let tickerRenderRun = 0;
     let tickerResizeTimer = 0;
@@ -1225,6 +1270,8 @@
     let aiSummaryAnimated = false;
     let socialReviewIndex = 0;
     let socialReviewTimer = 0;
+    let heroMorphFrame = 0;
+    let heroMorphProgress = -1;
     let contactCurrentStep = 1;
     let contactMaxStep = 1;
     let contactSelectedIntent = "";
@@ -1273,6 +1320,156 @@
       }
 
       window.setTimeout(() => focusScrollTarget(target), prefersReducedMotion.matches ? 0 : 420);
+    }
+
+    function initHeroEntrance() {
+      heroRevealItems.forEach((item) => {
+        requestAnimationFrame(() => item.classList.add("is-visible"));
+      });
+    }
+
+    function initHeroCycleWord() {
+      if (!heroCycleWord || prefersReducedMotion.matches) return;
+
+      const words = ["καλεί", "αγοράζει", "ενδιαφέρεται", "επιστρέφει"];
+      let index = 0;
+
+      window.setInterval(() => {
+        index = (index + 1) % words.length;
+        heroCycleWord.classList.add("is-changing");
+
+        window.setTimeout(() => {
+          heroCycleWord.textContent = words[index];
+          heroCycleWord.classList.remove("is-changing");
+        }, 350);
+      }, 2200);
+    }
+
+    function initHeroLeftColumn() {
+      initHeroEntrance();
+      initHeroCycleWord();
+    }
+
+    function getHeroMorphDistance() {
+      return Math.max(360, Math.min(560, window.innerHeight * 0.58));
+    }
+
+    // Extra pinned scroll AFTER the morph completes, so the popup has time on screen
+    // before the hero unpins and the next section comes up.
+    function getHeroHoldDistance() {
+      return Math.max(460, Math.min(720, window.innerHeight * 0.66));
+    }
+
+    function interpolateValue(start, end, progress) {
+      return start + (end - start) * progress;
+    }
+
+    function getHeroMorphProgress() {
+      if (!heroPin) return 0;
+      const rect = heroPin.getBoundingClientRect();
+      const morphDistance = getHeroMorphDistance();
+      return Math.max(0, Math.min(1, -rect.top / morphDistance));
+    }
+
+    function applyHeroMorph(progress) {
+      if (!heroPin) return;
+      const eased = progress * progress * (3 - 2 * progress);
+      if (Math.abs(eased - heroMorphProgress) < 0.001) return;
+      heroMorphProgress = eased;
+      heroPin.style.setProperty("--hero-morph", eased.toFixed(4));
+      heroPin.style.setProperty("--hero-content-max", `${interpolateValue(1480, 1720, eased)}px`);
+      heroPin.style.setProperty("--hero-visual-max", `${interpolateValue(1080, 1320, eased)}px`);
+      heroPin.style.setProperty("--hero-frame-padding", `${interpolateValue(10, 6, eased)}px`);
+      heroPin.style.setProperty("--hero-column-gap", `clamp(32px, 3vw, ${interpolateValue(72, 56, eased)}px)`);
+      const heroComplete = eased >= 0.985;
+      heroPin.classList.toggle("is-hero-complete", heroComplete);
+      setHeroCallPopup(heroComplete);
+    }
+
+    const heroCallPopup = document.getElementById("heroCallPopup");
+    let heroPopupShown = false;
+    function setHeroCallPopup(shouldShow) {
+      if (!heroCallPopup || shouldShow === heroPopupShown) return;
+      heroPopupShown = shouldShow;
+      if (shouldShow) {
+        // (Re)load the iframe so its own slide-up animation + timer replay from the start.
+        heroCallPopup.src = heroCallPopup.dataset.src;
+      } else {
+        // Unload so the next reveal starts fresh.
+        heroCallPopup.removeAttribute("src");
+      }
+    }
+
+    const heroMobileQuery = window.matchMedia("(max-width: 900px)");
+    let heroPopupTimer = 0;
+
+    // Keep the popup the same share of the hero image width at every screen size,
+    // so it shrinks/grows together with the image (never distorted — uniform scale).
+    const heroImageWrapEl = document.getElementById("heroImageWrap");
+    const HERO_POPUP_NATIVE_WIDTH = 367;
+    function updateHeroPopupScale() {
+      if (!heroCallPopup || !heroImageWrapEl) return;
+      const wrapWidth = heroImageWrapEl.clientWidth;
+      if (!wrapWidth) return;
+      const styles = getComputedStyle(heroCallPopup);
+      const fraction = parseFloat(styles.getPropertyValue("--hero-popup-fraction")) || 0.68;
+      const maxScale = parseFloat(styles.getPropertyValue("--hero-popup-max-scale")) || 0.84;
+      // Small fixed size on desktop; only shrinks (never grows past it) as the image gets smaller.
+      const scale = Math.min(maxScale, (fraction * wrapWidth) / HERO_POPUP_NATIVE_WIDTH);
+      heroCallPopup.style.setProperty("--hero-popup-scale", scale.toFixed(4));
+    }
+
+    function updateHeroScrollMorph() {
+      heroMorphFrame = 0;
+      // On mobile the hero isn't pinned, so there is no scroll-driven morph.
+      if (!heroPin || heroMobileQuery.matches) return;
+      heroPin.style.setProperty("--hero-pin-distance", `${getHeroMorphDistance() + getHeroHoldDistance()}px`);
+      applyHeroMorph(getHeroMorphProgress());
+      updateHeroPopupScale();
+    }
+
+    function queueHeroScrollMorph() {
+      if (heroMorphFrame) return;
+      heroMorphFrame = requestAnimationFrame(updateHeroScrollMorph);
+    }
+
+    function enterHeroMobileMode() {
+      // No scroll animation on mobile: reset to rest, then auto-reveal the popup after 1s.
+      window.removeEventListener("scroll", queueHeroScrollMorph);
+      heroPin.style.setProperty("--hero-pin-distance", "0px");
+      applyHeroMorph(0);
+      updateHeroPopupScale();
+      window.clearTimeout(heroPopupTimer);
+      heroPopupTimer = window.setTimeout(() => {
+        heroPin.classList.add("is-hero-complete");
+        setHeroCallPopup(true);
+      }, 1000);
+    }
+
+    function enterHeroDesktopMode() {
+      window.clearTimeout(heroPopupTimer);
+      window.addEventListener("scroll", queueHeroScrollMorph, { passive: true });
+      updateHeroScrollMorph();
+    }
+
+    function initHeroScrollMorph() {
+      if (!heroPin) return;
+      if (prefersReducedMotion.matches) {
+        heroPin.style.setProperty("--hero-pin-distance", "0px");
+        applyHeroMorph(1);
+        updateHeroPopupScale();
+        window.addEventListener("resize", updateHeroPopupScale);
+        return;
+      }
+      window.addEventListener("resize", queueHeroScrollMorph);
+      window.addEventListener("resize", updateHeroPopupScale);
+      updateHeroPopupScale();
+      if (heroMobileQuery.matches) enterHeroMobileMode();
+      else enterHeroDesktopMode();
+      heroMobileQuery.addEventListener("change", (event) => {
+        if (event.matches) enterHeroMobileMode();
+        else enterHeroDesktopMode();
+      });
     }
 
     function getHashTarget(hash) {
@@ -1637,7 +1834,7 @@
         popupOffering: "Offering",
         popupConnected: "Connected",
         popupRingback: "Επανακλήση",
-        heroImage: "images/final_hero_greek-rbg.png",
+        heroImage: "images/softone.png",
         comparisonItems: [
           ["Χειροκίνητη αναζήτηση πελάτη", "Αυτόματη αναγνώριση καλούντος"],
           ["Ψάχνεις υπόλοιπα και παραγγελίες", "Όλα τα στοιχεία πριν απαντήσεις"],
@@ -1908,7 +2105,7 @@ and not the duration of the call itself.`,
         popupOffering: "Offering",
         popupConnected: "Connected",
         popupRingback: "Ringback",
-        heroImage: "images/final_hero_english-rbg.png",
+        heroImage: "images/softone.png",
         comparisonItems: [
           ["Manual customer search", "Automatic caller recognition"],
           ["You search for balances and orders", "Full customer context before you answer"],
@@ -2862,6 +3059,8 @@ and not the duration of the call itself.`,
     });
     initContactSection();
     setLanguage(initialLanguage);
+    initHeroLeftColumn();
+    initHeroScrollMorph();
     initPageNavigation();
     initMobileNav();
 

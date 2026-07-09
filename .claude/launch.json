@@ -4,8 +4,8 @@
     {
       "name": "pbx-landing",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "3000"],
-      "port": 3000
+      "runtimeArgs": ["-m", "http.server", "3901"],
+      "port": 3901
     }
   ]
 }

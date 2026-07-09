@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soft1 Open Enterprise</title>
+  <style>
+    :root {
+      --nav: #313646;
+      --nav-top: #424c67;
+      --quickbar: #303848;
+      --quickbar-line: #454d60;
+      --nav-line: #586174;
+      --cyan: #25bdd4;
+      --green: #7ccc2e;
+      --text: #ffffff;
+      --muted: #9aa2b2;
+      --field: #f3f4f9;
+      --tab: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: #fff;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      color: #111;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+    }
+
+    body {
+      min-width: 1180px;
+    }
+
+    .softone-shell {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      background: #fff;
+    }
+
+    .top-strip {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 36px;
+      display: grid;
+      grid-template-columns: 282px 1fr;
+      background: var(--nav-top);
+      z-index: 5;
+    }
+
+    .quickbar {
+      height: 36px;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      align-items: center;
+      border-right: 0;
+      border-bottom: 1px solid var(--nav-line);
+      background: var(--quickbar);
+    }
+
+    .quickbar__button {
+      width: 100%;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: var(--quickbar);
+    }
+
+    .quickbar__button--wide {
+      width: 100%;
+    }
+
+    .brandbar {
+      position: relative;
+      height: 36px;
+    }
+
+    .module-tab-arrow {
+      position: absolute;
+      top: 15px;
+      left: 6px;
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 6px solid #ffffff;
+      z-index: 4;
+    }
+
+    .module-tab {
+      position: absolute;
+      top: 0;
+      left: 17px;
+      width: 40px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      color: #3f4657;
+      background: var(--tab);
+      z-index: 4;
+    }
+
+    .module-tab svg {
+      width: 19px;
+      height: 19px;
+      display: block;
+      fill: currentColor;
+    }
+
+    .quickbar svg,
+    .side-nav svg,
+    .toolbar svg,
+    .footer svg {
+      display: block;
+      fill: currentColor;
+    }
+
+    .quickbar svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .quickbar .small-icon {
+      width: 19px;
+      height: 19px;
+    }
+
+    .header-toolbar {
+      position: fixed;
+      top: 36px;
+      left: 282px;
+      right: 0;
+      height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px 0 8px;
+      border-bottom: 1px solid #e6e6e6;
+      background: #fff;
+      z-index: 3;
+    }
+
+    .brand-section {
+      display: inline-flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 12px;
+      white-space: nowrap;
+    }
+
+    .brand__activate {
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: 0.15px;
+    }
+
+    .brand__logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 1px;
+    }
+
+    .brand__wordmark {
+      color: #168ccc;
+      font-size: 27px;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -1.25px;
+    }
+
+    .brand__wordmark .one {
+      color: #ef2327;
+    }
+
+    .brand__edition {
+      width: auto;
+      margin-top: 0;
+      color: #006eb8;
+      font-size: 7px;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .brand__edition strong {
+      color: #ec2228;
+      font-size: 8px;
+    }
+
+    .brand-icons {
+      display: inline-flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--cyan);
+    }
+
+    .brand-icons svg {
+      width: 20px;
+      height: 20px;
+      display: block;
+      fill: currentColor;
+    }
+
+    .brand-icons .dot-grid rect {
+      fill: currentColor;
+    }
+
+    .brand-icons .box-icon {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.4;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+    }
+
+    .brand-icons .leaf {
+      color: #cfcfcf;
+      width: 20px;
+      height: 20px;
+    }
+
+    .side-nav {
+      position: fixed;
+      top: 36px;
+      left: 0;
+      width: 282px;
+      bottom: 0;
+      background: var(--nav);
+      color: var(--text);
+      z-index: 4;
+    }
+
+    .side-nav__list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .side-nav__item {
+      height: 48px;
+      display: grid;
+      grid-template-columns: 49px 1fr;
+      align-items: center;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0.05px;
+      white-space: nowrap;
+    }
+
+    .side-nav__item svg {
+      justify-self: center;
+      width: 23px;
+      height: 23px;
+      color: #fff;
+    }
+
+    .main-area {
+      position: fixed;
+      top: 82px;
+      left: 282px;
+      right: 0;
+      bottom: 0;
+      background: #fff;
+    }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--cyan);
+    }
+
+    .select-box {
+      width: 250px;
+      height: 40px;
+      position: relative;
+      background: var(--field);
+      border-radius: 2px;
+    }
+
+    .select-box::after {
+      content: "";
+      position: absolute;
+      top: 17px;
+      right: 12px;
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 6px solid #949aa5;
+    }
+
+    .tool-icon {
+      width: 30px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      color: var(--cyan);
+    }
+
+    .tool-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    .tool-icon--add svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .tool-icon + .tool-icon {
+      margin-left: 7px;
+    }
+
+    .workspace {
+      position: absolute;
+      inset: 0;
+      background: #fff;
+    }
+
+    .footer {
+      position: fixed;
+      left: 282px;
+      right: 0;
+      bottom: 0;
+      height: 31px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      padding: 0 30px 0 16px;
+      background: #fff;
+      color: #0078ff;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 31px;
+      z-index: 5;
+    }
+
+    .footer__news {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .footer__right {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      height: 31px;
+    }
+
+    .tools-pill {
+      height: 28px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 0 13px 0 11px;
+      color: #666a70;
+      background: #ffffff;
+      border: 1px solid #dfe4ec;
+      border-radius: 999px;
+      font-size: 12px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .tools-pill svg {
+      width: 14px;
+      height: 14px;
+      fill: none;
+      stroke: #7d8793;
+      stroke-width: 1.9;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .socials {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: #111;
+    }
+
+    .socials svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .footer__softone {
+      color: #006eff;
+      font-size: 11px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .separator {
+      width: 1px;
+      height: 16px;
+      background: #d9d9d9;
+    }
+
+    @media (max-width: 1400px) {
+      .footer {
+        padding-right: 14px;
+      }
+
+      .footer__right {
+        gap: 12px;
+      }
+
+      .socials {
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="softone-shell">
+    <header class="top-strip">
+      <nav class="quickbar" aria-label="Γρήγορες ενέργειες">
+        <span class="quickbar__button quickbar__button--wide" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><rect x="4" y="5" width="3" height="3"/><rect x="9" y="5" width="11" height="2.4"/><rect x="4" y="10.8" width="3" height="3"/><rect x="9" y="10.8" width="11" height="2.4"/><rect x="4" y="16.6" width="3" height="3"/><rect x="9" y="16.6" width="11" height="2.4"/></svg>
+        </span>
+        <span class="quickbar__button" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M21 13.4v-2.8l-2.4-.5a6.5 6.5 0 0 0-.7-1.7l1.3-2.1-2-2-2.1 1.3a7 7 0 0 0-1.7-.7L13 2.5h-3l-.5 2.4a7 7 0 0 0-1.7.7L5.7 4.3l-2 2 1.3 2.1a6.5 6.5 0 0 0-.7 1.7l-2.3.5v2.8l2.3.5c.2.6.4 1.2.7 1.7l-1.3 2.1 2 2 2.1-1.3c.5.3 1.1.5 1.7.7l.5 2.4h3l.4-2.4c.6-.2 1.2-.4 1.7-.7l2.1 1.3 2-2-1.3-2.1c.3-.5.5-1.1.7-1.7l2.4-.5ZM11.5 15a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/></svg>
+        </span>
+        <span class="quickbar__button" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M21.2 5.9 16.5 10 14 7.5l4.1-4.7a7 7 0 0 0-8.4 8.7l-6.2 6.2a2.5 2.5 0 1 0 3.6 3.6l6.2-6.2a7 7 0 0 0 7.9-9.2Z"/></svg>
+        </span>
+        <span class="quickbar__button" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3.1"/><path d="M2.8 19.2c.5-3.1 2.5-4.9 5.2-4.9s4.7 1.8 5.2 4.9H2.8Z"/><rect x="15.2" y="6" width="5.8" height="2.1"/><rect x="15.2" y="10.7" width="5.8" height="2.1"/></svg>
+        </span>
+        <span class="quickbar__button" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><circle cx="8.2" cy="8.2" r="3.2"/><circle cx="16.4" cy="8.6" r="2.8"/><path d="M2 19.7c.5-3.3 2.7-5.3 6.2-5.3 3.4 0 5.5 2 6 5.3H2Z"/><path d="M13.1 19.7c.4-2.4 1.8-3.8 3.9-3.8 2.4 0 3.9 1.4 4.4 3.8h-8.3Z"/></svg>
+        </span>
+        <span class="quickbar__button" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="m12 2.8 2.7 5.7 6.2.9-4.5 4.4 1.1 6.2-5.5-2.9L6.5 20l1.1-6.2-4.5-4.4 6.2-.9L12 2.8Z"/></svg>
+        </span>
+        <span class="quickbar__button" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2"/><path fill="#303848" d="M11 6h2v7h4.7v2H11V6Z"/></svg>
+        </span>
+      </nav>
+
+      <div class="brandbar" aria-hidden="true">
+        <span class="module-tab-arrow"></span>
+        <span class="module-tab">
+          <svg viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6"/><rect x="14" y="4" width="6" height="6"/><rect x="4" y="14" width="6" height="6"/><rect x="14" y="14" width="6" height="6"/></svg>
+        </span>
+      </div>
+    </header>
+
+    <div class="header-toolbar" aria-label="Εργαλεία περιεχομένου">
+      <div class="toolbar">
+        <div class="select-box"></div>
+        <span class="tool-icon tool-icon--add" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><rect x="10.6" y="3.4" width="2.8" height="17.2"/><rect x="3.4" y="10.6" width="17.2" height="2.8"/></svg>
+        </span>
+        <span class="tool-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M8 3h8l1 3h4v2H3V6h4l1-3Zm-2 6h12l-1 12H7L6 9Zm3 2v8h2v-8H9Zm4 0v8h2v-8h-2Z"/></svg>
+        </span>
+      </div>
+      <div class="brand-section">
+        <div class="brand">
+          <span class="brand__activate">ΕΝΕΡΓΟΠΟΙΗΣΤΕ ΤΟ</span>
+          <span class="brand__logo">
+            <span class="brand__wordmark">soft<span class="one">1</span></span>
+            <span class="brand__edition">Open Enterprise<br><strong>EDITION</strong></span>
+          </span>
+        </div>
+        <div class="brand-icons" aria-hidden="true">
+          <svg class="dot-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="4.2" height="4.2" rx="1"/><rect x="9.9" y="3" width="4.2" height="4.2" rx="1"/><rect x="16.8" y="3" width="4.2" height="4.2" rx="1"/><rect x="3" y="9.9" width="4.2" height="4.2" rx="1"/><rect x="9.9" y="9.9" width="4.2" height="4.2" rx="1"/><rect x="16.8" y="9.9" width="4.2" height="4.2" rx="1"/><rect x="3" y="16.8" width="4.2" height="4.2" rx="1"/><rect x="9.9" y="16.8" width="4.2" height="4.2" rx="1"/><rect x="16.8" y="16.8" width="4.2" height="4.2" rx="1"/></svg>
+          <svg class="box-icon" viewBox="0 0 24 24"><path d="M9 1.5 12 4 7 7.5 2 4.5Z"/><path d="M15 1.5 22 4.5 17 7.5 12 4Z"/><path d="M4 9 12 5 20 9 12 13Z"/><path d="M4 9 4 15 12 19 20 15 20 9"/><path d="M12 13 12 19"/></svg>
+          <svg class="leaf" viewBox="0 0 24 24"><path d="M2 8C4 7 5 7 6 7 8 5 12 4.5 15 6 18 7 20 9 21.5 13 22.5 16 22 18 21 19 17 19 13 19 10 18 8 17 7 14 6.5 12 6 10 5 9 2 8Z"/><path fill="none" stroke="#fff" stroke-width="1.1" stroke-linecap="round" d="M9 8C12 9.5 15 12 21 18"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <aside class="side-nav" aria-label="Κεντρικό μενού">
+      <ul class="side-nav__list">
+        <li class="side-nav__item">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M3 8h4l3 6h7"/><circle cx="9.3" cy="18.3" r="1.4"/><rect x="10.3" y="4.2" width="6" height="3"/><rect x="11" y="7.6" width="7.4" height="3.4"/></svg>
+          <span>Εμπορική διαχείριση</span>
+        </li>
+        <li class="side-nav__item">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 3.2h2v2.1a7 7 0 0 1 6.2 5.8H4.8A7 7 0 0 1 11 5.3V3.2Zm-8 9.3h18v2.2H3v-2.2Zm1.7 3.5h14.6v2.3H4.7V16Z"/></svg>
+          <span>Διαχείριση υπηρεσιών</span>
+        </li>
+        <li class="side-nav__item">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 19.2h18v2H3v-2Zm1-8.6 4.8-3.4v10.4H4v-7Zm6.3 1.8 4.6-3.2v8.4h-4.6v-5.2Zm6.1-2.4L21 6.8v10.8h-4.6V10Z"/></svg>
+          <span>Διαχείριση παραγωγής</span>
+        </li>
+        <li class="side-nav__item">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><path fill="none" stroke="#303848" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" d="M6 15 9.3 11.6l2.1 1.9L16 8.6"/><path fill="#303848" d="M13.1 8.1h3.4v3.4l-1.4-1.4-1.6 1.8-1.1-1 1.6-1.8-.9-1Z"/></svg>
+          <span>Χρηματοοικονομική διαχείριση</span>
+        </li>
+        <li class="side-nav__item">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5h18v13H3v-13Z"/><circle fill="#303848" cx="8" cy="10.6" r="1.8"/><path fill="#303848" d="M5.1 16.3c.5-1.8 1.8-2.8 3-2.8s2.5 1 3 2.8h-6Z"/><circle fill="#303848" cx="15.5" cy="11" r="3.2"/><path fill="#fff" d="M15.5 11 15.5 7.8A3.2 3.2 0 0 1 18.7 11Z"/></svg>
+          <span>C.R.M.</span>
+        </li>
+        <li class="side-nav__item">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.4h13.2l4.8 3.2v10H3V5.4Z"/><circle fill="#303848" cx="8.3" cy="11.6" r="1.9"/><path fill="#303848" d="M5.2 17c.5-1.9 1.7-3 3.1-3s2.6 1.1 3.1 3H5.2Z"/><rect fill="#303848" x="13.2" y="9.6" width="5" height="1.7"/><rect fill="#303848" x="13.2" y="13" width="5" height="1.7"/></svg>
+          <span>H.R. &amp; Μισθοδοσία</span>
+        </li>
+        <li class="side-nav__item">
+          <svg class="corporate-icon" viewBox="0 0 18 18" aria-hidden="true">
+            <rect x="2" y="2" width="6" height="14"></rect>
+            <rect x="8" y="8" width="8" height="8"></rect>
+            <rect fill="#303848" x="4" y="4" width="2" height="2"></rect>
+            <rect fill="#303848" x="4" y="10" width="2" height="2"></rect>
+            <rect fill="#303848" x="10" y="12" width="2" height="2"></rect>
+            <rect fill="#303848" x="14" y="12" width="2" height="2"></rect>
+          </svg>
+          <span>Εταιρικές διαδικασίες</span>
+        </li>
+      </ul>
+    </aside>
+
+    <main class="main-area">
+      <div class="workspace" aria-hidden="true"></div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__news">ENTERSOFTONE: Παρουσίασε τα πρώτα ελληνικά λογισμικά για επιχειρήσεις (ERP, HCM/Payroll, CRM, WMS) με ενσωματωμένη Τεχνητή Νοημοσύνη »</div>
+      <div class="footer__right">
+        <span class="separator" aria-hidden="true"></span>
+        <span class="tools-pill">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <g transform="translate(24 0) scale(-1 1)">
+              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94L14.7 6.3z"/>
+            </g>
+          </svg>
+          <span>Εργαλεία</span>
+        </span>
+        <span class="separator" aria-hidden="true"></span>
+        <span class="socials" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="1.5"/><path fill="#fff" d="M13.7 20v-6h2l.3-2.6h-2.3V9.7c0-.7.2-1.2 1.2-1.2h1.3V6.1c-.2 0-1-.1-1.9-.1-2 0-3.3 1.2-3.3 3.4v1.9H8.9v2.6h2.1V20h2.7Z"/></svg>
+          <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="1.5"/><path fill="#fff" d="M8 7h2.9l2.2 3 2.7-3H18l-3.9 4.4 4.2 5.6h-2.9l-2.7-3.6L9.5 17H7.3l4.3-4.8L8 7Z"/></svg>
+          <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="1.5"/><path fill="#fff" d="M7.1 10.2h3v7.1h-3v-7.1Zm1.5-3.7A1.5 1.5 0 1 1 8.6 9.5a1.5 1.5 0 0 1 0-3Zm3 3.7h2.8v1c.4-.7 1.1-1.2 2.3-1.2 2 0 3 1.3 3 3.7v3.6h-3v-3.2c0-.9-.3-1.6-1.1-1.6-.7 0-1.1.5-1.1 1.6v3.2h-2.9v-7.1Z"/></svg>
+          <svg viewBox="0 0 24 24"><rect x="3.3" y="6.2" width="17.4" height="11.6" rx="2"/><path fill="#fff" d="m10.5 9 4.6 3-4.6 3V9Z"/></svg>
+          <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><circle fill="#fff" cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="2.1"/><circle fill="#fff" cx="16.8" cy="7.4" r="1"/></svg>
+          <svg viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="12" rx="2"/><circle fill="#fff" cx="9.2" cy="12" r="2.6"/><circle fill="#fff" cx="14.8" cy="12" r="2.6"/></svg>
+        </span>
+        <span class="footer__softone">ENTERSOFTONE</span>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

@@ -8,7 +8,6 @@ html,
 body {
   width: 100%;
   min-height: 100%;
-  overflow-x: hidden;
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background: #050607;
 }
@@ -25,7 +24,7 @@ section[id] {
   position: relative;
   width: 100%;
   min-height: 100vh;
-  overflow: hidden;
+  overflow-x: clip;
   isolation: isolate;
   background:
     radial-gradient(circle at 10% 14%, rgba(255, 77, 24, 0.1), transparent 18%),
@@ -67,9 +66,25 @@ section[id] {
   z-index: 1;
 }
 
-.hero {
+.hero-pin {
+  --hero-morph: 0;
+  --hero-pin-distance: 520px;
+  --hero-content-max: 1480px;
+  --hero-copy-min: 430px;
+  --hero-copy-fr: 0.58fr;
+  --hero-visual-fr: 1.42fr;
+  --hero-visual-max: 1080px;
+  --hero-frame-padding: 10px;
+  --hero-column-gap: clamp(40px, 4vw, 72px);
   position: relative;
+  min-height: calc(100vh + var(--hero-pin-distance));
+}
+
+.hero {
+  position: sticky;
+  top: 0;
   min-height: 100vh;
+  height: 100vh;
   overflow: visible;
   padding-bottom: 72px;
   display: flex;
@@ -362,11 +377,239 @@ body.nav-open .nav-toggle__bar:nth-child(3) {
   transition: opacity 0.25s ease;
 }
 
+.hero__content {
+  position: relative;
+  z-index: 2;
+  width: min(var(--hero-content-max), calc(100% - 32px));
+  margin: auto auto 0;
+  padding: clamp(52px, 6.5vh, 84px) 0 clamp(32px, 4.5vh, 52px);
+  display: grid;
+  grid-template-columns: minmax(var(--hero-copy-min), var(--hero-copy-fr)) minmax(0, var(--hero-visual-fr));
+  align-items: center;
+  gap: var(--hero-column-gap);
+}
+
+.hero__copy {
+  max-width: 470px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  padding: 5px 14px;
+  border: 1px solid rgba(255, 87, 34, 0.3);
+  border-radius: 999px;
+  background: rgba(255, 87, 34, 0.12);
+  color: #ff7849;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.hero__badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ff5722;
+  box-shadow: 0 0 12px rgba(255, 87, 34, 0.65);
+  animation: pulse 1.35s ease-in-out infinite;
+}
+
+.hero__title {
+  color: #ffffff;
+  font-size: clamp(32px, 4.1vw, 52px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.hero__cycle-line {
+  display: inline-flex;
+  align-items: baseline;
+  color: #ff5722;
+}
+
+.hero__cycle-word {
+  display: inline-block;
+  color: #ff5722;
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 350ms ease,
+    transform 350ms ease;
+}
+
+.hero__cycle-word.is-changing {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.hero__cycle-dash {
+  margin-left: 0.18em;
+  color: #ffffff;
+  opacity: 1;
+}
+
+.hero__title-muted {
+  color: rgba(255, 255, 255, 0.55);
+  font-weight: 400;
+}
+
+.hero__subtitle {
+  max-width: 400px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+.hero__actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.hero__text-link {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  color: #ff7849;
+  font-size: 15px;
+  font-weight: 750;
+  line-height: 1.2;
+  text-decoration: none;
+  outline: none;
+  transition:
+    color 0.22s ease,
+    transform 0.22s ease;
+}
+
+.hero__text-link:hover {
+  color: #ffffff;
+  transform: translateX(4px);
+}
+
+.hero__text-link:focus-visible {
+  box-shadow: 0 2px 0 rgba(255, 120, 73, 0.7);
+}
+
+.hero__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.1;
+  text-decoration: none;
+  outline: none;
+  transition:
+    transform 0.22s ease,
+    border-color 0.22s ease,
+    background-color 0.22s ease,
+    box-shadow 0.22s ease,
+    color 0.22s ease;
+}
+
+.hero__button:hover {
+  transform: translateY(-2px);
+}
+
+.hero__button:focus-visible {
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.28),
+    0 0 0 5px rgba(255, 85, 0, 0.2);
+}
+
+.hero__button--primary {
+  padding: 13px 26px;
+  color: #ffffff;
+  background: #ff5722;
+  box-shadow: 0 4px 20px rgba(255, 87, 34, 0.4);
+}
+
+.hero__button--primary:hover {
+  color: #ffffff;
+  box-shadow: 0 8px 30px rgba(255, 87, 34, 0.55);
+}
+
+.hero__button--secondary {
+  display: inline-flex;
+  align-items: center;
+  padding: 13px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.7);
+  background: transparent;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.hero__button--secondary:hover {
+  color: #ffffff;
+  border-color: rgba(255, 87, 34, 0.5);
+  box-shadow: none;
+}
+
+.hero-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+  transition-delay: var(--hero-delay, 0ms);
+}
+
+.hero-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero__visual {
+  position: relative;
+  min-width: 0;
+  justify-self: end;
+  width: 100%;
+  max-width: var(--hero-visual-max);
+}
+
+.hero__visual::before {
+  content: "";
+  position: absolute;
+  inset: 9% -4% -6% 8%;
+  z-index: 0;
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 74% 8%, rgba(255, 138, 61, 0.22), transparent 38%),
+    radial-gradient(circle at 8% 86%, rgba(37, 85, 115, 0.2), transparent 42%);
+  filter: blur(32px);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
 .hero-image-wrap {
   position: relative;
   z-index: 3;
-  width: min(1180px, 76vw);
-  margin: -35px auto 0;
+  width: 100%;
+  margin: 0;
+  padding: var(--hero-frame-padding);
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.035)),
+    rgba(7, 9, 13, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  box-shadow:
+    0 28px 80px rgba(0, 0, 0, 0.46),
+    0 0 48px rgba(255, 85, 0, 0.11),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(18px) saturate(130%);
+  -webkit-backdrop-filter: blur(18px) saturate(130%);
 }
 
 .hero-image {
@@ -375,61 +618,70 @@ body.nav-open .nav-toggle__bar:nth-child(3) {
   display: block;
   width: 100%;
   height: auto;
+  border-radius: 16px;
+  object-fit: contain;
+  image-rendering: auto;
   pointer-events: none;
   user-select: none;
-  transform: rotate(0deg);
+  transform: none;
   transform-origin: center center;
-  transition: transform 0.35s ease;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 .hero-image--fade {
+  display: none;
+}
+
+/* Non-interactive app popup, shown at its native size once the hero image
+   reaches its final form. It runs its own slide-up animation + timer (ui/pop-up.html),
+   so its layout stays untouched. We only scale the whole frame down uniformly
+   (no reflow/distortion) and toggle its visibility here.
+   On desktop the popup stays at its small fixed size (--hero-popup-max-scale).
+   Only when the image itself gets small (mobile) does JS shrink the popup with it,
+   keeping it at most --hero-popup-fraction of the image width. It never grows past
+   the desktop size. */
+.hero-call-popup {
+  --hero-popup-fraction: 0.68;
+  --hero-popup-max-scale: 0.84;
+  --hero-popup-scale: 0.84;
   position: absolute;
-  inset: 0;
-  z-index: 3;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
-  filter: brightness(0);
-  opacity: 0.82;
-  mix-blend-mode: multiply;
-  transform: rotate(0deg);
-  transform-origin: center center;
-  transition: transform 0.35s ease;
-  -webkit-mask-image: linear-gradient(
-    180deg,
-    transparent 0%,
-    transparent 78%,
-    rgba(0, 0, 0, 0.14) 84%,
-    rgba(0, 0, 0, 0.42) 90%,
-    rgba(0, 0, 0, 0.78) 96%,
-    #000 100%
-  );
-  mask-image: linear-gradient(
-    180deg,
-    transparent 0%,
-    transparent 78%,
-    rgba(0, 0, 0, 0.14) 84%,
-    rgba(0, 0, 0, 0.42) 90%,
-    rgba(0, 0, 0, 0.78) 96%,
-    #000 100%
-  );
+  right: clamp(10px, 2.4%, 30px);
+  bottom: clamp(10px, 2.4%, 30px);
+  z-index: 4;
+  width: 367px;
+  height: 207px;
+  border: 0;
+  background: transparent;
+  color-scheme: normal;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(var(--hero-popup-scale));
+  transform-origin: bottom right;
+  filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.55));
+  transition: opacity 200ms ease;
+}
+
+.hero-pin.is-hero-complete .hero-call-popup {
+  opacity: 1;
+  visibility: visible;
 }
 
 body[data-language="en"] .hero-image,
 body[data-language="en"] .hero-image--fade {
-  transform: translateY(2px) rotate(-0.5deg) scale(0.98);
+  transform: none;
 }
 
 body[data-language="en"] .hero-image-wrap {
-  overflow: hidden;
-  clip-path: inset(0 0 10px 0);
+  overflow: visible;
+  clip-path: none;
   margin-bottom: 0;
 }
 
 body[data-language="en"] .feature-ticker {
   z-index: 1;
-  margin-top: -24px;
+  margin-top: -15px;
 }
 
 .hero__media {
@@ -1614,6 +1866,18 @@ body[data-language="en"] .feature-ticker {
   }
 }
 
+@keyframes pulse {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0.5;
+    transform: scale(1.5);
+  }
+}
+
 @keyframes soft-scroll-bounce {
   0%,
   100% {
@@ -1637,6 +1901,20 @@ body[data-language="en"] .feature-ticker {
   .navbar a,
   .scroll-indicator {
     transition-duration: 0.01ms;
+  }
+
+  .hero__badge-dot {
+    animation: none;
+  }
+
+  .hero-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .hero__cycle-word {
+    transition: none;
   }
 }
 
@@ -1714,7 +1992,8 @@ body[data-language="en"] .feature-ticker {
       }
 
       .popup-demo__balance-callout::before {
-        display: none;
+        bottom: -26px;
+        height: 26px;
       }
     }
 
@@ -4538,13 +4817,54 @@ button.ai-scene__action:hover {
 
 /* Mobile overrides for sections below (moved here so they win the cascade over later-defined base rules) */
 @media (max-width: 900px) {
+  .hero-pin {
+    min-height: auto;
+  }
+
   .hero {
+    position: relative;
+    top: auto;
     min-height: 0;
+    height: auto;
     padding-bottom: 40px;
   }
 
   .hero__media {
     margin-top: 20px;
+  }
+
+  .hero__content {
+    position: relative;
+    top: auto;
+    width: min(100% - 32px, 720px);
+    margin-top: 0;
+    padding: 44px 0 28px;
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+
+  .hero__copy {
+    max-width: none;
+  }
+
+  .hero__visual {
+    width: 100%;
+  }
+
+  /* On mobile the image is small, so the popup keeps the same small proportion it
+     has on desktop (instead of the desktop cap, which would make it dominate). */
+  .hero-call-popup {
+    --hero-popup-fraction: 0.35;
+  }
+
+  .hero__title {
+    font-size: clamp(32px, 4.5vw, 54px);
+    line-height: 1.1;
+  }
+
+  .hero__subtitle {
+    font-size: 15px;
+    line-height: 1.65;
   }
 
   .header {
@@ -4590,6 +4910,14 @@ button.ai-scene__action:hover {
     pointer-events: auto;
   }
 
+  /* The header (position:relative; z-index:5) traps the navbar in its own stacking
+     context, so a high navbar z-index still sits below the fixed scrim (z-index 39).
+     Lift the whole header above the scrim while the menu is open so its links — and
+     the toggle — stay on top and clickable. */
+  body.nav-open .header {
+    z-index: 50;
+  }
+
   .navbar a {
     text-align: center;
     padding: 13px 16px;
@@ -4610,7 +4938,7 @@ button.ai-scene__action:hover {
   }
 
   .hero-image {
-    width: min(1400px, 88vw);
+    width: 100%;
   }
 
   .feature-ticker {
@@ -4858,7 +5186,7 @@ button.ai-scene__action:hover {
   }
 
   .call-recognition__visual {
-    min-height: 320px;
+    min-height: 380px;
   }
 
   .ai-addons {
@@ -4976,6 +5304,41 @@ button.ai-scene__action:hover {
 @media (max-width: 560px) {
   .hero {
     padding-bottom: 22px;
+  }
+
+  .hero__content {
+    width: min(100% - 28px, 520px);
+    padding-top: 34px;
+    gap: 28px;
+  }
+
+  .hero__title {
+    font-size: clamp(32px, 4.5vw, 54px);
+  }
+
+  .hero__subtitle {
+    font-size: 15px;
+  }
+
+  .hero__actions {
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .hero__button {
+    width: auto;
+    min-height: 48px;
+    padding-inline: 18px;
+  }
+
+  .hero-image-wrap {
+    padding: 7px;
+    border-radius: 18px;
+  }
+
+  .hero-image {
+    border-radius: 12px;
   }
 
   .feature-ticker {
@@ -5156,7 +5519,7 @@ button.ai-scene__action:hover {
   }
 
   .call-recognition__visual {
-    min-height: 240px;
+    min-height: 360px;
     border-radius: 18px;
   }
 
