@@ -78,23 +78,23 @@
         <div class="hero__copy">
           <div class="hero__badge hero-reveal" style="--hero-delay: 100ms;">
             <span class="hero__badge-dot" aria-hidden="true"></span>
-            <span>Ζωντανή λήψη κλήσεων</span>
+            <span data-i18n="heroBadge">Ζωντανή λήψη κλήσεων</span>
           </div>
 
           <h1 class="hero__title hero-reveal" style="--hero-delay: 200ms;">
-            Ξέρετε ποιος<br />
+            <span data-i18n="heroTitleStart">Ξέρετε ποιος</span><br />
             <span class="hero__cycle-line">
               <span class="hero__cycle-word" data-hero-cycle-word>καλεί</span><span class="hero__cycle-dash"> —</span>
             </span><br />
-            <span class="hero__title-muted">πριν σηκώσετε το τηλέφωνο.</span>
+            <span class="hero__title-muted" data-i18n="heroTitleMuted">πριν σηκώσετε το τηλέφωνο.</span>
           </h1>
 
-          <p class="hero__subtitle hero-reveal" style="--hero-delay: 320ms;">
+          <p class="hero__subtitle hero-reveal" style="--hero-delay: 320ms;" data-i18n="heroSubtitle">
             Το PBX Integrator είναι η γέφυρα μεταξύ του Soft1 και του τηλεφωνικού σας κέντρου, για πιο γρήγορες, πιο έξυπνες και πιο αποτελεσματικές κλήσεις — σε πραγματικό χρόνο.
           </p>
 
           <div class="hero__actions hero-reveal" aria-label="Hero actions" style="--hero-delay: 440ms;">
-            <a class="hero__text-link" href="#roi">Δείτε τι σας κοστίζει →</a>
+            <a class="hero__text-link" href="#roi" data-i18n="heroLink">Δείτε τι σας κοστίζει →</a>
           </div>
         </div>
 
@@ -1272,6 +1272,9 @@
     let socialReviewTimer = 0;
     let heroMorphFrame = 0;
     let heroMorphProgress = -1;
+    let heroCycleWords = [];
+    let heroCycleIndex = 0;
+    let heroCycleTimer = 0;
     let contactCurrentStep = 1;
     let contactMaxStep = 1;
     let contactSelectedIntent = "";
@@ -1330,16 +1333,15 @@
 
     function initHeroCycleWord() {
       if (!heroCycleWord || prefersReducedMotion.matches) return;
+      window.clearInterval(heroCycleTimer);
 
-      const words = ["καλεί", "αγοράζει", "ενδιαφέρεται", "επιστρέφει"];
-      let index = 0;
-
-      window.setInterval(() => {
-        index = (index + 1) % words.length;
+      heroCycleTimer = window.setInterval(() => {
+        if (!heroCycleWords.length) return;
+        heroCycleIndex = (heroCycleIndex + 1) % heroCycleWords.length;
         heroCycleWord.classList.add("is-changing");
 
         window.setTimeout(() => {
-          heroCycleWord.textContent = words[index];
+          heroCycleWord.textContent = heroCycleWords[heroCycleIndex];
           heroCycleWord.classList.remove("is-changing");
         }, 350);
       }, 2200);
@@ -1393,7 +1395,7 @@
       heroPopupShown = shouldShow;
       if (shouldShow) {
         // (Re)load the iframe so its own slide-up animation + timer replay from the start.
-        heroCallPopup.src = heroCallPopup.dataset.src;
+        heroCallPopup.src = buildLocalizedSrc(heroCallPopup.dataset.src, activeLanguage, true);
       } else {
         // Unload so the next reveal starts fresh.
         heroCallPopup.removeAttribute("src");
@@ -1629,6 +1631,12 @@
         navFeatures: "Λειτουργίες",
         navAi: "AI πρόσθετα",
         navPlans: "Πλάνα",
+        heroBadge: "Ζωντανή λήψη κλήσεων",
+        heroTitleStart: "Ξέρετε ποιος",
+        heroTitleMuted: "πριν σηκώσετε το τηλέφωνο.",
+        heroSubtitle: "Το PBX Integrator είναι η γέφυρα μεταξύ του Soft1 και του τηλεφωνικού σας κέντρου, για πιο γρήγορες, πιο έξυπνες και πιο αποτελεσματικές κλήσεις — σε πραγματικό χρόνο.",
+        heroLink: "Δείτε τι σας κοστίζει →",
+        heroCycleWords: ["καλεί", "αγοράζει", "ενδιαφέρεται", "επιστρέφει"],
         beforeAfterPill: "ΠΡΙΝ/ΜΕΤΑ",
         comparisonTitleStart: "Κάθε κλήση χωρίς",
         comparisonTitleAccent: "PBX INTEGRATOR",
@@ -1900,6 +1908,12 @@
         navFeatures: "Features",
         navAi: "AI Add-ons",
         navPlans: "Plans",
+        heroBadge: "Live caller recognition",
+        heroTitleStart: "Know who",
+        heroTitleMuted: "before you pick up the phone.",
+        heroSubtitle: "PBX Integrator bridges Soft1 with your phone system, making every call faster, smarter, and more effective in real time.",
+        heroLink: "See what it costs you →",
+        heroCycleWords: ["is calling", "is buying", "needs support", "is returning"],
         beforeAfterPill: "BEFORE/AFTER",
         comparisonTitleStart: "Every call without",
         comparisonTitleAccent: "PBX INTEGRATOR",
@@ -2985,6 +2999,15 @@ and not the duration of the call itself.`,
       scrollIndicator.setAttribute("aria-label", selected.scrollLabel);
       heroImage.setAttribute("src", selected.heroImage);
       heroImageFade.setAttribute("src", selected.heroImage);
+      heroCycleWords = Array.isArray(selected.heroCycleWords) ? selected.heroCycleWords : [];
+      heroCycleIndex = 0;
+      if (heroCycleWord && heroCycleWords.length) {
+        heroCycleWord.textContent = heroCycleWords[0];
+        heroCycleWord.classList.remove("is-changing");
+      }
+      if (heroPopupShown && heroCallPopup?.dataset.src) {
+        heroCallPopup.src = buildLocalizedSrc(heroCallPopup.dataset.src, lang, true);
+      }
 
       document.querySelectorAll("[data-i18n]").forEach((element) => {
         const key = element.dataset.i18n;
