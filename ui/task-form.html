@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Form</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+      background: transparent;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      overflow: visible;
+      text-rendering: geometricPrecision;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      display: grid;
+      place-items: start;
+    }
+
+    .task-window {
+      position: relative;
+      width: 508px;
+      height: 513px;
+      color: #fff;
+      background: #18283a;
+      border: 0;
+      overflow: visible;
+      font-size: 12px;
+      line-height: 1;
+    }
+
+    .titlebar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 37px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      column-gap: 9px;
+      padding: 0 12px;
+      background: #0d68d7;
+    }
+
+    .back-button {
+      width: 91px;
+      height: 23px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 0;
+      color: #1669d8;
+      background: #f5f9ff;
+      border-radius: 3px;
+      font-size: 11px;
+      font-weight: 500;
+      white-space: nowrap;
+      line-height: 23px;
+    }
+
+    .back-arrow {
+      width: 10px;
+      height: 10px;
+      flex: 0 0 auto;
+      transform: translateY(.25px);
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.35;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .title {
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .05px;
+      white-space: nowrap;
+    }
+
+    .close {
+      width: 23px;
+      height: 23px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+    }
+
+    .close svg {
+      width: 13px;
+      height: 13px;
+      stroke: currentColor;
+      stroke-width: 1.55;
+      stroke-linecap: round;
+    }
+
+    .form-top {
+      position: absolute;
+      top: 37px;
+      left: 0;
+      right: 0;
+      height: 227px;
+      padding: 7px 11px 7px 12px;
+      background: #223448;
+    }
+
+    .field-row {
+      height: 31px;
+      display: grid;
+      grid-template-columns: 136px 1fr;
+      align-items: center;
+    }
+
+    .field-label {
+      color: #d6e2ee;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .1px;
+      text-transform: none;
+      white-space: nowrap;
+    }
+
+    .control {
+      width: 100%;
+      height: 26px;
+      color: #001329;
+      background: #e8eff8;
+      border: 1px solid #a9b4c3;
+      border-radius: 5px;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, .85);
+      font: 12px/24px "Segoe UI", Tahoma, Arial, sans-serif;
+    }
+
+    .text-control {
+      padding: 0 10px;
+      outline: none;
+    }
+
+    .select-control {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .select-control select {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0 42px 0 10px;
+      color: #6c7c8e;
+      background: transparent;
+      border: 0;
+      appearance: none;
+      font: 12px/24px "Segoe UI", Tahoma, Arial, sans-serif;
+      outline: none;
+      position: relative;
+      z-index: 1;
+    }
+
+    .combo-edit-input {
+      position: relative;
+      z-index: 1;
+      width: calc(100% - 28px);
+      height: 100%;
+      margin: 0;
+      padding: 0 10px;
+      color: #001329;
+      background: transparent;
+      border: 0;
+      outline: none;
+      font: 12px/24px "Segoe UI", Tahoma, Arial, sans-serif;
+    }
+
+    .combo-edit-input::-webkit-calendar-picker-indicator {
+      opacity: 0;
+    }
+
+    .custom-combo {
+      overflow: visible;
+      cursor: default;
+    }
+
+    .custom-combo select {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .combo-menu {
+      display: none;
+      position: absolute;
+      top: 27px;
+      left: 0;
+      right: 0;
+      min-height: 32px;
+      padding: 4px 0 5px;
+      color: #050505;
+      background: #f7f7f7;
+      border: 1px solid #c8c8c8;
+      border-radius: 0;
+      box-shadow: 1px 1px 2px rgba(0, 0, 0, .16);
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1;
+      white-space: nowrap;
+      z-index: 40;
+    }
+
+    .custom-combo.is-open .combo-menu {
+      display: block;
+    }
+
+    .combo-value {
+      position: relative;
+      z-index: 1;
+      display: block;
+      width: calc(100% - 28px);
+      height: 100%;
+      padding: 0 10px;
+      color: #001329;
+      font: 12px/24px "Segoe UI", Tahoma, Arial, sans-serif;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .combo-menu__option {
+      position: relative;
+      z-index: 1;
+      height: 23px;
+      padding: 0 18px 0 8px;
+      display: flex;
+      align-items: center;
+      background: transparent;
+      white-space: nowrap;
+      cursor: default;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .combo-menu__option:hover,
+    .combo-menu__option.is-selected {
+      color: #000;
+      background: #e5f3ff;
+      outline: 1px solid #99d1ff;
+      outline-offset: -1px;
+    }
+
+    .select-control::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 28px;
+      height: 100%;
+      background: #f0f4fa;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .select-control::after {
+      content: "";
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 5px solid #657386;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .radio-band {
+      position: absolute;
+      top: 264px;
+      left: 0;
+      right: 0;
+      height: 27px;
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 0 13px;
+      background: #2d3e50;
+      color: #d6e2ee;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .radio-band label {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+    }
+
+    .radio-text {
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .radio-dot {
+      width: 11px;
+      height: 11px;
+      flex: 0 0 11px;
+      display: block;
+      overflow: visible;
+      shape-rendering: geometricPrecision;
+    }
+
+    .radio-dot__outer {
+      fill: #fff;
+      stroke: #b8c1cc;
+      stroke-width: .9;
+    }
+
+    .radio-dot__inner {
+      fill: #142033;
+      opacity: 0;
+    }
+
+    input[type="radio"]:checked + .radio-dot .radio-dot__inner {
+      opacity: 1;
+    }
+
+    input[type="checkbox"] {
+      appearance: none;
+      width: 13px;
+      height: 13px;
+      margin: 0;
+      flex: 0 0 auto;
+      background: #fff;
+      border: 1px solid #b4bbc5;
+      border-radius: 0;
+    }
+
+    .execution-checkbox {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .checkbox-box {
+      position: relative;
+      width: 13px;
+      height: 13px;
+      flex: 0 0 13px;
+      display: block;
+      background: #fff;
+      border: 1px solid #737373;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .checkbox-box::after {
+      content: "";
+      position: absolute;
+      left: 3px;
+      top: 0;
+      width: 4px;
+      height: 8px;
+      border-right: 2px solid #111;
+      border-bottom: 2px solid #111;
+      opacity: 0;
+      transform: rotate(45deg);
+    }
+
+    .execution-checkbox:checked + .checkbox-box {
+      background: #fff;
+      border-color: #737373;
+    }
+
+    .execution-checkbox:checked + .checkbox-box::after {
+      opacity: 1;
+    }
+
+    .execution {
+      position: absolute;
+      top: 291px;
+      left: 0;
+      right: 0;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      background: #223448;
+      color: #fff;
+    }
+
+    .related-label,
+    .notes-title {
+      color: #d6e2ee;
+      font-size: 11px;
+      font-weight: 400;
+      white-space: nowrap;
+    }
+
+    .execution-title {
+      width: 97px;
+      color: #d6e2ee;
+      font-size: 11px;
+      font-weight: 400;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .check-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      height: 24px;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 400;
+      white-space: nowrap;
+    }
+
+    .check-group--date {
+      width: 194px;
+    }
+
+    .check-group--time {
+      width: 119px;
+    }
+
+    .date-wrap {
+      width: 121px;
+      height: 24px;
+      display: inline-flex;
+      align-items: center;
+      margin-left: 4px;
+      background: transparent;
+      border: 2px solid #29445f;
+      box-shadow: none;
+    }
+
+    .date-text {
+      flex: 1;
+      height: 20px;
+      padding-left: 4px;
+      color: #000;
+      font-size: 12px;
+      line-height: 20px;
+      background: #fff;
+    }
+
+    .date-picker-icon {
+      position: relative;
+      width: 22px;
+      height: 20px;
+      margin: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 1px;
+      color: #1b1b1b;
+      background: #ffffff;
+      border: 1px solid #29445f;
+      border-left-width: 2px;
+      font-size: 11px;
+      line-height: 1;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .date-picker-icon::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: #649ccb;
+    }
+
+    .execution-checkbox:not(:checked) ~ .date-wrap {
+      border-color: #8c9aaa;
+      background: transparent;
+    }
+
+    .execution-checkbox:not(:checked) ~ .date-wrap .date-text {
+      color: #9ba5b1;
+      background: #fff;
+    }
+
+    .execution-checkbox:not(:checked) ~ .date-wrap .date-picker-icon {
+      color: #f6f8fb;
+      background: #c4cedb;
+      border-color: #8c9aaa;
+      border-left-width: 2px;
+    }
+
+    .execution-checkbox:not(:checked) ~ .date-wrap .date-picker-icon::before {
+      background: #aab6c4;
+    }
+
+    .time-control {
+      width: 52px;
+      height: 24px;
+      display: inline-grid;
+      place-items: center;
+      margin-left: 6px;
+      color: #1f344d;
+      background: #fff;
+      border: 1px solid #9daabd;
+      border-radius: 5px;
+      box-shadow: none;
+      font-size: 12px;
+    }
+
+    .execution-checkbox:not(:checked) ~ .time-control {
+      color: #9ba5b1;
+      background: #fff;
+      border-color: #8c9aaa;
+    }
+
+    .bell-cell {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      height: 24px;
+      padding-left: 0;
+    }
+
+    .bell {
+      width: 22px;
+      height: 22px;
+      color: #ffff80;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transform-origin: 50% 12%;
+    }
+
+    .execution-checkbox:checked ~ .bell {
+      animation: bell-swing 0.6s ease-in-out;
+    }
+
+    @keyframes bell-swing {
+      0% { transform: rotate(0); }
+      20% { transform: rotate(15deg); }
+      40% { transform: rotate(-13deg); }
+      60% { transform: rotate(10deg); }
+      80% { transform: rotate(-7deg); }
+      100% { transform: rotate(0); }
+    }
+
+    .notes {
+      position: absolute;
+      top: 331px;
+      left: 0;
+      right: 0;
+      height: 104px;
+      padding: 0 12px;
+      background: #223448;
+    }
+
+    .notes-title {
+      height: 16px;
+      display: flex;
+      align-items: center;
+    }
+
+    .notes-box {
+      width: 100%;
+      height: 78px;
+      background: #e8eff8;
+      border: 1px solid #9daabd;
+      outline: none;
+      resize: none;
+    }
+
+    .related {
+      position: absolute;
+      top: 435px;
+      left: 0;
+      right: 0;
+      height: 33px;
+      display: grid;
+      grid-template-columns: 164px minmax(0, 1fr);
+      align-items: center;
+      column-gap: 0;
+      padding: 0 11px 8px 12px;
+      background: #223448;
+    }
+
+    .related .select-control {
+      height: 27px;
+      min-width: 0;
+    }
+
+    .related-combo {
+      position: relative;
+      overflow: visible;
+      z-index: 20;
+      cursor: default;
+    }
+
+    .related-combo select {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .related-value {
+      position: relative;
+      z-index: 1;
+      display: block;
+      width: calc(100% - 28px);
+      height: 100%;
+      padding: 0 10px;
+      color: #001329;
+      font: 12px/25px "Segoe UI", Tahoma, Arial, sans-serif;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .related-dropdown {
+      display: none;
+      position: absolute;
+      top: 27px;
+      left: 0;
+      right: -108px;
+      min-height: 103px;
+      padding: 4px 0 5px;
+      color: #050505;
+      background: #f7f7f7;
+      border: 1px solid #c8c8c8;
+      border-radius: 0;
+      box-shadow: 1px 1px 2px rgba(0, 0, 0, .16);
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1;
+      white-space: nowrap;
+      z-index: 30;
+    }
+
+    .related-combo.is-open .related-dropdown {
+      display: block;
+    }
+
+    .related-option {
+      position: relative;
+      z-index: 1;
+      height: 23px;
+      padding: 0 18px 0 8px;
+      display: flex;
+      align-items: center;
+      background: transparent;
+      white-space: nowrap;
+      cursor: default;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .related-option:hover,
+    .related-option.is-selected {
+      color: #000;
+      background: #e5f3ff;
+      outline: 1px solid #99d1ff;
+      outline-offset: -1px;
+    }
+
+    .footer {
+      position: absolute;
+      top: 468px;
+      left: 0;
+      right: 0;
+      height: 45px;
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      align-items: center;
+      column-gap: 8px;
+      padding: 0 12px;
+      background: #18283a;
+    }
+
+    .flash {
+      width: 36px;
+      height: 31px;
+      display: grid;
+      place-items: center;
+      background: #fff;
+      border: 1px solid #b9c1cb;
+      border-radius: 6px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .8);
+    }
+
+    .flash svg {
+      width: 13px;
+      height: 15px;
+      fill: #213a56;
+    }
+
+    .save {
+      width: 120px;
+      height: 30px;
+      color: #fff;
+      background: #0fb198;
+      border: 0;
+      border-radius: 6px;
+      font: 700 12px/30px "Segoe UI", Tahoma, Arial, sans-serif;
+      text-align: center;
+    }
+
+    .cancel {
+      width: 77px;
+      height: 30px;
+      color: #273447;
+      background: #fff;
+      border: 1px solid #aeb9c8;
+      border-radius: 6px;
+      font: 12px/28px "Segoe UI", Tahoma, Arial, sans-serif;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <section class="task-window" aria-label="Φόρμα εργασίας">
+    <header class="titlebar">
+      <span class="back-button">
+        <svg class="back-arrow" viewBox="0 0 14 14" aria-hidden="true">
+          <path d="M3.1 10.9 10.8 3.2"></path>
+          <path d="M5.6 3.2h5.2v5.2"></path>
+        </svg>
+        Εξερχόμενη
+      </span>
+      <span class="title">NORTHCOM TECHNOLOGIES</span>
+      <span class="close" aria-hidden="true">
+        <svg viewBox="0 0 13 13">
+          <path d="M2.5 2.5 10.5 10.5M10.5 2.5 2.5 10.5"></path>
+        </svg>
+      </span>
+    </header>
+
+    <div class="form-top">
+      <div class="field-row">
+        <label class="field-label">ΣΥΝΑΛΛΑΣΣΟΜΕΝΟΣ</label>
+        <div class="control select-control">
+          <select aria-label="Συναλλασσόμενος">
+            <option>NORTHCOM TECHNOLOGIES</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-row">
+        <label class="field-label">ΕΠΑΦΗ (ΕΠΙΘ ΟΝΟΜ)</label>
+        <input class="control text-control" value="NORTHCOM TECHNOLOGIES" aria-label="Επαφή">
+      </div>
+      <div class="field-row">
+        <label class="field-label">e-Mail</label>
+        <input class="control text-control" value="info@northcom.gr" aria-label="Email">
+      </div>
+      <div class="field-row">
+        <label class="field-label">ΤΗΛΕΦΩΝΟ</label>
+        <input class="control text-control" value="2310527939" aria-label="Τηλέφωνο">
+      </div>
+      <div class="field-row">
+        <label class="field-label">ΘΕΜΑ</label>
+        <div class="control select-control custom-combo subject-combo">
+          <input class="combo-edit-input" aria-label="Θέμα">
+          <div class="combo-menu" aria-hidden="true">
+            <div class="combo-menu__option" data-value=""></div>
+          </div>
+        </div>
+      </div>
+      <div class="field-row">
+        <label class="field-label">ΧΑΡΑΚΤΗΡΙΣΜΟΣ</label>
+        <div class="control select-control custom-combo characteristic-combo">
+          <select aria-label="Χαρακτηρισμός">
+            <option></option>
+            <option>ΜΗΧΑΝΟΓΡΑΦΙΚΕΣ ΥΠΗΡΕΣΙΕΣ</option>
+            <option>ΤΑΜΕΙΑΚΑ ΣΥΣΤΗΜΑΤΑ</option>
+            <option>ΤΗΛΕΦΩΝΙΚΑ ΚΕΝΤΡΑ</option>
+            <option>ΠΛΗΡΟΦΟΡΙΚΗ</option>
+          </select>
+          <span class="combo-value"></span>
+          <div class="combo-menu" aria-hidden="true">
+            <div class="combo-menu__option" data-value=""></div>
+            <div class="combo-menu__option" data-value="ΜΗΧΑΝΟΓΡΑΦΙΚΕΣ ΥΠΗΡΕΣΙΕΣ">ΜΗΧΑΝΟΓΡΑΦΙΚΕΣ ΥΠΗΡΕΣΙΕΣ</div>
+            <div class="combo-menu__option" data-value="ΤΑΜΕΙΑΚΑ ΣΥΣΤΗΜΑΤΑ">ΤΑΜΕΙΑΚΑ ΣΥΣΤΗΜΑΤΑ</div>
+            <div class="combo-menu__option" data-value="ΤΗΛΕΦΩΝΙΚΑ ΚΕΝΤΡΑ">ΤΗΛΕΦΩΝΙΚΑ ΚΕΝΤΡΑ</div>
+            <div class="combo-menu__option" data-value="ΠΛΗΡΟΦΟΡΙΚΗ">ΠΛΗΡΟΦΟΡΙΚΗ</div>
+          </div>
+        </div>
+      </div>
+      <div class="field-row">
+        <label class="field-label">ΑΝΑΘΕΣΗ ΣΕ</label>
+        <div class="control select-control custom-combo assignment-combo">
+          <select aria-label="Ανάθεση σε">
+            <option></option>
+            <option>ΤΣΟΥΚΑΛΗΣ ΓΙΩΡΓΟΣ</option>
+          </select>
+          <span class="combo-value"></span>
+          <div class="combo-menu" aria-hidden="true">
+            <div class="combo-menu__option" data-value=""></div>
+            <div class="combo-menu__option" data-value="ΤΣΟΥΚΑΛΗΣ ΓΙΩΡΓΟΣ">ΤΣΟΥΚΑΛΗΣ ΓΙΩΡΓΟΣ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="radio-band">
+      <label><input type="radio" name="kind"><svg class="radio-dot" viewBox="0 0 11 11" aria-hidden="true"><circle class="radio-dot__outer" cx="5.5" cy="5.5" r="4.55"></circle><circle class="radio-dot__inner" cx="5.5" cy="5.5" r="2.35"></circle></svg><span class="radio-text">Χωρίς Ενέργεια</span></label>
+      <label><input type="radio" name="kind" checked><svg class="radio-dot" viewBox="0 0 11 11" aria-hidden="true"><circle class="radio-dot__outer" cx="5.5" cy="5.5" r="4.55"></circle><circle class="radio-dot__inner" cx="5.5" cy="5.5" r="2.35"></circle></svg><span class="radio-text">Ticket</span></label>
+      <label><input type="radio" name="kind"><svg class="radio-dot" viewBox="0 0 11 11" aria-hidden="true"><circle class="radio-dot__outer" cx="5.5" cy="5.5" r="4.55"></circle><circle class="radio-dot__inner" cx="5.5" cy="5.5" r="2.35"></circle></svg><span class="radio-text">Εργασία εντός</span></label>
+      <label><input type="radio" name="kind"><svg class="radio-dot" viewBox="0 0 11 11" aria-hidden="true"><circle class="radio-dot__outer" cx="5.5" cy="5.5" r="4.55"></circle><circle class="radio-dot__inner" cx="5.5" cy="5.5" r="2.35"></circle></svg><span class="radio-text">Εργασία εκτός</span></label>
+    </div>
+
+    <div class="execution">
+      <div class="execution-title">ΕΚΤΕΛΕΣΗ</div>
+      <label class="check-group check-group--date">
+        <input class="execution-checkbox" type="checkbox">
+        <span class="checkbox-box" aria-hidden="true"></span>
+        <span>Ημερ.</span>
+        <span class="date-wrap">
+          <span class="date-text" id="currentDateText">13/7/2026</span>
+          <span class="date-picker-icon">15</span>
+        </span>
+      </label>
+      <label class="check-group check-group--time">
+        <input class="execution-checkbox" type="checkbox">
+        <span class="checkbox-box" aria-hidden="true"></span>
+        <span>Ώρα</span>
+        <span class="time-control" id="currentTimeText">18 : 52</span>
+      </label>
+      <label class="bell-cell">
+        <input class="execution-checkbox" type="checkbox" aria-label="Υπενθύμιση">
+        <span class="checkbox-box" aria-hidden="true"></span>
+        <svg class="bell" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6"></path>
+          <path d="M9 17v1a3 3 0 0 0 6 0v-1"></path>
+        </svg>
+      </label>
+    </div>
+
+    <div class="notes">
+      <div class="notes-title">ΠΑΡΑΤΗΡΗΣΕΙΣ</div>
+      <textarea class="notes-box" aria-label="Παρατηρήσεις"></textarea>
+    </div>
+
+    <div class="related">
+      <label class="related-label">ΣΧΕΤΙΚΗ ΕΡΓΑΣΙΑ</label>
+      <div class="control select-control related-combo">
+        <select aria-label="Σχετική εργασία">
+          <option></option>
+          <option>28/06/26 ΠΑΡ0002568 ΠΑΡΑΓΓΕΛΙΑ</option>
+          <option>29/06/26 ΠΡΦ0001040 ΠΡΟΣΦΟΡΑ</option>
+          <option>29/06/26 ΕΡΓ0001875 (Τσουκάλης) ΝΑ ΒΑΛΟΥΜΕ ΔΩΡΕΑΝ DEMO 30 ΗΜ.</option>
+        </select>
+        <span class="related-value"></span>
+        <div class="related-dropdown" aria-hidden="true">
+          <div class="related-option" data-value=""></div>
+          <div class="related-option" data-value="28/06/26 ΠΑΡ0002568 ΠΑΡΑΓΓΕΛΙΑ">28/06/26 ΠΑΡ0002568 ΠΑΡΑΓΓΕΛΙΑ</div>
+          <div class="related-option" data-value="29/06/26 ΠΡΦ0001040 ΠΡΟΣΦΟΡΑ">29/06/26 ΠΡΦ0001040 ΠΡΟΣΦΟΡΑ</div>
+          <div class="related-option" data-value="29/06/26 ΕΡΓ0001875 (Τσουκάλης) ΝΑ ΒΑΛΟΥΜΕ ΔΩΡΕΑΝ DEMO 30 ΗΜ.">29/06/26 ΕΡΓ0001875 (Τσουκάλης) ΝΑ ΒΑΛΟΥΜΕ ΔΩΡΕΑΝ DEMO 30 ΗΜ.</div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <button class="flash" type="button" aria-label="Ενέργεια">
+        <svg viewBox="0 0 16 18" aria-hidden="true">
+          <path d="M8.7 1.6 3.4 9.1h3.3l-1.2 7.3 6.4-9H8.4l.3-5.8Z"></path>
+        </svg>
+      </button>
+      <button class="save" type="button">ΑΠΟΘΗΚΕΥΣΗ</button>
+      <button class="cancel" type="button">Ακύρωση</button>
+    </footer>
+  </section>
+  <script>
+    const currentDateText = document.getElementById("currentDateText");
+    const currentTimeText = document.getElementById("currentTimeText");
+    const now = new Date();
+
+    currentDateText.textContent = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`;
+    currentTimeText.textContent = `${String(now.getHours()).padStart(2, "0")} : ${String(now.getMinutes()).padStart(2, "0")}`;
+
+    const relatedCombo = document.querySelector(".related-combo");
+    const relatedSelect = relatedCombo?.querySelector("select");
+    const relatedValue = relatedCombo?.querySelector(".related-value");
+    const relatedDropdown = relatedCombo?.querySelector(".related-dropdown");
+    const relatedOptions = Array.from(relatedCombo?.querySelectorAll(".related-option") || []);
+    const subjectCombo = document.querySelector(".subject-combo");
+    const subjectInput = subjectCombo?.querySelector(".combo-edit-input");
+    const subjectMenu = subjectCombo?.querySelector(".combo-menu");
+    const subjectOptions = Array.from(subjectCombo?.querySelectorAll(".combo-menu__option") || []);
+    const simpleCombos = Array.from(document.querySelectorAll(".characteristic-combo, .assignment-combo"));
+
+    function closeRelatedDropdown() {
+      relatedCombo?.classList.remove("is-open");
+      relatedDropdown?.setAttribute("aria-hidden", "true");
+    }
+
+    function closeSubjectDropdown() {
+      subjectCombo?.classList.remove("is-open");
+      subjectMenu?.setAttribute("aria-hidden", "true");
+    }
+
+    function closeSimpleCombos() {
+      simpleCombos.forEach((combo) => {
+        combo.classList.remove("is-open");
+        combo.querySelector(".combo-menu")?.setAttribute("aria-hidden", "true");
+      });
+    }
+
+    simpleCombos.forEach((combo) => {
+      const select = combo.querySelector("select");
+      const valueElement = combo.querySelector(".combo-value");
+      const menu = combo.querySelector(".combo-menu");
+      const options = Array.from(combo.querySelectorAll(".combo-menu__option"));
+
+      combo.addEventListener("click", (event) => {
+        event.stopPropagation();
+        closeRelatedDropdown();
+        closeSubjectDropdown();
+        simpleCombos.forEach((otherCombo) => {
+          if (otherCombo === combo) return;
+          otherCombo.classList.remove("is-open");
+          otherCombo.querySelector(".combo-menu")?.setAttribute("aria-hidden", "true");
+        });
+        combo.classList.toggle("is-open");
+        menu?.setAttribute("aria-hidden", combo.classList.contains("is-open") ? "false" : "true");
+      });
+
+      options.forEach((option, index) => {
+        option.addEventListener("click", (event) => {
+          event.stopPropagation();
+          const value = option.dataset.value || "";
+          if (valueElement) valueElement.textContent = value;
+          if (select) select.selectedIndex = index;
+          options.forEach((item) => item.classList.toggle("is-selected", item === option));
+          combo.classList.remove("is-open");
+          menu?.setAttribute("aria-hidden", "true");
+        });
+      });
+    });
+
+    subjectCombo?.addEventListener("click", (event) => {
+      const bounds = subjectCombo.getBoundingClientRect();
+      const clickedArrow = event.clientX >= bounds.right - 28;
+      if (!clickedArrow) return;
+
+      event.stopPropagation();
+      closeSimpleCombos();
+      subjectCombo.classList.toggle("is-open");
+      subjectMenu?.setAttribute("aria-hidden", subjectCombo.classList.contains("is-open") ? "false" : "true");
+    });
+
+    subjectOptions.forEach((option) => {
+      option.addEventListener("click", (event) => {
+        event.stopPropagation();
+        if (subjectInput) subjectInput.value = option.dataset.value || "";
+        subjectOptions.forEach((item) => item.classList.toggle("is-selected", item === option));
+        closeSubjectDropdown();
+      });
+    });
+
+    relatedCombo?.addEventListener("click", (event) => {
+      event.stopPropagation();
+      closeSubjectDropdown();
+      closeSimpleCombos();
+      relatedCombo.classList.toggle("is-open");
+      relatedDropdown?.setAttribute("aria-hidden", relatedCombo.classList.contains("is-open") ? "false" : "true");
+    });
+
+    relatedOptions.forEach((option, index) => {
+      option.addEventListener("click", (event) => {
+        event.stopPropagation();
+        const value = option.dataset.value || option.textContent.trim();
+        if (relatedValue) relatedValue.textContent = value;
+        if (relatedSelect) relatedSelect.selectedIndex = index;
+        relatedOptions.forEach((item) => item.classList.toggle("is-selected", item === option));
+        closeRelatedDropdown();
+      });
+    });
+
+    document.addEventListener("click", () => {
+      closeRelatedDropdown();
+      closeSubjectDropdown();
+      closeSimpleCombos();
+    });
+  </script>
+</body>
+</html>
