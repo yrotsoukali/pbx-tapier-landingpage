@@ -1379,8 +1379,17 @@
       if (!force && Math.abs(eased - heroMorphProgress) < 0.001) return;
       heroMorphProgress = eased;
       heroPin.style.setProperty("--hero-morph", eased.toFixed(4));
-      heroPin.style.setProperty("--hero-content-max", `${interpolateValue(1480, 1720, eased)}px`);
-      heroPin.style.setProperty("--hero-visual-max", `${interpolateValue(1080, 1320, eased)}px`);
+      // Scale how much the hero grows to the available viewport height. On shorter
+      // screens (e.g. a 1080p monitor minus browser chrome) the fully-grown image would
+      // no longer fit between the header and the ticker, so the content block would be
+      // forced downward and the left-hand copy would appear to sink as it stays centered
+      // on the image. Growing less on short screens keeps everything vertically centered
+      // (no downward drift) while still widening the layout (the copy still shifts left).
+      const heightGrowth = Math.max(0, Math.min(1, (window.innerHeight - 950) / 250));
+      const contentMaxEnd = 1620 + (1720 - 1620) * heightGrowth;
+      const visualMaxEnd = 1160 + (1320 - 1160) * heightGrowth;
+      heroPin.style.setProperty("--hero-content-max", `${interpolateValue(1480, contentMaxEnd, eased)}px`);
+      heroPin.style.setProperty("--hero-visual-max", `${interpolateValue(1080, visualMaxEnd, eased)}px`);
       heroPin.style.setProperty("--hero-frame-padding", `${interpolateValue(10, 6, eased)}px`);
       heroPin.style.setProperty("--hero-column-gap", `clamp(32px, 3vw, ${interpolateValue(72, 56, eased)}px)`);
       const heroComplete = eased >= 0.985;

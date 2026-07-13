@@ -4835,8 +4835,25 @@ button.ai-scene__action:hover {
   }
 
   .hero__content {
+    /* Wider side gutters so the left-hand copy pulls off the screen edge
+       instead of sitting flush against it on smaller laptops. */
+    width: min(var(--hero-content-max), calc(100% - clamp(64px, 9vw, 160px)));
     padding: clamp(24px, 4vh, 64px) 0 clamp(18px, 2.6vh, 40px);
     gap: clamp(28px, 3vw, 56px);
+  }
+
+  /* Shrink the hero image on these narrower widths so it doesn't dominate the row
+     and the copy keeps a comfortable, readable width. */
+  .hero__visual {
+    max-width: 820px;
+  }
+
+  /* Keep the call popup the same share (~31%) of the now-smaller image, matching the
+     proportion it has on large desktops. The base 0.68 fraction hits the 0.84 max-scale
+     cap and leaves the popup at a fixed pixel size, so as the image shrinks it grows
+     out of proportion. A smaller fraction stays below the cap and scales with the image. */
+  .hero-call-popup {
+    --hero-popup-fraction: 0.31;
   }
 }
 
@@ -4848,6 +4865,16 @@ button.ai-scene__action:hover {
 
   .hero__copy {
     max-width: 420px;
+  }
+}
+
+/* Morph mode (large screens where the hero image grows on scroll). Trim the hero's
+   bottom padding so the header → content → ticker column has enough room to keep the
+   content vertically centered as the image grows, instead of clamping the flex margins
+   and pushing the whole block (and the left-hand copy) downward. */
+@media (min-width: 1441px) and (min-height: 941px) {
+  .hero {
+    padding-bottom: 24px;
   }
 }
 
