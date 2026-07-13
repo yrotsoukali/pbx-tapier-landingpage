@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Λειτουργίες | PBX Integrator</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <main class="page features-page">
+    <header class="header features-header">
+      <div class="features-brand">
+        <div class="logo-block">
+          <a href="index.html" class="logo" aria-label="PBX Integrator">
+            <span class="logo__main">
+              <span class="logo__mark">PBX</span>
+              <strong>INTEGRATOR</strong>
+            </span>
+          </a>
+          <a
+            href="https://northcom.gr"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="logo__subline"
+          >
+            Powered by NorthCom Technologies
+          </a>
+        </div>
+      </div>
+
+      <nav class="navbar features-navbar" id="mainNav" aria-label="Κύρια πλοήγηση">
+        <a href="index.html?jump=1" data-i18n="navHome">Αρχική</a>
+        <a href="index.html?jump=1#functions" class="active" data-i18n="navFeatures">Λειτουργίες</a>
+        <a href="index.html?jump=1#ai" data-i18n="navAi">AI πρόσθετα</a>
+        <a href="index.html?jump=1#plans" data-i18n="navPlans">Πλάνα</a>
+        <a href="index.html?jump=1#contact">DEMO</a>
+      </nav>
+
+      <div class="language" id="languageSwitcher" aria-label="Επιλογή γλώσσας">
+        <button type="button" class="active" data-lang="el">ΕΛ</button>
+        <span class="language__separator" aria-hidden="true"></span>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+
+      <button
+        type="button"
+        class="nav-toggle"
+        id="navToggle"
+        aria-label="Άνοιγμα μενού"
+        aria-expanded="false"
+        aria-controls="mainNav"
+      >
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+    </header>
+    <div class="nav-scrim" id="navScrim" aria-hidden="true"></div>
+
+    <section class="call-recognition features-page__section" id="functions" aria-labelledby="featuresTitle">
+      <div class="call-recognition__background" aria-hidden="true"></div>
+
+      <div class="call-recognition__inner">
+        <header class="call-recognition__header">
+          <span class="section-pill" data-i18n="featuresPill">ΛΕΙΤΟΥΡΓΕΙΕΣ</span>
+          <h1 class="call-recognition__title" id="featuresTitle">
+            <span data-i18n="featuresTitleStart">12 λειτουργίες που κάνουν κάθε κλήση</span>
+            <span data-i18n="featuresTitleMiddle">πιο</span>
+            <span class="call-recognition__accent" data-i18n="featuresTitleAccent">έξυπνη.</span>
+          </h1>
+        </header>
+
+        <div class="call-recognition__features">
+          <article class="call-recognition__feature">
+            <div class="call-recognition__copy">
+              <span class="call-recognition__tag" data-feature-tag>ΑΝΑΓΝΩΡΙΣΗ ΚΛΗΣΗΣ</span>
+              <h2 class="call-recognition__heading" data-feature-heading>Ξέρεις ποιος καλεί. Πριν σηκώσεις το τηλέφωνο.</h2>
+              <p class="call-recognition__text" data-feature-text>Το όνομα της επιχείρησης εμφανίζεται αυτόματα - χωρίς αναζήτηση, χωρίς χαμένα δευτερόλεπτα.</p>
+            </div>
+            <div class="call-recognition__visual" aria-hidden="true">
+              <div class="popup-demo" data-popup="1" data-popup-src="ui/pop-up.html?case=1">
+                <iframe class="popup-demo__frame" title="PBX popup demo" src="ui/pop-up.html?case=1"></iframe>
+                <section class="call-popup" aria-label="Παράθυρο κλήσης">
+                  <header class="call-popup__titlebar">
+                    <div class="call-popup__identity">
+                      <span class="call-popup__number">2310527939</span>
+                      <span class="call-popup__company-top">NORTHCOM TECHNOLOGIES IKE</span>
+                    </div>
+                    <div class="call-popup__window-actions" aria-hidden="true">
+                      <svg class="call-popup__window-icon" viewBox="0 0 13 13"><path d="M2.5 6.5H10.5"></path></svg>
+                      <svg class="call-popup__window-icon" viewBox="0 0 13 13"><path d="M2.7 2.7L10.3 10.3M10.3 2.7L2.7 10.3"></path></svg>
+                    </div>
+                  </header>
+                  <main class="call-popup__body">
+                    <div class="call-popup__contact-row">
+                      <svg class="call-popup__people-icon" viewBox="0 0 19 18" aria-hidden="true">
+                        <path d="M6.1 8.1c2.23 0 4.05 1.82 4.05 4.05v2.15H1.7v-2.15C1.7 9.92 3.87 8.1 6.1 8.1Z"></path>
+                        <circle cx="6.1" cy="4.45" r="3.05"></circle>
+                        <path d="M13.25 8.6c2.12 0 3.85 1.73 3.85 3.85v1.85h-5.35v-2.15c0-1.32-.48-2.53-1.28-3.47.77-.08 1.69-.08 2.78-.08Z"></path>
+                        <circle cx="12.65" cy="4.85" r="2.75"></circle>
+                      </svg>
+                      <span class="call-popup__company">NORTHCOM TECHNOLOGIES IKE</span>
+                      <button class="call-popup__contacts" type="button">Επαφές</button>
+                    </div>
+                  </main>
+                  <footer class="call-popup__footer">
+                    <span class="call-popup__status">Offering</span>
+                    <span class="call-popup__duration" hidden>
+                      <svg class="call-popup__clock-icon" viewBox="0 0 16 16" aria-hidden="true">
+                        <circle cx="8" cy="8" r="6.2"></circle>
+                        <path d="M8 4.45V8l2.35 2.35"></path>
+                      </svg>
+                      <span class="call-popup__timer">00:00:00</span>
+                    </span>
+                  </footer>
+                </section>
+                <button class="popup-demo__replay" type="button" hidden>
+                  <svg class="popup-demo__replay-icon" viewBox="0 0 16 16" aria-hidden="true">
+                    <path d="M13 6.2A5.2 5.2 0 1 0 14 9"></path>
+                    <path d="M13.1 2.5v3.7H9.4"></path>
+                  </svg>
+                  <span data-i18n="replayLabel">Replay</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="call-recognition__feature call-recognition__feature--reverse">
+            <div class="call-recognition__copy">
+              <span class="call-recognition__tag" data-feature-tag>ΠΟΛΛΑΠΛΗ ΑΝΑΓΝΩΡΙΣΗ</span>
+              <h2 class="call-recognition__heading" data-feature-heading>Ένας αριθμός. Όλες οι πιθανές επαφές.</h2>
+              <p class="call-recognition__text" data-feature-text>Πελάτες, προμηθευτές, οφειλέτες, πιστωτές και επαφές αναγνωρίζονται αυτόματα - ακόμα και όταν ο ίδιος αριθμός ανήκει σε περισσότερες από μία εγγραφές.</p>
+            </div>
+            <div class="call-recognition__visual features-placeholder" aria-hidden="true">
+              <span>02</span>
+            </div>
+          </article>
+
+          <article class="call-recognition__feature">
+            <div class="call-recognition__copy">
+              <span class="call-recognition__tag" data-feature-tag>ΥΠΟΛΟΙΠΟ ΠΕΛΑΤΗ</span>
+              <h2 class="call-recognition__heading" data-feature-heading>Χρωστάει; Το ξέρεις πριν πεις «εμπρός».</h2>
+              <p class="call-recognition__text" data-feature-text>Το υπόλοιπο του πελάτη εμφανίζεται real-time από το SoftOne, δίπλα στο όνομά του.</p>
+            </div>
+            <div class="call-recognition__visual" aria-hidden="true">
+              <div class="popup-demo" data-popup="2" data-popup-src="ui/pop-up.html?case=2">
+                <iframe class="popup-demo__frame" title="PBX popup demo with balance" src="ui/pop-up.html?case=2"></iframe>
+                <div class="popup-demo__balance-callout" aria-hidden="true">
+                  <span class="popup-demo__balance-label">Υπόλοιπο</span>
+                </div>
+                <section class="call-popup call-popup--has-balance" aria-label="Παράθυρο κλήσης">
+                  <header class="call-popup__titlebar">
+                    <div class="call-popup__identity">
+                      <span class="call-popup__number">2310527939</span>
+                      <span class="call-popup__company-top">NORTHCOM TECHNOLOGIES IKE</span>
+                    </div>
+                    <span class="call-popup__balance">170,36€</span>
+                    <div class="call-popup__window-actions" aria-hidden="true">
+                      <svg class="call-popup__window-icon" viewBox="0 0 13 13"><path d="M2.5 6.5H10.5"></path></svg>
+                      <svg class="call-popup__window-icon" viewBox="0 0 13 13"><path d="M2.7 2.7L10.3 10.3M10.3 2.7L2.7 10.3"></path></svg>
+                    </div>
+                  </header>
+                  <main class="call-popup__body">
+                    <div class="call-popup__contact-row">
+                      <svg class="call-popup__people-icon" viewBox="0 0 19 18" aria-hidden="true">
+                        <path d="M6.1 8.1c2.23 0 4.05 1.82 4.05 4.05v2.15H1.7v-2.15C1.7 9.92 3.87 8.1 6.1 8.1Z"></path>
+                        <circle cx="6.1" cy="4.45" r="3.05"></circle>
+                        <path d="M13.25 8.6c2.12 0 3.85 1.73 3.85 3.85v1.85h-5.35v-2.15c0-1.32-.48-2.53-1.28-3.47.77-.08 1.69-.08 2.78-.08Z"></path>
+                        <circle cx="12.65" cy="4.85" r="2.75"></circle>
+                      </svg>
+                      <span class="call-popup__company">NORTHCOM TECHNOLOGIES IKE</span>
+                      <button class="call-popup__contacts" type="button">Επαφές</button>
+                    </div>
+                  </main>
+                  <footer class="call-popup__footer">
+                    <span class="call-popup__status">Offering</span>
+                    <span class="call-popup__duration" hidden>
+                      <svg class="call-popup__clock-icon" viewBox="0 0 16 16" aria-hidden="true">
+                        <circle cx="8" cy="8" r="6.2"></circle>
+                        <path d="M8 4.45V8l2.35 2.35"></path>
+                      </svg>
+                      <span class="call-popup__timer">00:00:00</span>
+                    </span>
+                  </footer>
+                </section>
+                <button class="popup-demo__replay" type="button" hidden>
+                  <svg class="popup-demo__replay-icon" viewBox="0 0 16 16" aria-hidden="true">
+                    <path d="M13 6.2A5.2 5.2 0 1 0 14 9"></path>
+                    <path d="M13.1 2.5v3.7H9.4"></path>
+                  </svg>
+                  <span data-i18n="replayLabel">Replay</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="call-recognition__feature call-recognition__feature--reverse">
+            <div class="call-recognition__copy">
+              <span class="call-recognition__tag" data-feature-tag>ΠΑΡΑΤΗΡΗΣΕΙΣ ΠΕΛΑΤΗ</span>
+              <h2 class="call-recognition__heading" data-feature-heading>Ό,τι πρέπει να ξέρεις. Εκεί που πρέπει να το δεις.</h2>
+              <p class="call-recognition__text" data-feature-text>Οι σημαντικές παρατηρήσεις εμφανίζονται κάτω από το όνομα του πελάτη, ώστε να έχεις την απαραίτητη πληροφορία πριν ξεκινήσει η συζήτηση.</p>
+            </div>
+            <div class="call-recognition__visual features-placeholder" aria-hidden="true">
+              <span>04</span>
+            </div>
+          </article>
+
+          <article class="call-recognition__feature">
+            <div class="call-recognition__copy">
+              <span class="call-recognition__tag" data-feature-tag>ΙΣΤΟΡΙΚΟ & ΕΚΚΡΕΜΕΙΣ ΕΡΓΑΣΙΕΣ</span>
+              <h2 class="call-recognition__heading" data-feature-heading>Τι εκκρεμεί, με μία ματιά.</h2>
+              <p class="call-recognition__text" data-feature-text>Εκκρεμείς παραγγελίες και ανοιχτές εργασίες - εμφανίζονται την ώρα της κλήσης. Δεν χρειάζεται να ρωτήσεις.</p>
+            </div>
+            <div class="call-recognition__visual" aria-hidden="true">
+              <div class="popup-demo popup-demo--history" data-popup="4" data-popup-src="ui/pop-up.html?case=1&contacts=orange" data-history-demo="true" data-history-mode="submenu">
+                <div class="popup-demo__history-stage">
+                  <iframe class="popup-demo__frame" title="PBX popup history tasks demo" src="ui/pop-up.html?case=1&contacts=orange"></iframe>
+                  <span class="popup-demo__cursor" aria-hidden="true"></span>
+                  <iframe class="popup-demo__history-frame" title="PBX history menu" src="ui/history.html"></iframe>
+                </div>
+                <button class="popup-demo__replay" type="button" hidden>
+                  <svg class="popup-demo__replay-icon" viewBox="0 0 16 16" aria-hidden="true">
+                    <path d="M13 6.2A5.2 5.2 0 1 0 14 9"></path>
+                    <path d="M13.1 2.5v3.7H9.4"></path>
+                  </svg>
+                  <span data-i18n="replayLabel">Replay</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="call-recognition__feature call-recognition__feature--reverse">
+            <div class="call-recognition__copy">
+              <span class="call-recognition__tag" data-feature-tag>ΜΕΝΟΥ ΕΝΕΡΓΕΙΩΝ</span>
+              <h2 class="call-recognition__heading" data-feature-heading>Ένα κλικ αντικαθιστά πέντε οθόνες.</h2>
+              <p class="call-recognition__text" data-feature-text>Νέα παραγγελία, οικονομική καρτέλα, καταχώρηση εργασίας μόνο με ένα κλικ.</p>
+            </div>
+            <div class="call-recognition__visual" aria-hidden="true">
+              <div class="popup-demo popup-demo--history" data-popup="5" data-popup-src="ui/pop-up.html?case=1" data-history-demo="true" data-history-mode="main">
+                <div class="popup-demo__history-stage">
+                  <iframe class="popup-demo__frame" title="PBX popup actions demo" src="ui/pop-up.html?case=1"></iframe>
+                  <span class="popup-demo__cursor" aria-hidden="true"></span>
+                  <iframe class="popup-demo__history-frame" title="PBX history menu" src="ui/history.html"></iframe>
+                </div>
+                <button class="popup-demo__replay" type="button" hidden>
+                  <svg class="popup-demo__replay-icon" viewBox="0 0 16 16" aria-hidden="true">
+                    <path d="M13 6.2A5.2 5.2 0 1 0 14 9"></path>
+                    <path d="M13.1 2.5v3.7H9.4"></path>
+                  </svg>
+                  <span data-i18n="replayLabel">Replay</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="call-recognition__feature">
+            <div class="call-recognition__copy">
+              <span class="call-recognition__tag" data-feature-tag>ΠΑΡΑΜΕΤΡΟΠΟΙΗΣΙΜΗ ΦΟΡΜΑ ΕΡΓΑΣΙΑΣ</span>
+              <h2 class="call-recognition__heading" data-feature-heading>Η εργασία καταχωρείται όπως δουλεύει η επιχείρησή σου.</h2>
+              <p class="call-recognition__text" data-feature-text>Δημιούργησε νέα εργασία μέσα από μια φόρμα πλήρως προσαρμοσμένη στις ανάγκες και τις διαδικασίες της επιχείρησής σου.</p>
+            </div>
+            <div class="call-recognition__visual features-placeholder" aria-hidden="true">
+              <span>07</span>
+            </div>
+          </article>
+
+          <article class="call-recognition__feature call-recognition__feature--reverse">
+            <div class="call-recognition__copy">
+              <span class="call-recognition__tag" data-feature-tag>ΑΥΤΟΜΑΤΙΣΜΟΙ ΕΡΓΑΣΙΩΝ</span>
+              <h2 class="call-recognition__heading" data-feature-heading>Ένα κλικ. Όλες οι σωστές ενέργειες.</h2>
+              <p class="call-recognition__text" data-feature-text>Με το πάτημα του κεραυνού, εκτελούνται αυτόματα προκαθορισμένες ενέργειες προσαρμοσμένες στις διαδικασίες της επιχείρησής σου.</p>
+            </div>
+            <div class="call-recognition__visual features-placeholder" aria-hidden="true">
+              <span>08</span>
+            </div>
+          </article>
+
+          <article class="call-recognition__feature">
+            <div class="call-recognition__copy">
+              <span class="call-recognition__tag" data-feature-tag>ΧΡΩΜΑΤΙΣΜΟΣ ΕΠΑΦΗΣ</span>
+              <h2 class="call-recognition__heading" data-feature-heading>Ένα χρώμα λέει αυτό που δεν λέγεται.</h2>
+              <p class="call-recognition__text" data-feature-text>Κόκκινος; Εκκρεμές υπόλοιπο. Πράσινος; VIP. Εσύ ορίζεις τους κανόνες και τον χρωματισμό - το σύστημα τους εφαρμόζει.</p>
+            </div>
+            <div class="call-recognition__visual" aria-hidden="true">
+              <div class="popup-demo" data-popup="3" data-popup-src="ui/pop-up-colored.html?case=1" data-popup-next-src="ui/pop-up-colored.html?case=2">
+                <iframe class="popup-demo__frame" title="PBX colored popup demo" src="ui/pop-up-colored.html?case=1"></iframe>
+                <div class="popup-demo__case-patch popup-demo__case-patch--urgent" aria-hidden="true">
+                  <span class="popup-demo__case-patch-title" data-i18n="patchUrgentTitle">ΠΡΟΣΟΧΗ</span>
+                  <span class="popup-demo__case-patch-note" data-i18n="patchUrgentNote">attention</span>
+                </div>
+                <button class="popup-demo__replay" type="button" hidden>
+                  <svg class="popup-demo__replay-icon" viewBox="0 0 16 16" aria-hidden="true">
+                    <path d="M13 6.2A5.2 5.2 0 1 0 14 9"></path>
+                    <path d="M13.1 2.5v3.7H9.4"></path>
+                  </svg>
+                  <span data-i18n="replayLabel">Replay</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="call-recognition__feature call-recognition__feature--reverse">
+            <div class="call-recognition__copy">
+              <span class="call-recognition__tag" data-feature-tag>ΠΑΡΑΜΕΤΡΟΠΟΙΗΣΗ ΧΡΩΜΑΤΙΣΜΩΝ</span>
+              <h2 class="call-recognition__heading" data-feature-heading>Οι δικοί σου κανόνες. Τα δικά σου χρώματα.</h2>
+              <p class="call-recognition__text" data-feature-text>Δημιούργησε πλήρως παραμετροποιήσιμους κανόνες και άφησε το PBX Integrator να ξεχωρίζει αυτόματα κάθε επαφή με βάση τα κριτήρια της επιχείρησής σου.</p>
+            </div>
+            <div class="call-recognition__visual features-placeholder" aria-hidden="true">
+              <span>10</span>
+            </div>
+          </article>
+
+          <article class="call-recognition__feature">
+            <div class="call-recognition__copy">
+              <span class="call-recognition__tag" data-feature-tag>ΙΣΤΟΡΙΚΟ ΚΛΗΣΕΩΝ</span>
+              <h2 class="call-recognition__heading" data-feature-heading>Κάθε κλήση. Κάθε χρήστης. Κάθε στιγμή.</h2>
+              <p class="call-recognition__text" data-feature-text>Αναζήτησε το ιστορικό κλήσεων ανά ημερομηνία και χρήστη, με τον διαχειριστή να έχει πλήρη εικόνα της τηλεφωνικής δραστηριότητας της ομάδας.</p>
+            </div>
+            <div class="call-recognition__visual features-placeholder" aria-hidden="true">
+              <span>11</span>
+            </div>
+          </article>
+
+          <article class="call-recognition__feature call-recognition__feature--reverse">
+            <div class="call-recognition__copy">
+              <span class="call-recognition__tag" data-feature-tag>COPY & CALL</span>
+              <h2 class="call-recognition__heading" data-feature-heading>Αντέγραψες τον αριθμό; Τώρα απλώς κάλεσε.</h2>
+              <p class="call-recognition__text" data-feature-text>Αντέγραψε οποιονδήποτε αριθμό, επιβεβαίωσε την κλήση και η τηλεφωνική συσκευή καλεί αυτόματα - χωρίς πληκτρολόγηση, χωρίς λάθη.</p>
+            </div>
+            <div class="call-recognition__visual features-placeholder" aria-hidden="true">
+              <span>12</span>
+            </div>
+          </article>
+        </div>
+
+        <footer class="features-return">
+          <a class="features-return__link" href="index.html" data-return-home data-i18n="featuresReturn">
+            Πίσω στην αρχική
+          </a>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const content = {
+      el: {
+        htmlLang: "el",
+        title: "Λειτουργίες | PBX Integrator",
+        navLabel: "Κύρια πλοήγηση",
+        languageLabel: "Επιλογή γλώσσας",
+        navHome: "Αρχική",
+        navFeatures: "Λειτουργίες",
+        navAi: "AI πρόσθετα",
+        navPlans: "Πλάνα",
+        navToggleLabel: "Άνοιγμα μενού",
+        featuresReturn: "Πίσω στην αρχική",
+        featuresPill: "ΛΕΙΤΟΥΡΓΕΙΕΣ",
+        featuresTitleStart: "12 λειτουργίες που κάνουν κάθε κλήση",
+        featuresTitleMiddle: "πιο",
+        featuresTitleAccent: "έξυπνη.",
+        featureItems: [
+          {
+            tag: "ΑΝΑΓΝΩΡΙΣΗ ΚΛΗΣΗΣ",
+            heading: "Ξέρεις ποιος καλεί. Πριν σηκώσεις το τηλέφωνο.",
+            text: "Το όνομα της επιχείρησης εμφανίζεται αυτόματα - χωρίς αναζήτηση, χωρίς χαμένα δευτερόλεπτα."
+          },
+          {
+            tag: "ΠΟΛΛΑΠΛΗ ΑΝΑΓΝΩΡΙΣΗ",
+            heading: "Ένας αριθμός. Όλες οι πιθανές επαφές.",
+            text: "Πελάτες, προμηθευτές, οφειλέτες, πιστωτές και επαφές αναγνωρίζονται αυτόματα - ακόμα και όταν ο ίδιος αριθμός ανήκει σε περισσότερες από μία εγγραφές."
+          },
+          {
+            tag: "ΥΠΟΛΟΙΠΟ ΠΕΛΑΤΗ",
+            heading: "Χρωστάει; Το ξέρεις πριν πεις «εμπρός».",
+            text: "Το υπόλοιπο του πελάτη εμφανίζεται real-time από το SoftOne, δίπλα στο όνομά του."
+          },
+          {
+            tag: "ΠΑΡΑΤΗΡΗΣΕΙΣ ΠΕΛΑΤΗ",
+            heading: "Ό,τι πρέπει να ξέρεις. Εκεί που πρέπει να το δεις.",
+            text: "Οι σημαντικές παρατηρήσεις εμφανίζονται κάτω από το όνομα του πελάτη, ώστε να έχεις την απαραίτητη πληροφορία πριν ξεκινήσει η συζήτηση."
+          },
+          {
+            tag: "ΙΣΤΟΡΙΚΟ & ΕΚΚΡΕΜΕΙΣ ΕΡΓΑΣΙΕΣ",
+            heading: "Τι εκκρεμεί, με μία ματιά.",
+            text: "Εκκρεμείς παραγγελίες και ανοιχτές εργασίες - εμφανίζονται την ώρα της κλήσης. Δεν χρειάζεται να ρωτήσεις."
+          },
+          {
+            tag: "ΜΕΝΟΥ ΕΝΕΡΓΕΙΩΝ",
+            heading: "Ένα κλικ αντικαθιστά πέντε οθόνες.",
+            text: "Νέα παραγγελία, οικονομική καρτέλα, καταχώρηση εργασίας μόνο με ένα κλικ."
+          },
+          {
+            tag: "ΠΑΡΑΜΕΤΡΟΠΟΙΗΣΙΜΗ ΦΟΡΜΑ ΕΡΓΑΣΙΑΣ",
+            heading: "Η εργασία καταχωρείται όπως δουλεύει η επιχείρησή σου.",
+            text: "Δημιούργησε νέα εργασία μέσα από μια φόρμα πλήρως προσαρμοσμένη στις ανάγκες και τις διαδικασίες της επιχείρησής σου."
+          },
+          {
+            tag: "ΑΥΤΟΜΑΤΙΣΜΟΙ ΕΡΓΑΣΙΩΝ",
+            heading: "Ένα κλικ. Όλες οι σωστές ενέργειες.",
+            text: "Με το πάτημα του κεραυνού, εκτελούνται αυτόματα προκαθορισμένες ενέργειες προσαρμοσμένες στις διαδικασίες της επιχείρησής σου."
+          },
+          {
+            tag: "ΧΡΩΜΑΤΙΣΜΟΣ ΕΠΑΦΗΣ",
+            heading: "Ένα χρώμα λέει αυτό που δεν λέγεται.",
+            text: "Κόκκινος; Εκκρεμές υπόλοιπο. Πράσινος; VIP. Εσύ ορίζεις τους κανόνες και τον χρωματισμό - το σύστημα τους εφαρμόζει."
+          },
+          {
+            tag: "ΠΑΡΑΜΕΤΡΟΠΟΙΗΣΗ ΧΡΩΜΑΤΙΣΜΩΝ",
+            heading: "Οι δικοί σου κανόνες. Τα δικά σου χρώματα.",
+            text: "Δημιούργησε πλήρως παραμετροποιήσιμους κανόνες και άφησε το PBX Integrator να ξεχωρίζει αυτόματα κάθε επαφή με βάση τα κριτήρια της επιχείρησής σου."
+          },
+          {
+            tag: "ΙΣΤΟΡΙΚΟ ΚΛΗΣΕΩΝ",
+            heading: "Κάθε κλήση. Κάθε χρήστης. Κάθε στιγμή.",
+            text: "Αναζήτησε το ιστορικό κλήσεων ανά ημερομηνία και χρήστη, με τον διαχειριστή να έχει πλήρη εικόνα της τηλεφωνικής δραστηριότητας της ομάδας."
+          },
+          {
+            tag: "COPY & CALL",
+            heading: "Αντέγραψες τον αριθμό; Τώρα απλώς κάλεσε.",
+            text: "Αντέγραψε οποιονδήποτε αριθμό, επιβεβαίωσε την κλήση και η τηλεφωνική συσκευή καλεί αυτόματα - χωρίς πληκτρολόγηση, χωρίς λάθη."
+          }
+        ],
+        replayLabel: "Replay",
+        patchUrgentTitle: "ΠΡΟΣΟΧΗ",
+        patchUrgentNote: "ΥΠΟΛ.",
+        patchSuccessTitle: "ΠΡΟΤΕΡΑΙΟΤΗΤΑ",
+        patchSuccessNote: "VIP"
+      },
+      en: {
+        htmlLang: "en",
+        title: "Features | PBX Integrator",
+        navLabel: "Main navigation",
+        languageLabel: "Language selection",
+        navHome: "Home",
+        navFeatures: "Features",
+        navAi: "AI add-ons",
+        navPlans: "Plans",
+        navToggleLabel: "Open menu",
+        featuresReturn: "Back to home",
+        featuresPill: "FEATURES",
+        featuresTitleStart: "12 features that make every call",
+        featuresTitleMiddle: "more",
+        featuresTitleAccent: "intelligent.",
+        featureItems: [
+          {
+            tag: "CALL RECOGNITION",
+            heading: "You know who is calling. Before you pick up the phone.",
+            text: "The company name appears automatically - no searching, no lost seconds."
+          },
+          {
+            tag: "MULTIPLE RECOGNITION",
+            heading: "One number. Every possible contact.",
+            text: "Customers, suppliers, debtors, creditors, and contacts are recognized automatically - even when the same number belongs to more than one record."
+          },
+          {
+            tag: "CUSTOMER BALANCE",
+            heading: "Do they owe you? You know before you say hello.",
+            text: "The customer's balance appears in real time from SoftOne, right next to their name."
+          },
+          {
+            tag: "CUSTOMER NOTES",
+            heading: "What you need to know. Exactly where you need to see it.",
+            text: "Important notes appear under the customer's name, so you have the information you need before the conversation starts."
+          },
+          {
+            tag: "HISTORY & OPEN TASKS",
+            heading: "What is pending, at a glance.",
+            text: "Pending orders and open tasks appear during the call. No need to ask."
+          },
+          {
+            tag: "ACTION MENU",
+            heading: "One click replaces five screens.",
+            text: "Create a new order, open the financial ledger, or register a task with one click."
+          },
+          {
+            tag: "CUSTOMIZABLE TASK FORM",
+            heading: "Tasks are logged the way your business works.",
+            text: "Create a new task through a fully customizable form tailored to your company's needs and processes."
+          },
+          {
+            tag: "TASK AUTOMATIONS",
+            heading: "One click. All the right actions.",
+            text: "With the lightning button, predefined actions run automatically, tailored to your company's processes."
+          },
+          {
+            tag: "CONTACT COLORING",
+            heading: "One color says what words do not.",
+            text: "Red? Outstanding balance. Green? VIP. You define the rules and colors - the system applies them."
+          },
+          {
+            tag: "COLOR RULE CONFIGURATION",
+            heading: "Your rules. Your colors.",
+            text: "Create fully customizable rules and let PBX Integrator automatically highlight each contact based on your company's criteria."
+          },
+          {
+            tag: "CALL HISTORY",
+            heading: "Every call. Every user. Every moment.",
+            text: "Search call history by date and user, while administrators keep a complete view of the team's phone activity."
+          },
+          {
+            tag: "COPY & CALL",
+            heading: "Copied the number? Now just call.",
+            text: "Copy any number, confirm the call, and the phone device dials automatically - no typing, no mistakes."
+          }
+        ],
+        replayLabel: "Replay",
+        patchUrgentTitle: "ATTENTION",
+        patchUrgentNote: "DEPT",
+        patchSuccessTitle: "PRIORITY",
+        patchSuccessNote: "VIP"
+      }
+    };
+
+    let activeLanguage = "el";
+    const languageSwitcher = document.getElementById("languageSwitcher");
+    const mainNav = document.getElementById("mainNav");
+    const navToggle = document.getElementById("navToggle");
+    const navScrim = document.getElementById("navScrim");
+    const returnHomeLink = document.querySelector("[data-return-home]");
+
+    function hasIndexOrigin() {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("from") !== "index") return false;
+
+      try {
+        const payload = JSON.parse(window.sessionStorage.getItem("pbx-features-return") || "null");
+        const maxAge = 60 * 60 * 1000;
+        return Boolean(payload && Number.isFinite(payload.scrollY) && Date.now() - payload.createdAt < maxAge);
+      } catch (error) {
+        return false;
+      }
+    }
+
+    function configureReturnHomeLink() {
+      if (!returnHomeLink) return;
+      returnHomeLink.href = hasIndexOrigin() ? "index.html?returnTo=features-origin" : "index.html";
+    }
+
+    function setLanguage(lang) {
+      const selected = content[lang] || content.el;
+      activeLanguage = content[lang] ? lang : "el";
+      document.documentElement.lang = selected.htmlLang;
+      document.body.dataset.language = activeLanguage;
+      document.title = selected.title;
+      mainNav.setAttribute("aria-label", selected.navLabel);
+      languageSwitcher.setAttribute("aria-label", selected.languageLabel);
+      navToggle.setAttribute("aria-label", selected.navToggleLabel);
+
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const key = element.dataset.i18n;
+        if (selected[key]) element.textContent = selected[key];
+      });
+
+      document.querySelectorAll("[data-feature-tag]").forEach((element, index) => {
+        const item = selected.featureItems[index];
+        if (item) element.textContent = item.tag;
+      });
+
+      document.querySelectorAll("[data-feature-heading]").forEach((element, index) => {
+        const item = selected.featureItems[index];
+        if (item) element.textContent = item.heading;
+      });
+
+      document.querySelectorAll("[data-feature-text]").forEach((element, index) => {
+        const item = selected.featureItems[index];
+        if (item) element.textContent = item.text;
+      });
+
+      syncPopupDemoLanguage(activeLanguage);
+
+      languageSwitcher.querySelectorAll("[data-lang]").forEach((button) => {
+        button.classList.toggle("active", button.dataset.lang === activeLanguage);
+      });
+
+      window.localStorage.setItem("pbx-language", activeLanguage);
+    }
+
+    function buildLocalizedSrc(src, lang, includeRun = false) {
+      const url = new URL(src, window.location.href);
+      url.searchParams.set("lang", lang);
+      if (includeRun) url.searchParams.set("run", Date.now().toString());
+      return `${url.pathname}${url.search}`;
+    }
+
+    function syncPopupDemoLanguage(lang) {
+      document.querySelectorAll(".popup-demo").forEach((wrapper) => {
+        const frame = wrapper.querySelector(".popup-demo__frame");
+        const historyFrame = wrapper.querySelector(".popup-demo__history-frame");
+        const popupSrc = wrapper.dataset.popupSrc;
+
+        if (frame && popupSrc) {
+          frame.src = buildLocalizedSrc(popupSrc, lang);
+        }
+
+        if (historyFrame) {
+          historyFrame.src = buildLocalizedSrc("ui/history.html", lang);
+        }
+      });
+    }
+
+    function closeMobileNav() {
+      document.body.classList.remove("nav-open");
+      navToggle.setAttribute("aria-expanded", "false");
+    }
+
+    languageSwitcher.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-lang]");
+      if (!button) return;
+      setLanguage(button.dataset.lang);
+    });
+
+    navToggle.addEventListener("click", () => {
+      const isOpen = document.body.classList.toggle("nav-open");
+      navToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    navScrim.addEventListener("click", closeMobileNav);
+    mainNav.addEventListener("click", (event) => {
+      if (event.target.closest("a")) closeMobileNav();
+    });
+
+    function initNavbarScrollFade() {
+      let frame = 0;
+      const update = () => {
+        frame = 0;
+        // Full navbar at the very top; let it fade back once the page scrolls down.
+        document.body.classList.toggle("is-scrolled", window.scrollY > 8);
+      };
+      const request = () => {
+        if (frame) return;
+        frame = window.requestAnimationFrame(update);
+      };
+      window.addEventListener("scroll", request, { passive: true });
+      update();
+    }
+
+    function initPopupDemo(wrapper) {
+      const frame = wrapper.querySelector(".popup-demo__frame");
+      const replayBtn = wrapper.querySelector(".popup-demo__replay");
+      const casePatch = wrapper.querySelector(".popup-demo__case-patch");
+      const casePatchTitle = wrapper.querySelector(".popup-demo__case-patch-title");
+      const casePatchNote = wrapper.querySelector(".popup-demo__case-patch-note");
+      const historyFrame = wrapper.querySelector(".popup-demo__history-frame");
+      const popupSrc = wrapper.dataset.popupSrc;
+      const popupNextSrc = wrapper.dataset.popupNextSrc;
+      const isHistoryDemo = wrapper.dataset.historyDemo === "true";
+      const historyMode = wrapper.dataset.historyMode || "main";
+      let frameTimeouts = [];
+
+      function clearFrameTimeouts() {
+        frameTimeouts.forEach(clearTimeout);
+        frameTimeouts = [];
+      }
+
+      function loadFrame(src) {
+        if (frame) frame.src = buildLocalizedSrc(src, activeLanguage, true);
+      }
+
+      function setPopupRowSelected(selected) {
+        frame?.contentWindow?.postMessage({
+          type: "popup-row-select",
+          selected
+        }, "*");
+      }
+
+      function setPatchCase(caseId) {
+        if (!casePatch) return;
+        const isCaseTwo = caseId === "2";
+        const selected = content[activeLanguage] || content.el;
+        casePatch.classList.toggle("popup-demo__case-patch--urgent", !isCaseTwo);
+        casePatch.classList.toggle("popup-demo__case-patch--success", isCaseTwo);
+        if (casePatchTitle) casePatchTitle.textContent = isCaseTwo ? selected.patchSuccessTitle : selected.patchUrgentTitle;
+        if (casePatchNote) casePatchNote.textContent = isCaseTwo ? selected.patchSuccessNote : selected.patchUrgentNote;
+      }
+
+      function setHistoryHover(item, highlightDelay = 0, submenuOpen = false) {
+        wrapper.classList.remove(
+          "is-history-hover-order",
+          "is-history-hover-balance",
+          "is-history-hover-work-in",
+          "is-history-hover-work-out",
+          "is-history-hover-tasks",
+          "is-history-hover-task-order",
+          "is-history-hover-task-offer",
+          "is-history-hover-task-demo"
+        );
+
+        if (item) wrapper.classList.add(`is-history-hover-${item}`);
+
+        if (item && highlightDelay > 0) {
+          historyFrame?.contentWindow?.postMessage({
+            type: "history-hover",
+            item: "",
+            submenuOpen
+          }, "*");
+        }
+
+        frameTimeouts.push(setTimeout(() => {
+          historyFrame?.contentWindow?.postMessage({
+            type: "history-hover",
+            item,
+            submenuOpen
+          }, "*");
+        }, highlightDelay));
+      }
+
+      function playFrame() {
+        clearFrameTimeouts();
+        if (replayBtn) replayBtn.hidden = true;
+        wrapper.classList.remove(
+          "is-cursor-visible",
+          "is-cursor-target",
+          "is-right-clicking",
+          "is-menu-open",
+          "is-history-hover-order",
+          "is-history-hover-balance",
+          "is-history-hover-work-in",
+          "is-history-hover-work-out",
+          "is-history-hover-tasks",
+          "is-history-hover-task-order",
+          "is-history-hover-task-offer",
+          "is-history-hover-task-demo"
+        );
+
+        setHistoryHover("");
+
+        if (isHistoryDemo) {
+          if (historyFrame) {
+            historyFrame.src = buildLocalizedSrc("ui/history.html", activeLanguage, true);
+          }
+          loadFrame(popupSrc);
+          setPopupRowSelected(false);
+
+          frameTimeouts.push(setTimeout(() => {
+            wrapper.classList.add("is-cursor-visible");
+          }, 900));
+
+          frameTimeouts.push(setTimeout(() => {
+            wrapper.classList.add("is-cursor-target");
+          }, 1080));
+
+          frameTimeouts.push(setTimeout(() => {
+            wrapper.classList.add("is-right-clicking");
+            setPopupRowSelected(true);
+          }, 2000));
+
+          frameTimeouts.push(setTimeout(() => {
+            wrapper.classList.remove("is-right-clicking");
+            wrapper.classList.add("is-menu-open");
+          }, 2200));
+
+          if (historyMode === "submenu") {
+            frameTimeouts.push(setTimeout(() => setHistoryHover("tasks", 0, true), 2750));
+            frameTimeouts.push(setTimeout(() => setHistoryHover("task-order", 220, true), 3450));
+            frameTimeouts.push(setTimeout(() => setHistoryHover("task-offer", 220, true), 4450));
+            frameTimeouts.push(setTimeout(() => setHistoryHover("task-demo", 220, true), 5450));
+            frameTimeouts.push(setTimeout(() => {
+              if (replayBtn) replayBtn.hidden = false;
+            }, 6650));
+            return;
+          }
+
+          frameTimeouts.push(setTimeout(() => setHistoryHover("order", 320), 2750));
+          frameTimeouts.push(setTimeout(() => setHistoryHover("balance", 320), 3750));
+          frameTimeouts.push(setTimeout(() => setHistoryHover("work-in", 320), 4750));
+          frameTimeouts.push(setTimeout(() => setHistoryHover("work-out", 320), 5750));
+          frameTimeouts.push(setTimeout(() => {
+            if (replayBtn) replayBtn.hidden = false;
+          }, 6950));
+          return;
+        }
+
+        function showCase(caseId) {
+          const src = caseId === "2" ? popupNextSrc : popupSrc;
+          setPatchCase(caseId);
+          loadFrame(src);
+        }
+
+        showCase("1");
+
+        if (popupNextSrc) {
+          function scheduleNextCase(nextCaseId) {
+            frameTimeouts.push(setTimeout(() => {
+              showCase(nextCaseId);
+              scheduleNextCase(nextCaseId === "1" ? "2" : "1");
+            }, 2500));
+          }
+
+          scheduleNextCase("2");
+          return;
+        }
+
+        frameTimeouts.push(setTimeout(() => {
+          if (replayBtn) replayBtn.hidden = false;
+        }, 5000));
+      }
+
+      replayBtn?.addEventListener("click", playFrame);
+      return playFrame;
+    }
+
+    function initPopupDemos() {
+      const popupDemos = document.querySelectorAll(".popup-demo");
+      const popupPlayers = [];
+      popupDemos.forEach((wrapper) => {
+        popupPlayers.push(initPopupDemo(wrapper));
+      });
+
+      const popupObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const wrapper = entry.target;
+            const idx = Array.from(popupDemos).indexOf(wrapper);
+            if (idx !== -1) popupPlayers[idx]();
+          });
+        },
+        { threshold: 0.5 }
+      );
+
+      popupDemos.forEach((wrapper) => popupObserver.observe(wrapper));
+    }
+
+    configureReturnHomeLink();
+    setLanguage(window.localStorage.getItem("pbx-language") || "el");
+    initNavbarScrollFade();
+    initPopupDemos();
+  </script>
+</body>
+</html>

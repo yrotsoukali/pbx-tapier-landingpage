@@ -17,6 +17,53 @@
 </head>
 
 <body>
+    <header class="header">
+      <div class="logo-block">
+        <a href="#" class="logo" aria-label="PBX Integrator">
+          <span class="logo__main">
+            <span class="logo__mark">PBX</span>
+            <strong>INTEGRATOR</strong>
+          </span>
+        </a>
+        <a
+          href="https://northcom.gr"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="logo__subline"
+        >
+          Powered by NorthCom Technologies
+        </a>
+      </div>
+
+      <nav class="navbar" id="mainNav" aria-label="Κύρια πλοήγηση">
+        <a href="#" class="active" data-nav-section="home" data-i18n="navHome">Αρχική</a>
+        <a href="#functions" data-nav-section="functions" data-i18n="navFeatures">Λειτουργίες</a>
+        <a href="#ai" data-nav-section="ai" data-i18n="navAi">AI πρόσθετα</a>
+        <a href="#plans" data-nav-section="plans" data-i18n="navPlans">Πλάνα</a>
+        <a href="#contact" data-nav-section="contact">DEMO</a>
+      </nav>
+
+      <div class="language" id="languageSwitcher" aria-label="Επιλογή γλώσσας">
+        <button type="button" class="active" data-lang="el">ΕΛ</button>
+        <span class="language__separator" aria-hidden="true"></span>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+
+      <button
+        type="button"
+        class="nav-toggle"
+        id="navToggle"
+        aria-label="Άνοιγμα μενού"
+        aria-expanded="false"
+        aria-controls="mainNav"
+      >
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+    </header>
+    <div class="nav-scrim" id="navScrim" aria-hidden="true"></div>
+
   <main class="page">
     <div class="hero-pin">
     <section class="hero">
@@ -27,52 +74,6 @@
         <div class="hero__line hero__line--one"></div>
         <div class="hero__line hero__line--two"></div>
       </div>
-      
-      <header class="header">
-        <div class="logo-block">
-          <a href="#" class="logo" aria-label="PBX Integrator">
-            <span class="logo__main">
-              <span class="logo__mark">PBX</span>
-              <strong>INTEGRATOR</strong>
-            </span>
-          </a>
-          <a
-            href="https://northcom.gr"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="logo__subline"
-          >
-            Powered by NorthCom Technologies
-          </a>
-        </div>
-
-        <nav class="navbar" id="mainNav" aria-label="Κύρια πλοήγηση">
-          <a href="#functions" data-i18n="navFeatures">Λειτουργίες</a>
-          <a href="#ai" data-i18n="navAi">AI πρόσθετα</a>
-          <a href="#plans" data-i18n="navPlans">Πλάνα</a>
-          <a href="#contact" class="active navbar__demo">DEMO</a>
-        </nav>
-
-        <div class="language" id="languageSwitcher" aria-label="Επιλογή γλώσσας">
-          <button type="button" class="active" data-lang="el">ΕΛ</button>
-          <span class="language__separator" aria-hidden="true"></span>
-          <button type="button" data-lang="en">EN</button>
-        </div>
-
-        <button
-          type="button"
-          class="nav-toggle"
-          id="navToggle"
-          aria-label="Άνοιγμα μενού"
-          aria-expanded="false"
-          aria-controls="mainNav"
-        >
-          <span class="nav-toggle__bar"></span>
-          <span class="nav-toggle__bar"></span>
-          <span class="nav-toggle__bar"></span>
-        </button>
-      </header>
-      <div class="nav-scrim" id="navScrim" aria-hidden="true"></div>
 
       <div class="hero__content">
         <div class="hero__copy">
@@ -506,7 +507,7 @@
         </div>
 
         <div class="call-recognition__more">
-          <a href="features.html" target="_blank" rel="noopener noreferrer">
+          <a href="features.html?from=index" data-features-link>
             <span data-i18n="learnMore">Μάθετε περισσότερα</span>
             <span aria-hidden="true">→</span>
           </a>
@@ -1283,9 +1284,9 @@
     let contactSelectedIntent = "";
     let contactSelectedPackage = "";
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const navLinks = Array.from(mainNav?.querySelectorAll('a[href^="#"]') || []);
-    const navTargets = navLinks
-      .map((link) => document.querySelector(link.hash))
+    const navLinks = Array.from(mainNav?.querySelectorAll("[data-nav-section]") || []);
+    const navTargets = ["functions", "ai", "plans", "contact"]
+      .map((id) => document.getElementById(id))
       .filter(Boolean);
 
     function getScrollBehavior() {
@@ -1295,14 +1296,59 @@
     function getTargetScrollTop(target) {
       if (!target) return 0;
       const targetTop = target.getBoundingClientRect().top + window.pageYOffset;
-      const viewportOffset = Math.max(14, Math.min(32, window.innerHeight * 0.035));
+      const headerHeight = document.querySelector(".header")?.offsetHeight || 0;
+      const viewportOffset = headerHeight + Math.max(10, Math.min(22, window.innerHeight * 0.02));
       return Math.max(0, targetTop - viewportOffset);
     }
 
     function setActiveNavLink(targetId = "") {
       navLinks.forEach((link) => {
-        link.classList.toggle("active", link.classList.contains("navbar__demo"));
+        link.classList.toggle("active", link.dataset.navSection === targetId);
       });
+    }
+
+    function storeFeaturesReturnPoint() {
+      const payload = {
+        scrollY: Math.max(0, Math.round(window.pageYOffset || window.scrollY || 0)),
+        path: window.location.pathname,
+        createdAt: Date.now()
+      };
+      window.sessionStorage.setItem("pbx-features-return", JSON.stringify(payload));
+    }
+
+    function restoreFeaturesReturnPoint() {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("returnTo") !== "features-origin") return;
+
+      let payload = null;
+      try {
+        payload = JSON.parse(window.sessionStorage.getItem("pbx-features-return") || "null");
+      } catch (error) {
+        payload = null;
+      }
+
+      window.history.replaceState(null, "", `${window.location.pathname}${window.location.hash || ""}`);
+      if (!payload || !Number.isFinite(payload.scrollY)) return;
+
+      window.setTimeout(() => {
+        window.scrollTo({
+          top: Math.max(0, payload.scrollY),
+          behavior: "auto"
+        });
+      }, 120);
+    }
+
+    function isDirectJumpNavigation() {
+      return new URLSearchParams(window.location.search).get("jump") === "1";
+    }
+
+    function cleanNavigationQuery() {
+      const params = new URLSearchParams(window.location.search);
+      if (!params.has("jump")) return;
+      params.delete("jump");
+      const query = params.toString();
+      const nextUrl = `${window.location.pathname}${query ? `?${query}` : ""}${window.location.hash || ""}`;
+      window.history.replaceState(null, "", nextUrl);
     }
 
     function focusScrollTarget(target) {
@@ -1527,7 +1573,7 @@
       event.preventDefault();
       closeMobileNav();
       scrollToPageTarget(target, link.hash === "#" ? "" : link.hash);
-      setActiveNavLink(target.id);
+      setActiveNavLink(link.dataset.navSection || target.id || "home");
     }
 
     function openMobileNav() {
@@ -1558,26 +1604,51 @@
 
     function initPageNavigation() {
       document.addEventListener("click", handleAnchorClick);
+      document.querySelectorAll("[data-features-link]").forEach((link) => {
+        link.addEventListener("click", storeFeaturesReturnPoint);
+      });
 
-      const navObserver = new IntersectionObserver(
-        (entries) => {
-          const visibleEntry = entries
-            .filter((entry) => entry.isIntersecting)
-            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      // Deterministic scrollspy: the active link is the last nav target whose top
+      // has crossed a reference line just below the fixed header. This stays correct
+      // even while scrolling through sections that have no nav item (features, roi,
+      // demo), instead of leaving a stale highlight the way an IntersectionObserver
+      // limited to a subset of sections would.
+      let navSpyFrame = 0;
 
-          if (visibleEntry) {
-            setActiveNavLink(visibleEntry.target.id);
-          } else if (window.scrollY < window.innerHeight * 0.38) {
-            setActiveNavLink("");
+      function updateActiveNavOnScroll() {
+        navSpyFrame = 0;
+        // Full navbar at the very top; let it fade back once the page scrolls down.
+        document.body.classList.toggle("is-scrolled", window.scrollY > 8);
+        const headerHeight = document.querySelector(".header")?.offsetHeight || 0;
+        const referenceLine = headerHeight + Math.max(12, window.innerHeight * 0.18);
+
+        let activeId = "home";
+        navTargets.forEach((target) => {
+          if (target.getBoundingClientRect().top <= referenceLine) {
+            activeId = target.id;
           }
-        },
-        {
-          threshold: [0.24, 0.42, 0.6],
-          rootMargin: "-12% 0px -55% 0px"
-        }
-      );
+        });
 
-      navTargets.forEach((target) => navObserver.observe(target));
+        // At the very bottom, short trailing sections may never cross the line, so
+        // force the final nav target active.
+        const atBottom =
+          window.innerHeight + window.scrollY >=
+          document.documentElement.scrollHeight - 4;
+        if (atBottom && navTargets.length) {
+          activeId = navTargets[navTargets.length - 1].id;
+        }
+
+        setActiveNavLink(activeId);
+      }
+
+      function requestNavSpyUpdate() {
+        if (navSpyFrame) return;
+        navSpyFrame = window.requestAnimationFrame(updateActiveNavOnScroll);
+      }
+
+      window.addEventListener("scroll", requestNavSpyUpdate, { passive: true });
+      window.addEventListener("resize", requestNavSpyUpdate);
+      updateActiveNavOnScroll();
 
       window.addEventListener("popstate", () => {
         const target = getHashTarget(window.location.hash);
@@ -1591,12 +1662,24 @@
         window.setTimeout(() => {
           const target = getHashTarget(window.location.hash);
           if (target) {
-            scrollToPageTarget(target);
+            if (isDirectJumpNavigation()) {
+              window.scrollTo({
+                top: getTargetScrollTop(target),
+                behavior: "auto"
+              });
+              cleanNavigationQuery();
+            } else {
+              scrollToPageTarget(target);
+            }
             setActiveNavLink(target.id);
           }
         }, 80);
       } else {
-        setActiveNavLink("");
+        if (isDirectJumpNavigation()) {
+          window.scrollTo({ top: 0, behavior: "auto" });
+          cleanNavigationQuery();
+        }
+        setActiveNavLink("home");
       }
     }
     let contactSubmitted = false;
@@ -1662,6 +1745,7 @@
         htmlLang: "el",
         navLabel: "Κύρια πλοήγηση",
         languageLabel: "Επιλογή γλώσσας",
+        navHome: "Αρχική",
         navFeatures: "Λειτουργίες",
         navAi: "AI πρόσθετα",
         navPlans: "Πλάνα",
@@ -1939,6 +2023,7 @@
         htmlLang: "en",
         navLabel: "Main navigation",
         languageLabel: "Language selection",
+        navHome: "Home",
         navFeatures: "Features",
         navAi: "AI Add-ons",
         navPlans: "Plans",
@@ -3119,6 +3204,7 @@ and not the duration of the call itself.`,
     initHeroLeftColumn();
     initHeroScrollMorph();
     initPageNavigation();
+    restoreFeaturesReturnPoint();
     initMobileNav();
 
     [roiUsersInput, roiCallsInput, roiLostTimeInput, roiHourlyCostInput].forEach((input) => {
@@ -3274,7 +3360,7 @@ and not the duration of the call itself.`,
       const target = document.getElementById("features") || document.querySelector(".comparison");
       if (!target) return;
       scrollToPageTarget(target, "#features");
-      setActiveNavLink("features");
+      // #features has no nav item; let the scrollspy resolve the active link.
     });
 
     function initPopupDemo(wrapper) {

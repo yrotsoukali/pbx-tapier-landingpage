@@ -167,13 +167,36 @@ section[id] {
 }
 
 .header {
-  position: relative;
-  z-index: 5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
   width: 100%;
   padding: 14px 32px;
   display: grid;
   grid-template-columns: minmax(180px, 1fr) auto minmax(180px, 1fr);
   align-items: center;
+  background: transparent;
+}
+
+/* Backdrop lives on a pseudo-element so it can be masked to a soft fade instead of
+   the hard bottom edge a full-height background leaves. No blur — just a gentle,
+   low-contrast gradient that trails off before the header ends. */
+.header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(5, 6, 7, 0.66) 0%,
+    rgba(5, 6, 7, 0.3) 52%,
+    rgba(5, 6, 7, 0) 100%
+  );
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 46%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 46%, transparent 100%);
 }
 
 .logo-block {
@@ -237,6 +260,21 @@ section[id] {
   border: 1px solid rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  /* Fully visible while the page is at the top; recedes discreetly once the user
+     scrolls down (see body.is-scrolled), and always returns when they reach for it. */
+  opacity: 1;
+  transition: opacity 0.32s ease;
+}
+
+body.is-scrolled .navbar {
+  opacity: 0.3;
+}
+
+/* Reaching for the menu always brings it fully forward, even while scrolled.
+   Scoped under body.is-scrolled so it outranks the faded rule above. */
+body.is-scrolled .navbar:hover,
+body.is-scrolled .navbar:focus-within {
+  opacity: 1;
 }
 
 .navbar a {
@@ -267,27 +305,18 @@ section[id] {
     0 0 0 5px rgba(255, 85, 0, 0.2);
 }
 
-.navbar a.active,
-.navbar a.navbar__demo {
+.navbar a.active {
   padding-inline: 16px;
-  color: rgba(255, 238, 224, 0.9);
-  font-weight: 650;
-  background: rgba(255, 255, 255, 0.032);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.06),
-    0 5px 14px rgba(0, 0, 0, 0.16),
-    0 0 18px rgba(255, 90, 31, 0.12);
-}
-
-.navbar a.navbar__demo:hover {
   color: rgba(255, 255, 255, 0.96);
-  background: rgba(255, 138, 61, 0.075);
-  border-color: rgba(255, 255, 255, 0.12);
+  font-weight: 650;
+  background:
+    radial-gradient(circle at 50% 100%, rgba(255, 106, 47, 0.16), transparent 70%),
+    rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 106, 47, 0.18);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
     0 6px 16px rgba(0, 0, 0, 0.18),
-    0 0 22px rgba(255, 90, 31, 0.18);
+    0 0 24px rgba(255, 90, 31, 0.16);
 }
 
 .navbar a:active {
@@ -327,6 +356,19 @@ section[id] {
   width: 1px;
   height: 14px;
   background: rgba(255, 255, 255, 0.28);
+}
+
+.features-header {
+  position: fixed;
+  top: 0;
+  z-index: 50;
+  grid-template-columns: minmax(180px, 1fr) auto minmax(180px, 1fr);
+}
+
+.features-brand {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
 }
 
 .nav-toggle {
@@ -1854,6 +1896,155 @@ body[data-language="en"] .feature-ticker {
     0 28px 64px rgba(0, 0, 0, 0.18);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
+}
+
+.features-page__section {
+  padding-top: clamp(72px, 8vw, 108px);
+}
+
+.features-page .call-recognition__header {
+  margin-bottom: clamp(58px, 7vw, 86px);
+}
+
+.features-page .call-recognition__features {
+  gap: clamp(72px, 8vw, 112px);
+}
+
+.features-page .call-recognition__background::before,
+.features-page .call-recognition__background::after {
+  inset: -40px -8% -40px;
+  background-repeat: repeat-y;
+  background-position: center 320px;
+  background-size: 100% 2200px;
+  mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.1) 5%, #000 13%, #000 94%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.1) 5%, #000 13%, #000 94%, transparent 100%);
+}
+
+.features-page .call-recognition__background::before {
+  opacity: 0.5;
+  filter:
+    blur(0.45px)
+    drop-shadow(0 0 10px rgba(255, 84, 24, 0.38))
+    drop-shadow(0 0 34px rgba(255, 84, 24, 0.18));
+}
+
+.features-page .call-recognition__background::after {
+  opacity: 0.2;
+  filter: blur(2.2px);
+}
+
+.features-placeholder {
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.features-placeholder::before {
+  content: "";
+  position: absolute;
+  inset: 14%;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: inherit;
+  background:
+    radial-gradient(circle at 24% 28%, rgba(255, 106, 47, 0.2), transparent 28%),
+    radial-gradient(circle at 74% 68%, rgba(255, 255, 255, 0.06), transparent 32%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 28px 64px rgba(0, 0, 0, 0.14);
+}
+
+.features-placeholder::after {
+  content: "";
+  position: absolute;
+  width: 46%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 106, 47, 0.9), transparent);
+  box-shadow:
+    0 0 14px rgba(255, 84, 24, 0.56),
+    0 0 38px rgba(255, 84, 24, 0.28);
+  transform: rotate(-18deg);
+}
+
+.features-placeholder span {
+  position: relative;
+  z-index: 1;
+  color: rgba(255, 255, 255, 0.08);
+  font-size: clamp(5rem, 12vw, 11rem);
+  font-weight: 800;
+  letter-spacing: -0.08em;
+  line-height: 1;
+}
+
+.features-return {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(72px, 8vw, 112px);
+}
+
+.features-return__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  padding: 0 20px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.68);
+  background:
+    radial-gradient(circle at 50% 100%, rgba(255, 106, 47, 0.11), transparent 70%),
+    rgba(255, 255, 255, 0.035);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.055),
+    0 16px 36px rgba(0, 0, 0, 0.18);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  transition:
+    color 0.22s ease,
+    border-color 0.22s ease,
+    background-color 0.22s ease,
+    box-shadow 0.22s ease,
+    transform 0.22s ease;
+}
+
+.features-return__link::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #ff6a2f;
+  box-shadow: 0 0 18px rgba(255, 106, 47, 0.62);
+  transition:
+    width 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.features-return__link:hover {
+  color: rgba(255, 255, 255, 0.94);
+  border-color: rgba(255, 106, 47, 0.22);
+  background-color: rgba(255, 255, 255, 0.052);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.075),
+    0 18px 42px rgba(0, 0, 0, 0.22),
+    0 0 24px rgba(255, 90, 31, 0.12);
+  transform: translateY(-2px);
+}
+
+.features-return__link:hover::before {
+  width: 22px;
+  box-shadow: 0 0 24px rgba(255, 106, 47, 0.78);
+}
+
+.features-return__link:focus-visible {
+  outline: none;
+  border-color: rgba(255, 106, 47, 0.38);
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.18),
+    0 0 0 5px rgba(255, 106, 47, 0.16);
 }
 
 @keyframes feature-ticker-scroll {
@@ -4976,10 +5167,9 @@ button.ai-scene__action:hover {
     pointer-events: auto;
   }
 
-  /* The header (position:relative; z-index:5) traps the navbar in its own stacking
-     context, so a high navbar z-index still sits below the fixed scrim (z-index 39).
-     Lift the whole header above the scrim while the menu is open so its links — and
-     the toggle — stay on top and clickable. */
+  /* Keep the header (and its toggle + open navbar dropdown) above the fixed scrim
+     (z-index 39) while the mobile menu is open, so its links stay clickable.
+     The header is already fixed at z-index 50, so this just makes the intent explicit. */
   body.nav-open .header {
     z-index: 50;
   }
@@ -5587,6 +5777,30 @@ button.ai-scene__action:hover {
   .call-recognition__visual {
     min-height: 360px;
     border-radius: 18px;
+  }
+
+  .features-header {
+    grid-template-columns: 1fr auto auto;
+    gap: 12px;
+  }
+
+  .features-brand,
+  .features-header .logo-block {
+    min-width: 0;
+  }
+
+  .features-page__section {
+    padding-top: 42px;
+  }
+
+  .features-return {
+    margin-top: 56px;
+  }
+
+  .features-return__link {
+    min-height: 40px;
+    padding: 0 16px;
+    font-size: 13px;
   }
 
   .ai-addons {
