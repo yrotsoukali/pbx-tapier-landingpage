@@ -4815,6 +4815,42 @@ button.ai-scene__action:hover {
   outline-offset: 4px;
 }
 
+/* Laptop / short-viewport hero fit (13" and similar).
+   These sizes don't run the scroll-morph (see heroStaticDesktopQuery in index.html),
+   so the hero must fit as a static layout. The base hero is a rigid height:100vh flex
+   column with a large padding-bottom, which leaves too little room on shorter screens
+   and makes the content block collide with the ticker. Here we let the hero grow when
+   it can't fit (min-height instead of a fixed height) and tighten the vertical rhythm so
+   the copy, image and ticker never overlap at any width or height above the mobile break. */
+@media (min-width: 901px) and (max-width: 1440px),
+       (min-width: 901px) and (max-height: 940px) {
+  .hero-pin {
+    min-height: 100vh;
+  }
+
+  .hero {
+    height: auto;
+    min-height: 100vh;
+    padding-bottom: 32px;
+  }
+
+  .hero__content {
+    padding: clamp(24px, 4vh, 64px) 0 clamp(18px, 2.6vh, 40px);
+    gap: clamp(28px, 3vw, 56px);
+  }
+}
+
+/* Narrower desktops/laptops: keep the copy from crowding out the image. */
+@media (min-width: 901px) and (max-width: 1200px) {
+  .hero-pin {
+    --hero-copy-min: 340px;
+  }
+
+  .hero__copy {
+    max-width: 420px;
+  }
+}
+
 /* Mobile overrides for sections below (moved here so they win the cascade over later-defined base rules) */
 @media (max-width: 900px) {
   .hero-pin {

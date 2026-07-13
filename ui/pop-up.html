@@ -18,6 +18,9 @@
       --mint: #d7f7df;
       --mint-text: #17371f;
       --active: #42f1ba;
+      --row-hover: #1a2433;
+      --row-selected: #222e40;
+      --row-accent: #ff851b;
     }
 
     * {
@@ -143,24 +146,46 @@
 
     .call-popup__contact-row {
       height: 119px;
-      padding: 0 12px 0 11px;
+      padding: 0;
       background: var(--panel-inner);
       border-radius: 5px;
+      overflow: hidden;
     }
 
     .call-popup__contact-line {
+      position: relative;
       height: 30px;
+      padding: 0 12px 0 11px;
       display: grid;
       grid-template-columns: 19px max-content minmax(72px, 1fr);
       align-items: center;
       column-gap: 10px;
       background: transparent;
-      border-radius: 7px;
+      border-radius: 0;
       transition: background-color 160ms ease;
+      cursor: default;
     }
 
     .call-popup__contact-line:hover {
-      background: #1b2738;
+      background: var(--row-hover);
+    }
+
+    .call-popup__contact-line.is-selected,
+    .call-popup__contact-line[aria-selected="true"] {
+      background: var(--row-selected);
+    }
+
+    .call-popup__contact-line.is-selected::before,
+    .call-popup__contact-line[aria-selected="true"]::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 3px;
+      background: var(--row-accent);
+      border-radius: 0 3px 3px 0;
+      box-shadow: 0 0 8px rgba(255, 133, 27, 0.32);
     }
 
     .call-popup__people-icon {
@@ -296,8 +321,8 @@
     </header>
 
     <main class="call-popup__body">
-      <div class="call-popup__contact-row">
-        <div class="call-popup__contact-line">
+      <div class="call-popup__contact-row" role="listbox" aria-label="Contact records">
+        <div class="call-popup__contact-line" role="option" aria-selected="false" tabindex="0">
           <svg class="call-popup__people-icon" viewBox="0 0 19 18" aria-hidden="true">
             <path d="M6.1 8.1c2.23 0 4.05 1.82 4.05 4.05v2.15H1.7v-2.15C1.7 9.92 3.87 8.1 6.1 8.1Z"></path>
             <circle cx="6.1" cy="4.45" r="3.05"></circle>
@@ -328,6 +353,7 @@
     const callDuration = document.getElementById("callDuration");
     const callTimer = document.getElementById("callTimer");
     const contactsIcon = document.querySelector(".call-popup__people-icon");
+    const contactLines = Array.from(document.querySelectorAll(".call-popup__contact-line"));
     const params = new URLSearchParams(window.location.search);
     const translations = {
       el: {
@@ -358,6 +384,7 @@
       ? "2"
       : "1";
     const contactsTone = params.get("contacts");
+    const selectedRow = params.get("selected");
     let connectedAt = null;
     let timerInterval = null;
 
@@ -365,6 +392,38 @@
     popup.classList.toggle("call-popup--has-balance", selectedCase === "2");
     contactsIcon?.classList.toggle("call-popup__people-icon--accent", contactsTone === "orange");
     document.documentElement.lang = language;
+
+    function selectContactLine(selectedLine) {
+      contactLines.forEach((line) => {
+        const isSelected = line === selectedLine;
+        line.classList.toggle("is-selected", isSelected);
+        line.setAttribute("aria-selected", String(isSelected));
+      });
+    }
+
+    contactLines.forEach((line) => {
+      line.addEventListener("click", () => selectContactLine(line));
+      line.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        event.preventDefault();
+        selectContactLine(line);
+      });
+    });
+
+    if (selectedRow === "1" || selectedRow === "true") {
+      selectContactLine(contactLines[0]);
+    }
+
+    window.addEventListener("message", (event) => {
+      if (event.data?.type !== "popup-row-select") return;
+
+      if (event.data.selected) {
+        selectContactLine(contactLines[0]);
+        return;
+      }
+
+      selectContactLine(null);
+    });
 
     document.querySelectorAll("[data-i18n]").forEach((element) => {
       const key = element.dataset.i18n;

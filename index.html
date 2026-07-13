@@ -1373,10 +1373,10 @@
       return Math.max(0, Math.min(1, -rect.top / morphDistance));
     }
 
-    function applyHeroMorph(progress) {
+    function applyHeroMorph(progress, force = false) {
       if (!heroPin) return;
       const eased = progress * progress * (3 - 2 * progress);
-      if (Math.abs(eased - heroMorphProgress) < 0.001) return;
+      if (!force && Math.abs(eased - heroMorphProgress) < 0.001) return;
       heroMorphProgress = eased;
       heroPin.style.setProperty("--hero-morph", eased.toFixed(4));
       heroPin.style.setProperty("--hero-content-max", `${interpolateValue(1480, 1720, eased)}px`);
@@ -1403,6 +1403,7 @@
     }
 
     const heroMobileQuery = window.matchMedia("(max-width: 900px)");
+    const heroStaticDesktopQuery = window.matchMedia("(max-width: 1440px), (max-height: 940px)");
     let heroPopupTimer = 0;
 
     // Keep the popup the same share of the hero image width at every screen size,
@@ -1421,12 +1422,12 @@
       heroCallPopup.style.setProperty("--hero-popup-scale", scale.toFixed(4));
     }
 
-    function updateHeroScrollMorph() {
+    function updateHeroScrollMorph(force = false) {
       heroMorphFrame = 0;
       // On mobile the hero isn't pinned, so there is no scroll-driven morph.
-      if (!heroPin || heroMobileQuery.matches) return;
+      if (!heroPin || heroMobileQuery.matches || heroStaticDesktopQuery.matches) return;
       heroPin.style.setProperty("--hero-pin-distance", `${getHeroMorphDistance() + getHeroHoldDistance()}px`);
-      applyHeroMorph(getHeroMorphProgress());
+      applyHeroMorph(getHeroMorphProgress(), force);
       updateHeroPopupScale();
     }
 
@@ -1439,7 +1440,7 @@
       // No scroll animation on mobile: reset to rest, then auto-reveal the popup after 1s.
       window.removeEventListener("scroll", queueHeroScrollMorph);
       heroPin.style.setProperty("--hero-pin-distance", "0px");
-      applyHeroMorph(0);
+      applyHeroMorph(0, true);
       updateHeroPopupScale();
       window.clearTimeout(heroPopupTimer);
       heroPopupTimer = window.setTimeout(() => {
@@ -1448,17 +1449,41 @@
       }, 1000);
     }
 
+    function enterHeroStaticDesktopMode() {
+      // Laptop-sized desktop viewports cannot give the visual a meaningful zoom.
+      // Keep the hero still instead of running a scroll morph that only reflows.
+      window.removeEventListener("scroll", queueHeroScrollMorph);
+      heroPin.style.setProperty("--hero-pin-distance", "0px");
+      applyHeroMorph(0, true);
+      updateHeroPopupScale();
+      window.clearTimeout(heroPopupTimer);
+      heroPopupTimer = window.setTimeout(() => {
+        heroPin.classList.add("is-hero-complete");
+        setHeroCallPopup(true);
+      }, 700);
+    }
+
     function enterHeroDesktopMode() {
       window.clearTimeout(heroPopupTimer);
       window.addEventListener("scroll", queueHeroScrollMorph, { passive: true });
-      updateHeroScrollMorph();
+      updateHeroScrollMorph(true);
+    }
+
+    function updateHeroMode() {
+      if (heroMobileQuery.matches) {
+        enterHeroMobileMode();
+      } else if (heroStaticDesktopQuery.matches) {
+        enterHeroStaticDesktopMode();
+      } else {
+        enterHeroDesktopMode();
+      }
     }
 
     function initHeroScrollMorph() {
       if (!heroPin) return;
       if (prefersReducedMotion.matches) {
         heroPin.style.setProperty("--hero-pin-distance", "0px");
-        applyHeroMorph(1);
+        applyHeroMorph(1, true);
         updateHeroPopupScale();
         window.addEventListener("resize", updateHeroPopupScale);
         return;
@@ -1466,12 +1491,9 @@
       window.addEventListener("resize", queueHeroScrollMorph);
       window.addEventListener("resize", updateHeroPopupScale);
       updateHeroPopupScale();
-      if (heroMobileQuery.matches) enterHeroMobileMode();
-      else enterHeroDesktopMode();
-      heroMobileQuery.addEventListener("change", (event) => {
-        if (event.matches) enterHeroMobileMode();
-        else enterHeroDesktopMode();
-      });
+      updateHeroMode();
+      heroMobileQuery.addEventListener("change", updateHeroMode);
+      heroStaticDesktopQuery.addEventListener("change", updateHeroMode);
     }
 
     function getHashTarget(hash) {
@@ -2400,7 +2422,7 @@ and not the duration of the call itself.`,
         comparisonLeftValue,
         0,
         selected.comparisonStatLeftNumber,
-        2400,
+        1900,
         (value) => formatDecimalStatValue(value, selected.comparisonStatLeftPrefix, selected.comparisonStatLeftSuffix),
         runId
       );
@@ -3265,6 +3287,13 @@ and not the duration of the call itself.`,
           frame.src = buildLocalizedSrc(src, activeLanguage, true);
         }
 
+        function setPopupRowSelected(selected) {
+          frame?.contentWindow?.postMessage({
+            type: "popup-row-select",
+            selected
+          }, "*");
+        }
+
         function setPatchCase(caseId) {
           if (!casePatch) return;
           const isCaseTwo = caseId === "2";
@@ -3331,6 +3360,7 @@ and not the duration of the call itself.`,
               historyFrame.src = buildLocalizedSrc("ui/history.html", activeLanguage, true);
             }
             loadFrame(popupSrc);
+            setPopupRowSelected(false);
 
             frameTimeouts.push(setTimeout(() => {
               wrapper.classList.add("is-cursor-visible");
@@ -3342,6 +3372,7 @@ and not the duration of the call itself.`,
 
             frameTimeouts.push(setTimeout(() => {
               wrapper.classList.add("is-right-clicking");
+              setPopupRowSelected(true);
             }, 2000));
 
             frameTimeouts.push(setTimeout(() => {
