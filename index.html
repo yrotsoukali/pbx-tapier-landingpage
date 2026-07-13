@@ -105,6 +105,8 @@
               alt="Soft1 interface"
               id="heroImage"
               class="hero-image"
+              fetchpriority="high"
+              decoding="async"
             />
             <img
               src="images/softone.png"
@@ -112,6 +114,7 @@
               aria-hidden="true"
               id="heroImageFade"
               class="hero-image hero-image--fade"
+              decoding="async"
             />
 
             <iframe
@@ -3241,7 +3244,8 @@ and not the duration of the call itself.`,
         });
       },
       {
-        threshold: 0.42
+        threshold: 0.42,
+        rootMargin: "300px 0px 300px 0px"
       }
     );
 
@@ -3258,7 +3262,7 @@ and not the duration of the call itself.`,
       },
       {
         threshold: 0.22,
-        rootMargin: "0px 0px -6% 0px"
+        rootMargin: "400px 0px 400px 0px"
       }
     );
 

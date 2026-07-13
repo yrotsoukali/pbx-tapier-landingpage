@@ -2414,6 +2414,7 @@ body[data-language="en"] .feature-ticker {
   position: absolute;
   inset: -24% -38%;
   pointer-events: none;
+  transform: translateZ(0);
 }
 
 .ai-addons__background::before {
@@ -2423,7 +2424,7 @@ body[data-language="en"] .feature-ticker {
     radial-gradient(circle at 54% 26%, rgba(110, 214, 255, 0.2) 0%, rgba(110, 214, 255, 0.09) 8%, rgba(110, 214, 255, 0.02) 14%, transparent 24%),
     radial-gradient(circle at 76% 62%, rgba(74, 152, 255, 0.2) 0%, rgba(74, 152, 255, 0.09) 8%, rgba(74, 152, 255, 0.02) 14%, transparent 24%),
     radial-gradient(circle at 92% 32%, rgba(104, 214, 255, 0.18) 0%, rgba(104, 214, 255, 0.08) 7%, rgba(104, 214, 255, 0.02) 13%, transparent 22%);
-  filter: blur(20px);
+  filter: blur(12px);
   opacity: 0.78;
 }
 
@@ -2433,7 +2434,7 @@ body[data-language="en"] .feature-ticker {
     radial-gradient(circle at 34% 22%, rgba(118, 222, 255, 0.14) 0%, rgba(118, 222, 255, 0.06) 6%, rgba(118, 222, 255, 0.015) 12%, transparent 20%),
     radial-gradient(circle at 60% 74%, rgba(84, 190, 255, 0.14) 0%, rgba(84, 190, 255, 0.06) 6%, rgba(84, 190, 255, 0.015) 12%, transparent 20%),
     radial-gradient(circle at 86% 18%, rgba(70, 160, 255, 0.14) 0%, rgba(70, 160, 255, 0.06) 6%, rgba(70, 160, 255, 0.015) 12%, transparent 20%);
-  filter: blur(26px);
+  filter: blur(16px);
   opacity: 0.56;
 }
 
@@ -2444,8 +2445,10 @@ body[data-language="en"] .feature-ticker {
 
 .ai-addons__glow {
   border-radius: 999px;
-  filter: blur(64px);
+  filter: blur(32px);
   opacity: 0.56;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .ai-addons__glow--blue {
