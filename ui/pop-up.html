@@ -152,6 +152,32 @@
       overflow: hidden;
     }
 
+    .call-popup__note {
+      display: none;
+      height: 18px;
+      padding: 0 10px;
+      color: #ff5f56;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 17px;
+      letter-spacing: 0.08px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .call-popup--has-note .call-popup__body {
+      padding-top: 4px;
+    }
+
+    .call-popup--has-note .call-popup__note {
+      display: block;
+    }
+
+    .call-popup--has-note .call-popup__contact-row {
+      height: 101px;
+    }
+
     .call-popup__contact-line {
       position: relative;
       height: 30px;
@@ -321,6 +347,7 @@
     </header>
 
     <main class="call-popup__body">
+      <div class="call-popup__note" id="customerNote">Τηλεφωνική ενημέρωση πριν την παράδοση.</div>
       <div class="call-popup__contact-row" role="listbox" aria-label="Contact records">
         <div class="call-popup__contact-line" role="option" aria-selected="false" tabindex="0">
           <svg class="call-popup__people-icon" viewBox="0 0 19 18" aria-hidden="true">
@@ -353,6 +380,7 @@
     const callDuration = document.getElementById("callDuration");
     const callTimer = document.getElementById("callTimer");
     const contactsIcon = document.querySelector(".call-popup__people-icon");
+    const customerNote = document.getElementById("customerNote");
     const contactLines = Array.from(document.querySelectorAll(".call-popup__contact-line"));
     const params = new URLSearchParams(window.location.search);
     const translations = {
@@ -385,11 +413,15 @@
       : "1";
     const contactsTone = params.get("contacts");
     const selectedRow = params.get("selected");
+    const hasNote = params.get("notes") === "1" || params.get("notes") === "true";
+    const noteText = params.get("noteText");
     let connectedAt = null;
     let timerInterval = null;
 
     popup.dataset.case = selectedCase;
     popup.classList.toggle("call-popup--has-balance", selectedCase === "2");
+    popup.classList.toggle("call-popup--has-note", hasNote);
+    if (customerNote && noteText) customerNote.textContent = noteText;
     contactsIcon?.classList.toggle("call-popup__people-icon--accent", contactsTone === "orange");
     document.documentElement.lang = language;
 

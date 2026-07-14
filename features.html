@@ -210,8 +210,17 @@
               <h2 class="call-recognition__heading" data-feature-heading>Ό,τι πρέπει να ξέρεις. Εκεί που πρέπει να το δεις.</h2>
               <p class="call-recognition__text" data-feature-text>Οι σημαντικές παρατηρήσεις εμφανίζονται κάτω από το όνομα του πελάτη, ώστε να έχεις την απαραίτητη πληροφορία πριν ξεκινήσει η συζήτηση.</p>
             </div>
-            <div class="call-recognition__visual features-placeholder" aria-hidden="true">
-              <span>04</span>
+            <div class="call-recognition__visual" aria-hidden="true">
+              <div class="popup-demo" data-popup="6" data-popup-src="ui/pop-up.html?case=1&notes=1">
+                <iframe class="popup-demo__frame" title="PBX popup customer notes demo" src="ui/pop-up.html?case=1&notes=1"></iframe>
+                <button class="popup-demo__replay" type="button" hidden>
+                  <svg class="popup-demo__replay-icon" viewBox="0 0 16 16" aria-hidden="true">
+                    <path d="M13 6.2A5.2 5.2 0 1 0 14 9"></path>
+                    <path d="M13.1 2.5v3.7H9.4"></path>
+                  </svg>
+                  <span data-i18n="replayLabel">Replay</span>
+                </button>
+              </div>
             </div>
           </article>
 
@@ -269,8 +278,16 @@
               <h2 class="call-recognition__heading" data-feature-heading>Η εργασία καταχωρείται όπως δουλεύει η επιχείρησή σου.</h2>
               <p class="call-recognition__text" data-feature-text>Δημιούργησε νέα εργασία μέσα από μια φόρμα πλήρως προσαρμοσμένη στις ανάγκες και τις διαδικασίες της επιχείρησής σου.</p>
             </div>
-            <div class="call-recognition__visual features-placeholder" aria-hidden="true">
-              <span>07</span>
+            <div class="call-recognition__visual task-form-demo">
+              <iframe
+                class="task-form-demo__frame"
+                title="Παραμετροποιήσιμη φόρμα εργασίας"
+                src="ui/task-form.html?embed=features"
+              ></iframe>
+              <p class="task-form-demo__note">
+                <span class="task-form-demo__info-icon" aria-hidden="true">i</span>
+                <span class="task-form-demo__note-text">Ζωντανή φόρμα: γράψε, επίλεξε πεδία και άνοιξε τα μενού.</span>
+              </p>
             </div>
           </article>
 
@@ -280,8 +297,23 @@
               <h2 class="call-recognition__heading" data-feature-heading>Ένα κλικ. Όλες οι σωστές ενέργειες.</h2>
               <p class="call-recognition__text" data-feature-text>Με το πάτημα του κεραυνού, εκτελούνται αυτόματα προκαθορισμένες ενέργειες προσαρμοσμένες στις διαδικασίες της επιχείρησής σου.</p>
             </div>
-            <div class="call-recognition__visual features-placeholder" aria-hidden="true">
-              <span>08</span>
+            <div class="call-recognition__visual automation-demo" aria-hidden="true">
+              <div class="automation-demo__stage">
+                <iframe
+                  class="automation-demo__frame"
+                  title="PBX task automation demo"
+                  src="ui/task-form.html?demo=automation"
+                  tabindex="-1"
+                ></iframe>
+              </div>
+              <span class="automation-demo__cursor" aria-hidden="true"></span>
+              <button class="popup-demo__replay automation-demo__replay" type="button" hidden>
+                <svg class="popup-demo__replay-icon" viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M13 6.2A5.2 5.2 0 1 0 14 9"></path>
+                  <path d="M13.1 2.5v3.7H9.4"></path>
+                </svg>
+                <span data-i18n="replayLabel">Replay</span>
+              </button>
             </div>
           </article>
 
@@ -832,10 +864,130 @@
       popupDemos.forEach((wrapper) => popupObserver.observe(wrapper));
     }
 
+    function configureAutomationDemo(demo) {
+      const rect = demo.getBoundingClientRect();
+      const startScale = Math.min(1, (rect.width - 48) / 508, (rect.height - 48) / 513);
+      const startX = (rect.width - (508 * startScale)) / 2;
+      const startY = (rect.height - (513 * startScale)) / 2;
+      const targetScale = Math.min(1.85, Math.max(1.55, rect.width / 360));
+      const lightningX = 30;
+      const lightningY = 492;
+      const targetX = (rect.width / 2) - (lightningX * targetScale);
+      const targetY = (rect.height / 2) - (lightningY * targetScale);
+
+      demo.style.setProperty("--automation-start-scale", startScale.toString());
+      demo.style.setProperty("--automation-start-x", `${startX}px`);
+      demo.style.setProperty("--automation-start-y", `${startY}px`);
+      demo.style.setProperty("--automation-target-scale", targetScale.toString());
+      demo.style.setProperty("--automation-target-x", `${targetX}px`);
+      demo.style.setProperty("--automation-target-y", `${targetY}px`);
+    }
+
+    function initAutomationDemos() {
+      const demos = document.querySelectorAll(".automation-demo");
+      if (!demos.length) return;
+
+      const zoomTimers = new WeakMap();
+      demos.forEach(configureAutomationDemo);
+
+      function clearAutomationTimers(demo) {
+        (zoomTimers.get(demo) || []).forEach(window.clearTimeout);
+        zoomTimers.set(demo, []);
+      }
+
+      function addAutomationTimer(demo, callback, delay) {
+        const timers = zoomTimers.get(demo) || [];
+        timers.push(window.setTimeout(callback, delay));
+        zoomTimers.set(demo, timers);
+      }
+
+      function resetAutomationState(demo) {
+        demo.classList.remove(
+          "is-zoomed",
+          "is-cursor-visible",
+          "is-cursor-target",
+          "is-clicking"
+        );
+        demo.querySelector(".automation-demo__frame")?.contentWindow?.postMessage({
+          type: "task-form-flash-hover",
+          active: false
+        }, "*");
+      }
+
+      function playAutomationDemo(demo) {
+        const replayBtn = demo.querySelector(".automation-demo__replay");
+        clearAutomationTimers(demo);
+        if (replayBtn) replayBtn.hidden = true;
+        resetAutomationState(demo);
+
+        window.requestAnimationFrame(() => {
+          configureAutomationDemo(demo);
+          addAutomationTimer(demo, () => {
+            demo.classList.add("is-zoomed");
+            addAutomationTimer(demo, () => {
+              demo.classList.add("is-cursor-visible");
+            }, 720);
+            addAutomationTimer(demo, () => {
+              demo.classList.add("is-cursor-target");
+            }, 900);
+            addAutomationTimer(demo, () => {
+              demo.querySelector(".automation-demo__frame")?.contentWindow?.postMessage({
+                type: "task-form-flash-hover",
+                active: true
+              }, "*");
+            }, 1700);
+            addAutomationTimer(demo, () => {
+              demo.classList.add("is-clicking");
+            }, 1780);
+            addAutomationTimer(demo, () => {
+              demo.classList.remove("is-clicking");
+            }, 1960);
+            addAutomationTimer(demo, () => {
+              if (replayBtn) replayBtn.hidden = false;
+            }, 2500);
+          }, 1000);
+        });
+      }
+
+      demos.forEach((demo) => {
+        demo.querySelector(".automation-demo__replay")?.addEventListener("click", () => {
+          playAutomationDemo(demo);
+        });
+      });
+
+      window.addEventListener("resize", () => {
+        demos.forEach((demo) => {
+          configureAutomationDemo(demo);
+        });
+      });
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const demo = entry.target;
+            clearAutomationTimers(demo);
+
+            if (!entry.isIntersecting) {
+              resetAutomationState(demo);
+              const replayBtn = demo.querySelector(".automation-demo__replay");
+              if (replayBtn) replayBtn.hidden = true;
+              return;
+            }
+
+            playAutomationDemo(demo);
+          });
+        },
+        { threshold: 0.45 }
+      );
+
+      demos.forEach((demo) => observer.observe(demo));
+    }
+
     configureReturnHomeLink();
     setLanguage(window.localStorage.getItem("pbx-language") || "el");
     initNavbarScrollFade();
     initPopupDemos();
+    initAutomationDemos();
   </script>
 </body>
 </html>

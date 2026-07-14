@@ -26,6 +26,14 @@
       place-items: start;
     }
 
+    body.is-features-embed {
+      width: 100vw;
+      height: 100vh;
+      min-height: 0;
+      place-items: center;
+      overflow: hidden;
+    }
+
     .task-window {
       position: relative;
       width: 508px;
@@ -36,6 +44,11 @@
       overflow: visible;
       font-size: 12px;
       line-height: 1;
+    }
+
+    body.is-features-embed .task-window {
+      transform: scale(var(--task-form-embed-scale, 1));
+      transform-origin: center center;
     }
 
     .titlebar {
@@ -714,12 +727,32 @@
       border: 1px solid #b9c1cb;
       border-radius: 6px;
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, .8);
+      cursor: pointer;
+      transition:
+        box-shadow 140ms ease,
+        background-color 140ms ease;
     }
 
     .flash svg {
       width: 13px;
       height: 15px;
       fill: #213a56;
+      transition:
+        fill 140ms ease,
+        filter 140ms ease;
+    }
+
+    .flash:hover,
+    .flash:focus-visible {
+      background: #fff;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .8);
+    }
+
+    .flash:hover svg,
+    .flash:focus-visible svg,
+    .flash.is-demo-hover svg {
+      fill: #f0b400;
+      filter: drop-shadow(0 0 3px rgba(255, 196, 0, .42));
     }
 
     .save {
@@ -898,6 +931,21 @@
     </footer>
   </section>
   <script>
+    const isFeaturesEmbed = new URLSearchParams(window.location.search).get("embed") === "features";
+
+    function syncFeatureEmbedScale() {
+      const availableWidth = window.innerWidth - 8;
+      const availableHeight = window.innerHeight - 8;
+      const scale = Math.min(1, availableWidth / 508, availableHeight / 513);
+      document.documentElement.style.setProperty("--task-form-embed-scale", String(scale));
+    }
+
+    if (isFeaturesEmbed) {
+      document.body.classList.add("is-features-embed");
+      syncFeatureEmbedScale();
+      window.addEventListener("resize", syncFeatureEmbedScale);
+    }
+
     const currentDateText = document.getElementById("currentDateText");
     const currentTimeText = document.getElementById("currentTimeText");
     const now = new Date();
@@ -1008,6 +1056,12 @@
       closeRelatedDropdown();
       closeSubjectDropdown();
       closeSimpleCombos();
+    });
+
+    const flashButton = document.querySelector(".flash");
+    window.addEventListener("message", (event) => {
+      if (event.data?.type !== "task-form-flash-hover") return;
+      flashButton?.classList.toggle("is-demo-hover", Boolean(event.data.active));
     });
   </script>
 </body>
