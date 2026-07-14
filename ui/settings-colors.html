@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ρυθμίσεις - Χρωματισμός Κλήσεων</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+      background: #ffffff;
+      color: #243348;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+    }
+
+    body {
+      display: grid;
+      place-items: start;
+      overflow: auto;
+    }
+
+    .settings-window {
+      position: relative;
+      width: 1134px;
+      height: 720px;
+      overflow: hidden;
+      background: #ffffff;
+      border: 1px solid #d1d7df;
+      border-radius: 0 0 5px 5px;
+    }
+
+    .topbar {
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      background: #3d4754;
+      color: #ffffff;
+    }
+
+    .phone-icon {
+      width: 21px;
+      height: 21px;
+      margin-right: 11px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .top-title {
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .brand {
+      margin-left: 9px;
+      color: #7ec7ff;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .license {
+      margin-left: auto;
+      padding-top: 0;
+      color: #82c8ff;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .layout {
+      position: absolute;
+      inset: 52px 0 53px 0;
+      display: grid;
+      grid-template-columns: 176px 1fr;
+      background: #ffffff;
+    }
+
+    .sidebar {
+      background: #2b3846;
+      color: #6f8092;
+      border-right: 0;
+    }
+
+    .nav-list {
+      margin: 10px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .nav-item {
+      height: 44px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 0 14px;
+      color: #68798b;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .nav-item:nth-child(3),
+    .nav-item:nth-child(4),
+    .nav-item:nth-child(9) {
+      color: #9dc4e6;
+    }
+
+    .nav-item svg {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 auto;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.55;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: 1;
+    }
+
+    .nav-item--general {
+      color: #667789;
+    }
+
+    .nav-item--general svg {
+      width: 17px;
+      height: 17px;
+      stroke-width: 1.45;
+    }
+
+    .nav-item--utilities {
+      color: #627486;
+    }
+
+    .nav-item--utilities svg {
+      width: 18px;
+      height: 18px;
+      stroke-width: 1.55;
+    }
+
+    .nav-item--asterisk {
+      color: #627486;
+    }
+
+    .nav-item--asterisk svg {
+      width: 16px;
+      height: 16px;
+      margin-left: 1px;
+      margin-right: 1px;
+      stroke-width: 1.35;
+    }
+
+    .nav-item--active {
+      height: 44px;
+      color: #9dcef1;
+      background: #205f8f;
+    }
+
+    .content {
+      position: relative;
+      min-width: 0;
+      background: #ffffff;
+    }
+
+    .content-head {
+      height: 48px;
+      display: flex;
+      align-items: center;
+      padding: 0 14px 0 15px;
+      background: #f6f7f9;
+      border-bottom: 1px solid #d9dfe6;
+    }
+
+    .section-title {
+      margin: 0;
+      color: #17233a;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .actions {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .action-btn {
+      height: 35px;
+      min-width: 96px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 0 12px;
+      color: #7f8b97;
+      background: #f5f8fb;
+      border: 1px solid #cfd7e1;
+      border-radius: 6px;
+      font: 400 12px/1 "Segoe UI", Tahoma, Arial, sans-serif;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, .02);
+    }
+
+    .action-btn svg {
+      width: 12px;
+      height: 12px;
+      flex: 0 0 auto;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.9;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .action-btn--add {
+      min-width: 96px;
+      color: #77848d;
+      background: #c4ccd3;
+      border-color: #c4ccd3;
+      border-radius: 4px;
+      box-shadow: none;
+    }
+
+    .action-btn--filled {
+      min-width: 92px;
+      color: #77848d;
+      background: #c4ccd3;
+      border-color: #c4ccd3;
+      border-radius: 4px;
+      box-shadow: none;
+    }
+
+    .table {
+      width: 100%;
+      color: #4b5b70;
+      font-size: 12px;
+    }
+
+    .table-row {
+      display: grid;
+      grid-template-columns: 70px 330px 90px 90px 60px 1fr;
+      align-items: center;
+      height: 34px;
+      border-bottom: 1px solid #e8edf2;
+    }
+
+    .table-row--head {
+      height: 31px;
+      color: #10213a;
+      background: #edf1f5;
+      font-size: 11px;
+      font-weight: 700;
+      border-bottom-color: #d7dee7;
+    }
+
+    .table-row--data:nth-child(odd) {
+      background: #f5f8fb;
+    }
+
+    .table-cell {
+      min-width: 0;
+      padding: 0 8px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .table-cell--center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .table-row--head .table-cell {
+      color: #10213a;
+    }
+
+    .checkbox {
+      position: relative;
+      width: 14px;
+      height: 14px;
+      display: inline-block;
+      background: #eeeeee;
+      border: 1px solid #c5c8ca;
+    }
+
+    .checkbox--checked::after {
+      content: "";
+      position: absolute;
+      left: 3px;
+      top: 1px;
+      width: 6px;
+      height: 9px;
+      border: solid #777d83;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+
+    .swatch {
+      width: 48px;
+      height: 19px;
+      display: inline-block;
+      border-radius: 4px;
+    }
+
+    .style-cell {
+      color: #495b72;
+      text-align: left;
+    }
+
+    .sql {
+      color: #35456b;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 11px;
+      letter-spacing: -.1px;
+    }
+
+    .footer {
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 53px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      padding: 0 19px;
+      background: #ffffff;
+      border-top: 1px solid #dfe4eb;
+    }
+
+    .footer-btn {
+      height: 35px;
+      min-width: 93px;
+      padding: 0 17px;
+      border-radius: 5px;
+      font: 400 12px/1 "Segoe UI", Tahoma, Arial, sans-serif;
+    }
+
+    .footer-btn--save {
+      color: #ffffff;
+      background: #ef3b1d;
+      border: 1px solid #ef3b1d;
+      font-weight: 700;
+    }
+
+    .footer-btn--close {
+      color: #2c3648;
+      background: #ffffff;
+      border: 1px solid #d4dbe4;
+    }
+  </style>
+</head>
+<body>
+  <section class="settings-window" aria-label="Ρυθμίσεις χρωματισμού κλήσεων">
+    <header class="topbar">
+      <svg class="phone-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 5 5L16 13l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"></path>
+      </svg>
+      <span class="top-title">Ρυθμίσεις</span>
+      <span class="brand">· PBX INTEGRATOR</span>
+      <span class="license">ΕΝΕΡΓΗ&nbsp; μέχρι 12/6/2027</span>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" aria-label="Μενού ρυθμίσεων">
+        <ul class="nav-list">
+          <li class="nav-item nav-item--general">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="2.75"></circle><path d="M19.3 13.3a7.5 7.5 0 0 0 .1-1.3 7.5 7.5 0 0 0-.1-1.3l2-1.55-1.9-3.3-2.35.95a7.9 7.9 0 0 0-2.2-1.25L14.5 3h-5l-.35 2.55a7.9 7.9 0 0 0-2.2 1.25L4.6 5.85l-1.9 3.3 2 1.55a7.5 7.5 0 0 0-.1 1.3 7.5 7.5 0 0 0 .1 1.3l-2 1.55 1.9 3.3 2.35-.95a7.9 7.9 0 0 0 2.2 1.25L9.5 21h5l.35-2.55a7.9 7.9 0 0 0 2.2-1.25l2.35.95 1.9-3.3-2-1.55Z"></path></svg>
+            <span>Γενικά</span>
+          </li>
+          <li class="nav-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5h3l1.8 4.7-2 1.4a12.2 12.2 0 0 0 5.1 5.1l1.4-2 4.6 1.8v3a2.2 2.2 0 0 1-2.4 2.2A15.7 15.7 0 0 1 4.4 6a2.2 2.2 0 0 1 2.2-2.5Z"></path></svg>
+            <span>Κλήσεις</span>
+          </li>
+          <li class="nav-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.4" r="3.5"></circle><path d="M5.2 20.2c.8-4.2 3.1-6.3 6.8-6.3s6 2.1 6.8 6.3"></path></svg>
+            <span>Χρήστης</span>
+          </li>
+          <li class="nav-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13.8 19.5 9.5v7L4 13.8Z"></path><path d="M6.4 14.3v3.9"></path><path d="M19.5 9.5v7"></path></svg>
+            <span>Καμπάνιες</span>
+          </li>
+          <li class="nav-item nav-item--utilities">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.7-3.8a6 6 0 0 1-7.9 8L6.6 20.4a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 8-7.9l-3.8 3.7Z"></path></svg>
+            <span>Utilities</span>
+          </li>
+          <li class="nav-item nav-item--active">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4.5H5.8a1.8 1.8 0 0 0-1.8 1.8v11.9A1.8 1.8 0 0 0 5.8 20h11.9a1.8 1.8 0 0 0 1.8-1.8V10"></path><path d="m9.2 14.8-.7 3 3-.7 7.9-7.9-2.3-2.3-7.9 7.9Z"></path><path d="m15.8 8.2 2.3 2.3"></path></svg>
+            <span>Call Style</span>
+          </li>
+          <li class="nav-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.8 20.4 20H3.6L12 4.8Z"></path><path d="M12 10.5v4"></path><path d="M12 17.5h.01"></path></svg>
+            <span>Actions</span>
+          </li>
+          <li class="nav-item nav-item--asterisk">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 16V6.5l8 2.1V18"></path><path d="M8 16.3c0 1.1-1.2 2-2.7 2s-2.7-.9-2.7-2 1.2-2 2.7-2 2.7.9 2.7 2Z"></path><path d="M16 18c0 1.1-1.2 2-2.7 2s-2.7-.9-2.7-2 1.2-2 2.7-2 2.7.9 2.7 2Z"></path></svg>
+            <span>Asterisk</span>
+          </li>
+          <li class="nav-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.2"></circle><path d="M12 11v5.2"></path><path d="M12 7.8h.01"></path></svg>
+            <span>Πληροφορίες</span>
+          </li>
+        </ul>
+      </aside>
+
+      <main class="content">
+        <div class="content-head">
+          <h1 class="section-title">Χρωματισμός Κλήσεων</h1>
+          <div class="actions" aria-label="Ενέργειες">
+            <button class="action-btn action-btn--add" type="button">+ Προσθήκη</button>
+            <button class="action-btn" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 20h4.4L19.7 8.7l-4.4-4.4L4 15.6V20Z"></path>
+                <path d="m13.9 5.7 4.4 4.4"></path>
+              </svg>
+              <span>Επεξεργασία</span>
+            </button>
+            <button class="action-btn action-btn--filled" type="button">− Αφαίρεση</button>
+          </div>
+        </div>
+
+        <div class="table" role="table" aria-label="Χρωματισμός Κλήσεων">
+          <div class="table-row table-row--head" role="row">
+            <div class="table-cell">Ενεργό</div>
+            <div class="table-cell">Σημειώσεις</div>
+            <div class="table-cell table-cell--center">Φόντο</div>
+            <div class="table-cell table-cell--center">Γράμματα</div>
+            <div class="table-cell">Στήλη</div>
+            <div class="table-cell">SQL (preview)</div>
+          </div>
+
+          <div class="table-row table-row--data" role="row">
+            <div class="table-cell table-cell--center"><span class="checkbox"></span></div>
+            <div class="table-cell">Ανοιχτό Υπόλοιπο &gt;30 Ημέρες</div>
+            <div class="table-cell table-cell--center"><span class="swatch" style="background:#ffff73"></span></div>
+            <div class="table-cell table-cell--center"><span class="swatch" style="background:#000000"></span></div>
+            <div class="table-cell style-cell">0</div>
+            <div class="table-cell sql">SELECT 1 FROM TRDR A LEFT OUTER JOIN TRDFINDA...</div>
+          </div>
+
+          <div class="table-row table-row--data" role="row">
+            <div class="table-cell table-cell--center"><span class="checkbox checkbox--checked"></span></div>
+            <div class="table-cell">Ανοιχτό Υπόλοιπο &gt;60 Ημέρες</div>
+            <div class="table-cell table-cell--center"><span class="swatch" style="background:#ff767d"></span></div>
+            <div class="table-cell table-cell--center"><span class="swatch" style="background:#000000"></span></div>
+            <div class="table-cell style-cell">0</div>
+            <div class="table-cell sql">SELECT 1 FROM TRDR A LEFT OUTER JOIN TRDFINDA...</div>
+          </div>
+
+          <div class="table-row table-row--data" role="row">
+            <div class="table-cell table-cell--center"><span class="checkbox checkbox--checked"></span></div>
+            <div class="table-cell">Ληξιπρόθεσμο συμβόλαιο με επιπλέον ώρες</div>
+            <div class="table-cell table-cell--center"><span class="swatch" style="background:#808600"></span></div>
+            <div class="table-cell table-cell--center"><span class="swatch" style="background:#ffffff"></span></div>
+            <div class="table-cell style-cell">1</div>
+            <div class="table-cell sql">select isactive from CCCADTDRCNTR where trdr...</div>
+          </div>
+
+          <div class="table-row table-row--data" role="row">
+            <div class="table-cell table-cell--center"><span class="checkbox checkbox--checked"></span></div>
+            <div class="table-cell">Ενεργό Συμβόλαιο , ξεπέρασε τις ώρες</div>
+            <div class="table-cell table-cell--center"><span class="swatch" style="background:#ff8000"></span></div>
+            <div class="table-cell table-cell--center"><span class="swatch" style="background:#ffffff"></span></div>
+            <div class="table-cell style-cell">1</div>
+            <div class="table-cell sql">select isactive from CCCADTDRCNTR where trdr...</div>
+          </div>
+
+          <div class="table-row table-row--data" role="row">
+            <div class="table-cell table-cell--center"><span class="checkbox checkbox--checked"></span></div>
+            <div class="table-cell">Ληξ.Συμβ &amp; ξεπερασμένες ώρες</div>
+            <div class="table-cell table-cell--center"><span class="swatch" style="background:#ff0000"></span></div>
+            <div class="table-cell table-cell--center"></div>
+            <div class="table-cell style-cell">1</div>
+            <div class="table-cell sql">select isactive from CCCADTDRCNTR where trdr...</div>
+          </div>
+
+          <div class="table-row table-row--data" role="row">
+            <div class="table-cell table-cell--center"><span class="checkbox checkbox--checked"></span></div>
+            <div class="table-cell">Ενεργό Συμβόλαιο!</div>
+            <div class="table-cell table-cell--center"><span class="swatch" style="background:#46d98a"></span></div>
+            <div class="table-cell table-cell--center"><span class="swatch" style="background:#41dfa1"></span></div>
+            <div class="table-cell style-cell">1</div>
+            <div class="table-cell sql">SELECT 1 FROM CCCADTDRCNTR c INNER JOIN CCCA...</div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <footer class="footer">
+      <button class="footer-btn footer-btn--save" type="button">Αποθήκευση</button>
+      <button class="footer-btn footer-btn--close" type="button">Κλείσιμο</button>
+    </footer>
+  </section>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const lang = params.get("lang") === "en" ? "en" : "el";
+
+    const copy = {
+      el: {
+        title: "Ρυθμίσεις - Χρωματισμός Κλήσεων",
+        windowLabel: "Ρυθμίσεις χρωματισμού κλήσεων",
+        topTitle: "Ρυθμίσεις",
+        license: "ΕΝΕΡΓΗ\u00a0 μέχρι 12/6/2027",
+        sidebarLabel: "Μενού ρυθμίσεων",
+        nav: ["Γενικά", "Κλήσεις", "Χρήστης", "Καμπάνιες", "Utilities", "Call Style", "Actions", "Asterisk", "Πληροφορίες"],
+        sectionTitle: "Χρωματισμός Κλήσεων",
+        actionsLabel: "Ενέργειες",
+        buttons: ["+ Προσθήκη", "Επεξεργασία", "- Αφαίρεση"],
+        tableLabel: "Χρωματισμός Κλήσεων",
+        headers: ["Ενεργό", "Σημειώσεις", "Φόντο", "Γράμματα", "Στήλη", "SQL (preview)"],
+        rows: [
+          "Ανοιχτό Υπόλοιπο >30 Ημέρες",
+          "Ανοιχτό Υπόλοιπο >60 Ημέρες",
+          "Ληξιπρόθεσμο συμβόλαιο με επιπλέον ώρες",
+          "Ενεργό Συμβόλαιο , ξεπέρασε τις ώρες",
+          "Ληξ.Συμβ & ξεπερασμένες ώρες",
+          "Ενεργό Συμβόλαιο!"
+        ],
+        footer: ["Αποθήκευση", "Κλείσιμο"]
+      },
+      en: {
+        title: "Settings - Call Coloring",
+        windowLabel: "Call coloring settings",
+        topTitle: "Settings",
+        license: "ACTIVE\u00a0 until 12/6/2027",
+        sidebarLabel: "Settings menu",
+        nav: ["General", "Calls", "User", "Campaigns", "Utilities", "Call Style", "Actions", "Asterisk", "Information"],
+        sectionTitle: "Call Coloring",
+        actionsLabel: "Actions",
+        buttons: ["+ Add", "Edit", "- Remove"],
+        tableLabel: "Call Coloring",
+        headers: ["Active", "Notes", "Background", "Text", "Style", "SQL (preview)"],
+        rows: [
+          "Open Balance >30 Days",
+          "Open Balance >60 Days",
+          "Overdue contract with extra hours",
+          "Active contract, exceeded hours",
+          "Expired contract & exceeded hours",
+          "Active Contract!"
+        ],
+        footer: ["Save", "Close"]
+      }
+    }[lang];
+
+    document.documentElement.lang = lang;
+    document.title = copy.title;
+    document.querySelector(".settings-window")?.setAttribute("aria-label", copy.windowLabel);
+    document.querySelector(".top-title").textContent = copy.topTitle;
+    document.querySelector(".license").innerHTML = copy.license;
+    document.querySelector(".sidebar")?.setAttribute("aria-label", copy.sidebarLabel);
+    document.querySelectorAll(".nav-item span").forEach((element, index) => {
+      if (copy.nav[index]) element.textContent = copy.nav[index];
+    });
+    document.querySelector(".section-title").textContent = copy.sectionTitle;
+    document.querySelector(".actions")?.setAttribute("aria-label", copy.actionsLabel);
+    const actionButtons = document.querySelectorAll(".action-btn");
+    actionButtons[0].textContent = copy.buttons[0];
+    actionButtons[1].querySelector("span").textContent = copy.buttons[1];
+    actionButtons[2].textContent = copy.buttons[2];
+    document.querySelector(".table")?.setAttribute("aria-label", copy.tableLabel);
+    document.querySelectorAll(".table-row--head .table-cell").forEach((element, index) => {
+      if (copy.headers[index]) element.textContent = copy.headers[index];
+    });
+    document.querySelectorAll(".table-row--data .table-cell:nth-child(2)").forEach((element, index) => {
+      if (copy.rows[index]) element.textContent = copy.rows[index];
+    });
+    document.querySelectorAll(".footer-btn").forEach((element, index) => {
+      if (copy.footer[index]) element.textContent = copy.footer[index];
+    });
+  </script>
+</body>
+</html>

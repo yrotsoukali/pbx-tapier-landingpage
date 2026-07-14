@@ -932,6 +932,145 @@
   </section>
   <script>
     const isFeaturesEmbed = new URLSearchParams(window.location.search).get("embed") === "features";
+    const taskParams = new URLSearchParams(window.location.search);
+    const taskLang = taskParams.get("lang") === "en" ? "en" : "el";
+
+    const taskCopy = {
+      el: {
+        title: "Φόρμα εργασίας",
+        outgoing: "Εξερχόμενη",
+        labels: [
+          "ΣΥΝΑΛΛΑΣΣΟΜΕΝΟΣ",
+          "ΕΠΑΦΗ (ΕΠΙΘ ΟΝΟΜ)",
+          "e-Mail",
+          "ΤΗΛΕΦΩΝΟ",
+          "ΘΕΜΑ",
+          "ΧΑΡΑΚΤΗΡΙΣΜΟΣ",
+          "ΑΝΑΘΕΣΗ ΣΕ"
+        ],
+        aria: {
+          customer: "Συναλλασσόμενος",
+          contact: "Επαφή",
+          phone: "Τηλέφωνο",
+          subject: "Θέμα",
+          category: "Χαρακτηρισμός",
+          assignment: "Ανάθεση σε",
+          reminder: "Υπενθύμιση",
+          notes: "Παρατηρήσεις",
+          related: "Σχετική εργασία",
+          action: "Ενέργεια"
+        },
+        categories: ["", "ΜΗΧΑΝΟΓΡΑΦΙΚΕΣ ΥΠΗΡΕΣΙΕΣ", "ΤΑΜΕΙΑΚΑ ΣΥΣΤΗΜΑΤΑ", "ΤΗΛΕΦΩΝΙΚΑ ΚΕΝΤΡΑ", "ΠΛΗΡΟΦΟΡΙΚΗ"],
+        assignees: ["", "ΤΣΟΥΚΑΛΗΣ ΓΙΩΡΓΟΣ"],
+        radios: ["Χωρίς Ενέργεια", "Ticket", "Εργασία εντός", "Εργασία εκτός"],
+        execution: "ΕΚΤΕΛΕΣΗ",
+        date: "Ημερ.",
+        time: "Ώρα",
+        notesTitle: "ΠΑΡΑΤΗΡΗΣΕΙΣ",
+        relatedLabel: "ΣΧΕΤΙΚΗ ΕΡΓΑΣΙΑ",
+        relatedOptions: [
+          "",
+          "28/06/26 ΠΑΡ0002568 ΠΑΡΑΓΓΕΛΙΑ",
+          "29/06/26 ΠΡΦ0001040 ΠΡΟΣΦΟΡΑ",
+          "29/06/26 ΕΡΓ0001875 (Τσουκάλης) ΝΑ ΒΑΛΟΥΜΕ ΔΩΡΕΑΝ DEMO 30 ΗΜ."
+        ],
+        save: "ΑΠΟΘΗΚΕΥΣΗ",
+        cancel: "Ακύρωση"
+      },
+      en: {
+        title: "Task form",
+        outgoing: "Outgoing",
+        labels: [
+          "ACCOUNT",
+          "CONTACT (DISPLAY NAME)",
+          "e-Mail",
+          "PHONE",
+          "SUBJECT",
+          "CATEGORY",
+          "ASSIGNED TO"
+        ],
+        aria: {
+          customer: "Account",
+          contact: "Contact",
+          phone: "Phone",
+          subject: "Subject",
+          category: "Category",
+          assignment: "Assigned to",
+          reminder: "Reminder",
+          notes: "Notes",
+          related: "Related task",
+          action: "Action"
+        },
+        categories: ["", "IT SERVICES", "POS SYSTEMS", "PHONE SYSTEMS", "INFORMATION TECHNOLOGY"],
+        assignees: ["", "GEORGE TSOUKALIS"],
+        radios: ["No action", "Ticket", "On-site work", "Off-site work"],
+        execution: "EXECUTION",
+        date: "Date",
+        time: "Time",
+        notesTitle: "NOTES",
+        relatedLabel: "RELATED TASK",
+        relatedOptions: [
+          "",
+          "28/06/26 ORD0002568 ORDER",
+          "29/06/26 QTN0001040 QUOTATION",
+          "29/06/26 TSK0001875 (Tsoukalis) SET UP FREE 30-DAY DEMO"
+        ],
+        save: "SAVE",
+        cancel: "Cancel"
+      }
+    }[taskLang];
+
+    function setOptionText(option, value) {
+      option.textContent = value;
+      option.value = value;
+      option.dataset.value = value;
+    }
+
+    function applyTaskLanguage() {
+      document.documentElement.lang = taskLang;
+      document.title = taskCopy.title;
+      document.querySelector(".task-window")?.setAttribute("aria-label", taskCopy.title);
+      const backButton = document.querySelector(".back-button");
+      if (backButton?.lastChild) backButton.lastChild.textContent = ` ${taskCopy.outgoing}`;
+
+      document.querySelectorAll(".field-label").forEach((element, index) => {
+        if (taskCopy.labels[index]) element.textContent = taskCopy.labels[index];
+      });
+
+      document.querySelector(".select-control select")?.setAttribute("aria-label", taskCopy.aria.customer);
+      document.querySelector(".text-control[aria-label]")?.setAttribute("aria-label", taskCopy.aria.contact);
+      document.querySelectorAll(".text-control[aria-label]")[1]?.setAttribute("aria-label", "Email");
+      document.querySelectorAll(".text-control[aria-label]")[2]?.setAttribute("aria-label", taskCopy.aria.phone);
+      document.querySelector(".subject-combo .combo-edit-input")?.setAttribute("aria-label", taskCopy.aria.subject);
+      document.querySelector(".characteristic-combo select")?.setAttribute("aria-label", taskCopy.aria.category);
+      document.querySelector(".assignment-combo select")?.setAttribute("aria-label", taskCopy.aria.assignment);
+      document.querySelector(".bell-cell input")?.setAttribute("aria-label", taskCopy.aria.reminder);
+      document.querySelector(".notes-box")?.setAttribute("aria-label", taskCopy.aria.notes);
+      document.querySelector(".related-combo select")?.setAttribute("aria-label", taskCopy.aria.related);
+      document.querySelector(".flash")?.setAttribute("aria-label", taskCopy.aria.action);
+
+      document.querySelectorAll(".characteristic-combo option, .characteristic-combo .combo-menu__option").forEach((element, index) => {
+        if (taskCopy.categories[index] !== undefined) setOptionText(element, taskCopy.categories[index]);
+      });
+      document.querySelectorAll(".assignment-combo option, .assignment-combo .combo-menu__option").forEach((element, index) => {
+        if (taskCopy.assignees[index] !== undefined) setOptionText(element, taskCopy.assignees[index]);
+      });
+      document.querySelectorAll(".radio-text").forEach((element, index) => {
+        if (taskCopy.radios[index]) element.textContent = taskCopy.radios[index];
+      });
+      document.querySelector(".execution-title").textContent = taskCopy.execution;
+      document.querySelector(".check-group--date > span:nth-of-type(2)").textContent = taskCopy.date;
+      document.querySelector(".check-group--time > span:nth-of-type(2)").textContent = taskCopy.time;
+      document.querySelector(".notes-title").textContent = taskCopy.notesTitle;
+      document.querySelector(".related-label").textContent = taskCopy.relatedLabel;
+      document.querySelectorAll(".related-combo option, .related-option").forEach((element, index) => {
+        if (taskCopy.relatedOptions[index] !== undefined) setOptionText(element, taskCopy.relatedOptions[index]);
+      });
+      document.querySelector(".save").textContent = taskCopy.save;
+      document.querySelector(".cancel").textContent = taskCopy.cancel;
+    }
+
+    applyTaskLanguage();
 
     function syncFeatureEmbedScale() {
       const availableWidth = window.innerWidth - 8;

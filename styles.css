@@ -1832,6 +1832,44 @@ body[data-language="en"] .feature-ticker {
   grid-row: 1;
 }
 
+.call-recognition__feature--call-history {
+  grid-template-columns: minmax(260px, 0.34fr) minmax(0, 0.92fr);
+  align-items: center;
+  justify-items: stretch;
+  gap: clamp(24px, 3vw, 40px);
+}
+
+.call-recognition__feature--wide-visual {
+  grid-template-columns: minmax(0, 0.92fr) minmax(260px, 0.34fr);
+  align-items: center;
+  justify-items: stretch;
+  gap: clamp(24px, 3vw, 40px);
+}
+
+.call-recognition__feature--wide-visual .call-recognition__copy {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: end;
+}
+
+.call-recognition__feature--wide-visual .call-recognition__visual {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.call-recognition__feature--call-history .call-recognition__copy,
+.call-recognition__feature--wide-visual .call-recognition__copy {
+  max-width: 360px;
+  text-align: left;
+}
+
+.call-recognition__feature--call-history .call-recognition__text,
+.call-recognition__feature--wide-visual .call-recognition__text {
+  max-width: 340px;
+  margin-left: 0;
+  margin-right: 0;
+}
+
 .call-recognition__copy {
   max-width: 520px;
 }
@@ -1977,6 +2015,120 @@ body[data-language="en"] .feature-ticker {
   line-height: 1;
 }
 
+.call-recognition__visual.call-history-demo {
+  position: relative;
+  width: min(100%, 980px);
+  min-height: clamp(530px, 48vw, 630px);
+  justify-self: end;
+  overflow: hidden;
+}
+
+.call-recognition__feature--wide-visual .call-recognition__visual {
+  width: min(100%, 980px);
+  min-height: clamp(530px, 48vw, 630px);
+}
+
+.call-history-demo__frame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1068px;
+  height: 651px;
+  border: 0;
+  background: transparent;
+  color-scheme: normal;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.86);
+  transform-origin: center;
+}
+
+.settings-colors-demo {
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+}
+
+.settings-colors-demo__frame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1134px;
+  height: 720px;
+  border: 0;
+  background: transparent;
+  color-scheme: normal;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.82);
+  transform-origin: center;
+}
+
+@media (max-width: 1200px) {
+  .call-history-demo__frame {
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+
+  .settings-colors-demo__frame {
+    transform: translate(-50%, -50%) scale(0.76);
+  }
+}
+
+@media (max-width: 900px) {
+  .call-recognition__feature--call-history,
+  .call-recognition__feature--wide-visual {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .call-recognition__feature--call-history .call-recognition__copy,
+  .call-recognition__feature--call-history .call-recognition__text,
+  .call-recognition__feature--wide-visual .call-recognition__copy,
+  .call-recognition__feature--wide-visual .call-recognition__text {
+    max-width: 100%;
+  }
+
+  .call-recognition__feature--wide-visual .call-recognition__copy,
+  .call-recognition__feature--wide-visual .call-recognition__visual {
+    grid-column: auto;
+    grid-row: auto;
+    justify-self: stretch;
+  }
+
+  .call-recognition__visual.call-history-demo {
+    min-height: 430px;
+  }
+
+  .call-history-demo__frame {
+    transform: translate(-50%, -50%) scale(0.59);
+  }
+
+  .call-recognition__feature--wide-visual .call-recognition__visual {
+    min-height: 320px;
+  }
+
+  .settings-colors-demo__frame {
+    transform: translate(-50%, -50%) scale(0.42);
+  }
+}
+
+@media (max-width: 560px) {
+  /* Fit the whole call-history table inside the column and trim the empty space. */
+  .call-recognition__visual.call-history-demo {
+    min-height: 212px;
+  }
+
+  .call-history-demo__frame {
+    transform: translate(-50%, -50%) scale(0.29);
+  }
+
+  /* Fit the whole colouring dashboard inside the column and trim the empty space. */
+  .call-recognition__feature--wide-visual .call-recognition__visual {
+    min-height: 228px;
+  }
+
+  .settings-colors-demo__frame {
+    transform: translate(-50%, -50%) scale(0.285);
+  }
+}
+
 .call-recognition__visual.task-form-demo {
   position: relative;
   min-height: clamp(570px, 42vw, 620px);
@@ -2101,6 +2253,324 @@ body[data-language="en"] .feature-ticker {
 
 .automation-demo.is-clicking .automation-demo__cursor {
   transform: translate(-112px, 86px) scale(0.88);
+}
+
+.copy-call-demo {
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+}
+
+.copy-call-demo__stage {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transform: translateY(-36px);
+}
+
+.copy-call-demo__stage::after {
+  content: "";
+  position: absolute;
+  left: calc(50% + 112px);
+  top: 382px;
+  z-index: 3;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(20, 20, 20, 0.08);
+  box-shadow: 0 0 0 1px rgba(20, 20, 20, 0.04);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.45);
+  pointer-events: none;
+}
+
+.copy-call-demo.is-clicking .copy-call-demo__stage::after {
+  animation: copy-call-click-flash 180ms ease-out forwards;
+}
+
+.copy-call-demo__document {
+  position: absolute;
+  top: 86px;
+  left: 50%;
+  width: min(78%, 420px);
+  height: 156px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+  padding: 28px 34px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  color: #262626;
+  background: #f4f4f4;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.96),
+    0 24px 54px rgba(0, 0, 0, 0.24);
+  transform: translateX(-50%);
+  transition:
+    opacity 220ms ease,
+    transform 260ms ease;
+}
+
+.copy-call-demo__label {
+  color: #686868;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.copy-call-demo__number {
+  position: relative;
+  width: max-content;
+  max-width: 100%;
+  padding: 2px 4px 3px;
+  color: #111111;
+  font: 700 34px/1.08 "Segoe UI", Tahoma, Arial, sans-serif;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.copy-call-demo__number::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 3px;
+  bottom: 3px;
+  z-index: -1;
+  width: 0;
+  border-radius: 1px;
+  background: #0067c0;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.18) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.08) inset;
+}
+
+.copy-call-demo.is-selecting .copy-call-demo__number::before {
+  animation: copy-call-select 760ms steps(10, end) forwards;
+}
+
+.copy-call-demo.is-selected .copy-call-demo__number::before,
+.copy-call-demo.is-copying .copy-call-demo__number::before,
+.copy-call-demo.is-toast-visible .copy-call-demo__number::before,
+.copy-call-demo.is-click-target .copy-call-demo__number::before,
+.copy-call-demo.is-clicking .copy-call-demo__number::before {
+  width: calc(100% - 4px);
+}
+
+.copy-call-demo.is-selecting .copy-call-demo__number,
+.copy-call-demo.is-selected .copy-call-demo__number,
+.copy-call-demo.is-copying .copy-call-demo__number,
+.copy-call-demo.is-toast-visible .copy-call-demo__number,
+.copy-call-demo.is-click-target .copy-call-demo__number,
+.copy-call-demo.is-clicking .copy-call-demo__number {
+  color: #111111;
+}
+
+.copy-call-demo__copy-badge {
+  position: absolute;
+  top: 256px;
+  left: 50%;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 14px;
+  color: #333333;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 999px;
+  background: #f4f4f4;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.96),
+    0 14px 30px rgba(0, 0, 0, 0.22);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  opacity: 0;
+  transform: translate(-50%, 10px) scale(0.94);
+  transition:
+    opacity 180ms ease,
+    transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.copy-call-demo.is-copying .copy-call-demo__copy-badge,
+.copy-call-demo.is-toast-visible .copy-call-demo__copy-badge,
+.copy-call-demo.is-click-target .copy-call-demo__copy-badge,
+.copy-call-demo.is-clicking .copy-call-demo__copy-badge {
+  opacity: 1;
+  transform: translate(-50%, 0) scale(1);
+}
+
+.copy-call-demo__toast {
+  position: absolute;
+  left: 50%;
+  top: 318px;
+  width: 362px;
+  height: 107px;
+  border: 0;
+  background: transparent;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, 28px) scale(0.96);
+  transform-origin: center;
+  filter: drop-shadow(0 18px 38px rgba(0, 0, 0, 0.28));
+  transition:
+    opacity 240ms ease,
+    transform 540ms cubic-bezier(0.18, 0.82, 0.16, 1),
+    filter 160ms ease;
+}
+
+.copy-call-demo.is-toast-visible .copy-call-demo__toast,
+.copy-call-demo.is-click-target .copy-call-demo__toast,
+.copy-call-demo.is-clicking .copy-call-demo__toast {
+  opacity: 1;
+  transform: translate(-50%, 0) scale(1);
+}
+
+.copy-call-demo.is-clicking .copy-call-demo__toast {
+  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.22)) brightness(0.96);
+  transform: translate(-50%, 1px) scale(0.985);
+}
+
+.copy-call-demo__cursor {
+  position: absolute;
+  left: 50%;
+  top: 172px;
+  z-index: 4;
+  width: 23px;
+  height: 29px;
+  opacity: 0;
+  transform: translate(-176px, -6px) scale(1);
+  background-image: url("data:image/svg+xml,%3Csvg width='23' height='29' viewBox='0 0 23 29' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 2v22.2l6.2-6 4.1 8.3 3.7-1.8-4-8.1h7.8L3 2Z' fill='%23fff' stroke='%23000' stroke-width='1.4' stroke-linejoin='round'/%3E%3Cpath d='M9.2 18.2 13.3 26.5' stroke='%23000' stroke-width='1.2'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.42));
+  pointer-events: none;
+  transition:
+    opacity 180ms ease,
+    transform 760ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.copy-call-demo.is-cursor-visible .copy-call-demo__cursor {
+  opacity: 1;
+}
+
+.copy-call-demo.is-selecting .copy-call-demo__cursor,
+.copy-call-demo.is-selected .copy-call-demo__cursor {
+  opacity: 1;
+}
+
+.copy-call-demo.is-selecting .copy-call-demo__cursor {
+  animation: copy-call-cursor-select 760ms steps(10, end) forwards;
+}
+
+.copy-call-demo.is-selected .copy-call-demo__cursor,
+.copy-call-demo.is-copying .copy-call-demo__cursor,
+.copy-call-demo.is-toast-visible .copy-call-demo__cursor {
+  opacity: 1;
+  transform: translate(36px, -6px) scale(1);
+}
+
+.copy-call-demo.is-click-target .copy-call-demo__cursor {
+  opacity: 1;
+  transform: translate(98px, 206px) scale(1);
+}
+
+.copy-call-demo.is-clicking .copy-call-demo__cursor {
+  opacity: 1;
+  transform: translate(98px, 206px) scale(0.88);
+}
+
+@keyframes copy-call-select {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: calc(100% - 4px);
+  }
+}
+
+@keyframes copy-call-cursor-select {
+  from {
+    transform: translate(-176px, -6px) scale(1);
+  }
+
+  to {
+    transform: translate(36px, -6px) scale(1);
+  }
+}
+
+@keyframes copy-call-click-flash {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.45);
+  }
+
+  34% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.72);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.18);
+  }
+}
+
+/* Fixed-size feature demos: scale to fit the narrow single-column layout */
+@media (max-width: 560px) {
+  /* Live task form is authored at 508px (same as the automation demo); render it at
+     that native width and scale down so nothing gets clipped on narrow screens. */
+  .call-recognition__visual.task-form-demo {
+    min-height: 412px;
+    padding-bottom: 44px;
+  }
+
+  .task-form-demo__frame {
+    top: 0;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    width: 508px;
+    height: 545px;
+    transform: translateX(-50%) scale(0.63);
+    transform-origin: top center;
+  }
+
+  /* Let the caption wrap instead of being clipped on one line. */
+  .task-form-demo__note {
+    white-space: normal;
+    line-height: 1.35;
+  }
+
+  .task-form-demo__note-text {
+    font-size: 11px;
+    line-height: 1.35;
+  }
+
+  /* Copy & call stage uses fixed pixel coordinates; shrink the whole stage so the
+     toast (362px) and the highlighted number stay inside the viewport. */
+  .call-recognition__visual.copy-call-demo {
+    min-height: 420px;
+  }
+
+  .copy-call-demo__stage {
+    transform: translateY(-24px) scale(0.88);
+    transform-origin: top center;
+  }
+
+  .copy-call-demo__document {
+    width: min(86%, 420px);
+    padding: 24px 26px;
+  }
+
+  .copy-call-demo__number {
+    font-size: 30px;
+  }
 }
 
 .features-return {
@@ -4037,12 +4507,13 @@ button.ai-scene__action:hover {
   flex-direction: column;
   padding: 28px 22px 24px;
   border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(132, 139, 154, 0.38);
   background:
-    linear-gradient(180deg, rgba(61, 62, 70, 0.96), rgba(52, 53, 61, 0.96));
+    radial-gradient(circle at 54% 48%, rgba(255, 255, 255, 0.055), transparent 42%),
+    linear-gradient(180deg, rgba(20, 22, 27, 0.97), rgba(10, 12, 16, 0.98));
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    0 18px 42px rgba(0, 0, 0, 0.26);
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 26px 70px rgba(0, 0, 0, 0.48);
 }
 
 .plans,
@@ -4052,13 +4523,15 @@ button.ai-scene__action:hover {
 }
 
 .plans-card--featured {
-  transform: none;
-  border-color: rgba(255, 106, 47, 0.68);
+  border-color: #ff6a18;
   background:
-    linear-gradient(180deg, rgba(62, 63, 71, 0.98), rgba(53, 54, 62, 0.98));
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.06), transparent 44%),
+    linear-gradient(180deg, rgba(19, 21, 26, 0.98), rgba(9, 11, 15, 0.99));
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    0 18px 42px rgba(0, 0, 0, 0.26);
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 0 0 1px rgba(255, 106, 24, 0.18),
+    0 28px 84px rgba(0, 0, 0, 0.52),
+    0 0 54px rgba(255, 106, 24, 0.12);
 }
 
 .plans-card--featured::before {
@@ -4074,22 +4547,22 @@ button.ai-scene__action:hover {
   align-items: center;
   padding: 0 13px;
   border-radius: 999px;
-  border: 1px solid #ff6a2f;
-  background: #383941;
-  color: #ff8a4d;
+  border: 1px solid #ff6a18;
+  background: #08090c;
+  color: #ff7a2f;
   font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    0 8px 18px rgba(0, 0, 0, 0.24);
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 14px 28px rgba(0, 0, 0, 0.42);
   -webkit-font-smoothing: antialiased;
   text-rendering: geometricPrecision;
 }
 
 .plans-card__top {
   padding-bottom: 22px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .plans-card--featured .plans-card__top {
@@ -4109,7 +4582,7 @@ button.ai-scene__action:hover {
   display: flex;
   align-items: baseline;
   gap: 6px;
-  color: #b8bac3;
+  color: #a6a8af;
   font-size: 0.92rem;
   font-weight: 700;
   letter-spacing: -0.015em;
@@ -4132,7 +4605,7 @@ button.ai-scene__action:hover {
 }
 
 .plans-card__inline-subprice {
-  color: #a7aab4;
+  color: #a4a6ad;
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0;
@@ -4190,7 +4663,7 @@ button.ai-scene__action:hover {
 }
 
 .plans-card__feature-muted {
-  color: #9a9da7 !important;
+  color: #9c9ea7 !important;
 }
 
 .plans-card__feature-icon {
@@ -4259,7 +4732,7 @@ button.ai-scene__action:hover {
 .plans-card__mini-icon {
   width: 18px;
   height: 18px;
-  color: #9f91ff;
+  color: #ff6a18;
 }
 
 .plans-card__mini-icon svg {
@@ -4275,7 +4748,7 @@ button.ai-scene__action:hover {
 
 .plans-card__note {
   margin-top: auto;
-  color: #a0a3ad;
+  color: #9d9fa7;
   font-size: 0.76rem;
   font-weight: 600;
   letter-spacing: 0;
@@ -4317,9 +4790,9 @@ button.ai-scene__action:hover {
 
 .plans-card__button--ghost,
 .plans-card__button--primary {
-  border: 1px solid #ff5a27;
-  color: #ff6a2f;
-  background: rgba(255, 86, 28, 0.055);
+  border: 1px solid #ff5a14;
+  color: #ff6a18;
+  background: rgba(255, 86, 28, 0.02);
 }
 
 .plans-card__button:hover {
@@ -4329,8 +4802,8 @@ button.ai-scene__action:hover {
 .plans-card__button--ghost:hover,
 .plans-card__button--primary:hover {
   color: #ffffff;
-  background: rgba(255, 86, 28, 0.14);
-  border-color: rgba(255, 106, 47, 0.94);
+  background: rgba(255, 86, 28, 0.13);
+  border-color: #ff6a18;
 }
 
 .contact-section {
@@ -5221,7 +5694,7 @@ button.ai-scene__action:hover {
     top: auto;
     width: min(100% - 32px, 720px);
     margin-top: 0;
-    padding: 44px 0 28px;
+    padding: 92px 0 28px;
     grid-template-columns: 1fr;
     gap: 34px;
   }
@@ -5690,7 +6163,7 @@ button.ai-scene__action:hover {
 
   .hero__content {
     width: min(100% - 28px, 520px);
-    padding-top: 34px;
+    padding-top: 92px;
     gap: 28px;
   }
 
@@ -5901,7 +6374,7 @@ button.ai-scene__action:hover {
   }
 
   .call-recognition__visual {
-    min-height: 360px;
+    min-height: 412px;
     border-radius: 18px;
   }
 
@@ -5916,7 +6389,7 @@ button.ai-scene__action:hover {
   }
 
   .features-page__section {
-    padding-top: 42px;
+    padding-top: 96px;
   }
 
   .features-return {

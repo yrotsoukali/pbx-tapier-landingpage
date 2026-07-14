@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Call History</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+      background: transparent;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      overflow: visible;
+      text-rendering: geometricPrecision;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      display: grid;
+      place-items: start;
+      padding: 3px 0 0 3px;
+    }
+
+    .call-window {
+      position: relative;
+      width: 1062px;
+      height: 645px;
+      display: flex;
+      flex-direction: column;
+      color: #2b3844;
+      background: #eef0f2;
+      border: 1px solid #c4cad2;
+      box-shadow: 1px 2px 6px rgba(0, 0, 0, .16);
+      overflow: hidden;
+      font-size: 12px;
+      line-height: 1;
+    }
+
+    /* ---------- Title bar ---------- */
+    .titlebar {
+      flex: 0 0 auto;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 20px;
+      background: #2d3e50;
+      color: #ffffff;
+    }
+
+    .titlebar__icon {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 auto;
+      fill: none;
+      stroke: #ffffff;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: .98;
+    }
+
+    .titlebar__title {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+
+    .titlebar__brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #7dcbff;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+
+    .titlebar__brand::before {
+      content: "·";
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .titlebar__count {
+      margin-left: auto;
+      color: #7dcbff;
+      font-size: 12px;
+      font-weight: 400;
+      white-space: nowrap;
+    }
+
+    /* ---------- Toolbar (sits on the gray body) ---------- */
+    .toolbar {
+      flex: 0 0 auto;
+      height: 73px;
+      display: flex;
+      align-items: flex-end;
+      gap: 20px;
+      padding: 14px 0 10px 21px;
+      background: #fbfbfc;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .field__label {
+      color: #657283;
+      font-size: 10px;
+      font-weight: 600;
+      line-height: 12px;
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+
+    .date-wrap {
+      position: relative;
+      width: 160px;
+      height: 33px;
+      display: flex;
+      align-items: center;
+      padding: 0 28px 0 9px;
+      background: #ffffff;
+      border: 1px solid #d8dee7;
+      border-radius: 4px;
+    }
+
+    .date-text {
+      color: #1f2933;
+      font-size: 12px;
+      line-height: 31px;
+      white-space: nowrap;
+    }
+
+    /* small calendar box floating inside the field */
+    .date-picker-icon {
+      position: absolute;
+      top: 50%;
+      right: 8px;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 1px;
+      color: #24303c;
+      background: #ffffff;
+      border: 1px solid #b9c2ce;
+      border-radius: 2px;
+      font-size: 9px;
+      font-weight: 600;
+      line-height: 1;
+      overflow: hidden;
+    }
+
+    .date-picker-icon::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: #649ccb;
+    }
+
+    .user-combo {
+      position: relative;
+      width: 200px;
+      height: 33px;
+      background: #ffffff;
+      border: 1px solid #d8dee7;
+      border-radius: 4px;
+      cursor: default;
+    }
+
+    .user-combo__value {
+      display: block;
+      width: calc(100% - 28px);
+      height: 100%;
+      padding: 0 10px;
+      color: #1f2933;
+      font: 12px/31px "Segoe UI", Tahoma, Arial, sans-serif;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .user-combo::after {
+      content: "";
+      position: absolute;
+      top: 14px;
+      right: 10px;
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 5px solid #5a6a7c;
+      pointer-events: none;
+    }
+
+    .refresh {
+      width: 110px;
+      height: 33px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      justify-content: center;
+      padding: 0 12px;
+      color: #3a4b5e;
+      background: #ffffff;
+      border: 1px solid #d8dee7;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 400;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .refresh:hover {
+      background: #f7f9fb;
+      border-color: #b3bdc9;
+    }
+
+    .refresh__icon {
+      width: 14px;
+      height: 14px;
+      fill: none;
+      stroke: #4a5b6e;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ---------- Table card ---------- */
+    .table-card {
+      flex: 0 0 auto;
+      height: 450px;
+      margin: 12px 16px 0;
+      background: #ffffff;
+      border: 1px solid #e4e9ef;
+      border-radius: 0;
+      box-shadow: 0 1px 5px rgba(38, 53, 68, .08);
+      overflow-y: auto;
+      overflow-x: hidden;
+      scrollbar-color: #c8c8c8 #f1f1f1;
+      scrollbar-width: thin;
+    }
+
+    .table-card::-webkit-scrollbar {
+      width: 16px;
+    }
+
+    .table-card::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-left: 1px solid #e1e5ea;
+    }
+
+    .table-card::-webkit-scrollbar-thumb {
+      background: #c8c8c8;
+      border: 1px solid #f1f1f1;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 90px 110px 132px 166px 130px 90px minmax(174px, 1fr);
+      align-items: center;
+      column-gap: 10px;
+      height: 36px;
+      padding: 0 18px;
+      white-space: nowrap;
+    }
+
+    .row--head {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      height: 38px;
+      background: #f8fafc;
+      border-bottom: 1px solid #e6e9ed;
+      color: #7e8794;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    .row--data {
+      color: #20262d;
+      font-size: 12px;
+      font-weight: 400;
+    }
+
+    .row--data + .row--data {
+      border-top: 1px solid #f3f4f6;
+    }
+
+    .row--data:nth-of-type(even) {
+      background: #fbfbfc;
+    }
+
+    .cell {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .type {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      width: 42px;
+      height: 22px;
+      color: #13a56e;
+      background: #e9fbf1;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .type__icon {
+      width: 12px;
+      height: 12px;
+      flex: 0 0 auto;
+      fill: none;
+      stroke: #13a56e;
+      stroke-width: 1.4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .datetime {
+      color: #20262d;
+    }
+
+    .phone {
+      color: #2f72ff;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .phone:hover {
+      text-decoration: underline;
+    }
+
+    .name {
+      color: #313d49;
+    }
+
+    .ext {
+      color: #46525f;
+    }
+
+    .duration {
+      color: #46525f;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: .2px;
+    }
+
+    .notes {
+      color: #5c6773;
+    }
+
+    /* ---------- Footer (sits on the gray body) ---------- */
+    .footer {
+      flex: 0 0 auto;
+      margin-top: auto;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      background: #ffffff;
+      border-top: 1px solid #dfe4ea;
+    }
+
+    .footer__status {
+      color: #627184;
+      font-size: 12px;
+      font-weight: 400;
+    }
+
+    .close-btn {
+      margin-left: auto;
+      width: 100px;
+      height: 29px;
+      color: #2d3e50;
+      background: #ffffff;
+      border: 1px solid #d5dbe3;
+      border-radius: 5px;
+      font: 400 12px/27px "Segoe UI", Tahoma, Arial, sans-serif;
+      cursor: pointer;
+    }
+
+    .close-btn:hover {
+      background: #f7f9fb;
+      border-color: #a4afbd;
+    }
+  </style>
+</head>
+<body>
+  <section class="call-window" aria-label="Ιστορικό Κλήσεων">
+    <!-- Title bar -->
+    <header class="titlebar">
+      <svg class="titlebar__icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 5 5L16 13l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"></path>
+      </svg>
+      <span class="titlebar__title" data-i18n="title">Ιστορικό Κλήσεων</span>
+      <span class="titlebar__brand">PBX INTEGRATOR</span>
+      <span class="titlebar__count"><span data-count>11</span>&nbsp;<span data-i18n="calls">κλήσεις</span></span>
+    </header>
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <div class="field">
+        <span class="field__label" data-i18n="dateLabel">ΗΜΕΡΟΜΗΝΙΑ</span>
+        <span class="date-wrap">
+          <span class="date-text">14/7/2026</span>
+          <span class="date-picker-icon" aria-hidden="true">15</span>
+        </span>
+      </div>
+
+      <div class="field">
+        <span class="field__label" data-i18n="userLabel">ΧΡΗΣΤΗΣ / ΕΣΩΤΕΡΙΚΟ</span>
+        <div class="user-combo" aria-label="Χρήστης / Εσωτερικό">
+          <span class="user-combo__value">Γιώργος Τσουκάλης</span>
+        </div>
+      </div>
+
+      <button class="refresh" type="button">
+        <svg class="refresh__icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20 11a8 8 0 1 0-.9 5"></path>
+          <path d="M20 5v6h-6"></path>
+        </svg>
+        <span data-i18n="refresh">Ανανέωση</span>
+      </button>
+    </div>
+
+    <!-- Table card -->
+    <div class="table-card">
+      <div class="row row--head">
+        <span class="cell" data-i18n="colType">ΤΥΠΟΣ</span>
+        <span class="cell" data-i18n="colDatetime">ΗΜΕΡ./ΩΡΑ</span>
+        <span class="cell" data-i18n="colPhone">ΤΗΛΕΦΩΝΟ</span>
+        <span class="cell" data-i18n="colName">ΟΝΟΜΑ</span>
+        <span class="cell" data-i18n="colExt">ΕΣΩΤΕΡΙΚΟ</span>
+        <span class="cell" data-i18n="colDuration">ΔΙΑΡΚΕΙΑ</span>
+        <span class="cell" data-i18n="colNotes">ΣΗΜΕΙΩΣΕΙΣ</span>
+      </div>
+
+      <div class="row row--data">
+        <span class="cell type"><svg class="type__icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M11 5 5.4 10.6"></path><path d="M10.4 10.8H5.2V5.6"></path></svg><span data-i18n="incoming">Εισ.</span></span>
+        <span class="cell datetime">14/07 13:42</span>
+        <span class="cell"><a class="phone">2104587421</a></span>
+        <span class="cell name">ΑΛΦΑ ΤΕΧΝΙΚΗ ΙΚΕ</span>
+        <span class="cell ext">Γιώργος Τσουκάλης</span>
+        <span class="cell duration">00:00:36</span>
+        <span class="cell notes">ΖΗΤΗΣΕ ΠΡΟΣΦΟΡΑ ΓΙΑ SUPPORT</span>
+      </div>
+
+      <div class="row row--data">
+        <span class="cell type"><svg class="type__icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M11 5 5.4 10.6"></path><path d="M10.4 10.8H5.2V5.6"></path></svg><span data-i18n="incoming">Εισ.</span></span>
+        <span class="cell datetime">14/07 13:35</span>
+        <span class="cell"><a class="phone">2310401188</a></span>
+        <span class="cell name">NOVA MARKET A.E.</span>
+        <span class="cell ext">Γιώργος Τσουκάλης</span>
+        <span class="cell duration">00:01:12</span>
+        <span class="cell notes">ΝΑ ΣΤΑΛΕΙ EMAIL ΜΕ ΤΙΜΕΣ</span>
+      </div>
+
+      <div class="row row--data">
+        <span class="cell type"><svg class="type__icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M11 5 5.4 10.6"></path><path d="M10.4 10.8H5.2V5.6"></path></svg><span data-i18n="incoming">Εισ.</span></span>
+        <span class="cell datetime">14/07 13:27</span>
+        <span class="cell"><a class="phone">6974412095</a></span>
+        <span class="cell name">ΠΑΠΑΔΟΠΟΥΛΟΣ ΜΑΡΙΟΣ</span>
+        <span class="cell ext">Γιώργος Τσουκάλης</span>
+        <span class="cell duration">00:00:24</span>
+        <span class="cell notes">ΡΑΝΤΕΒΟΥ ΑΥΡΙΟ ΠΡΩΙ</span>
+      </div>
+
+      <div class="row row--data">
+        <span class="cell type"><svg class="type__icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M11 5 5.4 10.6"></path><path d="M10.4 10.8H5.2V5.6"></path></svg><span data-i18n="incoming">Εισ.</span></span>
+        <span class="cell datetime">14/07 13:18</span>
+        <span class="cell"><a class="phone">2117358040</a></span>
+        <span class="cell name">BLUE OFFICE SOLUTIONS</span>
+        <span class="cell ext">Γιώργος Τσουκάλης</span>
+        <span class="cell duration">00:02:05</span>
+        <span class="cell notes">ΕΛΕΓΧΟΣ ΣΥΝΔΕΣΗΣ PBX</span>
+      </div>
+
+      <div class="row row--data">
+        <span class="cell type"><svg class="type__icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M11 5 5.4 10.6"></path><path d="M10.4 10.8H5.2V5.6"></path></svg><span data-i18n="incoming">Εισ.</span></span>
+        <span class="cell datetime">14/07 13:06</span>
+        <span class="cell"><a class="phone">6948826701</a></span>
+        <span class="cell name">ΚΑΡΑΜΑΝΛΗ ΕΛΕΝΗ</span>
+        <span class="cell ext">Γιώργος Τσουκάλης</span>
+        <span class="cell duration">00:00:58</span>
+        <span class="cell notes">ΖΗΤΑ ΕΝΗΜΕΡΩΣΗ ΣΥΜΒΑΣΗΣ</span>
+      </div>
+
+      <div class="row row--data">
+        <span class="cell type"><svg class="type__icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M11 5 5.4 10.6"></path><path d="M10.4 10.8H5.2V5.6"></path></svg><span data-i18n="incoming">Εισ.</span></span>
+        <span class="cell datetime">14/07 12:54</span>
+        <span class="cell"><a class="phone">2310893304</a></span>
+        <span class="cell name">DELTA LOGISTICS ΕΠΕ</span>
+        <span class="cell ext">Γιώργος Τσουκάλης</span>
+        <span class="cell duration">00:00:43</span>
+        <span class="cell notes">ΝΕΑ ΑΠΟΣΤΟΛΗ ΠΑΡΑΣΤΑΤΙΚΟΥ</span>
+      </div>
+
+      <div class="row row--data">
+        <span class="cell type"><svg class="type__icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M11 5 5.4 10.6"></path><path d="M10.4 10.8H5.2V5.6"></path></svg><span data-i18n="incoming">Εισ.</span></span>
+        <span class="cell datetime">14/07 12:41</span>
+        <span class="cell"><a class="phone">6981204477</a></span>
+        <span class="cell name">ΜΕΛΙΣΣΑ ΤΡΟΦΙΜΑ ΟΕ</span>
+        <span class="cell ext">Γιώργος Τσουκάλης</span>
+        <span class="cell duration">00:01:34</span>
+        <span class="cell notes">ΕΠΙΒΕΒΑΙΩΣΗ ΠΑΡΑΓΓΕΛΙΑΣ</span>
+      </div>
+
+      <div class="row row--data">
+        <span class="cell type"><svg class="type__icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M11 5 5.4 10.6"></path><path d="M10.4 10.8H5.2V5.6"></path></svg><span data-i18n="incoming">Εισ.</span></span>
+        <span class="cell datetime">14/07 12:33</span>
+        <span class="cell"><a class="phone">2109915470</a></span>
+        <span class="cell name">OMEGA CONSULTING</span>
+        <span class="cell ext">Γιώργος Τσουκάλης</span>
+        <span class="cell duration">00:00:19</span>
+        <span class="cell notes">ΘΑ ΞΑΝΑΚΑΛΕΣΕΙ ΜΕΤΑ ΤΙΣ 15:00</span>
+      </div>
+
+      <div class="row row--data">
+        <span class="cell type"><svg class="type__icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M11 5 5.4 10.6"></path><path d="M10.4 10.8H5.2V5.6"></path></svg><span data-i18n="incoming">Εισ.</span></span>
+        <span class="cell datetime">14/07 12:20</span>
+        <span class="cell"><a class="phone">6953308216</a></span>
+        <span class="cell name">ΣΤΑΘΗΣ ΝΙΚΟΛΑΟΣ</span>
+        <span class="cell ext">Γιώργος Τσουκάλης</span>
+        <span class="cell duration">00:00:51</span>
+        <span class="cell notes">ΑΠΟΡΙΑ ΓΙΑ ΤΙΜΟΛΟΓΗΣΗ</span>
+      </div>
+
+      <div class="row row--data">
+        <span class="cell type"><svg class="type__icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M11 5 5.4 10.6"></path><path d="M10.4 10.8H5.2V5.6"></path></svg><span data-i18n="incoming">Εισ.</span></span>
+        <span class="cell datetime">14/07 12:08</span>
+        <span class="cell"><a class="phone">2310776042</a></span>
+        <span class="cell name">EASYWARE SYSTEMS</span>
+        <span class="cell ext">Γιώργος Τσουκάλης</span>
+        <span class="cell duration">00:02:18</span>
+        <span class="cell notes">ΤΕΧΝΙΚΟ ΘΕΜΑ ΜΕ ΧΡΗΣΤΗ</span>
+      </div>
+
+      <div class="row row--data">
+        <span class="cell type"><svg class="type__icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M11 5 5.4 10.6"></path><path d="M10.4 10.8H5.2V5.6"></path></svg><span data-i18n="incoming">Εισ.</span></span>
+        <span class="cell datetime">14/07 11:56</span>
+        <span class="cell"><a class="phone">6978501132</a></span>
+        <span class="cell name">GREEN PACK ΜΟΝ. ΙΚΕ</span>
+        <span class="cell ext">Γιώργος Τσουκάλης</span>
+        <span class="cell duration">00:00:47</span>
+        <span class="cell notes">ΑΠΟΣΤΟΛΗ ΝΕΩΝ ΚΩΔΙΚΩΝ</span>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <span class="footer__status"><span data-i18n="lastUpdate">Τελευταία ενημέρωση</span>: <span data-footer-datetime></span></span>
+      <button class="close-btn" type="button" data-i18n="close">Κλείσιμο</button>
+    </footer>
+  </section>
+
+  <script>
+    const translations = {
+      el: {
+        title: "Ιστορικό Κλήσεων",
+        calls: "κλήσεις",
+        dateLabel: "ΗΜΕΡΟΜΗΝΙΑ",
+        userLabel: "ΧΡΗΣΤΗΣ / ΕΣΩΤΕΡΙΚΟ",
+        refresh: "Ανανέωση",
+        colType: "ΤΥΠΟΣ",
+        colDatetime: "ΗΜΕΡ./ΩΡΑ",
+        colPhone: "ΤΗΛΕΦΩΝΟ",
+        colName: "ΟΝΟΜΑ",
+        colExt: "ΕΣΩΤΕΡΙΚΟ",
+        colDuration: "ΔΙΑΡΚΕΙΑ",
+        colNotes: "ΣΗΜΕΙΩΣΕΙΣ",
+        incoming: "Εισ.",
+        lastUpdate: "Τελευταία ενημέρωση",
+        close: "Κλείσιμο",
+        windowLabel: "Ιστορικό Κλήσεων",
+        userComboLabel: "Χρήστης / Εσωτερικό",
+        userName: "Γιώργος Τσουκάλης",
+        names: [
+          "ΑΛΦΑ ΤΕΧΝΙΚΗ ΙΚΕ",
+          "NOVA MARKET A.E.",
+          "ΠΑΠΑΔΟΠΟΥΛΟΣ ΜΑΡΙΟΣ",
+          "BLUE OFFICE SOLUTIONS",
+          "ΚΑΡΑΜΑΝΛΗ ΕΛΕΝΗ",
+          "DELTA LOGISTICS ΕΠΕ",
+          "ΜΕΛΙΣΣΑ ΤΡΟΦΙΜΑ ΟΕ",
+          "OMEGA CONSULTING",
+          "ΣΤΑΘΗΣ ΝΙΚΟΛΑΟΣ",
+          "EASYWARE SYSTEMS",
+          "GREEN PACK ΜΟΝ. ΙΚΕ"
+        ],
+        notes: [
+          "ΖΗΤΗΣΕ ΠΡΟΣΦΟΡΑ ΓΙΑ SUPPORT",
+          "ΝΑ ΣΤΑΛΕΙ EMAIL ΜΕ ΤΙΜΕΣ",
+          "ΡΑΝΤΕΒΟΥ ΑΥΡΙΟ ΠΡΩΙ",
+          "ΕΛΕΓΧΟΣ ΣΥΝΔΕΣΗΣ PBX",
+          "ΖΗΤΑ ΕΝΗΜΕΡΩΣΗ ΣΥΜΒΑΣΗΣ",
+          "ΝΕΑ ΑΠΟΣΤΟΛΗ ΠΑΡΑΣΤΑΤΙΚΟΥ",
+          "ΕΠΙΒΕΒΑΙΩΣΗ ΠΑΡΑΓΓΕΛΙΑΣ",
+          "ΘΑ ΞΑΝΑΚΑΛΕΣΕΙ ΜΕΤΑ ΤΙΣ 15:00",
+          "ΑΠΟΡΙΑ ΓΙΑ ΤΙΜΟΛΟΓΗΣΗ",
+          "ΤΕΧΝΙΚΟ ΘΕΜΑ ΜΕ ΧΡΗΣΤΗ",
+          "ΑΠΟΣΤΟΛΗ ΝΕΩΝ ΚΩΔΙΚΩΝ"
+        ]
+      },
+      en: {
+        title: "Call History",
+        calls: "calls",
+        dateLabel: "DATE",
+        userLabel: "USER / EXTENSION",
+        refresh: "Refresh",
+        colType: "TYPE",
+        colDatetime: "DATE/TIME",
+        colPhone: "PHONE",
+        colName: "NAME",
+        colExt: "EXTENSION",
+        colDuration: "DURATION",
+        colNotes: "NOTES",
+        incoming: "In.",
+        lastUpdate: "Last update",
+        close: "Close",
+        windowLabel: "Call History",
+        userComboLabel: "User / Extension",
+        userName: "George Tsoukalis",
+        names: [
+          "ALPHA TECHNICAL LLC",
+          "NOVA MARKET S.A.",
+          "MARIOS PAPADOPOULOS",
+          "BLUE OFFICE SOLUTIONS",
+          "ELENI KARAMANLI",
+          "DELTA LOGISTICS LTD",
+          "MELISSA FOODS",
+          "OMEGA CONSULTING",
+          "NIKOLAOS STATHIS",
+          "EASYWARE SYSTEMS",
+          "GREEN PACK SINGLE-MEMBER LLC"
+        ],
+        notes: [
+          "REQUESTED A SUPPORT QUOTE",
+          "SEND EMAIL WITH PRICES",
+          "APPOINTMENT TOMORROW MORNING",
+          "PBX CONNECTION CHECK",
+          "ASKS FOR CONTRACT UPDATE",
+          "NEW DOCUMENT DISPATCH",
+          "ORDER CONFIRMATION",
+          "WILL CALL BACK AFTER 15:00",
+          "QUESTION ABOUT INVOICING",
+          "TECHNICAL ISSUE WITH USER",
+          "SEND NEW CODES"
+        ]
+      }
+    };
+
+    function getLanguage() {
+      const params = new URLSearchParams(window.location.search);
+      const requested = params.get("lang");
+      if (requested === "en" || requested === "el") return requested;
+
+      try {
+        const stored = window.localStorage.getItem("pbx-language");
+        if (stored === "en" || stored === "el") return stored;
+      } catch {}
+
+      return document.documentElement.lang === "en" ? "en" : "el";
+    }
+
+    function applyLanguage(lang) {
+      const selected = translations[lang] || translations.el;
+      document.documentElement.lang = lang;
+      document.title = selected.title;
+      document.querySelector(".call-window")?.setAttribute("aria-label", selected.windowLabel);
+      document.querySelector(".user-combo")?.setAttribute("aria-label", selected.userComboLabel);
+      document.querySelector(".user-combo__value").textContent = selected.userName;
+
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const key = element.dataset.i18n;
+        if (selected[key]) element.textContent = selected[key];
+      });
+
+      document.querySelectorAll(".row--data .name").forEach((element, index) => {
+        if (selected.names[index]) element.textContent = selected.names[index];
+      });
+
+      document.querySelectorAll(".row--data .ext").forEach((element) => {
+        element.textContent = selected.userName;
+      });
+
+      document.querySelectorAll(".row--data .notes").forEach((element, index) => {
+        if (selected.notes[index]) element.textContent = selected.notes[index];
+      });
+    }
+
+    applyLanguage(getLanguage());
+
+    function formatDate(value, includeYear = true) {
+      const pad = (number) => String(number).padStart(2, "0");
+      const day = pad(value.getDate());
+      const month = pad(value.getMonth() + 1);
+      if (!includeYear) return `${day}/${month}`;
+      return `${day}/${month}/${value.getFullYear()}`;
+    }
+
+    function formatTime(value, includeSeconds = true) {
+      const pad = (number) => String(number).padStart(2, "0");
+      const hours = pad(value.getHours());
+      const minutes = pad(value.getMinutes());
+      if (!includeSeconds) return `${hours}:${minutes}`;
+      return `${hours}:${minutes}:${pad(value.getSeconds())}`;
+    }
+
+    function applyOpenTimestamp() {
+      const openedAt = new Date();
+      const dateText = document.querySelector(".date-text");
+      const footerDateTime = document.querySelector("[data-footer-datetime]");
+
+      if (dateText) {
+        const day = openedAt.getDate();
+        const month = openedAt.getMonth() + 1;
+        const year = openedAt.getFullYear();
+        dateText.textContent = `${day}/${month}/${year}`;
+      }
+
+      if (footerDateTime) footerDateTime.textContent = formatTime(openedAt);
+    }
+
+    applyOpenTimestamp();
+
+  </script>
+</body>
+</html>

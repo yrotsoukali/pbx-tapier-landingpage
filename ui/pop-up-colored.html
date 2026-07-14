@@ -351,14 +351,16 @@
         popupLabel: "Παράθυρο κλήσης",
         customers: "Πελάτες",
         contacts: "Επαφές",
+        secondaryCompany: "ΤΣΟΥΚΑΛΗΣ (NORTHCOM TECHNOLOGIES)",
         offering: "Offering",
         connected: "Connected",
         ringback: "Επανακλήση"
       },
       en: {
         popupLabel: "Call popup",
-        customers: "Custom...",
+        customers: "Customers",
         contacts: "Contacts",
+        secondaryCompany: "TSOUKALIS (NORTHCOM TECHNOLOGIES)",
         offering: "Offering",
         connected: "Connected",
         ringback: "Ringback"
@@ -403,6 +405,8 @@
       const key = element.dataset.i18nAriaLabel;
       if (copy[key]) element.setAttribute("aria-label", copy[key]);
     });
+
+    document.querySelectorAll(".call-popup__company")[1].textContent = copy.secondaryCompany;
 
     callStatus.textContent = selectedType === "no-vip" ? copy.ringback : copy.offering;
 

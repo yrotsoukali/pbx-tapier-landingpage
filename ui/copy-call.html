@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Copy Call Notification</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+      background: transparent;
+      font-family: "Segoe UI", "Segoe UI Variable", Tahoma, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+      overflow: hidden;
+    }
+
+    body {
+      display: grid;
+      place-items: start;
+    }
+
+    .capture {
+      position: relative;
+      width: 362px;
+      height: 107px;
+      overflow: hidden;
+      background: transparent;
+    }
+
+    .toast {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 362px;
+      height: 107px;
+      padding: 14px 17px 14px 16px;
+      color: #1f1f1f;
+      background: #f4f4f4;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 8px;
+      box-shadow:
+        0 14px 34px rgba(0, 0, 0, 0.32),
+        inset 0 1px 0 rgba(255, 255, 255, 0.96);
+    }
+
+    .toast__header {
+      height: 20px;
+      display: grid;
+      grid-template-columns: 18px minmax(0, 1fr) 24px 20px;
+      align-items: center;
+      column-gap: 2px;
+    }
+
+    .toast__app-icon {
+      width: 14px;
+      height: 14px;
+      margin-left: 1px;
+      color: #f25319;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .toast__app {
+      min-width: 0;
+      color: #282828;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 20px;
+      letter-spacing: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .toast__dots {
+      height: 20px;
+      display: grid;
+      place-items: center;
+      color: #454545;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1;
+      transform: translateY(-2px);
+    }
+
+    .toast__close {
+      width: 20px;
+      height: 20px;
+      display: grid;
+      place-items: center;
+      color: #555;
+    }
+
+    .toast__close svg {
+      width: 11px;
+      height: 11px;
+      display: block;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.35;
+      stroke-linecap: round;
+    }
+
+    .toast__body {
+      margin-top: 16px;
+      padding-left: 0;
+    }
+
+    .toast__title {
+      margin: 0;
+      color: #333333;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 17px;
+      letter-spacing: 0;
+    }
+
+    .toast__number {
+      margin: 1px 0 0;
+      color: #626262;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 17px;
+      letter-spacing: 0;
+    }
+
+  </style>
+</head>
+<body>
+  <main class="capture" aria-label="Ειδοποίηση κλήσης" data-i18n-aria-label="notificationLabel">
+    <section class="toast" aria-label="Κλήση σε 2310257939" data-i18n-aria-label="toastLabel">
+      <header class="toast__header">
+        <svg class="toast__app-icon" viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M8 2.1a5.9 5.9 0 0 1 5.9 5.9c0 3.26-2.64 5.9-5.9 5.9a5.8 5.8 0 0 1-2.64-.63l-2.8.55.55-2.65A5.86 5.86 0 0 1 2.1 8 5.9 5.9 0 0 1 8 2.1Z"></path>
+          <path d="M5.8 5.25c.28 1.96 1.35 3.05 3.46 3.58"></path>
+          <path d="m5.8 5.25 1.05-.38.64 1.35-.72.48"></path>
+          <path d="m9.26 8.83.54-.68 1.36.65-.42 1.03"></path>
+        </svg>
+        <span class="toast__app">xplorer.exe</span>
+        <span class="toast__dots" aria-hidden="true">...</span>
+        <span class="toast__close" aria-hidden="true">
+          <svg viewBox="0 0 12 12">
+            <path d="M2.5 2.5 9.5 9.5"></path>
+            <path d="M9.5 2.5 2.5 9.5"></path>
+          </svg>
+        </span>
+      </header>
+
+      <div class="toast__body">
+        <p class="toast__title" data-i18n="callTo">Κλήση σε</p>
+        <p class="toast__number">2310257939</p>
+      </div>
+    </section>
+  </main>
+  <script>
+    const translations = {
+      el: {
+        htmlLang: "el",
+        notificationLabel: "Ειδοποίηση κλήσης",
+        toastLabel: "Κλήση σε 2310257939",
+        callTo: "Κλήση σε"
+      },
+      en: {
+        htmlLang: "en",
+        notificationLabel: "Call notification",
+        toastLabel: "Call to 2310257939",
+        callTo: "Call to"
+      }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const lang = params.get("lang") === "en" ? "en" : "el";
+    const copy = translations[lang];
+
+    document.documentElement.lang = copy.htmlLang;
+
+    document.querySelectorAll("[data-i18n]").forEach((element) => {
+      const key = element.dataset.i18n;
+      if (copy[key]) element.textContent = copy[key];
+    });
+
+    document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
+      const key = element.dataset.i18nAriaLabel;
+      if (copy[key]) element.setAttribute("aria-label", copy[key]);
+    });
+  </script>
+</body>
+</html>
