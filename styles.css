@@ -2796,8 +2796,10 @@ body[data-language="en"] .feature-ticker {
         overflow: hidden;
       }
 
+      /* Scales come from popup-demo-scale.js; CSS cannot divide a length by a
+         length in Firefox. Falling back to 1 leaves the demo at native size. */
       .popup-demo--history .popup-demo__history-stage {
-        transform: scale(calc((100vw - 40px) / 585px));
+        transform: scale(var(--popup-history-scale, 1));
         transform-origin: center center;
       }
 
@@ -2806,7 +2808,7 @@ body[data-language="en"] .feature-ticker {
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%) scale(calc((100vw - 40px) / 367px));
+        transform: translate(-50%, -50%) scale(var(--popup-demo-scale, 1));
       }
     }
 
