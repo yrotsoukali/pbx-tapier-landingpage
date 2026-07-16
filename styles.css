@@ -20,6 +20,12 @@ section[id] {
   scroll-margin-top: 24px;
 }
 
+/* Hash navigation focuses the destination for assistive technology. Avoid the
+   browser's default outline around the entire non-interactive section. */
+section[id][tabindex="-1"]:focus {
+  outline: none;
+}
+
 .page {
   position: relative;
   width: 100%;
