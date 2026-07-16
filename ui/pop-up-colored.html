@@ -140,7 +140,7 @@
     .call-popup__contact-entry {
       height: 31px;
       display: grid;
-      grid-template-columns: 19px minmax(0, 1fr) 72px;
+      grid-template-columns: 19px minmax(0, 1fr) 84px;
       align-items: start;
       column-gap: 10px;
     }
@@ -178,11 +178,14 @@
 
     .call-popup__badge,
     .call-popup__contacts {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       justify-self: end;
-      width: 72px;
+      width: 84px;
       height: 22px;
       margin: 0;
-      padding: 0 10px;
+      padding: 0 8px;
       border: 1px solid currentColor;
       border-radius: 999px;
       background: rgba(221, 231, 242, 0.09);
