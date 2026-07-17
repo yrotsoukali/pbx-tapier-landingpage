@@ -6771,57 +6771,6 @@ button.ai-scene__action:hover {
     font-size: 2rem;
   }
 
-  .social-proof__logos {
-    width: 100%;
-    height: 76px;
-    min-height: 0;
-    margin-inline: 0;
-    padding: 0;
-    overflow-x: hidden;
-    overflow-y: hidden;
-  }
-
-  .social-proof__logos-edge {
-    display: none;
-  }
-
-  .social-proof__logos-track {
-    width: max-content;
-    min-width: max-content;
-    animation: feature-ticker-scroll 24s linear infinite;
-  }
-
-  .social-proof__logos:hover .social-proof__logos-track {
-    animation-play-state: running;
-  }
-
-  .social-proof__logos-group {
-    display: flex;
-    gap: 8px;
-    width: auto;
-    padding: 0 8px 0 0;
-  }
-
-  .social-proof__logos-group .social-proof__logo:nth-child(n + 5) {
-    display: none;
-  }
-
-  .social-proof__logo {
-    min-width: clamp(112px, 36vw, 148px);
-    width: clamp(112px, 36vw, 148px);
-    height: 52px;
-    padding: 7px 10px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.94);
-    font-size: 0.68rem;
-  }
-
-  .social-proof__logo img {
-    width: 100%;
-    height: 100%;
-  }
-
   .social-proof__review-stage {
     min-height: 0;
     height: auto !important;
