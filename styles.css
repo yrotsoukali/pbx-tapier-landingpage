@@ -6777,15 +6777,8 @@ button.ai-scene__action:hover {
     min-height: 0;
     margin-inline: 0;
     padding: 0;
-    overflow-x: auto;
+    overflow-x: hidden;
     overflow-y: hidden;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x proximity;
-  }
-
-  .social-proof__logos::-webkit-scrollbar {
-    display: none;
   }
 
   .social-proof__logos-edge {
@@ -6795,7 +6788,11 @@ button.ai-scene__action:hover {
   .social-proof__logos-track {
     width: max-content;
     min-width: max-content;
-    animation: none;
+    animation: feature-ticker-scroll 24s linear infinite;
+  }
+
+  .social-proof__logos:hover .social-proof__logos-track {
+    animation-play-state: running;
   }
 
   .social-proof__logos-group {
@@ -6805,7 +6802,6 @@ button.ai-scene__action:hover {
     padding: 0 8px 0 0;
   }
 
-  .social-proof__logos-group + .social-proof__logos-group,
   .social-proof__logos-group .social-proof__logo:nth-child(n + 5) {
     display: none;
   }
@@ -6819,7 +6815,6 @@ button.ai-scene__action:hover {
     border-radius: 12px;
     background: rgba(255, 255, 255, 0.94);
     font-size: 0.68rem;
-    scroll-snap-align: start;
   }
 
   .social-proof__logo img {
