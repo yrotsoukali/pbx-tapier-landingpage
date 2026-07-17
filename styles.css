@@ -4234,21 +4234,36 @@ button.ai-scene__action:hover {
   background: linear-gradient(270deg, rgba(7, 7, 9, 1), rgba(7, 7, 9, 0));
 }
 
+/* The track is always exactly two identical groups, so -50% lands group 2
+   precisely where group 1 started. Deliberately no var()/calc() here: WebKit
+   re-resolves a running animation when a custom property it references is
+   rewritten, and every logo load used to rewrite --ticker-distance. */
+@keyframes social-proof-logos-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
 .social-proof__logos-track {
-  --ticker-distance: 50%;
   display: flex;
   align-items: center;
   width: max-content;
   min-width: max-content;
-  animation: feature-ticker-scroll 30s linear infinite;
-  -webkit-animation: feature-ticker-scroll 30s linear infinite;
+  animation: social-proof-logos-scroll 30s linear infinite;
   will-change: transform;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
 
-.social-proof__logos:hover .social-proof__logos-track {
-  animation-play-state: paused;
+/* Touch devices latch :hover on tap, which would freeze the ticker for good. */
+@media (hover: hover) and (pointer: fine) {
+  .social-proof__logos:hover .social-proof__logos-track {
+    animation-play-state: paused;
+  }
 }
 
 .social-proof__logos-group {
