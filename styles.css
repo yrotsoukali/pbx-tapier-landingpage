@@ -4,6 +4,14 @@
   box-sizing: border-box;
 }
 
+/* Safari/iOS fallback for automatically detected telephone numbers. */
+a[x-apple-data-detectors],
+a[href^="tel:"] {
+  color: inherit !important;
+  font: inherit !important;
+  text-decoration: none !important;
+}
+
 html,
 body {
   width: 100%;
