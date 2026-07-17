@@ -195,8 +195,8 @@ section[id][tabindex="-1"]:focus {
 }
 
 /* Backdrop lives on a pseudo-element so it can be masked to a soft fade instead of
-   the hard bottom edge a full-height background leaves. No blur — just a gentle,
-   low-contrast gradient that trails off before the header ends. */
+   the hard bottom edge a full-height background leaves. Just a gentle, low-contrast
+   gradient that trails off before the header ends; mobile adds a light blur on top. */
 .header::before {
   content: "";
   position: absolute;
@@ -5921,6 +5921,14 @@ button.ai-scene__action:hover {
     padding: 14px 16px;
     grid-template-columns: 1fr auto auto;
     gap: 12px;
+  }
+
+  /* The mask above also clips the backdrop-filter, so the blur fades out on the same
+     curve as the gradient rather than ending in a hard line. Kept to mobile: on desktop
+     the header sits over the hero, which is already soft enough to read against. */
+  .header::before {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
 
   .nav-toggle {
