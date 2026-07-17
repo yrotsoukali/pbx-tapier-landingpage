@@ -675,7 +675,7 @@ body.nav-open .nav-toggle__bar:nth-child(3) {
   width: 100%;
   aspect-ratio: 1920 / 1013;
   overflow: hidden;
-  border-radius: 16px;
+  border-radius: 10px;
   background: #fff;
 }
 
