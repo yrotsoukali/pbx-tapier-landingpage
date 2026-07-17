@@ -692,19 +692,11 @@ body.nav-open .nav-toggle__bar:nth-child(3) {
   display: none;
 }
 
-/* Non-interactive app popup that sits over the Soft1 frame. It runs its own slide-up
-   animation + timer (ui/pop-up.html), so its layout stays untouched: JS only scales the
-   whole frame uniformly (no reflow/distortion) and toggles its visibility here.
-   The popup is part of the scene, so it keeps a fixed share of the frame at every size --
-   --hero-popup-fraction of the frame width, and nothing else. No cap and no floor: either
-   one would hold the popup at a fixed pixel size while the frame kept changing around it,
-   which is exactly what makes it drift out of proportion. */
+/* Popup sizing restored to the v.3.5.0 composition. */
 .hero-call-popup {
-  /* Share of the Soft1 frame's width. ~0.32 is the proportion the popup already had on
-     a desktop at rest, so that composition is preserved -- it now simply holds while the
-     frame grows and shrinks, instead of only being true at one size. */
-  --hero-popup-fraction: 0.32;
-  --hero-popup-scale: 0.32;
+  --hero-popup-fraction: 0.68;
+  --hero-popup-max-scale: 0.84;
+  --hero-popup-scale: 0.84;
   position: absolute;
   right: clamp(10px, 2.4%, 30px);
   bottom: clamp(10px, 2.4%, 30px);
@@ -5813,6 +5805,10 @@ button.ai-scene__action:hover {
   .hero__visual {
     max-width: 820px;
   }
+
+  .hero-call-popup {
+    --hero-popup-fraction: 0.31;
+  }
 }
 
 /* Narrower desktops/laptops: keep the copy from crowding out the image. */
@@ -5870,6 +5866,19 @@ button.ai-scene__action:hover {
 
   .hero__visual {
     width: 100%;
+  }
+
+  /* Give the iframe the frame's real mobile dimensions. softone.html then scales
+     its fixed 1920x1013 canvas internally, so no parent-side scale can go stale. */
+  .hero-softone-viewport .hero-image {
+    width: 100%;
+    height: 100%;
+    zoom: 1;
+    transform: none;
+  }
+
+  .hero-call-popup {
+    --hero-popup-fraction: 0.35;
   }
 
   .hero__title {

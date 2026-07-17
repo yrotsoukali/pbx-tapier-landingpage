@@ -45,6 +45,8 @@
       width: 1920px;
       height: 1013px;
       background: #fff;
+      transform: scale(var(--softone-canvas-scale, 1));
+      transform-origin: top left;
     }
 
     .top-strip {
@@ -613,6 +615,15 @@
       document.querySelectorAll("[data-i18n-aria]").forEach((element) => {
         element.setAttribute("aria-label", copy[element.dataset.i18nAria]);
       });
+
+      const canvas = document.querySelector(".softone-shell");
+      const syncCanvasScale = () => {
+        const scale = window.innerWidth < 1920 ? window.innerWidth / 1920 : 1;
+        canvas.style.setProperty("--softone-canvas-scale", String(scale));
+      };
+
+      syncCanvasScale();
+      window.addEventListener("resize", syncCanvasScale, { passive: true });
     })();
   </script>
 

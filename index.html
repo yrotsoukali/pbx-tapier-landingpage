@@ -1588,18 +1588,13 @@
     const heroImageWrapEl = document.getElementById("heroImageWrap");
     const HERO_POPUP_NATIVE_WIDTH = 367;
     function updateHeroPopupScale() {
-      if (!heroCallPopup || !heroSoftoneViewport) return;
-      // Measured against the app frame, not the wrap around it: the wrap adds a padding
-      // and border that don't scale with it, which would let the popup's share of the
-      // *visible* frame drift as the frame shrank.
-      const frameWidth = heroSoftoneViewport.clientWidth;
-      if (!frameWidth) return;
+      if (!heroCallPopup || !heroImageWrapEl) return;
+      const wrapWidth = heroImageWrapEl.clientWidth;
+      if (!wrapWidth) return;
       const styles = getComputedStyle(heroCallPopup);
-      const fraction = parseFloat(styles.getPropertyValue("--hero-popup-fraction")) || 0.32;
-      // Straight proportion, deliberately unclamped: the popup stays --hero-popup-fraction
-      // of the frame width at every size, so it shrinks and grows with the Soft1 frame
-      // exactly as it would if the two were a single picture.
-      const scale = (fraction * frameWidth) / HERO_POPUP_NATIVE_WIDTH;
+      const fraction = parseFloat(styles.getPropertyValue("--hero-popup-fraction")) || 0.68;
+      const maxScale = parseFloat(styles.getPropertyValue("--hero-popup-max-scale")) || 0.84;
+      const scale = Math.min(maxScale, (fraction * wrapWidth) / HERO_POPUP_NATIVE_WIDTH);
       heroCallPopup.style.setProperty("--hero-popup-scale", scale.toFixed(4));
     }
 
