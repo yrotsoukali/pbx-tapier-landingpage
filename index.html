@@ -101,22 +101,20 @@
 
         <div class="hero__visual" aria-label="Soft1 interface preview">
           <div class="hero-image-wrap" id="heroImageWrap">
-            <img
-              src="images/softone.png"
-              alt="Soft1 interface"
-              id="heroImage"
-              class="hero-image"
-              fetchpriority="high"
-              decoding="async"
-            />
-            <img
-              src="images/softone.png"
-              alt=""
-              aria-hidden="true"
-              id="heroImageFade"
-              class="hero-image hero-image--fade"
-              decoding="async"
-            />
+            <div class="hero-softone-viewport" id="heroSoftoneViewport">
+              <iframe
+                src="ui/softone.html"
+                title="Soft1 interface"
+                id="heroImage"
+                class="hero-image"
+                width="1920"
+                height="1013"
+                loading="eager"
+                scrolling="no"
+                tabindex="-1"
+                aria-hidden="true"
+              ></iframe>
+            </div>
 
             <iframe
               class="hero-call-popup"
@@ -1541,12 +1539,27 @@
       heroPin.style.setProperty("--hero-visual-max", `${interpolateValue(1080, visualMaxEnd, eased)}px`);
       heroPin.style.setProperty("--hero-frame-padding", `${interpolateValue(10, 6, eased)}px`);
       heroPin.style.setProperty("--hero-column-gap", `clamp(32px, 3vw, ${interpolateValue(72, 56, eased)}px)`);
+      syncHeroSoftoneScale();
       const heroComplete = eased >= 0.985;
       heroPin.classList.toggle("is-hero-complete", heroComplete);
       setHeroCallPopup(heroComplete);
     }
 
     const heroCallPopup = document.getElementById("heroCallPopup");
+
+    const heroSoftoneViewport = document.getElementById("heroSoftoneViewport");
+
+    // Zoom the fixed-size iframe in the parent document. Unlike a compositor
+    // transform, zoom redraws text at the displayed size so it stays sharper.
+    function syncHeroSoftoneScale() {
+      if (!heroSoftoneViewport) return;
+      const width = heroSoftoneViewport.clientWidth;
+      if (width) {
+        heroSoftoneViewport.style.setProperty("--hero-softone-scale", String(width / 1920));
+      }
+    }
+
+    heroImage?.addEventListener("load", syncHeroSoftoneScale);
     let heroPopupShown = false;
     function setHeroCallPopup(shouldShow) {
       if (!heroCallPopup || shouldShow === heroPopupShown) return;
@@ -2073,7 +2086,7 @@
         popupOffering: "Offering",
         popupConnected: "Connected",
         popupRingback: "Επανακλήση",
-        heroImage: "images/softone.png",
+        heroImage: "ui/softone.html",
         comparisonItems: [
           ["Χειροκίνητη αναζήτηση πελάτη", "Αυτόματη αναγνώριση καλούντος"],
           ["Ψάχνεις υπόλοιπα και παραγγελίες", "Όλα τα στοιχεία πριν απαντήσεις"],
@@ -2364,7 +2377,7 @@ and not the duration of the call itself.`,
         popupOffering: "Offering",
         popupConnected: "Connected",
         popupRingback: "Ringback",
-        heroImage: "images/softone.png",
+        heroImage: "ui/softone.html",
         comparisonItems: [
           ["Manual customer search", "Automatic caller recognition"],
           ["You search for balances and orders", "Full customer context before you answer"],
@@ -3256,8 +3269,8 @@ and not the duration of the call itself.`,
       languageSwitcher.setAttribute("aria-label", selected.languageLabel);
       featureTicker.setAttribute("aria-label", selected.tickerLabel);
       scrollIndicator.setAttribute("aria-label", selected.scrollLabel);
-      heroImage.setAttribute("src", selected.heroImage);
-      heroImageFade.setAttribute("src", selected.heroImage);
+      heroImage.setAttribute("src", buildLocalizedSrc(selected.heroImage, lang));
+      heroImageFade?.setAttribute("src", selected.heroImage);
       heroCycleWords = Array.isArray(selected.heroCycleWords) ? selected.heroCycleWords : [];
       heroCycleIndex = 0;
       if (heroCycleWord && heroCycleWords.length) {
