@@ -1551,12 +1551,18 @@
 
     // Zoom the fixed-size iframe in the parent document. Unlike a compositor
     // transform, zoom redraws text at the displayed size so it stays sharper.
+    const HERO_SOFTONE_NATIVE_WIDTH = 1920;
+
     function syncHeroSoftoneScale() {
       if (!heroSoftoneViewport) return;
       const width = heroSoftoneViewport.clientWidth;
-      if (width) {
-        heroSoftoneViewport.style.setProperty("--hero-softone-scale", String(width / 1920));
-      }
+      if (!width) return;
+      // The frame holds the app's own aspect ratio, so fitting the width shows it whole
+      // at every size -- always the same picture, never a crop.
+      heroSoftoneViewport.style.setProperty(
+        "--hero-softone-scale",
+        String(width / HERO_SOFTONE_NATIVE_WIDTH)
+      );
     }
 
     heroImage?.addEventListener("load", syncHeroSoftoneScale);
@@ -1582,14 +1588,18 @@
     const heroImageWrapEl = document.getElementById("heroImageWrap");
     const HERO_POPUP_NATIVE_WIDTH = 367;
     function updateHeroPopupScale() {
-      if (!heroCallPopup || !heroImageWrapEl) return;
-      const wrapWidth = heroImageWrapEl.clientWidth;
-      if (!wrapWidth) return;
+      if (!heroCallPopup || !heroSoftoneViewport) return;
+      // Measured against the app frame, not the wrap around it: the wrap adds a padding
+      // and border that don't scale with it, which would let the popup's share of the
+      // *visible* frame drift as the frame shrank.
+      const frameWidth = heroSoftoneViewport.clientWidth;
+      if (!frameWidth) return;
       const styles = getComputedStyle(heroCallPopup);
-      const fraction = parseFloat(styles.getPropertyValue("--hero-popup-fraction")) || 0.68;
-      const maxScale = parseFloat(styles.getPropertyValue("--hero-popup-max-scale")) || 0.84;
-      // Small fixed size on desktop; only shrinks (never grows past it) as the image gets smaller.
-      const scale = Math.min(maxScale, (fraction * wrapWidth) / HERO_POPUP_NATIVE_WIDTH);
+      const fraction = parseFloat(styles.getPropertyValue("--hero-popup-fraction")) || 0.32;
+      // Straight proportion, deliberately unclamped: the popup stays --hero-popup-fraction
+      // of the frame width at every size, so it shrinks and grows with the Soft1 frame
+      // exactly as it would if the two were a single picture.
+      const scale = (fraction * frameWidth) / HERO_POPUP_NATIVE_WIDTH;
       heroCallPopup.style.setProperty("--hero-popup-scale", scale.toFixed(4));
     }
 
@@ -1650,17 +1660,40 @@
       }
     }
 
+    // Both scales are ratios against a measured width, so they go stale on any layout
+    // change. Tying them to the morph is not enough: the morph is skipped entirely on
+    // mobile and on static desktop, and it early-returns when scroll progress hasn't
+    // moved -- so a resize or rotate alone used to leave the zoom stale and the Soft1
+    // iframe drawing wider than its frame, clipping the right of the app. Observing the
+    // elements catches every cause of a size change, scroll-driven or not.
+    function syncHeroScales() {
+      syncHeroSoftoneScale();
+      updateHeroPopupScale();
+    }
+
+    function observeHeroScales() {
+      // Both are idempotent and O(1), so the observer and the events can overlap freely.
+      // The observer is what catches sizing that no event reports (the morph, font loads,
+      // a frame that reflows on its own); the events are what still work if the observer
+      // is unavailable, and cover orientationchange, which can land a frame early on iOS.
+      window.addEventListener("resize", syncHeroScales);
+      window.addEventListener("orientationchange", syncHeroScales);
+      if (typeof ResizeObserver !== "function") return;
+      const observer = new ResizeObserver(syncHeroScales);
+      if (heroSoftoneViewport) observer.observe(heroSoftoneViewport);
+      if (heroImageWrapEl) observer.observe(heroImageWrapEl);
+    }
+
     function initHeroScrollMorph() {
       if (!heroPin) return;
+      observeHeroScales();
       if (prefersReducedMotion.matches) {
         heroPin.style.setProperty("--hero-pin-distance", "0px");
         applyHeroMorph(1, true);
         updateHeroPopupScale();
-        window.addEventListener("resize", updateHeroPopupScale);
         return;
       }
       window.addEventListener("resize", queueHeroScrollMorph);
-      window.addEventListener("resize", updateHeroPopupScale);
       updateHeroPopupScale();
       updateHeroMode();
       heroMobileQuery.addEventListener("change", updateHeroMode);
