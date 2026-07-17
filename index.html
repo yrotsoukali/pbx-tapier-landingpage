@@ -1290,14 +1290,56 @@
             const image = document.createElement("img");
             wrapper.className = "social-proof__logo";
             image.alt = "";
-            image.loading = "eager";
             image.src = source;
             wrapper.appendChild(image);
             group.appendChild(wrapper);
           });
         }
-        // Both groups are identical, which is what lets the CSS scroll by -50%.
+        // Both groups are identical, so travelling exactly one group width loops seamlessly.
         track.appendChild(group);
+      }
+
+      if (typeof track.animate !== "function") return;
+
+      const tickerDuration = 30000;
+      let tickerAnimation = null;
+      let tickerDistance = 0;
+
+      // Absolute pixels, resolved once. A percentage transform renders blank on
+      // WebKit's promoted layer, and a var() read inside @keyframes made the
+      // animation restart every time a logo finished loading.
+      const syncTicker = () => {
+        const firstGroup = track.querySelector(".social-proof__logos-group");
+        if (!firstGroup) return;
+        const distance = Math.round(firstGroup.getBoundingClientRect().width);
+        if (!distance || distance === tickerDistance) return;
+
+        const elapsed = Number(tickerAnimation?.currentTime) || 0;
+        tickerAnimation?.cancel();
+        tickerDistance = distance;
+        tickerAnimation = track.animate(
+          [
+            { transform: "translate3d(0, 0, 0)" },
+            { transform: `translate3d(-${distance}px, 0, 0)` },
+          ],
+          { duration: tickerDuration, iterations: Infinity, easing: "linear" },
+        );
+        tickerAnimation.currentTime = elapsed % tickerDuration;
+      };
+
+      syncTicker();
+      // Re-measure once the logos are decoded, in case they changed the width.
+      Promise.all(
+        Array.from(track.querySelectorAll("img")).map((image) =>
+          typeof image.decode === "function" ? image.decode().catch(() => {}) : null,
+        ),
+      ).then(syncTicker);
+      window.addEventListener("resize", syncTicker, { passive: true });
+
+      const logosBox = track.closest(".social-proof__logos");
+      if (logosBox && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+        logosBox.addEventListener("mouseenter", () => tickerAnimation?.pause());
+        logosBox.addEventListener("mouseleave", () => tickerAnimation?.play());
       }
     }
 
