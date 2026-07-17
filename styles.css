@@ -4250,13 +4250,17 @@ button.ai-scene__action:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.075);
-  background: rgba(255, 255, 255, 0.035);
   color: rgba(255, 255, 255, 0.42);
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.11em;
+}
+
+.social-proof__logo img {
+  display: block;
+  width: calc(100% - 24px);
+  height: calc(100% - 12px);
+  object-fit: contain;
 }
 
 .social-proof__reviews {
@@ -4268,7 +4272,7 @@ button.ai-scene__action:hover {
 
 .social-proof__review-stage {
   position: relative;
-  min-height: 238px;
+  min-height: 270px;
 }
 
 .social-proof__review {
