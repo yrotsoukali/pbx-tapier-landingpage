@@ -1301,9 +1301,13 @@
 
       if (typeof track.animate !== "function") return;
 
-      const tickerDuration = 30000;
+      // Constant speed rather than a constant duration: a fixed duration made the
+      // ticker scroll faster every time a logo was added to the folder, and made
+      // mobile and desktop run at different speeds.
+      const tickerPixelsPerSecond = 40;
       let tickerAnimation = null;
       let tickerDistance = 0;
+      let tickerDuration = 0;
 
       // Absolute pixels, resolved once. A percentage transform renders blank on
       // WebKit's promoted layer, and a var() read inside @keyframes made the
@@ -1314,9 +1318,12 @@
         const distance = Math.round(firstGroup.getBoundingClientRect().width);
         if (!distance || distance === tickerDistance) return;
 
-        const elapsed = Number(tickerAnimation?.currentTime) || 0;
+        const progress = tickerDuration
+          ? ((Number(tickerAnimation?.currentTime) || 0) % tickerDuration) / tickerDuration
+          : 0;
         tickerAnimation?.cancel();
         tickerDistance = distance;
+        tickerDuration = (distance / tickerPixelsPerSecond) * 1000;
         tickerAnimation = track.animate(
           [
             { transform: "translate3d(0, 0, 0)" },
@@ -1324,7 +1331,7 @@
           ],
           { duration: tickerDuration, iterations: Infinity, easing: "linear" },
         );
-        tickerAnimation.currentTime = elapsed % tickerDuration;
+        tickerAnimation.currentTime = progress * tickerDuration;
       };
 
       syncTicker();

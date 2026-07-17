@@ -4256,9 +4256,16 @@ button.ai-scene__action:hover {
   flex-shrink: 0;
 }
 
+/* Each slot hugs its logo instead of being locked to one width. A fixed slot
+   makes the rhythm depend on aspect ratio: our logos run from 4.6:1 wordmarks
+   to a 1:1 square, so the square painted ~28px inside a 136px slot and left a
+   114px hole. Normalising on height and letting width follow keeps the spacing
+   between logos constant. */
 .social-proof__logo {
-  min-width: 154px;
+  min-width: 0;
   height: 42px;
+  padding: 0 14px;
+  flex: 0 0 auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -4270,8 +4277,9 @@ button.ai-scene__action:hover {
 
 .social-proof__logo img {
   display: block;
-  width: calc(100% - 24px);
-  height: calc(100% - 12px);
+  width: auto;
+  height: 32px;
+  max-width: 160px;
   object-fit: contain;
 }
 
@@ -6297,8 +6305,15 @@ button.ai-scene__action:hover {
   }
 
   .social-proof__logo {
-    min-width: 136px;
     height: 40px;
+    padding: 0 12px;
+  }
+
+  /* max-width stays clear of the widest wordmark (129px here) so nothing gets
+     letterboxed back into dead space. */
+  .social-proof__logo img {
+    height: 28px;
+    max-width: 140px;
   }
 
   .social-proof__review-stage {
