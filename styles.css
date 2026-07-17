@@ -2667,7 +2667,7 @@ body[data-language="en"] .feature-ticker {
   }
 
   to {
-    transform: translate3d(calc(-1 * var(--ticker-distance)), 0, 0);
+    transform: translate3d(calc(0px - var(--ticker-distance)), 0, 0);
   }
 }
 
@@ -4241,7 +4241,10 @@ button.ai-scene__action:hover {
   width: max-content;
   min-width: max-content;
   animation: feature-ticker-scroll 30s linear infinite;
+  -webkit-animation: feature-ticker-scroll 30s linear infinite;
   will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .social-proof__logos:hover .social-proof__logos-track {

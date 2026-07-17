@@ -1280,6 +1280,13 @@
       const logos = Array.isArray(window.SOCIAL_PROOF_LOGOS) ? window.SOCIAL_PROOF_LOGOS : [];
       if (!track || !logos.length) return;
 
+      const syncTickerDistance = () => {
+        const firstGroup = track.querySelector(".social-proof__logos-group");
+        if (!firstGroup) return;
+        const distance = firstGroup.getBoundingClientRect().width;
+        if (distance > 0) track.style.setProperty("--ticker-distance", `${distance}px`);
+      };
+
       const repetitions = Math.max(1, Math.ceil(8 / logos.length));
       for (let groupIndex = 0; groupIndex < 2; groupIndex += 1) {
         const group = document.createElement("div");
@@ -1291,11 +1298,19 @@
             wrapper.className = "social-proof__logo";
             image.src = source;
             image.alt = "";
+            image.addEventListener("load", syncTickerDistance, { once: true });
             wrapper.appendChild(image);
             group.appendChild(wrapper);
           });
         }
         track.appendChild(group);
+      }
+
+      window.requestAnimationFrame(syncTickerDistance);
+      window.addEventListener("resize", syncTickerDistance, { passive: true });
+      if ("ResizeObserver" in window) {
+        const tickerResizeObserver = new ResizeObserver(syncTickerDistance);
+        tickerResizeObserver.observe(track.firstElementChild);
       }
     }
 
