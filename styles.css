@@ -6772,23 +6772,41 @@ button.ai-scene__action:hover {
   }
 
   .social-proof__logos {
-    height: 82px;
+    height: auto;
+    min-height: 82px;
     margin-inline: -20px;
+    padding: 14px 20px;
+    overflow: visible;
   }
 
   .social-proof__logos-edge {
-    width: 34px;
+    display: none;
+  }
+
+  .social-proof__logos-track {
+    width: 100%;
+    min-width: 0;
+    animation: none;
   }
 
   .social-proof__logos-group {
-    gap: 12px;
-    padding-right: 12px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    width: 100%;
+    padding-right: 0;
+  }
+
+  .social-proof__logos-group + .social-proof__logos-group,
+  .social-proof__logos-group .social-proof__logo:nth-child(n + 5) {
+    display: none;
   }
 
   .social-proof__logo {
-    min-width: 142px;
-    height: 54px;
-    padding: 7px 10px;
+    min-width: 0;
+    width: 100%;
+    height: 64px;
+    padding: 9px 12px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     background: rgba(255, 255, 255, 0.94);
@@ -6802,12 +6820,22 @@ button.ai-scene__action:hover {
 
   .social-proof__review-stage {
     min-height: 0;
-    height: 320px;
+    height: auto !important;
   }
 
   .social-proof__review {
+    display: none;
+    position: relative;
+    inset: auto;
     padding: 22px 20px 20px;
     border-radius: 18px;
+    transform: none;
+    transition: opacity 240ms ease;
+  }
+
+  .social-proof__review.is-active {
+    display: block;
+    transform: none;
   }
 
   .social-proof__review p {
