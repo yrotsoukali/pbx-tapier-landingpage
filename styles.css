@@ -4256,20 +4256,27 @@ button.ai-scene__action:hover {
   flex-shrink: 0;
 }
 
-/* Each slot hugs its logo instead of being locked to one width. A fixed slot
-   makes the rhythm depend on aspect ratio: our logos run from 4.6:1 wordmarks
-   to a 1:1 square, so the square painted ~28px inside a 136px slot and left a
-   114px hole. Normalising on height and letting width follow keeps the spacing
-   between logos constant. */
+/* Every logo sits on the same white plate. The four files are two different
+   kinds: i-metrix and logo.png are transparent with dark ink that all but
+   vanished on the dark bar, while m-service and xit are opaque with white
+   backgrounds that read as bare white blocks. A white plate fixes both at
+   once — the dark ink becomes legible and the white backgrounds melt into
+   the plate. Identical plates also keep the ticker rhythm exactly even, since
+   the slot no longer depends on each logo's aspect ratio. */
 .social-proof__logo {
-  min-width: 0;
-  height: 42px;
-  padding: 0 14px;
+  width: 132px;
+  height: 54px;
+  padding: 9px 14px;
   flex: 0 0 auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255, 255, 255, 0.42);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.3),
+    0 8px 20px rgba(0, 0, 0, 0.16);
+  color: rgba(17, 19, 24, 0.6);
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.11em;
@@ -4278,8 +4285,9 @@ button.ai-scene__action:hover {
 .social-proof__logo img {
   display: block;
   width: auto;
-  height: 32px;
-  max-width: 160px;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
 }
 
@@ -6305,15 +6313,10 @@ button.ai-scene__action:hover {
   }
 
   .social-proof__logo {
-    height: 40px;
-    padding: 0 12px;
-  }
-
-  /* max-width stays clear of the widest wordmark (129px here) so nothing gets
-     letterboxed back into dead space. */
-  .social-proof__logo img {
-    height: 28px;
-    max-width: 140px;
+    width: 112px;
+    height: 46px;
+    padding: 8px 12px;
+    border-radius: 10px;
   }
 
   .social-proof__review-stage {
