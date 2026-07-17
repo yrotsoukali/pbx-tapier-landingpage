@@ -2777,7 +2777,10 @@ and not the duration of the call itself.`,
       if (!socialReviewStage || !socialReviews.length) return;
       const activeReview = socialReviews[socialReviewIndex];
       if (!activeReview) return;
-      socialReviewStage.style.height = `${activeReview.scrollHeight}px`;
+      const reviewStyles = window.getComputedStyle(activeReview);
+      const borders =
+        parseFloat(reviewStyles.borderTopWidth) + parseFloat(reviewStyles.borderBottomWidth);
+      socialReviewStage.style.height = `${activeReview.scrollHeight + borders}px`;
     }
 
     window.addEventListener("resize", syncSocialReviewStageHeight);

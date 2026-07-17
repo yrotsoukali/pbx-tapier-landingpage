@@ -6776,22 +6776,19 @@ button.ai-scene__action:hover {
 
   .social-proof__review-stage {
     min-height: 0;
-    height: auto !important;
+    height: 240px;
   }
 
   .social-proof__review {
-    display: none;
-    position: relative;
-    inset: auto;
+    inset: 0 0 auto 0;
     width: 100%;
     padding: clamp(18px, 5vw, 22px);
     border-radius: 18px;
     transform: none;
-    transition: opacity 240ms ease;
+    transition: opacity 320ms ease;
   }
 
   .social-proof__review.is-active {
-    display: block;
     transform: none;
   }
 
@@ -6810,7 +6807,24 @@ button.ai-scene__action:hover {
 
   .social-proof__pagination {
     max-width: 100%;
-    gap: 5px;
+    gap: 8px;
+  }
+
+  /* 6px dots are far below the 24px touch minimum; grow the hit area
+     without changing the painted dot. Insets match the 8px gap so
+     neighbouring targets meet but never overlap. */
+  .social-proof__pagination-dot {
+    overflow: visible;
+  }
+
+  .social-proof__pagination-dot::after {
+    content: "";
+    position: absolute;
+    inset: -9px -4px;
+  }
+
+  .social-proof__logos-edge {
+    width: 48px;
   }
 
   .social-proof__reviews-link {
