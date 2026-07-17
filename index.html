@@ -2755,7 +2755,17 @@ and not the duration of the call itself.`,
           page.removeAttribute("aria-current");
         }
       });
+      window.requestAnimationFrame(syncSocialReviewStageHeight);
     }
+
+    function syncSocialReviewStageHeight() {
+      if (!socialReviewStage || !socialReviews.length) return;
+      const activeReview = socialReviews[socialReviewIndex];
+      if (!activeReview) return;
+      socialReviewStage.style.height = `${activeReview.scrollHeight}px`;
+    }
+
+    window.addEventListener("resize", syncSocialReviewStageHeight);
 
     function queueSocialReviews() {
       window.clearInterval(socialReviewTimer);
