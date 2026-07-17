@@ -7198,8 +7198,7 @@ button.ai-scene__action:hover {
   .ai-addons__background::after,
   .ai-addons__glow,
   .ai-waveform__bar,
-  .ai-summary-card__typed::after,
-  .social-proof__logos-track {
+  .ai-summary-card__typed::after {
     animation: none;
   }
 
