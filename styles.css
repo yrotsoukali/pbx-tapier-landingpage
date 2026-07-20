@@ -194,23 +194,35 @@ section[id][tabindex="-1"]:focus {
   background: transparent;
 }
 
-/* Backdrop lives on a pseudo-element so it can be masked to a soft fade instead of
-   the hard bottom edge a full-height background leaves. Just a gentle, low-contrast
-   gradient that trails off before the header ends; mobile adds a light blur on top. */
+/* Adaptive top fade: multiply makes it react gently to dark backgrounds while still
+   suppressing bright content. The smoothstep alpha curve reaches zero with a flat
+   slope, so its lower edge cannot read as a horizontal line. */
 .header::before {
   content: "";
   position: absolute;
-  inset: 0;
+  top: -8px;
+  right: 0;
+  left: 0;
+  height: calc(100% + 40px);
   z-index: -1;
   pointer-events: none;
   background: linear-gradient(
     180deg,
-    rgba(5, 6, 7, 0.66) 0%,
-    rgba(5, 6, 7, 0.3) 52%,
+    rgba(5, 6, 7, 0.99) 0%,
+    rgba(5, 6, 7, 0.962) 10%,
+    rgba(5, 6, 7, 0.887) 20%,
+    rgba(5, 6, 7, 0.776) 30%,
+    rgba(5, 6, 7, 0.642) 40%,
+    rgba(5, 6, 7, 0.495) 50%,
+    rgba(5, 6, 7, 0.348) 60%,
+    rgba(5, 6, 7, 0.214) 70%,
+    rgba(5, 6, 7, 0.103) 80%,
+    rgba(5, 6, 7, 0.028) 90%,
     rgba(5, 6, 7, 0) 100%
   );
-  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 46%, transparent 100%);
-  mask-image: linear-gradient(180deg, #000 0%, #000 46%, transparent 100%);
+  mix-blend-mode: multiply;
+  filter: blur(4px);
+  transform: translateZ(0);
 }
 
 .logo-block {
@@ -5947,14 +5959,6 @@ button.ai-scene__action:hover {
     padding: 14px 16px;
     grid-template-columns: 1fr auto auto;
     gap: 12px;
-  }
-
-  /* The mask above also clips the backdrop-filter, so the blur fades out on the same
-     curve as the gradient rather than ending in a hard line. Kept to mobile: on desktop
-     the header sits over the hero, which is already soft enough to read against. */
-  .header::before {
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
   }
 
   .nav-toggle {
