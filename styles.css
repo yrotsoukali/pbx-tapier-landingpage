@@ -200,28 +200,28 @@ section[id][tabindex="-1"]:focus {
 .header::before {
   content: "";
   position: absolute;
-  top: -8px;
+  top: -12px;
   right: 0;
   left: 0;
-  height: calc(100% + 40px);
+  height: calc(100% + 56px);
   z-index: -1;
   pointer-events: none;
   background: linear-gradient(
     180deg,
-    rgba(5, 6, 7, 0.99) 0%,
-    rgba(5, 6, 7, 0.962) 10%,
-    rgba(5, 6, 7, 0.887) 20%,
-    rgba(5, 6, 7, 0.776) 30%,
-    rgba(5, 6, 7, 0.642) 40%,
-    rgba(5, 6, 7, 0.495) 50%,
-    rgba(5, 6, 7, 0.348) 60%,
-    rgba(5, 6, 7, 0.214) 70%,
-    rgba(5, 6, 7, 0.103) 80%,
-    rgba(5, 6, 7, 0.028) 90%,
-    rgba(5, 6, 7, 0) 100%
+    rgb(0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.962) 10%,
+    rgba(0, 0, 0, 0.887) 20%,
+    rgba(0, 0, 0, 0.776) 30%,
+    rgba(0, 0, 0, 0.642) 40%,
+    rgba(0, 0, 0, 0.495) 50%,
+    rgba(0, 0, 0, 0.348) 60%,
+    rgba(0, 0, 0, 0.214) 70%,
+    rgba(0, 0, 0, 0.103) 80%,
+    rgba(0, 0, 0, 0.028) 90%,
+    rgba(0, 0, 0, 0) 100%
   );
   mix-blend-mode: multiply;
-  filter: blur(4px);
+  filter: blur(6px);
   transform: translateZ(0);
 }
 
