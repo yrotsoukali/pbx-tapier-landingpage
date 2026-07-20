@@ -4727,9 +4727,7 @@ button.ai-scene__action:hover {
   padding: 28px 22px 24px;
   border-radius: 18px;
   border: 1px solid rgba(132, 139, 154, 0.38);
-  background:
-    radial-gradient(circle at 54% 48%, rgba(255, 255, 255, 0.055), transparent 42%),
-    linear-gradient(180deg, rgba(20, 22, 27, 0.97), rgba(10, 12, 16, 0.98));
+  background: linear-gradient(180deg, rgba(20, 22, 27, 0.97), rgba(10, 12, 16, 0.98));
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
     0 26px 70px rgba(0, 0, 0, 0.48);
@@ -4743,9 +4741,7 @@ button.ai-scene__action:hover {
 
 .plans-card--featured {
   border-color: #ff6a18;
-  background:
-    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.06), transparent 44%),
-    linear-gradient(180deg, rgba(19, 21, 26, 0.98), rgba(9, 11, 15, 0.99));
+  background: linear-gradient(180deg, rgba(19, 21, 26, 0.98), rgba(9, 11, 15, 0.99));
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
     0 0 0 1px rgba(255, 106, 24, 0.18),
@@ -5205,11 +5201,11 @@ button.ai-scene__action:hover {
   position: relative;
   overflow: hidden;
   border-radius: 22px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  background: #202127;
+  border: 1px solid rgba(132, 139, 154, 0.38);
+  background: linear-gradient(180deg, rgba(20, 22, 27, 0.97), rgba(10, 12, 16, 0.98));
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    0 18px 42px rgba(0, 0, 0, 0.2);
+    0 26px 70px rgba(0, 0, 0, 0.48);
   transition:
     opacity 260ms ease,
     transform 260ms ease;
@@ -5265,9 +5261,9 @@ button.ai-scene__action:hover {
 
 .contact-option,
 .contact-selected-package {
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(132, 139, 154, 0.3);
   border-radius: 15px;
-  background: #272830;
+  background: linear-gradient(180deg, rgba(27, 29, 35, 0.96), rgba(20, 22, 27, 0.98));
 }
 
 .contact-option,
@@ -5284,9 +5280,9 @@ button.ai-scene__action:hover {
 }
 
 .contact-package {
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(132, 139, 154, 0.3);
   border-radius: 15px;
-  background: #272830;
+  background: linear-gradient(180deg, rgba(27, 29, 35, 0.96), rgba(20, 22, 27, 0.98));
 }
 
 .contact-option,
@@ -5353,13 +5349,15 @@ button.ai-scene__action:hover {
 .contact-option:hover,
 .contact-package:hover {
   transform: translateY(-1px);
+  border-color: rgba(174, 181, 195, 0.42);
+  background: linear-gradient(180deg, rgba(31, 33, 40, 0.98), rgba(23, 25, 31, 0.99));
 }
 
 .contact-option.is-selected,
 .contact-package.is-selected,
 .contact-selected-package {
   border-color: rgba(255, 106, 47, 0.78);
-  background: #2b2826;
+  background: linear-gradient(180deg, rgba(38, 30, 27, 0.98), rgba(26, 23, 22, 0.99));
   box-shadow:
     inset 0 0 0 1px rgba(255, 106, 47, 0.18),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
