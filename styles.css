@@ -6394,6 +6394,7 @@ button.ai-scene__action:hover {
   }
 
   .plans-card--featured {
+    margin-top: 13px;
     transform: none;
   }
 }
