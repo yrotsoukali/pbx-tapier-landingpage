@@ -752,6 +752,11 @@
           <div class="social-proof__review-stage" aria-live="polite">
             <article class="social-proof__review is-active" data-social-review aria-hidden="false">
               <div class="social-proof__stars" aria-hidden="true">★★★★★</div>
+              <p data-i18n="socialProofReviewTen">Χρησιμοποιούμε εδώ και χρόνια τη διασύνδεση της Northcom Technologies Πληροφορική του S1 με το Yeastar τηλεφωνικό μας κέντρο και είμαστε πολύ ευχαριστημένοι, τόσο από την ίδια τη διασύνδεση όσο και από την τεχνική υποστήριξη… Τα οφέλη στην καθημερινή μας εργασία είναι πολλά και αφορούν όλα τα τμήματα της εταιρείας… αφού εξοικονομεί πολύ χρόνο σε όλους. Τη συστήνουμε ανεπιφύλακτα για τη λειτουργικότητά της και το after-sales support της NorthCom!</p>
+              <span data-i18n="socialProofReviewSource">Αξιολογήσεις πελατών</span>
+            </article>
+            <article class="social-proof__review" data-social-review aria-hidden="true">
+              <div class="social-proof__stars" aria-hidden="true">★★★★★</div>
               <p data-i18n="socialProofReviewOne">Η εμπειρία μας είναι ιδιαίτερα θετική… Με κάθε εισερχόμενη κλήση, τα στοιχεία του πελάτη είναι κατευθείαν διαθέσιμα από το Soft1, χωρίς να χρειάζεται χειροκίνητη αναζήτηση… Η ανταπόκριση της North Com ήταν άμεση και αποτελεσματική.</p>
               <span data-i18n="socialProofReviewSource">Αξιολογήσεις πελατών</span>
             </article>
@@ -807,6 +812,7 @@
             <button class="social-proof__pagination-dot" type="button" aria-label="Review 7" data-social-review-page="6"></button>
             <button class="social-proof__pagination-dot" type="button" aria-label="Review 8" data-social-review-page="7"></button>
             <button class="social-proof__pagination-dot" type="button" aria-label="Review 9" data-social-review-page="8"></button>
+            <button class="social-proof__pagination-dot" type="button" aria-label="Review 10" data-social-review-page="9"></button>
           </div>
 
           <a class="social-proof__reviews-link" href="https://www.google.com/share.google?q=lfFRoQZ6vodzoYDHC" target="_blank" rel="noopener">
@@ -1413,7 +1419,7 @@
     const socialReviewPages = Array.from(document.querySelectorAll("[data-social-review-page]"));
     const socialReviewsContainer = document.querySelector(".social-proof__reviews");
     const socialReviewStage = document.querySelector(".social-proof__review-stage");
-    const socialReviewPriority = [1, 0, 3, 2, 5, 4, 7, 6, 8];
+    const socialReviewPriority = [0, 2, 1, 4, 6, 3, 5, 7, 8, 9];
     const prioritizedSocialReviews = socialReviewPriority
       .map((index) => socialReviews[index])
       .filter(Boolean);
@@ -2062,6 +2068,7 @@
         socialProofReviewSeven: "Τι φανταστικό εργαλείο αυτό το dialer κ. Γιώργο! Τέλειο! Ευχαριστώ πολύ. Τέλεια εξυπηρέτηση επίσης!",
         socialProofReviewEight: "Υπέροχες λύσεις τηλεφωνικού κέντρου, πολύ καλή εξυπηρέτηση. Εύκολη, γρήγορη εγκατάσταση, χωρίς προβλήματα.",
         socialProofReviewNine: "Εύχρηστο και πολύ εύκολη εγκατάσταση.",
+        socialProofReviewTen: "Χρησιμοποιούμε εδώ και χρόνια τη διασύνδεση της Northcom Technologies Πληροφορική του S1 με το Yeastar τηλεφωνικό μας κέντρο και είμαστε πολύ ευχαριστημένοι, τόσο από την ίδια τη διασύνδεση όσο και από την τεχνική υποστήριξη… Τα οφέλη στην καθημερινή μας εργασία είναι πολλά και αφορούν όλα τα τμήματα της εταιρείας… αφού εξοικονομεί πολύ χρόνο σε όλους. Τη συστήνουμε ανεπιφύλακτα για τη λειτουργικότητά της και το after-sales support της NorthCom!",
         socialProofReviewSource: "Αξιολογήσεις πελατών",
         plansPill: "ΠΛΑΝΑ",
         plansTitleStart: "Επενδύστε στην",
@@ -2355,6 +2362,7 @@ and not the duration of the call itself.`,
         socialProofReviewSeven: "What a fantastic tool this dialer is, Mr. Giorgos! Perfect! Thank you very much. Excellent service too!",
         socialProofReviewEight: "Excellent phone system solutions and very good service. Easy, fast installation with no problems.",
         socialProofReviewNine: "Easy to use and very easy to install.",
+        socialProofReviewTen: "We have been using Northcom Technologies Informatics' integration of S1 with our Yeastar phone system for years, and we are very satisfied with both the integration itself and the technical support. It brings many benefits to our daily work across every department of the company, saving everyone a great deal of time. We wholeheartedly recommend it for its functionality and NorthCom's after-sales support!",
         socialProofReviewSource: "Google Review",
         plansPill: "PLANS",
         plansTitleStart: "Invest in the",
