@@ -6130,6 +6130,8 @@ button.ai-scene__action:hover {
   .comparison__inner {
     display: flex;
     flex-direction: column;
+    width: min(440px, calc(100% - 24px));
+    margin-inline: auto;
   }
 
   .comparison__labels,
@@ -6174,7 +6176,9 @@ button.ai-scene__action:hover {
   }
 
   .comparison__point {
-    padding: 14px 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.045);
   }
 
@@ -6185,6 +6189,9 @@ button.ai-scene__action:hover {
   .comparison__stat--muted,
   .comparison__stat--accent {
     grid-column: 1;
+    align-self: center;
+    align-items: center;
+    text-align: center;
   }
 
   .roi {
