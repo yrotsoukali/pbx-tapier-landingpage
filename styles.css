@@ -293,7 +293,7 @@ section[id][tabindex="-1"]:focus {
 }
 
 body.is-scrolled .navbar {
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 /* Reaching for the menu always brings it fully forward, even while scrolled.
