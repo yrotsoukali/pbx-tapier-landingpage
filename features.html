@@ -91,7 +91,7 @@
             </div>
             <div class="call-recognition__visual" aria-hidden="true">
               <div class="popup-demo" data-popup="1" data-popup-src="ui/pop-up.html?case=1">
-                <iframe class="popup-demo__frame" title="PBX popup demo" data-i18n-title="popupDemoTitle" src="ui/pop-up.html?case=1"></iframe>
+                <iframe class="popup-demo__frame" title="PBX popup demo" data-i18n-title="popupDemoTitle" src="ui/pop-up.html?case=1" loading="lazy"></iframe>
                 <section class="call-popup" aria-label="Παράθυρο κλήσης">
                   <header class="call-popup__titlebar">
                     <div class="call-popup__identity">
@@ -145,7 +145,7 @@
             </div>
             <div class="call-recognition__visual" aria-hidden="true">
               <div class="popup-demo" data-popup="2" data-popup-src="ui/pop-up.html?record=entersoftone">
-                <iframe class="popup-demo__frame" title="PBX popup supplier demo" data-i18n-title="popupSupplierDemoTitle" src="ui/pop-up.html?record=entersoftone"></iframe>
+                <iframe class="popup-demo__frame" title="PBX popup supplier demo" data-i18n-title="popupSupplierDemoTitle" src="ui/pop-up.html?record=entersoftone" loading="lazy"></iframe>
                 <button class="popup-demo__replay" type="button" hidden>
                   <svg class="popup-demo__replay-icon" viewBox="0 0 16 16" aria-hidden="true">
                     <path d="M13 6.2A5.2 5.2 0 1 0 14 9"></path>
@@ -165,7 +165,7 @@
             </div>
             <div class="call-recognition__visual" aria-hidden="true">
               <div class="popup-demo" data-popup="2" data-popup-src="ui/pop-up.html?case=2">
-                <iframe class="popup-demo__frame" title="PBX popup demo with balance" data-i18n-title="popupBalanceDemoTitle" src="ui/pop-up.html?case=2"></iframe>
+                <iframe class="popup-demo__frame" title="PBX popup demo with balance" data-i18n-title="popupBalanceDemoTitle" src="ui/pop-up.html?case=2" loading="lazy"></iframe>
                 <div class="popup-demo__balance-callout" aria-hidden="true">
                   <span class="popup-demo__balance-label" data-i18n="balanceLabel">Υπόλοιπο</span>
                 </div>
@@ -223,7 +223,7 @@
             </div>
             <div class="call-recognition__visual" aria-hidden="true">
               <div class="popup-demo" data-popup="6" data-popup-src="ui/pop-up.html?case=1&notes=1">
-                <iframe class="popup-demo__frame" title="PBX popup customer notes demo" data-i18n-title="popupNotesDemoTitle" src="ui/pop-up.html?case=1&notes=1"></iframe>
+                <iframe class="popup-demo__frame" title="PBX popup customer notes demo" data-i18n-title="popupNotesDemoTitle" src="ui/pop-up.html?case=1&notes=1" loading="lazy"></iframe>
                 <button class="popup-demo__replay" type="button" hidden>
                   <svg class="popup-demo__replay-icon" viewBox="0 0 16 16" aria-hidden="true">
                     <path d="M13 6.2A5.2 5.2 0 1 0 14 9"></path>
@@ -244,9 +244,9 @@
             <div class="call-recognition__visual" aria-hidden="true">
               <div class="popup-demo popup-demo--history" data-popup="4" data-popup-src="ui/pop-up.html?case=1&contacts=orange" data-history-demo="true" data-history-mode="submenu">
                 <div class="popup-demo__history-stage">
-                  <iframe class="popup-demo__frame" title="PBX popup history tasks demo" data-i18n-title="popupHistoryDemoTitle" src="ui/pop-up.html?case=1&contacts=orange"></iframe>
+                  <iframe class="popup-demo__frame" title="PBX popup history tasks demo" data-i18n-title="popupHistoryDemoTitle" src="ui/pop-up.html?case=1&contacts=orange" loading="lazy"></iframe>
                   <span class="popup-demo__cursor" aria-hidden="true"></span>
-                  <iframe class="popup-demo__history-frame" title="PBX history menu" data-i18n-title="historyMenuTitle" src="ui/history.html"></iframe>
+                  <iframe class="popup-demo__history-frame" title="PBX history menu" data-i18n-title="historyMenuTitle" src="ui/history.html" loading="lazy"></iframe>
                 </div>
                 <button class="popup-demo__replay" type="button" hidden>
                   <svg class="popup-demo__replay-icon" viewBox="0 0 16 16" aria-hidden="true">
@@ -268,9 +268,9 @@
             <div class="call-recognition__visual" aria-hidden="true">
               <div class="popup-demo popup-demo--history" data-popup="5" data-popup-src="ui/pop-up.html?case=1" data-history-demo="true" data-history-mode="main">
                 <div class="popup-demo__history-stage">
-                  <iframe class="popup-demo__frame" title="PBX popup actions demo" data-i18n-title="popupActionsDemoTitle" src="ui/pop-up.html?case=1"></iframe>
+                  <iframe class="popup-demo__frame" title="PBX popup actions demo" data-i18n-title="popupActionsDemoTitle" src="ui/pop-up.html?case=1" loading="lazy"></iframe>
                   <span class="popup-demo__cursor" aria-hidden="true"></span>
-                  <iframe class="popup-demo__history-frame" title="PBX history menu" data-i18n-title="historyMenuTitle" src="ui/history.html"></iframe>
+                  <iframe class="popup-demo__history-frame" title="PBX history menu" data-i18n-title="historyMenuTitle" src="ui/history.html" loading="lazy"></iframe>
                 </div>
                 <button class="popup-demo__replay" type="button" hidden>
                   <svg class="popup-demo__replay-icon" viewBox="0 0 16 16" aria-hidden="true">
@@ -296,6 +296,7 @@
                 data-i18n-title="taskFormTitle"
                 data-localized-src="ui/task-form.html?embed=features"
                 src="ui/task-form.html?embed=features"
+                loading="lazy"
               ></iframe>
               <p class="task-form-demo__note">
                 <span class="task-form-demo__info-icon" aria-hidden="true">i</span>
@@ -318,6 +319,7 @@
                   data-i18n-title="automationDemoTitle"
                   data-localized-src="ui/task-form.html?demo=automation"
                   src="ui/task-form.html?demo=automation"
+                  loading="lazy"
                   tabindex="-1"
                 ></iframe>
               </div>
@@ -340,7 +342,7 @@
             </div>
             <div class="call-recognition__visual" aria-hidden="true">
               <div class="popup-demo" data-popup="3" data-popup-src="ui/pop-up-colored.html?case=1" data-popup-next-src="ui/pop-up-colored.html?case=2">
-                <iframe class="popup-demo__frame" title="PBX colored popup demo" data-i18n-title="coloredPopupDemoTitle" src="ui/pop-up-colored.html?case=1"></iframe>
+                <iframe class="popup-demo__frame" title="PBX colored popup demo" data-i18n-title="coloredPopupDemoTitle" src="ui/pop-up-colored.html?case=1" loading="lazy"></iframe>
                 <div class="popup-demo__case-patch popup-demo__case-patch--urgent" aria-hidden="true">
                   <span class="popup-demo__case-patch-title" data-i18n="patchUrgentTitle">ΠΡΟΣΟΧΗ</span>
                   <span class="popup-demo__case-patch-note" data-i18n="patchUrgentNote">attention</span>
@@ -369,6 +371,7 @@
                 data-i18n-title="settingsColorsTitle"
                 data-localized-src="ui/settings-colors.html"
                 src="ui/settings-colors.html"
+                loading="lazy"
                 tabindex="-1"
               ></iframe>
             </div>
@@ -387,6 +390,7 @@
                 data-i18n-title="callHistoryTitle"
                 data-localized-src="ui/call-history.html"
                 src="ui/call-history.html"
+                loading="lazy"
               ></iframe>
             </div>
           </article>
@@ -410,6 +414,7 @@
                   data-i18n-title="copyCallTitle"
                   data-localized-src="ui/copy-call.html"
                   src="ui/copy-call.html"
+                  loading="lazy"
                   tabindex="-1"
                 ></iframe>
                 <span class="copy-call-demo__cursor" aria-hidden="true"></span>
@@ -724,6 +729,14 @@
       return `${url.pathname}${url.search}`;
     }
 
+    function syncFrameLanguage(frame, src, lang) {
+      if (!frame || !src) return;
+      const currentUrl = new URL(frame.getAttribute("src") || src, window.location.href);
+      const currentLanguage = currentUrl.searchParams.get("lang") === "en" ? "en" : "el";
+      if (currentLanguage === lang) return;
+      frame.src = buildLocalizedSrc(src, lang);
+    }
+
     function syncEmbeddedDemoLanguage(lang) {
       document.querySelectorAll(".popup-demo").forEach((wrapper) => {
         const frame = wrapper.querySelector(".popup-demo__frame");
@@ -731,16 +744,16 @@
         const popupSrc = wrapper.dataset.popupSrc;
 
         if (frame && popupSrc) {
-          frame.src = buildLocalizedSrc(popupSrc, lang);
+          syncFrameLanguage(frame, popupSrc, lang);
         }
 
         if (historyFrame) {
-          historyFrame.src = buildLocalizedSrc("ui/history.html", lang);
+          syncFrameLanguage(historyFrame, "ui/history.html", lang);
         }
       });
 
       document.querySelectorAll("[data-localized-src]").forEach((frame) => {
-        frame.src = buildLocalizedSrc(frame.dataset.localizedSrc, lang);
+        syncFrameLanguage(frame, frame.dataset.localizedSrc, lang);
       });
     }
 

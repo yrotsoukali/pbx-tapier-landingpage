@@ -1978,27 +1978,32 @@ body[data-language="en"] .feature-ticker {
   gap: clamp(72px, 8vw, 112px);
 }
 
+/* The features page is several viewports tall. Filtering and masking one
+   full-height background layer forces the browser to rasterize a very large
+   offscreen surface, which can briefly show black tiles during fast scrolls. */
+.features-page .call-recognition__background {
+  mask-image: none;
+  -webkit-mask-image: none;
+}
+
 .features-page .call-recognition__background::before,
 .features-page .call-recognition__background::after {
   inset: -40px -8% -40px;
   background-repeat: repeat-y;
   background-position: center 320px;
   background-size: 100% 2200px;
-  mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.1) 5%, #000 13%, #000 94%, transparent 100%);
-  -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.1) 5%, #000 13%, #000 94%, transparent 100%);
+  box-shadow: none;
+  filter: none;
+  mask-image: none;
+  -webkit-mask-image: none;
 }
 
 .features-page .call-recognition__background::before {
-  opacity: 0.5;
-  filter:
-    blur(0.45px)
-    drop-shadow(0 0 10px rgba(255, 84, 24, 0.38))
-    drop-shadow(0 0 34px rgba(255, 84, 24, 0.18));
+  opacity: 0.42;
 }
 
 .features-page .call-recognition__background::after {
-  opacity: 0.2;
-  filter: blur(2.2px);
+  opacity: 0.16;
 }
 
 .features-placeholder {
